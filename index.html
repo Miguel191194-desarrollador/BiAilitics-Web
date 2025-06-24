@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Optimiza tu Negocio con Power BI</title>
+  <!-- Fuente Inter y Rajdhani -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Rajdhani:wght@600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      width: 100%;
+      font-family: 'Inter', sans-serif;
+      background-color: #121212;
+      color: #ffffff;
+    }
+
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 10;
+      height: 80px;
+      background: rgba(18, 18, 18, 0.95);
+      backdrop-filter: blur(6px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 30px;
+      border-bottom: 1px solid #2d2d2d;
+    }
+
+    header div {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    header div img {
+      height: 40px;
+    }
+
+    header div strong {
+      color: #fff;
+      font-size: 1.2em;
+    }
+
+    header nav {
+      display: flex;
+      gap: 15px;
+    }
+
+    header nav a {
+      text-decoration: none;
+      color: #b8aaff;
+      padding: 6px 14px;
+      border: 1px solid #b8aaff;
+      border-radius: 20px;
+      font-size: 0.85em;
+      transition: all 0.3s ease;
+    }
+
+    header nav a:hover {
+      background-color: #b8aaff;
+      color: #121212;
+    }
+
+    .hero {
+      height: 100vh;
+      background-image: url('assets/imagen_ampliada_comprimida.jpg');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 0 8%;
+      position: relative;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-text {
+      position: relative;
+      max-width: 600px;
+      z-index: 1;
+    }
+
+    .hero-text h1 {
+      font-size: 2.8em;
+      margin-bottom: 20px;
+    }
+
+    .hero-text p {
+      font-size: 1.2em;
+      margin-bottom: 30px;
+    }
+
+    .hero-text button {
+      border: 2px solid #b8aaff;
+      color: #b8aaff;
+      background: transparent;
+      padding: 12px 28px;
+      font-size: 1em;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .hero-text button:hover {
+      background: #b8aaff;
+      color: #121212;
+    }
+
+    .servicios {
+      padding: 80px 10%;
+      background: #1a1a1a;
+      text-align: center;
+    }
+
+    .servicios h2,
+    .equipo h2,
+    .info h2 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 3em;
+      color: #b8aaff;
+      padding: 20px 40px;
+      border: 2px solid #b8aaff;
+      border-radius: 12px;
+      display: inline-block;
+      box-shadow: 0 0 25px rgba(184, 170, 255, 0.3);
+      margin-bottom: 50px;
+    }
+
+    .cards {
+      display: flex;
+      gap: 30px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      background: #2a2a2a;
+      border-left: 5px solid #7b6cf9;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      max-width: 260px;
+      text-align: left;
+      color: white;
+      flex: 0 0 260px;
+    }
+
+    .card img {
+      width: 100%;
+      height: 150px;
+      object-fit: contain;
+      margin-bottom: 15px;
+      border-radius: 6px;
+    }
+
+    .card h3 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.3em;
+      background: linear-gradient(135deg, #7b6cf9, #ff6cf0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      font-size: 1em;
+      line-height: 1.6;
+      color: #e0e0e0;
+    }
+
+    .separador {
+      background: linear-gradient(to right, #6c2cbf, #b8aaff);
+      height: 6px;
+      width: 70%;
+      margin: 60px auto;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body>
+
+
+
+
+
+
+
+
+  <header>
+  <div>
+    <img src="assets/Biailitics.png" alt="Logo BiAilitics">
+    <strong>Optimiza tu Negocio con Power BI</strong>
+  </div>
+  <nav>
+    <a href="#servicios">Servicios</a>
+    <a href="#acerca">Quiénes somos</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-text">
+    <h1>Descubre el camino a la eficiencia y el éxito con nuestra consultoría experta.</h1>
+    <p>Empodera tu negocio y acelera tus resultados con estrategias diseñadas para triunfar.</p>
+  </div>
+</section>
+
+
+<section class="servicios" id="servicios">
+  <h2>Nuestros servicios</h2>
+  <div class="cards">
+    <!-- Tarjetas de servicios -->
+    <div class="card">
+      <img src="assets/CDM.png" alt="Cuadro de mando">
+      <h3>Cuadro de Mando Ejecutivo</h3>
+      <p>Transforma tus datos en decisiones inteligentes. Visualiza al instante ventas, márgenes, KPI y resultados con dashboards dinámicos y a medida. Ideal para directivos que necesitan control y claridad al segundo.</p>
+    </div>
+    <div class="card">
+      <img src="assets/formulario_excel.png" alt="Formularios Web Excel">
+      <h3>Digitaliza tus datos</h3>
+      <p>Digitaliza tus procesos con formularios web personalizados que se conectan a tu Excel automáticamente. Recoge pedidos, clientes o incidencias desde cualquier dispositivo y gana agilidad sin errores.</p>
+    </div>
+    <div class="card">
+      <img src="assets/consultoria_procesos.png" alt="Consultoría de procesos">
+      <h3>Consultoría Empresarial</h3>
+      <p>Detectamos cuellos de botella, analizamos tus procesos y diseñamos soluciones prácticas con tecnología y datos. Mejora la productividad, reduce costes y convierte tu empresa en una máquina de precisión.</p>
+    </div>
+    <div class="card">
+      <img src="assets/soluciones_personalizadas.png" alt="Soluciones personalizadas">
+      <h3>Soluciones Personalizadas</h3>
+      <p>¿Tienes un reto que no encaja en nuestros servicios? Cuéntanos tu caso. Diseñamos soluciones a medida adaptadas a tus procesos, tecnología y necesidades reales. Nos involucramos contigo desde el diagnóstico hasta la implementación.  </p>
+    </div>
+  </div>
+</section>
+
+<div class="separador"></div>
+
+<section class="equipo" id="acerca" style="padding: 80px 10%; background: #181818; color: white; text-align: center;">
+  <h2>¿Quiénes somos?</h2>
+  <div style="display: flex; flex-wrap: wrap; gap: 40px; justify-content: center;">
+    <!-- Miguel -->
+    <div style="flex: 1 1 320px; max-width: 360px; background: #2a2a2a; padding: 30px; border-radius: 16px; box-shadow: 0 8px 20px rgba(123, 108, 249, 0.15); display: flex; flex-direction: column; align-items: center;">
+      <div style="width: 130px; height: 130px; border-radius: 50%; overflow: hidden; margin-bottom: 20px; border: 3px solid #b8aaff;">
+        <img src="assets/foto-perfil.png" alt="Miguel Ángel Domínguez" style="width: 100%; height: 100%; object-fit: cover;">
+      </div>
+      <h3 style="margin: 10px 0 5px;">Miguel Ángel Domínguez</h3>
+      <div style="font-size: 0.95em; color: #aaa5f9; margin-bottom: 10px;">Analista de Datos y Procesos</div>
+      <p style="font-size: 0.95em; line-height: 1.5; color: #e0e0e0;">Especialista en análisis empresarial, optimización de operaciones y automatización de tareas. Conecta los datos con decisiones reales que mejoran el rendimiento y reducen errores.</p>
+    </div>
+
+    <!-- Carlos -->
+    <div style="flex: 1 1 320px; max-width: 360px; background: #2a2a2a; padding: 30px; border-radius: 16px; box-shadow: 0 8px 20px rgba(123, 108, 249, 0.15); display: flex; flex-direction: column; align-items: center;">
+      <div style="width: 130px; height: 130px; border-radius: 50%; overflow: hidden; margin-bottom: 20px; border: 3px solid #b8aaff;">
+        <img src="assets/carlos.png" alt="Carlos Manzano Gómez" style="width: 100%; height: 100%; object-fit: cover;">
+      </div>
+      <h3 style="margin: 10px 0 5px;">Carlos Manzano Gómez</h3>
+      <div style="font-size: 0.95em; color: #aaa5f9; margin-bottom: 10px;">Desarrollador y Soporte Técnico</div>
+      <p style="font-size: 0.95em; line-height: 1.5; color: #e0e0e0;">Programador de sistemas y experto en soporte Helpdesk. Desarrolla soluciones tecnológicas adaptadas a cada negocio y asegura que todos los procesos informáticos funcionen sin interrupciones.</p>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+<div class="separador"></div>
+
+<section class="contacto" id="contacto" style="background:#1c1c1c; padding: 60px 10%; color: white;">
+  <div class="info" style="text-align: center;">
+    <h2>Contáctanos</h2>
+    <p>¿Quieres que trabajemos juntos? Ingresa tus datos y te escribiremos pronto.</p>
+    <p style="margin-top: 20px; font-size: 1em;">
+      ✉️ O si lo prefieres, escríbenos directamente a 
+      <a href="mailto:infobiailitics@gmail.com" style="color: #b8aaff; text-decoration: underline;">
+        infobiailitics@gmail.com
+      </a> y nos pondremos en contacto contigo lo antes posible.
+    </p>
+  </div>
+
+  <form style="margin-top: 40px;">
+    <input type="text" placeholder="Nombre" required style="width:100%; padding:12px; border-radius:10px; border:1px solid #444; margin-bottom:15px; background:#2a2a2a; color:white;">
+    <input type="text" placeholder="Apellido" required style="width:100%; padding:12px; border-radius:10px; border:1px solid #444; margin-bottom:15px; background:#2a2a2a; color:white;">
+    <input type="email" placeholder="Correo electrónico" required style="width:100%; padding:12px; border-radius:10px; border:1px solid #444; margin-bottom:15px; background:#2a2a2a; color:white;">
+    <textarea rows="5" placeholder="Mensaje" required style="width:100%; padding:12px; border-radius:10px; border:1px solid #444; background:#2a2a2a; color:white; margin-bottom:20px;"></textarea>
+    <button type="submit" style="background: linear-gradient(135deg, #6c2cbf, #b8aaff); border: none; padding: 12px 25px; color: white; font-size: 1em; border-radius: 25px; cursor: pointer;">ENVIAR</button>
+  </form>
+</section>
+
+</body>
+</html>
