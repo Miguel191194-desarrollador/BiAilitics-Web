@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -18,15 +20,7 @@
   <!-- Fuente Inter y Rajdhani -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Rajdhani:wght@600&display=swap" rel="stylesheet">
 
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4PDXDV406W"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-4PDXDV406W');
-  </script>
-
+  <!-- Estilos principales -->
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body {
@@ -35,7 +29,6 @@
       background-color: #121212;
       color: #ffffff;
     }
-
     header {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -49,31 +42,26 @@
       padding: 20px 30px;
       border-bottom: 1px solid #2d2d2d;
     }
-
     header div {
       display: flex;
       align-items: center;
       gap: 16px;
       flex-wrap: wrap;
     }
-
     header div img {
       height: 40px;
     }
-
     header div strong {
       color: #fff;
       font-size: 1.1em;
       max-width: 200px;
     }
-
     header nav {
       display: flex;
       gap: 12px;
       flex-wrap: wrap;
       justify-content: center;
     }
-
     header nav a {
       text-decoration: none;
       color: #b8aaff;
@@ -83,12 +71,10 @@
       font-size: 0.85em;
       transition: all 0.3s ease;
     }
-
     header nav a:hover {
       background-color: #b8aaff;
       color: #121212;
     }
-
     .hero {
       height: 100vh;
       background-image: url('assets/imagen_ampliada_comprimida.jpg');
@@ -100,164 +86,27 @@
       padding: 0 8%;
       position: relative;
     }
-
     .hero::before {
       content: "";
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
       background: rgba(0, 0, 0, 0.5);
     }
-
     .hero-text {
       position: relative;
       max-width: 600px;
       z-index: 1;
     }
-
     .hero-text h1 {
       font-size: 2.6em;
       margin-bottom: 20px;
     }
-
     .hero-text p {
       font-size: 1.1em;
       margin-bottom: 30px;
     }
-
-    .hero-text button {
-      border: 2px solid #b8aaff;
-      color: #b8aaff;
-      background: transparent;
-      padding: 12px 28px;
-      font-size: 1em;
-      border-radius: 25px;
-      cursor: pointer;
-      transition: 0.3s ease;
-    }
-
-    .hero-text button:hover {
-      background: #b8aaff;
-      color: #121212;
-    }
-
-    .servicios {
-      padding: 80px 10%;
-      background: #1a1a1a;
-      text-align: center;
-    }
-
-    .servicios h2,
-    .equipo h2,
-    .info h2 {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 3em;
-      color: #b8aaff;
-      padding: 20px 40px;
-      border: 2px solid #b8aaff;
-      border-radius: 12px;
-      display: inline-block;
-      box-shadow: 0 0 25px rgba(184, 170, 255, 0.3);
-      margin-bottom: 50px;
-    }
-
-    .cards {
-      display: flex;
-      gap: 30px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .card {
-      background: #2a2a2a;
-      border-left: 5px solid #7b6cf9;
-      border-radius: 12px;
-      padding: 20px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-      width: 100%;
-      max-width: 260px;
-      text-align: left;
-      color: white;
-      flex: 0 0 260px;
-    }
-
-    .card img {
-      width: 100%;
-      height: 150px;
-      object-fit: contain;
-      margin-bottom: 15px;
-      border-radius: 6px;
-    }
-
-    .card h3 {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 1.3em;
-      background: linear-gradient(135deg, #7b6cf9, #ff6cf0);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      letter-spacing: 0.5px;
-      margin-bottom: 8px;
-    }
-
-    .card p {
-      font-size: 1em;
-      line-height: 1.6;
-      color: #e0e0e0;
-    }
-
-    .separador {
-      background: linear-gradient(to right, #6c2cbf, #b8aaff);
-      height: 6px;
-      width: 70%;
-      margin: 60px auto;
-      border-radius: 3px;
-    }
-
-    /* ✅ MEDIA QUERY para móviles */
-    @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-        height: auto;
-        padding: 15px 20px;
-      }
-
-      header nav {
-        justify-content: flex-start;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin-top: 10px;
-      }
-
-      .hero {
-        padding: 0 5%;
-        text-align: center;
-        justify-content: center;
-      }
-
-      .hero-text h1 {
-        font-size: 1.8em;
-      }
-
-      .hero-text p {
-        font-size: 1em;
-      }
-
-      .servicios h2,
-      .equipo h2,
-      .info h2 {
-        font-size: 2em;
-        padding: 14px 24px;
-      }
-
-      .card {
-        max-width: 100%;
-      }
-    }
   </style>
 </head>
-
-
-
 <body>
   <header>
     <div>
@@ -268,59 +117,27 @@
         <a href="#inicio">Inicio</a>
         <a href="#sobre-mi">Sobre mí</a>
         <a href="#servicios">Servicios</a>
-        <a href="blog/index.html">Blog</a> <!-- 👈 NUEVO ENLACE -->
+        <a href="#blog">Blog</a>
         <a href="#contacto">Contacto</a>
     </nav>
   </header>
 
   <main>
-    <section class="hero">
+    <section class="hero" id="inicio">
       <div class="hero-text">
-     <h1>
-  Consultoría en Power BI y Automatización para 
-  <span style="background: linear-gradient(135deg, #7b6cf9, #b8aaff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-    Empresas Extremeñas
-  </span>
-</h1>
-
- <p style="color: #f0f0f0;">
-  Impulsa tu negocio con soluciones digitales diseñadas desde Extremadura. Dashboards, automatizaciones y formularios conectados a Excel para cooperativas, pymes y empresas rurales como la tuya.
-</p>
-
-   </div>
-  </section>
-</main>
-
-    <section class="servicios" id="servicios">
-      <h2>Nuestros servicios</h2>
-      <div class="cards">
-        <div class="card">
-          <img src="assets/CDM.png" alt="Cuadro de mando Power BI">
-          <h3>Cuadro de Mando Ejecutivo</h3>
-          <p>Visualiza tus ventas, márgenes y resultados con dashboards diseñados para pymes y cooperativas extremeñas. Toma decisiones basadas en datos desde cualquier pueblo o ciudad.</p>
-        </div>
-        <div class="card">
-          <img src="assets/formulario_excel.png" alt="Formularios web conectados a Excel">
-          <h3>Formularios Web conectados a Excel</h3>
-          <p>Recoge pedidos, clientes o incidencias desde el campo, el almacén o la oficina. Tus formularios web conectados a Excel funcionan desde cualquier dispositivo, incluso sin conexión constante.</p>
-        </div>
-        <div class="card">
-          <img src="assets/consultoria_procesos.png" alt="Consultoría de procesos empresariales">
-          <h3>Consultoría de Procesos Empresariales</h3>
-          <p>Entendemos los retos del entorno rural. Analizamos tus procesos y diseñamos soluciones prácticas para negocios agroalimentarios, logísticos o comerciales de Extremadura.</p>
-        </div>
-        <div class="card">
-          <img src="assets/soluciones_personalizadas.png" alt="Soluciones personalizadas automatización">
-          <h3>Soluciones Personalizadas</h3>
-          <p>Nos implicamos en tu realidad local. Creamos soluciones digitales a medida para empresas extremeñas: desde automatizaciones hasta informes para ferias, cooperativas o cadenas de distribución.</p>
-        </div>
+        <h1>
+          Consultoría en Power BI y Automatización para
+          <span style="background: linear-gradient(135deg, #7b6cf9, #b8aaff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+            Empresas Extremeñas
+          </span>
+        </h1>
+        <p style="color: #f0f0f0;">
+          Impulsa tu negocio con soluciones digitales diseñadas desde Extremadura. Dashboards, automatizaciones y formularios conectados a Excel para cooperativas, pymes y empresas rurales como la tuya.
+        </p>
       </div>
     </section>
 
-    <div class="separador"></div>
-
-
-        <section class="equipo" id="acerca" style="padding: 80px 10%; background: #181818; color: white; text-align: center;">
+    <section class="servicios" id="servicios" style="padding: 80px 10%; background: #1a1a1a; text-align: center;">
       <h2 style="
         font-family: 'Rajdhani', sans-serif;
         font-size: 3em;
@@ -330,17 +147,67 @@
         border-radius: 12px;
         display: inline-block;
         box-shadow: 0 0 25px rgba(184, 170, 255, 0.3);
-        margin-bottom: 50px;
-      ">¿Quiénes somos?</h2>
+        margin-bottom: 50px;">Nuestros servicios</h2>
+      
+      <div style="display: flex; gap: 30px; justify-content: center; flex-wrap: wrap;">
+        <div style="background: #2a2a2a; border-left: 5px solid #7b6cf9; border-radius: 12px; padding: 20px; width: 260px;">
+          <img src="assets/CDM.png" alt="Cuadro de mando Power BI" style="width: 100%; height: 150px; object-fit: contain; margin-bottom: 15px; border-radius: 6px;">
+          <h3 style="font-family: 'Rajdhani'; font-size: 1.3em; color: #b8aaff;">Cuadro de Mando Ejecutivo</h3>
+          <p>Visualiza tus ventas, márgenes y resultados con dashboards diseñados para pymes y cooperativas extremeñas.</p>
+        </div>
 
-<p style="
-  font-size: 1.2em;
-  color: #ccc;
-  margin-bottom: 50px;
-">Somos de aquí, trabajamos para los de aquí. Llevamos la tecnología a empresas extremeñas que quieren crecer desde su tierra.</p>
+        <div style="background: #2a2a2a; border-left: 5px solid #7b6cf9; border-radius: 12px; padding: 20px; width: 260px;">
+          <img src="assets/formulario_excel.png" alt="Formularios web conectados a Excel" style="width: 100%; height: 150px; object-fit: contain; margin-bottom: 15px; border-radius: 6px;">
+          <h3 style="font-family: 'Rajdhani'; font-size: 1.3em; color: #b8aaff;">Formularios Web conectados a Excel</h3>
+          <p>Recoge pedidos, clientes o incidencias desde cualquier lugar. Funciona incluso sin conexión constante.</p>
+        </div>
+
+        <div style="background: #2a2a2a; border-left: 5px solid #7b6cf9; border-radius: 12px; padding: 20px; width: 260px;">
+          <img src="assets/consultoria_procesos.png" alt="Consultoría de procesos" style="width: 100%; height: 150px; object-fit: contain; margin-bottom: 15px; border-radius: 6px;">
+          <h3 style="font-family: 'Rajdhani'; font-size: 1.3em; color: #b8aaff;">Consultoría de Procesos</h3>
+          <p>Analizamos y optimizamos tus procesos para mejorar el rendimiento en empresas rurales, agroalimentarias o logísticas.</p>
+        </div>
+
+        <div style="background: #2a2a2a; border-left: 5px solid #7b6cf9; border-radius: 12px; padding: 20px; width: 260px;">
+          <img src="assets/soluciones_personalizadas.png" alt="Soluciones personalizadas" style="width: 100%; height: 150px; object-fit: contain; margin-bottom: 15px; border-radius: 6px;">
+          <h3 style="font-family: 'Rajdhani'; font-size: 1.3em; color: #b8aaff;">Soluciones Personalizadas</h3>
+          <p>Nos implicamos con tu realidad local y diseñamos soluciones digitales útiles para tu entorno y tus necesidades.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="separador" style="background: linear-gradient(to right, #6c2cbf, #b8aaff); height: 6px; width: 70%; margin: 60px auto; border-radius: 3px;"></div>
+
+    <section class="blog-home" id="blog" style="background:#181818; padding: 80px 10%; text-align: center; color: white;">
+      <h2 style="font-family: 'Rajdhani', sans-serif; font-size: 3em; color: #b8aaff; padding: 20px 40px; border: 2px solid #b8aaff; border-radius: 12px; display: inline-block; box-shadow: 0 0 25px rgba(184, 170, 255, 0.3); margin-bottom: 20px;">Blog</h2>
+      <p style="font-size: 1.2em; color: #ccc; margin-bottom: 50px;">Reflexiones sobre IA, automatización y empresa local desde Extremadura.</p>
+      <div style="background-color: #1b1b1b; padding: 30px; border-radius: 12px; max-width: 800px; margin: 0 auto 40px; text-align: left; box-shadow: 0 0 15px rgba(100, 100, 255, 0.1);">
+        <h3><a href="blog/post-1.html" style="color: #bb88ff; font-size: 1.6em; text-decoration: none;">¿Por qué sigue dando miedo el cambio?</a></h3>
+        <p style="font-size: 0.9em; color: #888; margin-bottom: 16px;">🗓 9 de julio de 2025</p>
+        <p style="font-size: 1.1em; color: #ddd;">La IA puede mejorar radicalmente nuestras empresas locales, pero el cambio de mentalidad es el primer paso...</p>
+        <a href="blog/post-1.html" style="display: inline-block; margin-top: 12px; color: #a678ff; text-decoration: none; font-weight: bold;">Leer más →</a>
+      </div>
+    </section>
+
+    <div class="separador" style="background: linear-gradient(to right, #6c2cbf, #b8aaff); height: 6px; width: 70%; margin: 60px auto; border-radius: 3px;"></div>
 
 
-          
+        <section class="equipo" id="sobre-mi" style="padding: 80px 10%; background: #181818; color: white; text-align: center;">
+      <h2 style="
+        font-family: 'Rajdhani', sans-serif;
+        font-size: 3em;
+        color: #b8aaff;
+        padding: 20px 40px;
+        border: 2px solid #b8aaff;
+        border-radius: 12px;
+        display: inline-block;
+        box-shadow: 0 0 25px rgba(184, 170, 255, 0.3);
+        margin-bottom: 50px;">¿Quiénes somos?</h2>
+
+      <p style="font-size: 1.2em; color: #ccc; margin-bottom: 50px;">
+        Somos de aquí, trabajamos para los de aquí. Llevamos la tecnología a empresas extremeñas que quieren crecer desde su tierra.
+      </p>
+
       <div style="display: flex; flex-wrap: wrap; gap: 40px; justify-content: center;">
         <!-- Miguel -->
         <div style="flex: 1 1 320px; max-width: 360px; background: #2a2a2a; padding: 30px; border-radius: 16px; box-shadow: 0 8px 20px rgba(123, 108, 249, 0.15); display: flex; flex-direction: column; align-items: center;">
@@ -349,7 +216,9 @@
           </div>
           <h3 style="margin: 10px 0 5px;">Miguel Ángel Domínguez</h3>
           <div style="font-size: 0.95em; color: #aaa5f9; margin-bottom: 10px;">Analista de Datos y Procesos</div>
-          <p style="font-size: 0.95em; line-height: 1.5; color: #e0e0e0;">Extremeño, analista de datos y optimizador de procesos. Ayudo a empresas de nuestra tierra a modernizarse sin perder su esencia. Conecto datos con decisiones para mejorar el rendimiento desde lo local.</p>
+          <p style="font-size: 0.95em; line-height: 1.5; color: #e0e0e0;">
+            Extremeño, analista de datos y optimizador de procesos. Ayudo a empresas de nuestra tierra a modernizarse sin perder su esencia. Conecto datos con decisiones para mejorar el rendimiento desde lo local.
+          </p>
         </div>
 
         <!-- Carlos -->
@@ -359,13 +228,14 @@
           </div>
           <h3 style="margin: 10px 0 5px;">Carlos Manzano Gómez</h3>
           <div style="font-size: 0.95em; color: #aaa5f9; margin-bottom: 10px;">Desarrollador y Soporte Técnico</div>
-          <p style="font-size: 0.95em; line-height: 1.5; color: #e0e0e0;"><p>Desarrollador comprometido con la digitalización en entornos rurales. Creo soluciones que se adaptan a tu forma de trabajar, estés en una cooperativa, fábrica o empresa familiar.</p>
-</p>
+          <p style="font-size: 0.95em; line-height: 1.5; color: #e0e0e0;">
+            Desarrollador comprometido con la digitalización en entornos rurales. Creo soluciones que se adaptan a tu forma de trabajar, estés en una cooperativa, fábrica o empresa familiar.
+          </p>
         </div>
       </div>
     </section>
 
-    <div class="separador"></div>
+    <div class="separador" style="background: linear-gradient(to right, #6c2cbf, #b8aaff); height: 6px; width: 70%; margin: 60px auto; border-radius: 3px;"></div>
 
     <section class="contacto" id="contacto" style="background:#1c1c1c; padding: 60px 10%; color: white; text-align: center;">
       <div class="info">
@@ -378,12 +248,12 @@
           border-radius: 12px;
           display: inline-block;
           box-shadow: 0 0 25px rgba(184, 170, 255, 0.3);
-          margin-bottom: 30px;
-        ">Contáctanos</h2>
-     <p style="font-size: 1.2em; margin-top: 20px;">
-¿Tienes un proyecto en tu empresa o cooperativa de Extremadura?<br>
-Hablemos. Diseñamos tecnología útil, sin complicaciones y con cercanía.
-</p>
+          margin-bottom: 30px;">Contáctanos</h2>
+
+        <p style="font-size: 1.2em; margin-top: 20px;">
+          ¿Tienes un proyecto en tu empresa o cooperativa de Extremadura?<br>
+          Hablemos. Diseñamos tecnología útil, sin complicaciones y con cercanía.
+        </p>
 
         <div style="margin-top: 40px;">
           <a href="mailto:infobiailitics@gmail.com" style="
@@ -396,21 +266,20 @@ Hablemos. Diseñamos tecnología útil, sin complicaciones y con cercanía.
             text-decoration: none;
             font-weight: 600;
             box-shadow: 0 0 15px rgba(184, 170, 255, 0.4);
-            transition: 0.3s ease;
-          ">
-            ✉️ Escríbenos a infobiailitics@gmail.com
-          </a>
+            transition: 0.3s ease;">✉️ Escríbenos a infobiailitics@gmail.com</a>
         </div>
       </div>
     </section>
 
     <footer style="padding: 40px 10%; background: #111; text-align: center; color: #888; font-size: 0.9em;">
-     <p>&copy; 2025 BiAilitics - Consultoría Digital 100% Extremeña. Power BI, Automatización y Procesos para empresas locales. Todos los derechos reservados.</p>
-
+      <p>&copy; 2025 BiAilitics - Consultoría Digital 100% Extremeña. Power BI, Automatización y Procesos para empresas locales. Todos los derechos reservados.</p>
     </footer>
   </main>
 </body>
 </html>
+
+
+    
 
 
 
