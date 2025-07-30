@@ -181,6 +181,40 @@
       .hero-text p {
         font-size: 1em;
       }
+
+      /* --- Servicios en horizontal con scroll --- */
+      .servicios > div {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        gap: 15px !important;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 10px;
+      }
+      .servicios > div::-webkit-scrollbar {
+        display: none;
+      }
+      .servicios > div > div {
+        flex: 0 0 220px !important;
+        width: 220px !important;
+      }
+
+      /* --- Equipo en horizontal con scroll --- */
+      .equipo > div {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        gap: 15px !important;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 10px;
+      }
+      .equipo > div::-webkit-scrollbar {
+        display: none;
+      }
+      .equipo > div > div {
+        flex: 0 0 260px !important;
+        max-width: 260px !important;
+      }
     }
   </style>
 
@@ -313,7 +347,9 @@
     <div class="separador" style="background: linear-gradient(to right, #6c2cbf, #b8aaff); height: 6px; width: 70%; margin: 60px auto; border-radius: 3px;"></div>
 
     <section class="blog-home" id="blog" style="background:#181818; padding: 80px 10%; text-align: center; color: white;">
-      <h2 style="font-family: 'Rajdhani', sans-serif; font-size: 3em; color: #b8aaff; padding: 20px 40px; border: 2px solid #b8aaff; border-radius: 12px; display: inline-block; box-shadow: 0 0 25px rgba(184, 170, 255, 0.3); margin-bottom: 20px;">Blog</h2>
+      <h2 style="font-family: 'Rajdhani', sans-serif; font-size: 3em; color: #b8aaff; padding: 20px 40px; border: 2px solid #b8aaff; border-radius: 12px; display: inline-block; box-shadow: 0 0 25px rgba(184, 170, 255, 0.3); margin-bottom:
+
+      50px;">Blog</h2>
       <p style="font-size: 1.2em; color: #ccc; margin-bottom: 50px;">Reflexiones sobre IA, automatización y empresa local desde Extremadura.</p>
       <div style="background-color: #1b1b1b; padding: 30px; border-radius: 12px; max-width: 800px; margin: 0 auto 40px; text-align: left; box-shadow: 0 0 15px rgba(100, 100, 255, 0.1);">
         <h3><a href="blog/post-1.html" style="color: #bb88ff; font-size: 1.6em; text-decoration: none;">¿Por qué sigue dando miedo el cambio?</a></h3>
