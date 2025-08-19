@@ -58,8 +58,16 @@
     }
     header nav a:hover { background-color: #b8aaff; color: #121212; }
 
+    /* --- Datos de contacto en el header --- */
+    .header-contacts{ display:flex; align-items:center; gap:12px; flex-wrap:wrap; justify-content:center; }
+    .header-contacts .contact-link{ color:#fff; text-decoration:none; padding:6px 12px; border-radius:9999px; border:1px solid #444; display:flex; align-items:center; gap:8px; }
+    .header-contacts .contact-link:hover{ background:rgba(255,255,255,0.08); border-color:#777; }
+
     /* --- Botón hamburguesa --- */
-    .menu-toggle { display: none; flex-direction: column; cursor: pointer; gap: 4px; }
+    .menu-toggle { display: flex; position: absolute; top: 20px; right: 20px; }
+
+      .header-contacts{ order: 3; margin-top: 8px; justify-content:center; }
+      .header-contacts .contact-link{ padding:8px 12px; }
     .menu-toggle span { background: #fff; height: 3px; width: 24px; border-radius: 3px; }
 
     /* Secciones principales */
@@ -82,7 +90,7 @@
     .servicios h2 { scroll-margin-top: 100px; }
 
     .serv-carousel{ display:grid; gap:24px; justify-items:center; }
-    .serv-carousel__stage{ position:relative; width:min(420px, 92vw); height:360px; perspective: 1000px; margin-inline:auto; }
+    .serv-carousel__stage{ position:relative; width:min(420px, 92vw); height:400px; perspective: 1000px; margin-inline:auto; }
     .serv-carousel__track{ position:absolute; inset:0; transform-style: preserve-3d; animation: serv-rotate var(--serv-speed) linear infinite; }
     /* Pausa el giro al pasar el ratón */
     .serv-carousel__stage:hover .serv-carousel__track{ animation-play-state: paused; }
@@ -96,12 +104,12 @@
     .serv-item .serv-text p{ font-size:.95em; color:#e8e8e8; line-height:1.4; }
 
     /* Ocultamos el texto dentro del anillo 3D para evitar solapes */
-    .serv-carousel__stage .serv-text{ display:none; }
+    
 
     /* Leyenda fija bajo el escenario */
-    .serv-carousel__caption{ max-width:760px; margin: 8px auto 0; text-align:center; padding: 4px 12px; }
-    .serv-carousel__caption h3{ font-family:'Rajdhani', sans-serif; font-size:1.35em; color:#b8aaff; margin: 8px 0 6px; }
-    .serv-carousel__caption p{ font-size:1.05em; color:#e8e8e8; line-height:1.6; }
+    
+    
+    
 
     @keyframes serv-rotate{ from{ transform:rotateY(0deg) } to{ transform:rotateY(-360deg) } }
 
@@ -157,6 +165,10 @@
       <img src="assets/Biailitics.png" alt="Logo BiAilitics">
       <strong>Soluciones digitales 100% extremeñas para tu empresa</strong>
     </div>
+    <div class="header-contacts">
+      <a class="contact-link" href="tel:+34635673885">📞 <span>+34 635 673 885</span></a>
+      <a class="contact-link" href="mailto:infobiailitics@gmail.com">✉️ <span>infobiailitics@gmail.com</span></a>
+    </div>
     <div class="menu-toggle" id="menu-toggle">
       <span></span><span></span><span></span>
     </div>
@@ -165,7 +177,6 @@
         <a href="#sobre-mi">Sobre mí</a>
         <a href="#servicios">Servicios</a>
         <a href="#blog">Blog</a>
-        <a href="#contacto">Contacto</a>
     </nav>
   </header>
 
@@ -203,10 +214,7 @@
         </div>
         <!-- Lista responsive para móviles / sin animación -->
         <div class="serv-carousel__list" id="servList"></div>
-        <div class="serv-carousel__caption">
-          <h3 id="servCaptionTitle"></h3>
-          <p id="servCaptionDesc"></p>
-        </div>
+        
       </div>
     </section>
 
@@ -279,41 +287,6 @@
 
     <div class="separador"></div>
 
-    <!-- ================= CONTACTO ================= -->
-    <section class="contacto" id="contacto" style="background:#1c1c1c; padding: 60px 10%; color: white; text-align: center;">
-      <div class="info">
-        <h2 style="
-          font-family: 'Rajdhani', sans-serif;
-          font-size: 3em;
-          color: #b8aaff;
-          padding: 20px 40px;
-          border: 2px solid #b8aaff;
-          border-radius: 12px;
-          display: inline-block;
-          box-shadow: 0 0 25px rgba(184, 170, 255, 0.3);
-          margin-bottom: 30px;">Contáctanos</h2>
-
-        <p style="font-size: 1.2em; margin-top: 20px;">
-          ¿Tienes un proyecto en tu empresa o cooperativa de Extremadura?<br>
-          Hablemos. Diseñamos tecnología útil, sin complicaciones y con cercanía.
-        </p>
-
-        <div style="margin-top: 40px;">
-          <a href="mailto:infobiailitics@gmail.com" style="
-            display: inline-block;
-            background: linear-gradient(135deg, #6c2cbf, #b8aaff);
-            color: white;
-            padding: 15px 30px;
-            border-radius: 40px;
-            font-size: 1.1em;
-            text-decoration: none;
-            font-weight: 600;
-            box-shadow: 0 0 15px rgba(184, 170, 255, 0.4);
-            transition: 0.3s ease;">✉️ Escríbenos a infobiailitics@gmail.com</a>
-        </div>
-      </div>
-    </section>
-
     <footer style="padding: 40px 10%; background: #111; text-align: center; color: #888; font-size: 0.9em;">
       <p>&copy; 2025 BiAilitics - Consultoría Digital 100% Extremeña. Power BI, Automatización y Procesos para empresas locales. Todos los derechos reservados.</p>
     </footer>
@@ -354,74 +327,35 @@
     (function(){
       const track = document.getElementById('servTrack');
       const list  = document.getElementById('servList');
-      const captionTitle = document.getElementById('servCaptionTitle');
-      const captionDesc  = document.getElementById('servCaptionDesc');
-      const stage = document.querySelector('.serv-carousel__stage');
-      // Control de pausa para mantener sincronizado el texto
-      let totalPaused = 0; // ms acumulados en pausa
-      let pauseStart = null; // ms
-      let isPaused = false;
-      stage.addEventListener('mouseenter', () => { isPaused = true; pauseStart = performance.now(); });
-      stage.addEventListener('mouseleave', () => {
-        if(isPaused && pauseStart !== null){
-          totalPaused += performance.now() - pauseStart;
-          isPaused = false;
-          pauseStart = null;
-        }
-      });
       const N = servicios.length;
       const angleStep = 360 / N;
-      const radius = 520 / 2; // separación desde el centro (un poco más amplio)
+      const radius = 520 / 2; // separación desde el centro
 
-      // Construye elementos del anillo (solo caja+imagen; el texto se mostrará en la leyenda fija)
       servicios.forEach((s, i) => {
         const item = document.createElement('article');
         item.className = 'serv-item';
         item.innerHTML = `
           <div class="serv-box">
             <img src="${s.img}" alt="${s.title}">
-          </div>
-          <div class="serv-text">
-            <h3>${s.title}</h3>
-            <p>${s.desc}</p>
+            <div class="serv-text">
+              <h3>${s.title}</h3>
+              <p>${s.desc}</p>
+            </div>
           </div>`;
         const angle = i * angleStep;
         item.style.transform = `translate(-50%,-50%) rotateY(${angle}deg) translateZ(${radius}px)`;
         track.appendChild(item);
 
-        // Versión móvil (lista) sí muestra el texto pegado a cada imagen
+        // Versión móvil (lista)
         const clone = item.cloneNode(true);
         clone.style.transform = 'none';
         list.appendChild(clone);
       });
-
-      // Leyenda: actualiza automáticamente con el servicio frontal
-      const rootStyles = getComputedStyle(document.documentElement);
-      const speed = parseFloat(rootStyles.getPropertyValue('--serv-speed')) || 50; // segundos por vuelta
-      let lastIndex = -1;
-      const start = performance.now();
-
-      function updateCaption(){
-        // Congela el tiempo mientras está en pausa para que la leyenda no avance
-        let now = performance.now();
-        if(isPaused && pauseStart !== null){ now = pauseStart; }
-        const elapsed = (now - start - totalPaused) / 1000; // seg reales de giro
-        const idx = Math.floor((elapsed / speed) * N) % N; // cambia cada speed/N seg
-        if(idx !== lastIndex){
-          captionTitle.textContent = servicios[idx].title;
-          captionDesc.textContent  = servicios[idx].desc;
-          lastIndex = idx;
-        }
-        requestAnimationFrame(updateCaption);
-      }
-      // Inicializa con el primero
-      captionTitle.textContent = servicios[0].title;
-      captionDesc.textContent  = servicios[0].desc;
-      requestAnimationFrame(updateCaption);
     })();
   </script>
 </body>
 </html>
+
 
 
 
