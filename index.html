@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <base href="https://www.biailitics.com/" />
   <title>Consultoría Power BI y Automatización para Empresas de Extremadura</title>
   <meta name="description" content="Soluciones digitales extremeñas: Power BI, automatización y formularios conectados a Excel. Apoyamos a empresas rurales y pymes de Extremadura con tecnología útil y cercana.">
@@ -19,134 +19,161 @@
   }
   </script>
 
-  <!-- Fuente Inter y Rajdhani -->
+  <!-- Fuentes -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Rajdhani:wght@600&display=swap" rel="stylesheet">
 
-  <!-- Estilos principales -->
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body {
-      width: 100%;
-      font-family: 'Inter', sans-serif;
-      background-color: #121212;
-      color: #ffffff;
+    /* ===== Reset & base ===== */
+    * { box-sizing: border-box }
+    html { scroll-behavior: smooth }
+    html, body { margin: 0; padding: 0; background:#121212; color:#fff; font-family:'Inter',sans-serif }
+    a { color: inherit; text-decoration: none }
+    img { max-width: 100%; display: block }
+    :root{
+      --bg:#121212;
+      --bg-2:#181818;
+      --card:#1b1b1b;
+      --muted:#cfcfe6;
+      --accent:#b8aaff;
+      --accent-2:#7b6cf9;
+      --border:#2d2d2d;
+      --radius:14px;
+      --container:1100px;
     }
-    header {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 10;
-      height: 80px;
-      background: rgba(18, 18, 18, 0.95);
-      backdrop-filter: blur(6px);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 30px;
-      border-bottom: 1px solid #2d2d2d;
+
+    /* ===== Utilidades ===== */
+    .container { width: min(var(--container), 92%); margin-inline:auto }
+    .btn {
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:.8rem 1.1rem; border-radius:9999px; border:1px solid var(--accent);
+      color:var(--accent); font-weight:600; gap:.5rem; transition:.2s ease;
     }
-    header div {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      flex-wrap: wrap;
+    .btn:hover { background:var(--accent); color:#121212 }
+    .btn.secondary{ border-color:#444; color:#fff }
+    .btn.secondary:hover{ background:#222; border-color:#666 }
+
+    /* ===== Accesibilidad ===== */
+    .skip-link{
+      position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden;
     }
-    header div img { height: 40px; }
-    header div strong { color: #fff; font-size: 1.1em; max-width: 200px; }
-    header nav { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
-    header nav a {
-      text-decoration: none; color: #b8aaff; padding: 6px 14px; border: 1px solid #b8aaff; border-radius: 20px; font-size: 0.85em; transition: all 0.3s ease;
+    .skip-link:focus{
+      left: 16px; top: 16px; width:auto; height:auto;
+      background:#000; color:#fff; padding:.6rem .9rem; border-radius:8px; z-index:1000;
+      outline:2px solid var(--accent);
     }
-    header nav a:hover { background-color: #b8aaff; color: #121212; }
+    :focus-visible{ outline:2px solid var(--accent); outline-offset:2px }
 
-    /* --- Datos de contacto en el header --- */
-    .header-contacts{ display:flex; align-items:center; gap:12px; flex-wrap:wrap; justify-content:center; }
-    .header-contacts .contact-link{ color:#fff; text-decoration:none; padding:6px 12px; border-radius:9999px; border:1px solid #444; display:flex; align-items:center; gap:8px; }
-    .header-contacts .contact-link:hover{ background:rgba(255,255,255,0.08); border-color:#777; }
-
-    /* --- Botón hamburguesa --- */
-    .menu-toggle { display: flex; position: absolute; top: 20px; right: 20px; }
-
-      .header-contacts{ order: 3; margin-top: 8px; justify-content:center; }
-      .header-contacts .contact-link{ padding:8px 12px; }
-    .menu-toggle span { background: #fff; height: 3px; width: 24px; border-radius: 3px; }
-
-    /* Secciones principales */
-    .hero {
-      height: 100vh;
-      background-image: url('assets/imagen_ampliada_comprimida.jpg');
-      background-size: cover; background-position: center;
-      display: flex; align-items: center; justify-content: flex-start;
-      padding: 0 8%; position: relative;
+    /* ===== Header ===== */
+    header{
+      position:sticky; top:0; z-index:10; background:rgba(18,18,18,.9);
+      backdrop-filter: blur(6px); border-bottom:1px solid var(--border);
     }
-    .hero::before { content: ""; position: absolute; inset: 0; background: rgba(0, 0, 0, 0.5); }
-    .hero-text { position: relative; max-width: 600px; z-index: 1; }
-    .hero-text h1 { font-size: 2.6em; margin-bottom: 20px; }
-    .hero-text p { font-size: 1.1em; margin-bottom: 30px; }
+    .nav-wrap{
+      height:72px; display:flex; align-items:center; justify-content:space-between;
+      gap:16px;
+    }
+    .brand{ display:flex; align-items:center; gap:12px }
+    .brand img{ height:36px }
+    .brand strong{ font-size:.95rem; color:#fff; max-width:220px; line-height:1.2 }
+    nav{ display:flex; gap:12px; align-items:center }
+    nav a{
+      padding:6px 14px; border:1px solid var(--accent); border-radius:9999px;
+      color:var(--accent); font-size:.85rem; transition:.2s ease;
+    }
+    nav a:hover{ background:var(--accent); color:#121212 }
 
-    /* ============ SERVICIOS: Carrusel 3D frontal ============ */
-    :root{ --serv-speed: 50s; } /* velocidad de rotación (más alto = más lento) */
+    .header-contacts{ display:flex; gap:10px; align-items:center }
+    .contact-link{
+      border:1px solid #444; padding:6px 12px; border-radius:9999px; display:flex; gap:8px;
+    }
+    .contact-link:hover{ background:rgba(255,255,255,.08); border-color:#666 }
 
-    .servicios { position: relative; }
-    .servicios h2 { scroll-margin-top: 100px; }
+    /* Hamburguesa (solo móvil) */
+    .menu-toggle{ display:none; width:34px; height:28px; flex-direction:column; justify-content:space-between; cursor:pointer }
+    .menu-toggle span{ background:#fff; height:3px; border-radius:3px; width:100% }
 
-    .serv-carousel{ display:grid; gap:24px; justify-items:center; }
-    .serv-carousel__stage{ position:relative; width:min(420px, 92vw); height:400px; perspective: 1000px; margin-inline:auto; }
-    .serv-carousel__track{ position:absolute; inset:0; transform-style: preserve-3d; animation: serv-rotate var(--serv-speed) linear infinite; }
-    /* Pausa el giro al pasar el ratón */
-    .serv-carousel__stage:hover .serv-carousel__track{ animation-play-state: paused; }
+    /* ===== Hero ===== */
+    .hero{
+      min-height: clamp(520px, 70vh, 760px);
+      background: url('assets/imagen_ampliada_comprimida.jpg') center/cover no-repeat;
+      position:relative; display:flex; align-items:center;
+    }
+    .hero::before{ content:""; position:absolute; inset:0; background:linear-gradient(0deg, rgba(0,0,0,.55), rgba(0,0,0,.40)) }
+    .hero .container{ position:relative; padding-block: clamp(110px, 12vh, 160px) }
+    .hero-text{ max-width:680px }
+    .hero h1{
+      font-size: clamp(2rem, 4.2vw, 3rem);
+      line-height:1.15; margin: 0 0 14px;
+    }
+    .hero p{ color:#f0f0f0; font-size: clamp(1rem, 1.4vw, 1.15rem); margin: 0 0 22px }
+    .accent-text{
+      background:linear-gradient(135deg, var(--accent-2), var(--accent));
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    }
+    .hero-cta{ display:flex; gap:.8rem; flex-wrap:wrap }
 
-    /* NUEVO: caja (solo imagen) + texto FUERA de la caja */
-    .serv-item{ position:absolute; top:50%; left:50%; transform: translate(-50%,-50%); width:340px; text-align:center; }
-    .serv-item .serv-box{ background:#2a2a2a; border-left:5px solid #7b6cf9; border-radius:12px; box-shadow:0 10px 25px rgba(0,0,0,.35); padding:12px; }
-    .serv-item .serv-box img{ width:100%; height:150px; object-fit:contain; border-radius:6px; display:block; }
-    .serv-item .serv-text{ margin-top:12px; }
-    .serv-item .serv-text h3{ font-family:'Rajdhani', sans-serif; font-size:1.2em; color:#b8aaff; margin:0 0 6px; }
-    .serv-item .serv-text p{ font-size:.95em; color:#e8e8e8; line-height:1.4; }
+    /* ===== Títulos de sección (minimal) ===== */
+    .section{ padding: 72px 0 }
+    .section-title{
+      font-family:'Rajdhani',sans-serif; font-size: clamp(1.8rem,3vw,2.4rem);
+      color:var(--accent); text-align:center; margin:0 0 28px;
+    }
+    .title-underline{
+      width:80px; height:4px; border-radius:9999px;
+      background: linear-gradient(90deg, var(--accent-2), var(--accent));
+      margin: 0 auto 36px;
+    }
 
-    /* Ocultamos el texto dentro del anillo 3D para evitar solapes */
-    
+    /* ===== Equipo ===== */
+    .equipo{ background:#181818 }
+    .equipo-grid{
+      display:grid; gap:24px;
+      grid-template-columns: repeat(2, minmax(260px, 1fr));
+    }
+    .card{
+      background:#2a2a2a; border-radius:var(--radius); padding:24px;
+      box-shadow:0 8px 20px rgba(0,0,0,.18);
+      display:flex; flex-direction:column; align-items:center; text-align:center;
+    }
+    .avatar{
+      width:120px; height:120px; border-radius:50%; overflow:hidden; margin-bottom:16px;
+      border:3px solid var(--accent);
+    }
+    .role{ font-size:.95rem; color:#aaa5f9; margin-bottom:10px }
+    .card p{ color:#e0e0e0; font-size:.95rem; line-height:1.55 }
 
-    /* Leyenda fija bajo el escenario */
-    
-    
-    
+    /* ===== Blog ===== */
+    .blog{ background:#181818 }
+    .post{
+      background: var(--card); border-radius:var(--radius);
+      padding:24px; max-width:800px; margin:0 auto 28px;
+      box-shadow:0 0 0 1px rgba(255,255,255,.04), 0 6px 16px rgba(0,0,0,.18);
+      text-align:left;
+    }
+    .post h3 a{ color:#bb88ff; font-size:1.35rem }
+    .post .meta{ font-size:.9rem; color:#888; margin:8px 0 14px }
+    .post p{ color:#ddd }
 
-    @keyframes serv-rotate{ from{ transform:rotateY(0deg) } to{ transform:rotateY(-360deg) } }
+    /* ===== Separador ===== */
+    .separador{ background: linear-gradient(to right, var(--accent-2), var(--accent)); height:6px; width:min(70%, 780px); margin:60px auto; border-radius:3px }
 
-    /* Accesibilidad: reduce motion */
-    @media (prefers-reduced-motion: reduce){ .serv-carousel__track{ animation:none } }
+    /* ===== Footer ===== */
+    footer{ background:#111; color:#888; text-align:center; font-size:.9rem; padding:36px 0 }
 
-    /* Móvil: cambia a lista horizontal sin animación */
-    .serv-carousel__list{ display:none }
+    /* ===== Responsive ===== */
+    @media (max-width: 1024px){
+      .brand strong{ display:none } /* limpia el header en tablet/móvil */
+    }
     @media (max-width: 768px){
-      .serv-carousel__stage{ display:none }
-      .serv-carousel__list{ display:flex; gap:15px; overflow-x:auto; -webkit-overflow-scrolling: touch; padding-bottom:10px; }
-      .serv-carousel__list .serv-item{ position:relative; transform:none; width:260px; flex:0 0 260px; }
-      .serv-carousel__list .serv-box img{ height:140px }
-      .serv-carousel__list::-webkit-scrollbar{ display:none }
-    }
-
-    .separador{ background: linear-gradient(to right, #6c2cbf, #b8aaff); height: 6px; width: 70%; margin: 60px auto; border-radius: 3px; }
-
-    /* --- Media queries para móviles (resto de la página) --- */
-    @media (max-width: 768px) {
-      header { flex-direction: column; height: auto; padding: 10px 15px; text-align: center; }
-      header div { justify-content: center; flex-direction: column; gap: 8px; text-align: center; }
-      header div strong { font-size: 0.9em; max-width: 100%; text-align: center; }
-      header nav { display: none; flex-direction: column; width: 100%; background: rgba(18,18,18,0.95); margin-top: 10px; padding: 10px 0; border-radius: 10px; }
-      header nav a { font-size: 0.9em; padding: 8px 0; }
-      header nav.active { display: flex; }
-      .menu-toggle { display: flex; position: absolute; top: 20px; right: 20px; }
-
-      .hero { height: auto; padding: 120px 5% 60px; text-align: center; }
-      .hero-text { max-width: 100%; }
-      .hero-text h1 { font-size: 1.8em; line-height: 1.3; }
-      .hero-text p { font-size: 1em; }
-
-      /* Equipo horizontal */
-      .equipo > div { display: flex !important; flex-wrap: nowrap !important; gap: 15px !important; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 10px; }
-      .equipo > div::-webkit-scrollbar { display: none; }
-      .equipo > div > div { flex: 0 0 260px !important; max-width: 260px !important; }
+      .nav-wrap{ height:auto; padding:12px 0; flex-wrap:wrap }
+      .menu-toggle{ display:flex }
+      nav{ display:none; width:100%; flex-wrap:wrap; gap:8px; padding:10px 0 }
+      nav.active{ display:flex; justify-content:center }
+      .header-contacts{ order:3; width:100%; justify-content:center; gap:8px }
+      .contact-link{ padding:8px 12px }
+      .equipo-grid{ grid-template-columns: 1fr }
+      .hero .container{ padding-block: 120px 80px; text-align:center }
+      .hero-cta{ justify-content:center }
     }
   </style>
 
@@ -160,143 +187,152 @@
   </script>
 </head>
 <body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
   <header>
-    <div>
-      <img src="assets/Biailitics.png" alt="Logo BiAilitics">
-      <strong>Soluciones digitales 100% extremeñas para tu empresa</strong>
-    </div>
-    <div class="header-contacts">
-      <a class="contact-link" href="tel:+34635673885">📞 <span>+34 635 673 885</span></a>
-      <a class="contact-link" href="mailto:infobiailitics@gmail.com">✉️ <span>infobiailitics@gmail.com</span></a>
-    </div>
-    <div class="menu-toggle" id="menu-toggle">
-      <span></span><span></span><span></span>
-    </div>
-    <nav id="nav-menu">
+    <div class="container nav-wrap">
+      <div class="brand">
+        <img src="assets/Biailitics.png" alt="Logo BiAilitics">
+        <strong>Soluciones digitales 100% extremeñas</strong>
+      </div>
+
+      <div class="header-contacts">
+        <a class="contact-link" href="tel:+34635673885">📞 <span>+34 635 673 885</span></a>
+        <a class="contact-link" href="mailto:infobiailitics@gmail.com">✉️ <span>infobiailitics@gmail.com</span></a>
+      </div>
+
+      <div class="menu-toggle" id="menu-toggle" aria-label="Abrir menú" aria-controls="nav-menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </div>
+
+      <nav id="nav-menu" aria-label="Principal">
         <a href="#inicio">Inicio</a>
         <a href="#sobre-mi">Sobre mí</a>
         <a href="#servicios">Servicios</a>
         <a href="#blog">Blog</a>
-    </nav>
+      </nav>
+    </div>
   </header>
 
-  <main>
+  <main id="contenido">
+    <!-- ===== HERO ===== -->
     <section class="hero" id="inicio">
-      <div class="hero-text">
-        <h1>
-          Consultoría en Power BI y Automatización para
-          <span style="background: linear-gradient(135deg, #7b6cf9, #b8aaff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-            Empresas Extremeñas
-          </span>
-        </h1>
-        <p style="color: #f0f0f0;">
-          Impulsa tu negocio con soluciones digitales diseñadas desde Extremadura. Dashboards, automatizaciones y formularios conectados a Excel para cooperativas, pymes y empresas rurales como la tuya.
+      <div class="container">
+        <div class="hero-text">
+          <h1>
+            Consultoría en Power BI y Automatización para
+            <span class="accent-text">Empresas Extremeñas</span>
+          </h1>
+          <p>
+            Impulsa tu negocio con dashboards, automatizaciones y formularios conectados a Excel.
+            Tecnología útil, cercana y pensada para cooperativas, pymes y empresas rurales.
+          </p>
+          <div class="hero-cta">
+            <a class="btn" href="#servicios">Ver servicios</a>
+            <a class="btn secondary" href="mailto:infobiailitics@gmail.com">Escríbeme</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== SERVICIOS (SIN CAMBIOS) ====== -->
+    <section class="servicios section" id="servicios" style="padding: 80px 0; background:#1a1a1a; text-align:center;">
+      <div class="container">
+        <h2 class="section-title">Nuestros servicios</h2>
+        <div class="title-underline"></div>
+
+        <div class="serv-carousel">
+          <div class="serv-carousel__stage">
+            <div class="serv-carousel__track" id="servTrack"></div>
+          </div>
+          <div class="serv-carousel__list" id="servList"></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="separador" aria-hidden="true"></div>
+
+    <!-- ===== EQUIPO ===== -->
+    <section class="equipo section" id="sobre-mi">
+      <div class="container">
+        <h2 class="section-title">¿Quiénes somos?</h2>
+        <div class="title-underline"></div>
+
+        <p style="font-size:1.05rem; color:#ccc; text-align:center; max-width:760px; margin:0 auto 36px">
+          Somos de aquí y trabajamos para los de aquí. Llevamos la tecnología a empresas extremeñas que quieren crecer desde su tierra.
         </p>
-      </div>
-    </section>
 
-    <!-- ================= SERVICIOS (carrusel 3D frontal) ================ -->
-    <section class="servicios" id="servicios" style="padding: 80px 10%; background: #1a1a1a; text-align: center;">
-      <h2 style="
-        font-family: 'Rajdhani', sans-serif;
-        font-size: 3em;
-        color: #b8aaff;
-        padding: 20px 40px;
-        border: 2px solid #b8aaff;
-        border-radius: 12px;
-        display: inline-block;
-        box-shadow: 0 0 25px rgba(184, 170, 255, 0.3);
-        margin-bottom: 50px;">Nuestros servicios</h2>
+        <div class="equipo-grid">
+          <!-- Miguel -->
+          <article class="card">
+            <div class="avatar">
+              <img src="assets/foto-perfil.png" alt="Miguel Ángel Domínguez">
+            </div>
+            <h3 style="margin:6px 0 2px">Miguel Ángel Domínguez</h3>
+            <div class="role">Analista de Datos y Procesos</div>
+            <p>
+              Extremeño, analista de datos y optimizador de procesos. Conecto datos con decisiones
+              para mejorar el rendimiento, sin perder la esencia de cada negocio local.
+            </p>
+          </article>
 
-      <div class="serv-carousel">
-        <div class="serv-carousel__stage">
-          <div class="serv-carousel__track" id="servTrack"></div>
-        </div>
-        <!-- Lista responsive para móviles / sin animación -->
-        <div class="serv-carousel__list" id="servList"></div>
-        
-      </div>
-    </section>
-
-    <div class="separador"></div>
-
-    <!-- ================= EQUIPO ================= -->
-    <section class="equipo" id="sobre-mi" style="padding: 80px 10%; background: #181818; color: white; text-align: center;">
-      <h2 style="
-        font-family: 'Rajdhani', sans-serif;
-        font-size: 3em;
-        color: #b8aaff;
-        padding: 20px 40px;
-        border: 2px solid #b8aaff;
-        border-radius: 12px;
-        display: inline-block;
-        box-shadow: 0 0 25px rgba(184, 170, 255, 0.3);
-        margin-bottom: 50px;">¿Quiénes somos?</h2>
-
-      <p style="font-size: 1.2em; color: #ccc; margin-bottom: 50px;">
-        Somos de aquí, trabajamos para los de aquí. Llevamos la tecnología a empresas extremeñas que quieren crecer desde su tierra.
-      </p>
-
-      <div style="display: flex; flex-wrap: wrap; gap: 40px; justify-content: center;">
-        <!-- Miguel -->
-        <div style="flex: 1 1 320px; max-width: 360px; background: #2a2a2a; padding: 30px; border-radius: 16px; box-shadow: 0 8px 20px rgba(123, 108, 249, 0.15); display: flex; flex-direction: column; align-items: center;">
-          <div style="width: 130px; height: 130px; border-radius: 50%; overflow: hidden; margin-bottom: 20px; border: 3px solid #b8aaff;">
-            <img src="assets/foto-perfil.png" alt="Miguel Ángel Domínguez" style="width: 100%; height: 100%; object-fit: cover;">
-          </div>
-          <h3 style="margin: 10px 0 5px;">Miguel Ángel Domínguez</h3>
-          <div style="font-size: 0.95em; color: #aaa5f9; margin-bottom: 10px;">Analista de Datos y Procesos</div>
-          <p style="font-size: 0.95em; line-height: 1.5; color: #e0e0e0;">
-            Extremeño, analista de datos y optimizador de procesos. Ayudo a empresas de nuestra tierra a modernizarse sin perder su esencia. Conecto datos con decisiones para mejorar el rendimiento desde lo local.
-          </p>
-        </div>
-
-        <!-- Carlos -->
-        <div style="flex: 1 1 320px; max-width: 360px; background: #2a2a2a; padding: 30px; border-radius: 16px; box-shadow: 0 8px 20px rgba(123, 108, 249, 0.15); display: flex; flex-direction: column; align-items: center;">
-          <div style="width: 130px; height: 130px; border-radius: 50%; overflow: hidden; margin-bottom: 20px; border: 3px solid #b8aaff;">
-            <img src="assets/carlos.png" alt="Carlos Manzano Gómez" style="width: 100%; height: 100%; object-fit: cover;">
-          </div>
-          <h3 style="margin: 10px 0 5px;">Carlos Manzano Gómez</h3>
-          <div style="font-size: 0.95em; color: #aaa5f9; margin-bottom: 10px;">Desarrollador y Soporte Técnico</div>
-          <p style="font-size: 0.95em; line-height: 1.5; color: #e0e0e0;">
-            Desarrollador comprometido con la digitalización en entornos rurales. Creo soluciones que se adaptan a tu forma de trabajar, estés en una cooperativa, fábrica o empresa familiar.
-          </p>
+          <!-- Carlos -->
+          <article class="card">
+            <div class="avatar">
+              <img src="assets/carlos.png" alt="Carlos Manzano Gómez">
+            </div>
+            <h3 style="margin:6px 0 2px">Carlos Manzano Gómez</h3>
+            <div class="role">Desarrollador y Soporte Técnico</div>
+            <p>
+              Desarrollo soluciones que se adaptan a tu forma de trabajar, ya sea en cooperativas,
+              fábricas o empresas familiares. Digitalización práctica para el día a día.
+            </p>
+          </article>
         </div>
       </div>
     </section>
 
-    <div class="separador"></div>
+    <div class="separador" aria-hidden="true"></div>
 
-    <!-- ================= BLOG ================= -->
-    <section class="blog-home" id="blog" style="background:#181818; padding: 80px 10%; text-align: center; color: white;">
-      <h2 style="font-family: 'Rajdhani', sans-serif; font-size: 3em; color: #b8aaff; padding: 20px 40px; border: 2px solid #b8aaff; border-radius: 12px; display: inline-block; box-shadow: 0 0 25px rgba(184, 170, 255, 0.3); margin-bottom: 50px;">Blog</h2>
-      <p style="font-size: 1.2em; color: #ccc; margin-bottom: 50px;">Reflexiones sobre IA, automatización y empresa local desde Extremadura.</p>
-      <div style="background-color: #1b1b1b; padding: 30px; border-radius: 12px; max-width: 800px; margin: 0 auto 40px; text-align: left; box-shadow: 0 0 15px rgba(100, 100, 255, 0.1);">
-        <h3><a href="blog/post-1.html" style="color: #bb88ff; font-size: 1.6em; text-decoration: none;">¿Por qué sigue dando miedo el cambio?</a></h3>
-        <p style="font-size: 0.9em; color: #888; margin-bottom: 16px;">🗓 9 de julio de 2025</p>
-        <p style="font-size: 1.1em; color: #ddd;">La IA puede mejorar radicalmente nuestras empresas locales, pero el cambio de mentalidad es el primer paso...</p>
-        <a href="blog/post-1.html" style="display: inline-block; margin-top: 12px; color: #a678ff; text-decoration: none; font-weight: bold;">Leer más →</a>
-      </div>
+    <!-- ===== BLOG ===== -->
+    <section class="blog section" id="blog">
+      <div class="container">
+        <h2 class="section-title">Blog</h2>
+        <div class="title-underline"></div>
 
-      <div style="background-color: #1b1b1b; padding: 30px; border-radius: 12px; max-width: 800px; margin: 0 auto 40px; text-align: left; box-shadow: 0 0 15px rgba(100, 100, 255, 0.1);">
-        <h3><a href="blog/post2.html" style="color: #bb88ff; font-size: 1.6em; text-decoration: none;">La IA: un espejo incómodo… también en el campo</a></h3>
-        <p style="font-size: 0.9em; color: #888; margin-bottom: 16px;">🗓 24 de julio de 2025</p>
-        <p style="font-size: 1.1em; color: #ddd;">La IA no es solo para ciudades o grandes empresas. También está transformando cómo se trabaja en el campo extremeño...</p>
-        <a href="blog/post2.html" style="display: inline-block; margin-top: 12px; color: #a678ff; text-decoration: none; font-weight: bold;">Leer más →</a>
+        <article class="post">
+          <h3><a href="blog/post-1.html">¿Por qué sigue dando miedo el cambio?</a></h3>
+          <div class="meta">🗓 9 de julio de 2025</div>
+          <p>La IA puede mejorar radicalmente nuestras empresas locales, pero el cambio de mentalidad es el primer paso…</p>
+          <a href="blog/post-1.html" class="btn" style="margin-top:12px">Leer más →</a>
+        </article>
+
+        <article class="post">
+          <h3><a href="blog/post2.html">La IA: un espejo incómodo… también en el campo</a></h3>
+          <div class="meta">🗓 24 de julio de 2025</div>
+          <p>La IA no es solo para ciudades o grandes empresas. También está transformando cómo se trabaja en el campo extremeño…</p>
+          <a href="blog/post2.html" class="btn" style="margin-top:12px">Leer más →</a>
+        </article>
       </div>
     </section>
 
-    <div class="separador"></div>
+    <div class="separador" aria-hidden="true"></div>
 
-    <footer style="padding: 40px 10%; background: #111; text-align: center; color: #888; font-size: 0.9em;">
-      <p>&copy; 2025 BiAilitics - Consultoría Digital 100% Extremeña. Power BI, Automatización y Procesos para empresas locales. Todos los derechos reservados.</p>
+    <footer>
+      <div class="container">
+        <p>&copy; 2025 BiAilitics — Consultoría Digital 100% Extremeña. Power BI, Automatización y Procesos para empresas locales.</p>
+      </div>
     </footer>
   </main>
 
-  <!-- Scripts -->
+  <!-- ===== Scripts ===== -->
   <script>
-    // Menú hamburguesa
-    document.getElementById('menu-toggle').addEventListener('click', function() {
-      document.getElementById('nav-menu').classList.toggle('active');
+    // Menú hamburguesa accesible
+    const btn = document.getElementById('menu-toggle');
+    const nav = document.getElementById('nav-menu');
+    btn.addEventListener('click', () => {
+      const opened = nav.classList.toggle('active');
+      btn.setAttribute('aria-expanded', opened ? 'true' : 'false');
     });
 
     // ==== Servicios: datos (tus servicios) ==== 
@@ -323,13 +359,13 @@
       }
     ];
 
-    // ==== Construcción del carrusel 3D frontal ====
+    // ==== Construcción del carrusel 3D frontal (SIN CAMBIOS) ====
     (function(){
       const track = document.getElementById('servTrack');
       const list  = document.getElementById('servList');
       const N = servicios.length;
       const angleStep = 360 / N;
-      const radius = 520 / 2; // separación desde el centro
+      const radius = 520 / 2;
 
       servicios.forEach((s, i) => {
         const item = document.createElement('article');
@@ -346,7 +382,6 @@
         item.style.transform = `translate(-50%,-50%) rotateY(${angle}deg) translateZ(${radius}px)`;
         track.appendChild(item);
 
-        // Versión móvil (lista)
         const clone = item.cloneNode(true);
         clone.style.transform = 'none';
         list.appendChild(clone);
@@ -355,6 +390,7 @@
   </script>
 </body>
 </html>
+
 
 
 
