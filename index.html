@@ -19,15 +19,15 @@
   }
   </script>
 
-  <!-- Fuente Inter y Rajdhani -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Rajdhani:wght@600&display=swap" rel="stylesheet">
+  <!-- Fuente Montserrat -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Estilos principales -->
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body {
       width: 100%;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Montserrat', sans-serif;
       background-color: #121212;
       color: #ffffff;
     }
@@ -58,19 +58,15 @@
     }
     header nav a:hover { background-color: #b8aaff; color: #121212; }
 
-    /* --- Datos de contacto en el header --- */
     .header-contacts{ display:flex; align-items:center; gap:12px; flex-wrap:wrap; justify-content:center; }
     .header-contacts .contact-link{ color:#fff; text-decoration:none; padding:6px 12px; border-radius:9999px; border:1px solid #444; display:flex; align-items:center; gap:8px; }
     .header-contacts .contact-link:hover{ background:rgba(255,255,255,0.08); border-color:#777; }
 
-    /* --- Botón hamburguesa --- */
     .menu-toggle { display: flex; position: absolute; top: 20px; right: 20px; }
-
-      .header-contacts{ order: 3; margin-top: 8px; justify-content:center; }
-      .header-contacts .contact-link{ padding:8px 12px; }
+    .header-contacts{ order: 3; margin-top: 8px; justify-content:center; }
+    .header-contacts .contact-link{ padding:8px 12px; }
     .menu-toggle span { background: #fff; height: 3px; width: 24px; border-radius: 3px; }
 
-    /* Secciones principales */
     .hero {
       height: 100vh;
       background-image: url('assets/imagen_ampliada_comprimida.jpg');
@@ -80,43 +76,53 @@
     }
     .hero::before { content: ""; position: absolute; inset: 0; background: rgba(0, 0, 0, 0.5); }
     .hero-text { position: relative; max-width: 600px; z-index: 1; }
-    .hero-text h1 { font-size: 2.6em; margin-bottom: 20px; }
+    .hero-text h1 { font-size: 2.6em; margin-bottom: 20px; font-family: 'Montserrat', sans-serif; }
     .hero-text p { font-size: 1.1em; margin-bottom: 30px; }
 
-    /* ============ SERVICIOS: Carrusel 3D frontal ============ */
-    :root{ --serv-speed: 50s; } /* velocidad de rotación (más alto = más lento) */
+    :root{ --serv-speed: 50s; }
+
+    /* ======= Títulos de sección estilo “Services” ======= */
+    .section-title{
+      position: relative;
+      display: inline-block;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 3em;
+      color: #ffffff;
+      letter-spacing: 0.2px;
+      margin-bottom: 28px;  /* deja espacio para la línea */
+      text-align: left;
+    }
+    .section-title::after{
+      content: "";
+      display: block;
+      width: 160px;            /* largo de la barra */
+      height: 6px;             /* alto de la barra */
+      margin-top: 10px;
+      border-radius: 3px;
+      background: linear-gradient(90deg, #7b6cf9, #b8aaff);
+      /* Si quisieras más “difuminado”, añade: box-shadow */
+      box-shadow: 0 0 10px rgba(184,170,255,0.4);
+    }
 
     .servicios { position: relative; }
-    .servicios h2 { scroll-margin-top: 100px; }
+    .servicios h2 { scroll-margin-top: 100px; font-family:'Montserrat', sans-serif; }
 
     .serv-carousel{ display:grid; gap:24px; justify-items:center; }
     .serv-carousel__stage{ position:relative; width:min(420px, 92vw); height:400px; perspective: 1000px; margin-inline:auto; }
     .serv-carousel__track{ position:absolute; inset:0; transform-style: preserve-3d; animation: serv-rotate var(--serv-speed) linear infinite; }
-    /* Pausa el giro al pasar el ratón */
     .serv-carousel__stage:hover .serv-carousel__track{ animation-play-state: paused; }
 
-    /* NUEVO: caja (solo imagen) + texto FUERA de la caja */
     .serv-item{ position:absolute; top:50%; left:50%; transform: translate(-50%,-50%); width:340px; text-align:center; }
     .serv-item .serv-box{ background:#2a2a2a; border-left:5px solid #7b6cf9; border-radius:12px; box-shadow:0 10px 25px rgba(0,0,0,.35); padding:12px; }
     .serv-item .serv-box img{ width:100%; height:150px; object-fit:contain; border-radius:6px; display:block; }
     .serv-item .serv-text{ margin-top:12px; }
-    .serv-item .serv-text h3{ font-family:'Rajdhani', sans-serif; font-size:1.2em; color:#b8aaff; margin:0 0 6px; }
+    .serv-item .serv-text h3{ font-family:'Montserrat', sans-serif; font-size:1.2em; color:#b8aaff; margin:0 0 6px; }
     .serv-item .serv-text p{ font-size:.95em; color:#e8e8e8; line-height:1.4; }
 
-    /* Ocultamos el texto dentro del anillo 3D para evitar solapes */
-    
-
-    /* Leyenda fija bajo el escenario */
-    
-    
-    
-
     @keyframes serv-rotate{ from{ transform:rotateY(0deg) } to{ transform:rotateY(-360deg) } }
-
-    /* Accesibilidad: reduce motion */
     @media (prefers-reduced-motion: reduce){ .serv-carousel__track{ animation:none } }
 
-    /* Móvil: cambia a lista horizontal sin animación */
     .serv-carousel__list{ display:none }
     @media (max-width: 768px){
       .serv-carousel__stage{ display:none }
@@ -128,7 +134,6 @@
 
     .separador{ background: linear-gradient(to right, #6c2cbf, #b8aaff); height: 6px; width: 70%; margin: 60px auto; border-radius: 3px; }
 
-    /* --- Media queries para móviles (resto de la página) --- */
     @media (max-width: 768px) {
       header { flex-direction: column; height: auto; padding: 10px 15px; text-align: center; }
       header div { justify-content: center; flex-direction: column; gap: 8px; text-align: center; }
@@ -143,7 +148,6 @@
       .hero-text h1 { font-size: 1.8em; line-height: 1.3; }
       .hero-text p { font-size: 1em; }
 
-      /* Equipo horizontal */
       .equipo > div { display: flex !important; flex-wrap: nowrap !important; gap: 15px !important; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 10px; }
       .equipo > div::-webkit-scrollbar { display: none; }
       .equipo > div > div { flex: 0 0 260px !important; max-width: 260px !important; }
@@ -196,54 +200,37 @@
     </section>
 
     <!-- ================= SERVICIOS (carrusel 3D frontal) ================ -->
-    <section class="servicios" id="servicios" style="padding: 80px 10%; background: #1a1a1a; text-align: center;">
-      <h2 style="
-        font-family: 'Rajdhani', sans-serif;
-        font-size: 3em;
-        color: #b8aaff;
-        padding: 20px 40px;
-        border: 2px solid #b8aaff;
-        border-radius: 12px;
-        display: inline-block;
-        box-shadow: 0 0 25px rgba(184, 170, 255, 0.3);
-        margin-bottom: 50px;">Nuestros servicios</h2>
+    <section class="servicios" id="servicios" style="padding: 80px 10%; background: #1a1a1a; text-align: left;">
+      <!-- Título estilo “Services” -->
+      <h2 class="section-title">Nuestros servicios</h2>
 
       <div class="serv-carousel">
         <div class="serv-carousel__stage">
           <div class="serv-carousel__track" id="servTrack"></div>
         </div>
-        <!-- Lista responsive para móviles / sin animación -->
         <div class="serv-carousel__list" id="servList"></div>
-        
       </div>
     </section>
 
     <div class="separador"></div>
 
     <!-- ================= EQUIPO ================= -->
-    <section class="equipo" id="sobre-mi" style="padding: 80px 10%; background: #181818; color: white; text-align: center;">
-      <h2 style="
-        font-family: 'Rajdhani', sans-serif;
-        font-size: 3em;
-        color: #b8aaff;
-        padding: 20px 40px;
-        border: 2px solid #b8aaff;
-        border-radius: 12px;
-        display: inline-block;
-        box-shadow: 0 0 25px rgba(184, 170, 255, 0.3);
-        margin-bottom: 50px;">¿Quiénes somos?</h2>
+    <section class="equipo" id="sobre-mi" style="padding: 80px 10%; background: #181818; color: white; text-align: left;">
+      <!-- Título estilo “Services” -->
+      <h2 class="section-title">¿Quiénes somos?</h2>
 
-      <p style="font-size: 1.2em; color: #ccc; margin-bottom: 50px;">
+      <p style="font-size: 1.2em; color: #ccc; margin: 20px 0 50px;">
         Somos de aquí, trabajamos para los de aquí. Llevamos la tecnología a empresas extremeñas que quieren crecer desde su tierra.
       </p>
 
+      <!-- Tarjetas centradas -->
       <div style="display: flex; flex-wrap: wrap; gap: 40px; justify-content: center;">
         <!-- Miguel -->
         <div style="flex: 1 1 320px; max-width: 360px; background: #2a2a2a; padding: 30px; border-radius: 16px; box-shadow: 0 8px 20px rgba(123, 108, 249, 0.15); display: flex; flex-direction: column; align-items: center;">
           <div style="width: 130px; height: 130px; border-radius: 50%; overflow: hidden; margin-bottom: 20px; border: 3px solid #b8aaff;">
             <img src="assets/foto-perfil.png" alt="Miguel Ángel Domínguez" style="width: 100%; height: 100%; object-fit: cover;">
           </div>
-          <h3 style="margin: 10px 0 5px;">Miguel Ángel Domínguez</h3>
+          <h3 style="margin: 10px 0 5px; font-family: 'Montserrat', sans-serif;">Miguel Ángel Domínguez</h3>
           <div style="font-size: 0.95em; color: #aaa5f9; margin-bottom: 10px;">Analista de Datos y Procesos</div>
           <p style="font-size: 0.95em; line-height: 1.5; color: #e0e0e0;">
             Extremeño, analista de datos y optimizador de procesos. Ayudo a empresas de nuestra tierra a modernizarse sin perder su esencia. Conecto datos con decisiones para mejorar el rendimiento desde lo local.
@@ -255,7 +242,7 @@
           <div style="width: 130px; height: 130px; border-radius: 50%; overflow: hidden; margin-bottom: 20px; border: 3px solid #b8aaff;">
             <img src="assets/carlos.png" alt="Carlos Manzano Gómez" style="width: 100%; height: 100%; object-fit: cover;">
           </div>
-          <h3 style="margin: 10px 0 5px;">Carlos Manzano Gómez</h3>
+          <h3 style="margin: 10px 0 5px; font-family: 'Montserrat', sans-serif;">Carlos Manzano Gómez</h3>
           <div style="font-size: 0.95em; color: #aaa5f9; margin-bottom: 10px;">Desarrollador y Soporte Técnico</div>
           <p style="font-size: 0.95em; line-height: 1.5; color: #e0e0e0;">
             Desarrollador comprometido con la digitalización en entornos rurales. Creo soluciones que se adaptan a tu forma de trabajar, estés en una cooperativa, fábrica o empresa familiar.
@@ -267,18 +254,21 @@
     <div class="separador"></div>
 
     <!-- ================= BLOG ================= -->
-    <section class="blog-home" id="blog" style="background:#181818; padding: 80px 10%; text-align: center; color: white;">
-      <h2 style="font-family: 'Rajdhani', sans-serif; font-size: 3em; color: #b8aaff; padding: 20px 40px; border: 2px solid #b8aaff; border-radius: 12px; display: inline-block; box-shadow: 0 0 25px rgba(184, 170, 255, 0.3); margin-bottom: 50px;">Blog</h2>
-      <p style="font-size: 1.2em; color: #ccc; margin-bottom: 50px;">Reflexiones sobre IA, automatización y empresa local desde Extremadura.</p>
+    <section class="blog-home" id="blog" style="background:#181818; padding: 80px 10%; text-align: left; color: white;">
+      <!-- Título estilo “Services” -->
+      <h2 class="section-title">Blog</h2>
+
+      <p style="font-size: 1.2em; color: #ccc; margin: 20px 0 50px;">Reflexiones sobre IA, automatización y empresa local desde Extremadura.</p>
+
       <div style="background-color: #1b1b1b; padding: 30px; border-radius: 12px; max-width: 800px; margin: 0 auto 40px; text-align: left; box-shadow: 0 0 15px rgba(100, 100, 255, 0.1);">
-        <h3><a href="blog/post-1.html" style="color: #bb88ff; font-size: 1.6em; text-decoration: none;">¿Por qué sigue dando miedo el cambio?</a></h3>
+        <h3><a href="blog/post-1.html" style="color: #bb88ff; font-size: 1.6em; text-decoration: none; font-family: 'Montserrat', sans-serif;">¿Por qué sigue dando miedo el cambio?</a></h3>
         <p style="font-size: 0.9em; color: #888; margin-bottom: 16px;">🗓 9 de julio de 2025</p>
         <p style="font-size: 1.1em; color: #ddd;">La IA puede mejorar radicalmente nuestras empresas locales, pero el cambio de mentalidad es el primer paso...</p>
         <a href="blog/post-1.html" style="display: inline-block; margin-top: 12px; color: #a678ff; text-decoration: none; font-weight: bold;">Leer más →</a>
       </div>
 
       <div style="background-color: #1b1b1b; padding: 30px; border-radius: 12px; max-width: 800px; margin: 0 auto 40px; text-align: left; box-shadow: 0 0 15px rgba(100, 100, 255, 0.1);">
-        <h3><a href="blog/post2.html" style="color: #bb88ff; font-size: 1.6em; text-decoration: none;">La IA: un espejo incómodo… también en el campo</a></h3>
+        <h3><a href="blog/post2.html" style="color: #bb88ff; font-size: 1.6em; text-decoration: none; font-family: 'Montserrat', sans-serif;">La IA: un espejo incómodo… también en el campo</a></h3>
         <p style="font-size: 0.9em; color: #888; margin-bottom: 16px;">🗓 24 de julio de 2025</p>
         <p style="font-size: 1.1em; color: #ddd;">La IA no es solo para ciudades o grandes empresas. También está transformando cómo se trabaja en el campo extremeño...</p>
         <a href="blog/post2.html" style="display: inline-block; margin-top: 12px; color: #a678ff; text-decoration: none; font-weight: bold;">Leer más →</a>
@@ -294,12 +284,10 @@
 
   <!-- Scripts -->
   <script>
-    // Menú hamburguesa
     document.getElementById('menu-toggle').addEventListener('click', function() {
       document.getElementById('nav-menu').classList.toggle('active');
     });
 
-    // ==== Servicios: datos (tus servicios) ==== 
     const servicios = [
       {
         img: 'assets/CDM.png',
@@ -323,13 +311,12 @@
       }
     ];
 
-    // ==== Construcción del carrusel 3D frontal ====
     (function(){
       const track = document.getElementById('servTrack');
       const list  = document.getElementById('servList');
       const N = servicios.length;
       const angleStep = 360 / N;
-      const radius = 520 / 2; // separación desde el centro
+      const radius = 520 / 2;
 
       servicios.forEach((s, i) => {
         const item = document.createElement('article');
@@ -346,7 +333,6 @@
         item.style.transform = `translate(-50%,-50%) rotateY(${angle}deg) translateZ(${radius}px)`;
         track.appendChild(item);
 
-        // Versión móvil (lista)
         const clone = item.cloneNode(true);
         clone.style.transform = 'none';
         list.appendChild(clone);
@@ -355,6 +341,8 @@
   </script>
 </body>
 </html>
+
+
 
 
 
