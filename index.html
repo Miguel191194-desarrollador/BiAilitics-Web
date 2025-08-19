@@ -84,6 +84,8 @@
     .serv-carousel{ display:grid; gap:24px; justify-items:center; }
     .serv-carousel__stage{ position:relative; width:min(420px, 92vw); height:360px; perspective: 1000px; margin-inline:auto; }
     .serv-carousel__track{ position:absolute; inset:0; transform-style: preserve-3d; animation: serv-rotate var(--serv-speed) linear infinite; }
+    /* Pausa el giro al pasar el ratón */
+    .serv-carousel__stage:hover .serv-carousel__track{ animation-play-state: paused; }
 
     /* NUEVO: caja (solo imagen) + texto FUERA de la caja */
     .serv-item{ position:absolute; top:50%; left:50%; transform: translate(-50%,-50%); width:340px; text-align:center; }
@@ -92,6 +94,14 @@
     .serv-item .serv-text{ margin-top:12px; }
     .serv-item .serv-text h3{ font-family:'Rajdhani', sans-serif; font-size:1.2em; color:#b8aaff; margin:0 0 6px; }
     .serv-item .serv-text p{ font-size:.95em; color:#e8e8e8; line-height:1.4; }
+
+    /* Ocultamos el texto dentro del anillo 3D para evitar solapes */
+    .serv-carousel__stage .serv-text{ display:none; }
+
+    /* Leyenda fija bajo el escenario */
+    .serv-carousel__caption{ max-width:760px; margin: 8px auto 0; text-align:center; padding: 4px 12px; }
+    .serv-carousel__caption h3{ font-family:'Rajdhani', sans-serif; font-size:1.35em; color:#b8aaff; margin: 8px 0 6px; }
+    .serv-carousel__caption p{ font-size:1.05em; color:#e8e8e8; line-height:1.6; }
 
     @keyframes serv-rotate{ from{ transform:rotateY(0deg) } to{ transform:rotateY(-360deg) } }
 
@@ -193,6 +203,10 @@
         </div>
         <!-- Lista responsive para móviles / sin animación -->
         <div class="serv-carousel__list" id="servList"></div>
+        <div class="serv-carousel__caption">
+          <h3 id="servCaptionTitle"></h3>
+          <p id="servCaptionDesc"></p>
+        </div>
       </div>
     </section>
 
@@ -340,10 +354,26 @@
     (function(){
       const track = document.getElementById('servTrack');
       const list  = document.getElementById('servList');
+      const captionTitle = document.getElementById('servCaptionTitle');
+      const captionDesc  = document.getElementById('servCaptionDesc');
+      const stage = document.querySelector('.serv-carousel__stage');
+      // Control de pausa para mantener sincronizado el texto
+      let totalPaused = 0; // ms acumulados en pausa
+      let pauseStart = null; // ms
+      let isPaused = false;
+      stage.addEventListener('mouseenter', () => { isPaused = true; pauseStart = performance.now(); });
+      stage.addEventListener('mouseleave', () => {
+        if(isPaused && pauseStart !== null){
+          totalPaused += performance.now() - pauseStart;
+          isPaused = false;
+          pauseStart = null;
+        }
+      });
       const N = servicios.length;
       const angleStep = 360 / N;
-      const radius = 480 / 2; // separación desde el centro
+      const radius = 520 / 2; // separación desde el centro (un poco más amplio)
 
+      // Construye elementos del anillo (solo caja+imagen; el texto se mostrará en la leyenda fija)
       servicios.forEach((s, i) => {
         const item = document.createElement('article');
         item.className = 'serv-item';
@@ -359,15 +389,40 @@
         item.style.transform = `translate(-50%,-50%) rotateY(${angle}deg) translateZ(${radius}px)`;
         track.appendChild(item);
 
-        // Versión móvil (lista)
+        // Versión móvil (lista) sí muestra el texto pegado a cada imagen
         const clone = item.cloneNode(true);
         clone.style.transform = 'none';
         list.appendChild(clone);
       });
+
+      // Leyenda: actualiza automáticamente con el servicio frontal
+      const rootStyles = getComputedStyle(document.documentElement);
+      const speed = parseFloat(rootStyles.getPropertyValue('--serv-speed')) || 50; // segundos por vuelta
+      let lastIndex = -1;
+      const start = performance.now();
+
+      function updateCaption(){
+        // Congela el tiempo mientras está en pausa para que la leyenda no avance
+        let now = performance.now();
+        if(isPaused && pauseStart !== null){ now = pauseStart; }
+        const elapsed = (now - start - totalPaused) / 1000; // seg reales de giro
+        const idx = Math.floor((elapsed / speed) * N) % N; // cambia cada speed/N seg
+        if(idx !== lastIndex){
+          captionTitle.textContent = servicios[idx].title;
+          captionDesc.textContent  = servicios[idx].desc;
+          lastIndex = idx;
+        }
+        requestAnimationFrame(updateCaption);
+      }
+      // Inicializa con el primero
+      captionTitle.textContent = servicios[0].title;
+      captionDesc.textContent  = servicios[0].desc;
+      requestAnimationFrame(updateCaption);
     })();
   </script>
 </body>
 </html>
+
 
 
 
