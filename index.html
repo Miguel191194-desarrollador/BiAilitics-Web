@@ -82,19 +82,16 @@
     .servicios h2 { scroll-margin-top: 100px; }
 
     .serv-carousel{ display:grid; gap:24px; justify-items:center; }
-    .serv-carousel__stage{ position:relative; width:min(360px, 90vw); height:260px; perspective: 1000px; margin-inline:auto; }
+    .serv-carousel__stage{ position:relative; width:min(420px, 92vw); height:360px; perspective: 1000px; margin-inline:auto; }
     .serv-carousel__track{ position:absolute; inset:0; transform-style: preserve-3d; animation: serv-rotate var(--serv-speed) linear infinite; }
 
-    .serv-card{
-      position:absolute; top:50%; left:50%; transform: translate(-50%,-50%);
-      width:300px; height:210px; padding:18px; box-sizing:border-box;
-      background:#2a2a2a; border-left:5px solid #7b6cf9; border-radius:12px;
-      box-shadow:0 10px 25px rgba(0,0,0,.35);
-      display:flex; flex-direction:column; align-items:center; justify-content:flex-start; text-align:center;
-    }
-    .serv-card img{ width:100%; height:120px; object-fit:contain; margin-bottom:10px; border-radius:6px; }
-    .serv-card h3{ font-family:'Rajdhani', sans-serif; font-size:1.2em; color:#b8aaff; margin:2px 0 6px; }
-    .serv-card p{ font-size:.95em; color:#e8e8e8; }
+    /* NUEVO: caja (solo imagen) + texto FUERA de la caja */
+    .serv-item{ position:absolute; top:50%; left:50%; transform: translate(-50%,-50%); width:340px; text-align:center; }
+    .serv-item .serv-box{ background:#2a2a2a; border-left:5px solid #7b6cf9; border-radius:12px; box-shadow:0 10px 25px rgba(0,0,0,.35); padding:12px; }
+    .serv-item .serv-box img{ width:100%; height:150px; object-fit:contain; border-radius:6px; display:block; }
+    .serv-item .serv-text{ margin-top:12px; }
+    .serv-item .serv-text h3{ font-family:'Rajdhani', sans-serif; font-size:1.2em; color:#b8aaff; margin:0 0 6px; }
+    .serv-item .serv-text p{ font-size:.95em; color:#e8e8e8; line-height:1.4; }
 
     @keyframes serv-rotate{ from{ transform:rotateY(0deg) } to{ transform:rotateY(-360deg) } }
 
@@ -106,8 +103,8 @@
     @media (max-width: 768px){
       .serv-carousel__stage{ display:none }
       .serv-carousel__list{ display:flex; gap:15px; overflow-x:auto; -webkit-overflow-scrolling: touch; padding-bottom:10px; }
-      .serv-carousel__list .serv-card{ position:relative; transform:none; width:240px; height:auto; flex:0 0 240px; }
-      .serv-carousel__list .serv-card img{ height:130px }
+      .serv-carousel__list .serv-item{ position:relative; transform:none; width:260px; flex:0 0 260px; }
+      .serv-carousel__list .serv-box img{ height:140px }
       .serv-carousel__list::-webkit-scrollbar{ display:none }
     }
 
@@ -315,7 +312,7 @@
       document.getElementById('nav-menu').classList.toggle('active');
     });
 
-    // ==== Servicios: datos (tus servicios) ====
+    // ==== Servicios: datos (tus servicios) ==== 
     const servicios = [
       {
         img: 'assets/CDM.png',
@@ -345,22 +342,25 @@
       const list  = document.getElementById('servList');
       const N = servicios.length;
       const angleStep = 360 / N;
-      const radius = 420 / 2; // separación desde el centro
+      const radius = 480 / 2; // separación desde el centro
 
       servicios.forEach((s, i) => {
-        const card = document.createElement('article');
-        card.className = 'serv-card';
-        card.innerHTML = `
-          <img src="${s.img}" alt="${s.title}">
-          <h3>${s.title}</h3>
-          <p>${s.desc}</p>
-        `;
+        const item = document.createElement('article');
+        item.className = 'serv-item';
+        item.innerHTML = `
+          <div class="serv-box">
+            <img src="${s.img}" alt="${s.title}">
+          </div>
+          <div class="serv-text">
+            <h3>${s.title}</h3>
+            <p>${s.desc}</p>
+          </div>`;
         const angle = i * angleStep;
-        card.style.transform = `translate(-50%,-50%) rotateY(${angle}deg) translateZ(${radius}px)`;
-        track.appendChild(card);
+        item.style.transform = `translate(-50%,-50%) rotateY(${angle}deg) translateZ(${radius}px)`;
+        track.appendChild(item);
 
         // Versión móvil (lista)
-        const clone = card.cloneNode(true);
+        const clone = item.cloneNode(true);
         clone.style.transform = 'none';
         list.appendChild(clone);
       });
