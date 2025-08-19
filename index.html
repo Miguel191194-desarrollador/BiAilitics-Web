@@ -50,171 +50,88 @@
       gap: 16px;
       flex-wrap: wrap;
     }
-    header div img {
-      height: 40px;
-    }
-    header div strong {
-      color: #fff;
-      font-size: 1.1em;
-      max-width: 200px;
-    }
-    header nav {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
+    header div img { height: 40px; }
+    header div strong { color: #fff; font-size: 1.1em; max-width: 200px; }
+    header nav { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
     header nav a {
-      text-decoration: none;
-      color: #b8aaff;
-      padding: 6px 14px;
-      border: 1px solid #b8aaff;
-      border-radius: 20px;
-      font-size: 0.85em;
-      transition: all 0.3s ease;
+      text-decoration: none; color: #b8aaff; padding: 6px 14px; border: 1px solid #b8aaff; border-radius: 20px; font-size: 0.85em; transition: all 0.3s ease;
     }
-    header nav a:hover {
-      background-color: #b8aaff;
-      color: #121212;
-    }
+    header nav a:hover { background-color: #b8aaff; color: #121212; }
 
     /* --- Botón hamburguesa --- */
-    .menu-toggle {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-      gap: 4px;
-    }
-    .menu-toggle span {
-      background: #fff;
-      height: 3px;
-      width: 24px;
-      border-radius: 3px;
-    }
+    .menu-toggle { display: none; flex-direction: column; cursor: pointer; gap: 4px; }
+    .menu-toggle span { background: #fff; height: 3px; width: 24px; border-radius: 3px; }
 
     /* Secciones principales */
     .hero {
       height: 100vh;
       background-image: url('assets/imagen_ampliada_comprimida.jpg');
-      background-size: cover;
-      background-position: center;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      padding: 0 8%;
-      position: relative;
+      background-size: cover; background-position: center;
+      display: flex; align-items: center; justify-content: flex-start;
+      padding: 0 8%; position: relative;
     }
-    .hero::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0, 0, 0, 0.5);
+    .hero::before { content: ""; position: absolute; inset: 0; background: rgba(0, 0, 0, 0.5); }
+    .hero-text { position: relative; max-width: 600px; z-index: 1; }
+    .hero-text h1 { font-size: 2.6em; margin-bottom: 20px; }
+    .hero-text p { font-size: 1.1em; margin-bottom: 30px; }
+
+    /* ============ SERVICIOS: Carrusel 3D frontal ============ */
+    :root{ --serv-speed: 50s; } /* velocidad de rotación (más alto = más lento) */
+
+    .servicios { position: relative; }
+    .servicios h2 { scroll-margin-top: 100px; }
+
+    .serv-carousel{ display:grid; gap:24px; justify-items:center; }
+    .serv-carousel__stage{ position:relative; width:min(360px, 90vw); height:260px; perspective: 1000px; margin-inline:auto; }
+    .serv-carousel__track{ position:absolute; inset:0; transform-style: preserve-3d; animation: serv-rotate var(--serv-speed) linear infinite; }
+
+    .serv-card{
+      position:absolute; top:50%; left:50%; transform: translate(-50%,-50%);
+      width:300px; height:210px; padding:18px; box-sizing:border-box;
+      background:#2a2a2a; border-left:5px solid #7b6cf9; border-radius:12px;
+      box-shadow:0 10px 25px rgba(0,0,0,.35);
+      display:flex; flex-direction:column; align-items:center; justify-content:flex-start; text-align:center;
     }
-    .hero-text {
-      position: relative;
-      max-width: 600px;
-      z-index: 1;
-    }
-    .hero-text h1 {
-      font-size: 2.6em;
-      margin-bottom: 20px;
-    }
-    .hero-text p {
-      font-size: 1.1em;
-      margin-bottom: 30px;
+    .serv-card img{ width:100%; height:120px; object-fit:contain; margin-bottom:10px; border-radius:6px; }
+    .serv-card h3{ font-family:'Rajdhani', sans-serif; font-size:1.2em; color:#b8aaff; margin:2px 0 6px; }
+    .serv-card p{ font-size:.95em; color:#e8e8e8; }
+
+    @keyframes serv-rotate{ from{ transform:rotateY(0deg) } to{ transform:rotateY(-360deg) } }
+
+    /* Accesibilidad: reduce motion */
+    @media (prefers-reduced-motion: reduce){ .serv-carousel__track{ animation:none } }
+
+    /* Móvil: cambia a lista horizontal sin animación */
+    .serv-carousel__list{ display:none }
+    @media (max-width: 768px){
+      .serv-carousel__stage{ display:none }
+      .serv-carousel__list{ display:flex; gap:15px; overflow-x:auto; -webkit-overflow-scrolling: touch; padding-bottom:10px; }
+      .serv-carousel__list .serv-card{ position:relative; transform:none; width:240px; height:auto; flex:0 0 240px; }
+      .serv-carousel__list .serv-card img{ height:130px }
+      .serv-carousel__list::-webkit-scrollbar{ display:none }
     }
 
-    /* --- Media queries para móviles --- */
+    .separador{ background: linear-gradient(to right, #6c2cbf, #b8aaff); height: 6px; width: 70%; margin: 60px auto; border-radius: 3px; }
+
+    /* --- Media queries para móviles (resto de la página) --- */
     @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        height: auto;
-        padding: 10px 15px;
-        text-align: center;
-      }
-      header div {
-        justify-content: center;
-        flex-direction: column;
-        gap: 8px;
-        text-align: center;
-      }
-      header div strong {
-        font-size: 0.9em;
-        max-width: 100%;
-        text-align: center;
-      }
-      header nav {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        background: rgba(18,18,18,0.95);
-        margin-top: 10px;
-        padding: 10px 0;
-        border-radius: 10px;
-      }
-      header nav a {
-        font-size: 0.9em;
-        padding: 8px 0;
-      }
-      header nav.active {
-        display: flex;
-      }
-      .menu-toggle {
-        display: flex;
-        position: absolute;
-        top: 20px;
-        right: 20px;
-      }
+      header { flex-direction: column; height: auto; padding: 10px 15px; text-align: center; }
+      header div { justify-content: center; flex-direction: column; gap: 8px; text-align: center; }
+      header div strong { font-size: 0.9em; max-width: 100%; text-align: center; }
+      header nav { display: none; flex-direction: column; width: 100%; background: rgba(18,18,18,0.95); margin-top: 10px; padding: 10px 0; border-radius: 10px; }
+      header nav a { font-size: 0.9em; padding: 8px 0; }
+      header nav.active { display: flex; }
+      .menu-toggle { display: flex; position: absolute; top: 20px; right: 20px; }
 
-      .hero {
-        height: auto;
-        padding: 120px 5% 60px;
-        text-align: center;
-      }
-      .hero-text {
-        max-width: 100%;
-      }
-      .hero-text h1 {
-        font-size: 1.8em;
-        line-height: 1.3;
-      }
-      .hero-text p {
-        font-size: 1em;
-      }
+      .hero { height: auto; padding: 120px 5% 60px; text-align: center; }
+      .hero-text { max-width: 100%; }
+      .hero-text h1 { font-size: 1.8em; line-height: 1.3; }
+      .hero-text p { font-size: 1em; }
 
-      /* --- Servicios en horizontal con scroll --- */
-      .servicios > div {
-        display: flex !important;
-        flex-wrap: nowrap !important;
-        gap: 15px !important;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        padding-bottom: 10px;
-      }
-      .servicios > div::-webkit-scrollbar {
-        display: none;
-      }
-      .servicios > div > div {
-        flex: 0 0 220px !important;
-        width: 220px !important;
-      }
-
-      /* --- Equipo en horizontal con scroll --- */
-      .equipo > div {
-        display: flex !important;
-        flex-wrap: nowrap !important;
-        gap: 15px !important;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        padding-bottom: 10px;
-      }
-      .equipo > div::-webkit-scrollbar {
-        display: none;
-      }
-      .equipo > div > div {
-        flex: 0 0 260px !important;
-        max-width: 260px !important;
-      }
+      /* Equipo horizontal */
+      .equipo > div { display: flex !important; flex-wrap: nowrap !important; gap: 15px !important; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 10px; }
+      .equipo > div::-webkit-scrollbar { display: none; }
+      .equipo > div > div { flex: 0 0 260px !important; max-width: 260px !important; }
     }
   </style>
 
@@ -222,7 +139,7 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-4PDXDV406W"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag(){dataLayer.push(arguments);} 
     gtag('js', new Date());
     gtag('config', 'G-4PDXDV406W');
   </script>
@@ -260,6 +177,7 @@
       </div>
     </section>
 
+    <!-- ================= SERVICIOS (carrusel 3D frontal) ================ -->
     <section class="servicios" id="servicios" style="padding: 80px 10%; background: #1a1a1a; text-align: center;">
       <h2 style="
         font-family: 'Rajdhani', sans-serif;
@@ -271,36 +189,19 @@
         display: inline-block;
         box-shadow: 0 0 25px rgba(184, 170, 255, 0.3);
         margin-bottom: 50px;">Nuestros servicios</h2>
-      
-      <div style="display: flex; gap: 30px; justify-content: center; flex-wrap: wrap;">
-        <div style="background: #2a2a2a; border-left: 5px solid #7b6cf9; border-radius: 12px; padding: 20px; width: 260px;">
-          <img src="assets/CDM.png" alt="Cuadro de mando Power BI" style="width: 100%; height: 150px; object-fit: contain; margin-bottom: 15px; border-radius: 6px;">
-          <h3 style="font-family: 'Rajdhani'; font-size: 1.3em; color: #b8aaff;">Cuadro de Mando Ejecutivo</h3>
-          <p>Visualiza tus ventas, márgenes y resultados con dashboards diseñados para pymes y cooperativas extremeñas. Toma decisiones basadas en datos desde cualquier pueblo o ciudad.</p>
-        </div>
 
-        <div style="background: #2a2a2a; border-left: 5px solid #7b6cf9; border-radius: 12px; padding: 20px; width: 260px;">
-          <img src="assets/formulario_excel.png" alt="Formularios web conectados a Excel" style="width: 100%; height: 150px; object-fit: contain; margin-bottom: 15px; border-radius: 6px;">
-          <h3 style="font-family: 'Rajdhani'; font-size: 1.3em; color: #b8aaff;">Formularios Web conectados a Excel</h3>
-          <p>Recoge pedidos, clientes o incidencias desde el campo, el almacén o la oficina. Tus formularios web conectados a Excel funcionan desde cualquier dispositivo, incluso sin conexión constante.</p>
+      <div class="serv-carousel">
+        <div class="serv-carousel__stage">
+          <div class="serv-carousel__track" id="servTrack"></div>
         </div>
-
-        <div style="background: #2a2a2a; border-left: 5px solid #7b6cf9; border-radius: 12px; padding: 20px; width: 260px;">
-          <img src="assets/consultoria_procesos.png" alt="Consultoría de procesos" style="width: 100%; height: 150px; object-fit: contain; margin-bottom: 15px; border-radius: 6px;">
-          <h3 style="font-family: 'Rajdhani'; font-size: 1.3em; color: #b8aaff;">Consultoría de Procesos</h3>
-          <p>Entendemos los retos del entorno rural. Analizamos tus procesos y diseñamos soluciones prácticas para negocios agroalimentarios, logísticos o comerciales de Extremadura.</p>
-        </div>
-
-        <div style="background: #2a2a2a; border-left: 5px solid #7b6cf9; border-radius: 12px; padding: 20px; width: 260px;">
-          <img src="assets/soluciones_personalizadas.png" alt="Soluciones personalizadas" style="width: 100%; height: 150px; object-fit: contain; margin-bottom: 15px; border-radius: 6px;">
-          <h3 style="font-family: 'Rajdhani'; font-size: 1.3em; color: #b8aaff;">Soluciones Personalizadas</h3>
-          <p>Nos implicamos en tu realidad local. Creamos soluciones digitales a medida para empresas extremeñas: desde automatizaciones hasta informes para ferias, cooperativas o cadenas de distribución.</p>
-        </div>
+        <!-- Lista responsive para móviles / sin animación -->
+        <div class="serv-carousel__list" id="servList"></div>
       </div>
     </section>
 
-    <div class="separador" style="background: linear-gradient(to right, #6c2cbf, #b8aaff); height: 6px; width: 70%; margin: 60px auto; border-radius: 3px;"></div>
+    <div class="separador"></div>
 
+    <!-- ================= EQUIPO ================= -->
     <section class="equipo" id="sobre-mi" style="padding: 80px 10%; background: #181818; color: white; text-align: center;">
       <h2 style="
         font-family: 'Rajdhani', sans-serif;
@@ -344,12 +245,11 @@
       </div>
     </section>
 
-    <div class="separador" style="background: linear-gradient(to right, #6c2cbf, #b8aaff); height: 6px; width: 70%; margin: 60px auto; border-radius: 3px;"></div>
+    <div class="separador"></div>
 
+    <!-- ================= BLOG ================= -->
     <section class="blog-home" id="blog" style="background:#181818; padding: 80px 10%; text-align: center; color: white;">
-      <h2 style="font-family: 'Rajdhani', sans-serif; font-size: 3em; color: #b8aaff; padding: 20px 40px; border: 2px solid #b8aaff; border-radius: 12px; display: inline-block; box-shadow: 0 0 25px rgba(184, 170, 255, 0.3); margin-bottom:
-
-      50px;">Blog</h2>
+      <h2 style="font-family: 'Rajdhani', sans-serif; font-size: 3em; color: #b8aaff; padding: 20px 40px; border: 2px solid #b8aaff; border-radius: 12px; display: inline-block; box-shadow: 0 0 25px rgba(184, 170, 255, 0.3); margin-bottom: 50px;">Blog</h2>
       <p style="font-size: 1.2em; color: #ccc; margin-bottom: 50px;">Reflexiones sobre IA, automatización y empresa local desde Extremadura.</p>
       <div style="background-color: #1b1b1b; padding: 30px; border-radius: 12px; max-width: 800px; margin: 0 auto 40px; text-align: left; box-shadow: 0 0 15px rgba(100, 100, 255, 0.1);">
         <h3><a href="blog/post-1.html" style="color: #bb88ff; font-size: 1.6em; text-decoration: none;">¿Por qué sigue dando miedo el cambio?</a></h3>
@@ -366,8 +266,9 @@
       </div>
     </section>
 
-    <div class="separador" style="background: linear-gradient(to right, #6c2cbf, #b8aaff); height: 6px; width: 70%; margin: 60px auto; border-radius: 3px;"></div>
+    <div class="separador"></div>
 
+    <!-- ================= CONTACTO ================= -->
     <section class="contacto" id="contacto" style="background:#1c1c1c; padding: 60px 10%; color: white; text-align: center;">
       <div class="info">
         <h2 style="
@@ -407,14 +308,67 @@
     </footer>
   </main>
 
-  <!-- Script menú hamburguesa -->
+  <!-- Scripts -->
   <script>
+    // Menú hamburguesa
     document.getElementById('menu-toggle').addEventListener('click', function() {
       document.getElementById('nav-menu').classList.toggle('active');
     });
+
+    // ==== Servicios: datos (tus servicios) ====
+    const servicios = [
+      {
+        img: 'assets/CDM.png',
+        title: 'Cuadro de Mando Ejecutivo',
+        desc: 'Visualiza tus ventas, márgenes y resultados con dashboards diseñados para pymes y cooperativas extremeñas. Toma decisiones basadas en datos desde cualquier pueblo o ciudad.'
+      },
+      {
+        img: 'assets/formulario_excel.png',
+        title: 'Formularios Web conectados a Excel',
+        desc: 'Recoge pedidos, clientes o incidencias desde el campo, el almacén o la oficina. Tus formularios web conectados a Excel funcionan desde cualquier dispositivo, incluso sin conexión constante.'
+      },
+      {
+        img: 'assets/consultoria_procesos.png',
+        title: 'Consultoría de Procesos',
+        desc: 'Entendemos los retos del entorno rural. Analizamos tus procesos y diseñamos soluciones prácticas para negocios agroalimentarios, logísticos o comerciales de Extremadura.'
+      },
+      {
+        img: 'assets/soluciones_personalizadas.png',
+        title: 'Soluciones Personalizadas',
+        desc: 'Nos implicamos en tu realidad local. Creamos soluciones digitales a medida para empresas extremeñas: desde automatizaciones hasta informes para ferias, cooperativas o cadenas de distribución.'
+      }
+    ];
+
+    // ==== Construcción del carrusel 3D frontal ====
+    (function(){
+      const track = document.getElementById('servTrack');
+      const list  = document.getElementById('servList');
+      const N = servicios.length;
+      const angleStep = 360 / N;
+      const radius = 420 / 2; // separación desde el centro
+
+      servicios.forEach((s, i) => {
+        const card = document.createElement('article');
+        card.className = 'serv-card';
+        card.innerHTML = `
+          <img src="${s.img}" alt="${s.title}">
+          <h3>${s.title}</h3>
+          <p>${s.desc}</p>
+        `;
+        const angle = i * angleStep;
+        card.style.transform = `translate(-50%,-50%) rotateY(${angle}deg) translateZ(${radius}px)`;
+        track.appendChild(card);
+
+        // Versión móvil (lista)
+        const clone = card.cloneNode(true);
+        clone.style.transform = 'none';
+        list.appendChild(clone);
+      });
+    })();
   </script>
 </body>
 </html>
+
 
 
 
