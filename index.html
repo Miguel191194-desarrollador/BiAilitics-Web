@@ -72,16 +72,19 @@
 
     :root{ --serv-speed: 50s; }
 
-    /* ====== SECCIÓN SERVICIOS (layout en 2 columnas) ====== */
-    .servicios{ padding: 80px 8% 100px; background:#0b0b0b; }
-    /* (se eliminó el título y su subrayado) */
+    /* ====== SERVICIOS (2 columnas) ====== */
+    .servicios{
+      /* más aire respecto a la portada */
+      padding: clamp(140px, 12vh, 220px) 8% 100px;
+      background:#0b0b0b;
+    }
 
     .services-split{
       display:grid;
       grid-template-columns: 1.15fr 1fr;
-      gap: clamp(80px, 10vw, 200px);       /* <<< más separación en pantallas grandes */
+      gap: clamp(80px, 10vw, 200px);
       align-items:stretch;
-      max-width: 1500px;                   /* <<< ancho máximo mayor */
+      max-width: 1500px;
       margin-inline:auto;
     }
 
@@ -106,7 +109,7 @@
     .services-intro h3{ font-weight:800; font-size: clamp(1.8rem, 1.4vw + 1.3rem, 2.8rem); margin-bottom:18px; }
     .services-intro p{ color:#d9d9d9; line-height:1.6; }
 
-    /* Carrusel a la derecha (tal cual) */
+    /* Carrusel derecha */
     .serv-carousel{ display:grid; gap:24px; justify-items:center; align-content:flex-start; }
     .serv-carousel__stage{ position:relative; width:min(420px, 92vw); height:400px; perspective:1000px; margin-inline:auto; }
     .serv-carousel__track{ position:absolute; inset:0; transform-style:preserve-3d; animation: serv-rotate var(--serv-speed) linear infinite; }
@@ -116,15 +119,14 @@
     .serv-item .serv-box{ background:#1e1e1e; border-left:5px solid #7b6cf9; border-radius:12px; box-shadow:0 10px 25px rgba(0,0,0,.35); padding:12px; }
     .serv-item .serv-box img{ width:100%; height:150px; object-fit:contain; border-radius:6px; display:block; }
     .serv-item .serv-text{ margin-top:12px; }
-    .serv-item .serv-text h3{ font-size:1.2em; color:#b8aaff; margin:0 0 6px; }
+    /* >>> Aquí el cambio a BLANCO <<< */
+    .serv-item .serv-text h3{ font-size:1.2em; color:#fff; margin:0 0 6px; }
     .serv-item .serv-text p{ font-size:.95em; color:#e8e8e8; line-height:1.4; }
 
     @keyframes serv-rotate{ from{ transform:rotateY(0deg) } to{ transform:rotateY(-360deg) } }
     @media (prefers-reduced-motion: reduce){ .serv-carousel__track{ animation:none } }
 
     .serv-carousel__list{ display:none }
-
-    .separador{ background: linear-gradient(to right, #6c2cbf, #b8aaff); height: 6px; width: 70%; margin: 60px auto; border-radius: 3px; }
 
     /* ===== Footer contacto ===== */
     .footer-contact{
@@ -181,8 +183,8 @@
     <div class="menu-toggle" id="menu-toggle"><span></span><span></span><span></span></div>
     <nav id="nav-menu">
       <a href="#inicio">Inicio</a>
-      <a href="#Servicios">Servicios</a>
-      <a href="#Quienes Somos">Quienes somos</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#sobre-mi">Quienes somos</a>
       <a href="#blog">Blog</a>
     </nav>
   </header>
@@ -224,8 +226,6 @@
       </div>
     </section>
 
-    <div class="separador"></div>
-
     <!-- EQUIPO -->
     <section class="equipo" id="sobre-mi" style="padding: 80px 10%; background: #0b0b0b; color: white; text-align: left;">
       <p style="font-size: 1.2em; color: #ccc; margin: 0 0 50px; max-width: 900px;">
@@ -251,8 +251,6 @@
       </div>
     </section>
 
-    <div class="separador"></div>
-
     <!-- BLOG -->
     <section class="blog-home" id="blog" style="background:#0b0b0b; padding: 80px 10%; text-align:left; color:white;">
       <p style="font-size:1.2em; color:#ccc; margin:0 0 50px;">Reflexiones sobre IA, automatización y empresa local desde Extremadura.</p>
@@ -269,8 +267,6 @@
         <a href="blog/post2.html" style="display:inline-block; margin-top:12px; color:#a678ff; text-decoration:none; font-weight:bold;">Leer más →</a>
       </div>
     </section>
-
-    <div class="separador"></div>
 
     <!-- FOOTER -->
     <footer style="padding:40px 10%; background:#111; text-align:center; color:#888; font-size:.9em;">
@@ -327,10 +323,6 @@
   </script>
 </body>
 </html>
-
-
-
-
 
     
 
