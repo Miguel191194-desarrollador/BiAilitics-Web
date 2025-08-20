@@ -26,7 +26,7 @@
   <link rel="preload" as="image" href="assets/c837a6_2119733e838e4a2f8813ebde736f99d5~mv2.avif" type="image/avif">
   <link rel="preload" as="image" href="assets/ImagenNueva.avif" type="image/avif">
   <link rel="preload" as="image" href="assets/Imagen2.avif" type="image/avif">
-  <link rel="preload" as="image" href="assets/sparkle_ring_inbound_text%20(1).gif" type="image/gif">
+  <link rel="preload" as="image" href="assets/sparkle_ring_inbound.gif" type="image/gif">
 
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -54,7 +54,7 @@
     /* ===== HERO ===== */
     .hero{
       min-height:100vh;
-      background-image:url('assets/imagen_ampliada_comprimida.jpg'); /* fallback */
+      background-image:url('assets/imagen_ampliada_comprimida.jpg');
       background-image:image-set(
         url('assets/c837a6_2119733e838e4a2f8813ebde736f99d5~mv2.avif') type('image/avif') 1x,
         url('assets/imagen_ampliada_comprimida.jpg') type('image/jpeg') 1x
@@ -88,7 +88,7 @@
       margin-inline:auto;
     }
 
-    /* Panel izquierdo Servicios */
+    /* Panel izquierdo (servicios) */
     .services-intro{
       position:relative; min-height:520px;
       border:1px solid rgba(255,255,255,.18); border-radius:10px; overflow:hidden;
@@ -109,13 +109,14 @@
     .services-intro h3{ font-weight:800; font-size: clamp(1.8rem, 1.4vw + 1.3rem, 2.8rem); margin-bottom:18px; }
     .services-intro p{ color:#d9d9d9; line-height:1.6; }
 
-    /* ===== Carrusel derecha (minimal) ===== */
+    /* ===== Carrusel derecha ===== */
     .serv-carousel{ display:grid; gap:24px; justify-items:center; align-content:flex-start; }
     .serv-carousel__stage{ position:relative; width:min(420px, 92vw); height:420px; perspective:1000px; margin-inline:auto; }
     .serv-carousel__track{ position:absolute; inset:0; transform-style:preserve-3d; will-change: transform; }
 
+    /* TARJETA servicios: minimal y algo más baja */
     .serv-item{
-      position:absolute; top:55%; /* un poco más abajo para separar de la parte superior */
+      position:absolute; top:55%;
       left:50%; transform: translate(-50%,-50%);
       width:340px; text-align:center;
       backface-visibility:hidden; -webkit-backface-visibility:hidden;
@@ -135,49 +136,69 @@
     .serv-item .serv-text h3{ font-size:1.2em; color:#fff; margin:0 0 6px; font-weight:700; }
     .serv-item .serv-text p{ font-size:.95em; color:#cfcfcf; line-height:1.45; }
 
-    /* ===== QUIÉNES SOMOS (split) ===== */
-    .about{ padding: 100px 8% 100px; background:#0b0b0b; }
+    .serv-carousel__list{ display:none }
+
+    /* ===== QUIÉNES SOMOS (2 columnas) ===== */
+    .about{
+      padding: 80px 8% 100px;
+      background: #0b0b0b;
+    }
     .about-split{
       display:grid;
-      grid-template-columns: 1.15fr 1fr;
+      grid-template-columns: 1.15fr 1fr; /* izquierda imagen + marco / derecha contenido */
       gap: clamp(80px, 10vw, 200px);
       align-items:stretch;
       max-width: 1500px;
       margin-inline:auto;
     }
-
-    /* Panel izquierdo About con imagen + marco + GIF centrado */
-    .about-intro{
+    /* Panel izquierdo (imagen + bolitas + marco fino) */
+    .about-hero{
       position:relative; min-height:520px;
       border:1px solid rgba(255,255,255,.18); border-radius:10px; overflow:hidden;
       background-image:url('assets/Imagen2.avif');
+      background-image:image-set(
+        url('assets/Imagen2.avif') type('image/avif') 1x,
+        url('assets/imagen_ampliada_comprimida.jpg') type('image/jpeg') 1x
+      );
       background-size:cover; background-position:center;
     }
-    .about-intro::before{
+    .about-hero::before{
       content:""; position:absolute; inset:0; border-radius:10px;
       background:linear-gradient(180deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.35) 100%);
     }
-    .about-intro .ring-gif{
-      position:absolute; left:50%; top:50%;
-      transform:translate(-50%,-50%);
-      width:min(520px, 60vw); max-width: 95%;
-      opacity:.95; pointer-events:none;
-      filter: drop-shadow(0 0 12px rgba(255,92,92,.25));
-      z-index:1;
+    .sparkle-wrap{
+      position:absolute; inset:0; z-index:1;
+      display:grid; place-items:center;
+      pointer-events:none;
+    }
+    .sparkle-wrap img{ width:min(72%, 560px); max-width:95%; height:auto; opacity:.95; }
+    .sparkle-wrap h3{
+      position:absolute; text-align:center; color:#fff; font-weight:700;
+      font-size:clamp(1.2rem, 1.2vw + 1rem, 2rem);
+      max-width:76%; line-height:1.25; text-shadow:0 2px 10px rgba(0,0,0,.6);
     }
 
-    /* Lado derecho About */
-    .about-right{ display:grid; gap:20px; align-content:start; }
-    .about-right p{ color:#d9d9d9; line-height:1.6; margin-bottom:6px; }
+    /* Columna derecha: texto + tarjetas equipo minimalistas */
+    .about-right{ display:grid; align-content:flex-start; gap:22px; }
+    .about-right p.lead{ font-size:1.05em; color:#d0d0d0; margin-bottom:10px; }
 
-    .about-cards{ display:grid; gap:16px; }
-    .about-card{
-      border:1px solid #2a2a2a; border-radius:10px; padding:16px;
-      background:transparent; transition:border-color .2s ease, transform .2s ease;
+    .team-grid{
+      display:grid; gap:18px;
+      grid-template-columns: 1fr 1fr;
     }
-    .about-card:hover{ border-color:#555; transform: translateY(-2px); }
-    .about-card h4{ margin:0 0 6px; font-weight:700; color:#fff; }
-    .about-card p{ margin:0; color:#cfcfcf; line-height:1.5; }
+    .team-card{
+      border:1px solid #2a2a2a; border-radius:12px; padding:18px;
+      background:transparent;
+      display:grid; grid-template-columns: 64px auto; gap:14px; align-items:center;
+    }
+    .team-avatar{
+      width:64px; height:64px; border-radius:50%; overflow:hidden;
+      border:2px solid #b8aaff; display:block;
+    }
+    .team-avatar img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .team-meta h4{ margin:0 0 4px; font-weight:700; }
+    .team-meta small{ color:#aaa5f9; display:block; margin-bottom:6px; }
+    .team-meta p{ color:#d9d9d9; font-size:.92em; line-height:1.45; }
 
     /* Footer contacto */
     .footer-contact{
@@ -202,7 +223,9 @@
       .services-intro .intro-content{ top:36px; left:36px; right:36px; }
 
       .about-split{ grid-template-columns:1fr; gap:36px; }
-      .about-intro{ min-height:420px; }
+      .about-hero{ min-height:420px; }
+      .sparkle-wrap img{ width:min(78%, 520px); }
+      .team-grid{ grid-template-columns:1fr; }
     }
 
     @media (max-width: 768px){
@@ -257,7 +280,7 @@
       </div>
     </section>
 
-    <!-- SERVICIOS (split) -->
+    <!-- SERVICIOS -->
     <section class="servicios" id="servicios">
       <div class="services-split">
         <!-- IZQUIERDA -->
@@ -280,33 +303,46 @@
       </div>
     </section>
 
-    <!-- QUIÉNES SOMOS (split) -->
+    <!-- QUIÉNES SOMOS (nuevo layout) -->
     <section class="about" id="sobre-mi">
       <div class="about-split">
-        <!-- IZQUIERDA: imagen + borde + GIF anillo centrado -->
-        <aside class="about-intro" role="img" aria-label="Panel destacado sobre nosotros">
-          <img class="ring-gif"
-               src="assets/sparkle_ring_inbound_text%20(1).gif"
-               alt="Animación de anillo de partículas con mensaje"
-               width="560" height="560" loading="lazy" decoding="async">
+        <!-- IZQUIERDA: imagen + bolitas + marco -->
+        <aside class="about-hero" role="img" aria-label="Panel Quienes somos">
+          <div class="sparkle-wrap">
+            <!-- Si prefieres el GIF con el texto integrado, cambia la ruta a sparkle_ring_inbound_text.gif
+                 y elimina el <h3> de abajo. -->
+            <img src="assets/sparkle_ring_inbound.gif" alt="Animación de partículas rojas">
+            <h3>¿Estás listo para acelerar tu negocio?</h3>
+          </div>
         </aside>
 
         <!-- DERECHA: texto + tarjetas minimalistas -->
         <div class="about-right">
-          <p><strong>Somos de aquí, trabajamos para los de aquí.</strong> Llevamos la tecnología a empresas extremeñas que quieren crecer desde su tierra.</p>
+          <p class="lead">Somos de aquí, trabajamos para los de aquí. Llevamos la tecnología a empresas extremeñas que quieren crecer desde su tierra.</p>
 
-          <div class="about-cards">
-            <article class="about-card">
-              <h4>Miguel Ángel Domínguez · Analista de Datos y Procesos</h4>
-              <p>Optimización de procesos, modelado de datos y cuadros de mando que conectan datos con decisiones.</p>
+          <div class="team-grid">
+            <!-- Miguel -->
+            <article class="team-card">
+              <span class="team-avatar">
+                <img src="assets/foto-perfil.png" alt="Miguel Ángel Domínguez">
+              </span>
+              <div class="team-meta">
+                <h4>Miguel Ángel Domínguez</h4>
+                <small>Analista de Datos y Procesos</small>
+                <p>Extremeño, analista de datos y optimizador de procesos. Conecto datos con decisiones para mejorar el rendimiento desde lo local.</p>
+              </div>
             </article>
-            <article class="about-card">
-              <h4>Carlos Manzano Gómez · Desarrollo y Soporte</h4>
-              <p>Automatizaciones y soluciones web a medida que se adaptan a tu forma de trabajar.</p>
-            </article>
-            <article class="about-card">
-              <h4>Compromiso local</h4>
-              <p>Soluciones útiles, cercanas y sostenibles para cooperativas, pymes y empresas rurales de Extremadura.</p>
+
+            <!-- Carlos -->
+            <article class="team-card">
+              <span class="team-avatar">
+                <img src="assets/carlos.png" alt="Carlos Manzano Gómez">
+              </span>
+              <div class="team-meta">
+                <h4>Carlos Manzano Gómez</h4>
+                <small>Desarrollador y Soporte Técnico</small>
+                <p>Comprometido con la digitalización en entornos rurales. Creo soluciones que se adaptan a tu forma de trabajar.</p>
+              </div>
             </article>
           </div>
         </div>
@@ -354,7 +390,7 @@
       { img:'assets/soluciones_personalizadas.png', title:'Soluciones Personalizadas', desc:'Nos implicamos en tu realidad local. Creamos soluciones digitales a medida para empresas extremeñas: desde automatizaciones hasta informes para ferias, cooperativas o cadenas de distribución.' }
     ];
 
-    // Carrusel con atenuación/blur de tarjetas traseras + pausa hover
+    // Construcción carrusel + animación con atenuación de tarjetas traseras
     (function(){
       const stage = document.getElementById('servStage');
       const track = document.getElementById('servTrack');
@@ -397,11 +433,9 @@
       let rot = 0;
       let paused = false;
 
-      // pausa al pasar el ratón
       stage.addEventListener('mouseenter', () => paused = true);
       stage.addEventListener('mouseleave', () => paused = false);
 
-      // bucle
       let last = performance.now();
       function frame(now){
         const dt = (now - last) / 1000;
@@ -410,21 +444,18 @@
         if (!paused && !prefersReduce.matches) {
           rot = (rot + degPerSec * dt) % 360;
         }
-
         track.style.transform = `rotateY(${rot}deg)`;
 
-        // atenúa/blur tarjetas traseras
         for (const el of items){
           const base = parseFloat(el.dataset.angle || '0');
           let theta = (base + rot) % 360;
-          if (theta > 180) theta -= 360; // [-180,180]
+          if (theta > 180) theta -= 360;
           const cosv = Math.cos(theta * Math.PI/180);
-          const front = Math.max(0, cosv); // 1 = frente, 0 = detrás
+          const front = Math.max(0, cosv);
           const opacity = 0.15 + 0.85 * front;
           el.style.opacity = opacity.toFixed(3);
           el.style.filter = `blur(${(1 - front) * 1.0}px)`;
         }
-
         requestAnimationFrame(frame);
       }
       requestAnimationFrame(frame);
@@ -432,8 +463,6 @@
   </script>
 </body>
 </html>
-
-
 
 
 
