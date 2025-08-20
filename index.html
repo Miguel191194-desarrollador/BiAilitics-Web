@@ -25,6 +25,8 @@
   <!-- PRELOAD imágenes -->
   <link rel="preload" as="image" href="assets/c837a6_2119733e838e4a2f8813ebde736f99d5~mv2.avif" type="image/avif">
   <link rel="preload" as="image" href="assets/ImagenNueva.avif" type="image/avif">
+  <link rel="preload" as="image" href="assets/Imagen2.avif" type="image/avif">
+  <link rel="preload" as="image" href="assets/sparkle_ring_inbound.gif" type="image/gif">
 
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -86,7 +88,7 @@
       margin-inline:auto;
     }
 
-    /* Panel izquierdo */
+    /* Panel izquierdo (servicios) */
     .services-intro{
       position:relative; min-height:520px;
       border:1px solid rgba(255,255,255,.18); border-radius:10px; overflow:hidden;
@@ -112,9 +114,9 @@
     .serv-carousel__stage{ position:relative; width:min(420px, 92vw); height:420px; perspective:1000px; margin-inline:auto; }
     .serv-carousel__track{ position:absolute; inset:0; transform-style:preserve-3d; will-change: transform; }
 
-    /* TARJETA: bajamos un poco y estilo minimal */
+    /* TARJETA servicios: minimal y algo más baja */
     .serv-item{
-      position:absolute; top:55%; /* ↓ bajado desde 50% */
+      position:absolute; top:55%;
       left:50%; transform: translate(-50%,-50%);
       width:340px; text-align:center;
       backface-visibility:hidden; -webkit-backface-visibility:hidden;
@@ -134,8 +136,69 @@
     .serv-item .serv-text h3{ font-size:1.2em; color:#fff; margin:0 0 6px; font-weight:700; }
     .serv-item .serv-text p{ font-size:.95em; color:#cfcfcf; line-height:1.45; }
 
-    /* Mobile lista */
     .serv-carousel__list{ display:none }
+
+    /* ===== QUIÉNES SOMOS (2 columnas) ===== */
+    .about{
+      padding: 80px 8% 100px;
+      background: #0b0b0b;
+    }
+    .about-split{
+      display:grid;
+      grid-template-columns: 1.15fr 1fr; /* izquierda imagen + marco / derecha contenido */
+      gap: clamp(80px, 10vw, 200px);
+      align-items:stretch;
+      max-width: 1500px;
+      margin-inline:auto;
+    }
+    /* Panel izquierdo (imagen + bolitas + marco fino) */
+    .about-hero{
+      position:relative; min-height:520px;
+      border:1px solid rgba(255,255,255,.18); border-radius:10px; overflow:hidden;
+      background-image:url('assets/Imagen2.avif');
+      background-image:image-set(
+        url('assets/Imagen2.avif') type('image/avif') 1x,
+        url('assets/imagen_ampliada_comprimida.jpg') type('image/jpeg') 1x
+      );
+      background-size:cover; background-position:center;
+    }
+    .about-hero::before{
+      content:""; position:absolute; inset:0; border-radius:10px;
+      background:linear-gradient(180deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.35) 100%);
+    }
+    .sparkle-wrap{
+      position:absolute; inset:0; z-index:1;
+      display:grid; place-items:center;
+      pointer-events:none;
+    }
+    .sparkle-wrap img{ width:min(72%, 560px); max-width:95%; height:auto; opacity:.95; }
+    .sparkle-wrap h3{
+      position:absolute; text-align:center; color:#fff; font-weight:700;
+      font-size:clamp(1.2rem, 1.2vw + 1rem, 2rem);
+      max-width:76%; line-height:1.25; text-shadow:0 2px 10px rgba(0,0,0,.6);
+    }
+
+    /* Columna derecha: texto + tarjetas equipo minimalistas */
+    .about-right{ display:grid; align-content:flex-start; gap:22px; }
+    .about-right p.lead{ font-size:1.05em; color:#d0d0d0; margin-bottom:10px; }
+
+    .team-grid{
+      display:grid; gap:18px;
+      grid-template-columns: 1fr 1fr;
+    }
+    .team-card{
+      border:1px solid #2a2a2a; border-radius:12px; padding:18px;
+      background:transparent;
+      display:grid; grid-template-columns: 64px auto; gap:14px; align-items:center;
+    }
+    .team-avatar{
+      width:64px; height:64px; border-radius:50%; overflow:hidden;
+      border:2px solid #b8aaff; display:block;
+    }
+    .team-avatar img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .team-meta h4{ margin:0 0 4px; font-weight:700; }
+    .team-meta small{ color:#aaa5f9; display:block; margin-bottom:6px; }
+    .team-meta p{ color:#d9d9d9; font-size:.92em; line-height:1.45; }
 
     /* Footer contacto */
     .footer-contact{
@@ -158,6 +221,11 @@
       .services-split{ grid-template-columns:1fr; gap:36px; }
       .services-intro{ min-height:420px; }
       .services-intro .intro-content{ top:36px; left:36px; right:36px; }
+
+      .about-split{ grid-template-columns:1fr; gap:36px; }
+      .about-hero{ min-height:420px; }
+      .sparkle-wrap img{ width:min(78%, 520px); }
+      .team-grid{ grid-template-columns:1fr; }
     }
 
     @media (max-width: 768px){
@@ -212,7 +280,7 @@
       </div>
     </section>
 
-    <!-- SERVICIOS (split) -->
+    <!-- SERVICIOS -->
     <section class="servicios" id="servicios">
       <div class="services-split">
         <!-- IZQUIERDA -->
@@ -235,27 +303,48 @@
       </div>
     </section>
 
-    <!-- EQUIPO -->
-    <section class="equipo" id="sobre-mi" style="padding: 80px 10%; background: #0b0b0b; color: white; text-align: left;">
-      <p style="font-size: 1.2em; color: #ccc; margin: 0 0 50px; max-width: 900px;">
-        Somos de aquí, trabajamos para los de aquí. Llevamos la tecnología a empresas extremeñas que quieren crecer desde su tierra.
-      </p>
-      <div style="display:flex; flex-wrap:wrap; gap:40px; justify-content:center;">
-        <div style="flex:1 1 320px; max-width:360px; background:#1e1e1e; padding:30px; border-radius:16px; box-shadow:0 8px 20px rgba(123,108,249,.15); display:flex; flex-direction:column; align-items:center;">
-          <div style="width:130px; height:130px; border-radius:50%; overflow:hidden; margin-bottom:20px; border:3px solid #b8aaff;">
-            <img src="assets/foto-perfil.png" alt="Miguel Ángel Domínguez" style="width:100%; height:100%; object-fit:cover;">
+    <!-- QUIÉNES SOMOS (nuevo layout) -->
+    <section class="about" id="sobre-mi">
+      <div class="about-split">
+        <!-- IZQUIERDA: imagen + bolitas + marco -->
+        <aside class="about-hero" role="img" aria-label="Panel Quienes somos">
+          <div class="sparkle-wrap">
+            <!-- Si prefieres el GIF con el texto integrado, cambia la ruta a sparkle_ring_inbound_text.gif
+                 y elimina el <h3> de abajo. -->
+            <img src="assets/sparkle_ring_inbound.gif" alt="Animación de partículas rojas">
+            <h3>¿Estás listo para acelerar tu negocio?</h3>
           </div>
-          <h3 style="margin:10px 0 5px;">Miguel Ángel Domínguez</h3>
-          <div style="font-size:.95em; color:#aaa5f9; margin-bottom:10px;">Analista de Datos y Procesos</div>
-          <p style="font-size:.95em; line-height:1.5; color:#e0e0e0;">Extremeño, analista de datos y optimizador de procesos. Ayudo a empresas de nuestra tierra a modernizarse sin perder su esencia. Conecto datos con decisiones para mejorar el rendimiento desde lo local.</p>
-        </div>
-        <div style="flex:1 1 320px; max-width:360px; background:#1e1e1e; padding:30px; border-radius:16px; box-shadow:0 8px 20px rgba(123,108,249,.15); display:flex; flex-direction:column; align-items:center;">
-          <div style="width:130px; height:130px; border-radius:50%; overflow:hidden; margin-bottom:20px; border:3px solid #b8aaff;">
-            <img src="assets/carlos.png" alt="Carlos Manzano Gómez" style="width:100%; height:100%; object-fit:cover;">
+        </aside>
+
+        <!-- DERECHA: texto + tarjetas minimalistas -->
+        <div class="about-right">
+          <p class="lead">Somos de aquí, trabajamos para los de aquí. Llevamos la tecnología a empresas extremeñas que quieren crecer desde su tierra.</p>
+
+          <div class="team-grid">
+            <!-- Miguel -->
+            <article class="team-card">
+              <span class="team-avatar">
+                <img src="assets/foto-perfil.png" alt="Miguel Ángel Domínguez">
+              </span>
+              <div class="team-meta">
+                <h4>Miguel Ángel Domínguez</h4>
+                <small>Analista de Datos y Procesos</small>
+                <p>Extremeño, analista de datos y optimizador de procesos. Conecto datos con decisiones para mejorar el rendimiento desde lo local.</p>
+              </div>
+            </article>
+
+            <!-- Carlos -->
+            <article class="team-card">
+              <span class="team-avatar">
+                <img src="assets/carlos.png" alt="Carlos Manzano Gómez">
+              </span>
+              <div class="team-meta">
+                <h4>Carlos Manzano Gómez</h4>
+                <small>Desarrollador y Soporte Técnico</small>
+                <p>Comprometido con la digitalización en entornos rurales. Creo soluciones que se adaptan a tu forma de trabajar.</p>
+              </div>
+            </article>
           </div>
-          <h3 style="margin:10px 0 5px;">Carlos Manzano Gómez</h3>
-          <div style="font-size:.95em; color:#aaa5f9; margin-bottom:10px;">Desarrollador y Soporte Técnico</div>
-          <p style="font-size:.95em; line-height:1.5; color:#e0e0e0;">Desarrollador comprometido con la digitalización en entornos rurales. Creo soluciones que se adaptan a tu forma de trabajar, estés en una cooperativa, fábrica o empresa familiar.</p>
         </div>
       </div>
     </section>
@@ -337,43 +426,36 @@
       const prefersReduce = window.matchMedia('(prefers-reduced-motion: reduce)');
       const items = Array.from(track.children);
       const rootStyles = getComputedStyle(document.documentElement);
-      // --serv-speed: "50s" -> segundos
       const speedVar = rootStyles.getPropertyValue('--serv-speed').trim();
       const secondsPerSpin = parseFloat(speedVar) || 50;
-      let degPerSec = 360 / secondsPerSpin; // 360º por vuelta
+      let degPerSec = 360 / secondsPerSpin;
 
       let rot = 0;
       let paused = false;
 
-      // pausa al pasar el ratón
       stage.addEventListener('mouseenter', () => paused = true);
       stage.addEventListener('mouseleave', () => paused = false);
 
-      // bucle
       let last = performance.now();
       function frame(now){
-        const dt = (now - last) / 1000; // segundos
+        const dt = (now - last) / 1000;
         last = now;
 
         if (!paused && !prefersReduce.matches) {
           rot = (rot + degPerSec * dt) % 360;
         }
-
-        // aplica rotación global
         track.style.transform = `rotateY(${rot}deg)`;
 
-        // atenúa tarjetas traseras
         for (const el of items){
           const base = parseFloat(el.dataset.angle || '0');
           let theta = (base + rot) % 360;
-          if (theta > 180) theta -= 360; // [-180,180]
+          if (theta > 180) theta -= 360;
           const cosv = Math.cos(theta * Math.PI/180);
-          const front = Math.max(0, cosv); // 1 = frente, 0 = detrás
-          const opacity = 0.15 + 0.85 * front; // mínimo 0.15 para evitar “saltos”
+          const front = Math.max(0, cosv);
+          const opacity = 0.15 + 0.85 * front;
           el.style.opacity = opacity.toFixed(3);
-          el.style.filter = `blur(${(1 - front) * 1.0}px)`; // sutil blur atrás
+          el.style.filter = `blur(${(1 - front) * 1.0}px)`;
         }
-
         requestAnimationFrame(frame);
       }
       requestAnimationFrame(frame);
@@ -381,6 +463,7 @@
   </script>
 </body>
 </html>
+
 
     
 
