@@ -46,75 +46,61 @@
       padding: 20px 30px;
       border-bottom: 1px solid #2d2d2d;
     }
-    header .brand { display: flex; align-items: center; gap: 16px; flex-wrap: nowrap; }
+    header .brand { display: flex; align-items: center; gap: 16px; }
     header .brand img { height: 40px; }
-    /* BiAilitics Data con degradado y subrayado */
+
+    /* “BiAilitics Data” con degradado (sin subrayado) */
     .brand-name{
       font-weight: 800; font-size: 1.1em; white-space: nowrap;
       background: linear-gradient(135deg, #7b6cf9, #b8aaff);
       -webkit-background-clip: text; background-clip: text;
-      color: transparent; position: relative; line-height: 1.1;
+      color: transparent; line-height: 1.1;
     }
 
-
-    /* Contacto centrado */
-    .header-contacts{
-      margin-left: auto; margin-right: auto; /* centra el bloque entre logo y menú */
-      display:flex; align-items:center; gap:12px; flex-wrap:wrap;
-    }
-    .header-contacts .contact-link{
-      color:#fff; text-decoration:none; padding:6px 0;
-      display:flex; align-items:center; gap:8px; opacity:.95;
-      border:none; background:transparent;
-    }
-    .header-contacts .contact-link:hover{ opacity:1; }
-
-    /* Menú a la derecha, blanco y sin subrayado */
-    header nav { display: flex; gap: 18px; flex-wrap: wrap; justify-content: flex-end; }
+    /* Menú a la derecha, blanco, sin subrayado */
+    header nav { margin-left:auto; display:flex; gap:18px; flex-wrap:wrap; }
     header nav a{
       font-family:'Montserrat',sans-serif; font-weight:600;
-      color:#fff; text-decoration:none; /* sin subrayado */
-      padding: 6px 0; border:none; border-radius:0;
-      transition: color .2s ease;
+      color:#fff; text-decoration:none;
+      padding:6px 0; border:none; border-radius:0; transition:color .2s ease;
     }
-    header nav a:hover { color: #b8aaff; }
-    header nav a:focus { outline: none; text-decoration: none; }
+    header nav a:hover{ color:#b8aaff; }
 
     /* Hamburguesa (solo móvil/tablet) */
-    .menu-toggle { display: none; flex-direction: column; cursor: pointer; gap: 4px; }
-    .menu-toggle span { background: #fff; height: 3px; width: 24px; border-radius: 3px; }
+    .menu-toggle { display:none; flex-direction:column; cursor:pointer; gap:4px; }
+    .menu-toggle span{ background:#fff; height:3px; width:24px; border-radius:3px; }
 
     /* ===== HERO con AVIF + fallbacks ===== */
-    .hero {
-      min-height: 100vh;
-      background-image: url('assets/imagen_ampliada_comprimida.jpg');
-      background-image: image-set(
+    .hero{
+      min-height:100vh;
+      background-image:url('assets/imagen_ampliada_comprimida.jpg');
+      background-image:image-set(
         url('assets/c837a6_2119733e838e4a2f8813ebde736f99d5~mv2.avif') type('image/avif') 1x,
         url('assets/imagen_ampliada_comprimida.jpg') type('image/jpeg') 1x
       );
-      background-image: -webkit-image-set(
+      background-image:-webkit-image-set(
         url('assets/c837a6_2119733e838e4a2f8813ebde736f99d5~mv2.avif') type('image/avif') 1x,
         url('assets/imagen_ampliada_comprimida.jpg') type('image/jpeg') 1x
       );
-      background-size: cover; background-position: 50% 38%; background-repeat: no-repeat;
-      display: flex; align-items: center; justify-content: flex-start;
-      padding: 0 8%; position: relative;
+      background-size:cover; background-position:50% 38%; background-repeat:no-repeat;
+      display:flex; align-items:center; justify-content:flex-start;
+      padding:0 8%; position:relative;
     }
-    .hero::before { content: ""; position: absolute; inset: 0; background: rgba(0,0,0,.5); }
-    .hero-text { position: relative; max-width: 700px; z-index: 1; }
-    .hero-text h1 { font-size: clamp(2rem, 2.2vw + 1rem, 3.2rem); margin-bottom: 20px; }
-    .hero-text p  { font-size: clamp(1rem, 0.6vw + 0.9rem, 1.25rem); margin-bottom: 30px; color:#f0f0f0; }
+    .hero::before{ content:""; position:absolute; inset:0; background:rgba(0,0,0,.5); }
+    .hero-text{ position:relative; max-width:700px; z-index:1; }
+    .hero-text h1{ font-size:clamp(2rem, 2.2vw + 1rem, 3.2rem); margin-bottom:20px; }
+    .hero-text p { font-size:clamp(1rem, .6vw + .9rem, 1.25rem); margin-bottom:30px; color:#f0f0f0; }
 
     :root{ --serv-speed: 50s; }
 
     /* ===== Títulos ===== */
     .section-title{
-      position: relative; display: inline-block; font-weight: 800; font-size: 3em; color: #fff;
-      letter-spacing: .2px; margin-bottom: 28px; text-align: left;
+      position:relative; display:inline-block; font-weight:800; font-size:3em; color:#fff;
+      letter-spacing:.2px; margin-bottom:28px; text-align:left;
     }
     .section-title::after{
       content:""; display:block; width:160px; height:6px; margin-top:10px; border-radius:3px;
-      background: linear-gradient(90deg, #7b6cf9, #b8aaff); box-shadow: 0 0 10px rgba(184,170,255,.4);
+      background:linear-gradient(90deg, #7b6cf9, #b8aaff); box-shadow:0 0 10px rgba(184,170,255,.4);
     }
 
     /* ===== Carrusel servicios ===== */
@@ -122,11 +108,11 @@
     .servicios h2 { scroll-margin-top: 100px; }
 
     .serv-carousel{ display:grid; gap:24px; justify-items:center; }
-    .serv-carousel__stage{ position:relative; width:min(420px, 92vw); height:400px; perspective: 1000px; margin-inline:auto; }
-    .serv-carousel__track{ position:absolute; inset:0; transform-style: preserve-3d; animation: serv-rotate var(--serv-speed) linear infinite; }
-    .serv-carousel__stage:hover .serv-carousel__track{ animation-play-state: paused; }
+    .serv-carousel__stage{ position:relative; width:min(420px, 92vw); height:400px; perspective:1000px; margin-inline:auto; }
+    .serv-carousel__track{ position:absolute; inset:0; transform-style:preserve-3d; animation:serv-rotate var(--serv-speed) linear infinite; }
+    .serv-carousel__stage:hover .serv-carousel__track{ animation-play-state:paused; }
 
-    .serv-item{ position:absolute; top:50%; left:50%; transform: translate(-50%,-50%); width:340px; text-align:center; }
+    .serv-item{ position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:340px; text-align:center; }
     .serv-item .serv-box{ background:#2a2a2a; border-left:5px solid #7b6cf9; border-radius:12px; box-shadow:0 10px 25px rgba(0,0,0,.35); padding:12px; }
     .serv-item .serv-box img{ width:100%; height:150px; object-fit:contain; border-radius:6px; display:block; }
     .serv-item .serv-text{ margin-top:12px; }
@@ -138,22 +124,28 @@
 
     .serv-carousel__list{ display:none }
 
-    /* ===== Responsive ===== */
-    @media (min-width:1600px){ .hero-text{ max-width: 820px; } .hero{ background-position:50% 36%; } }
+    /* ===== Footer: bloque de contacto arriba del copyright ===== */
+    .footer-contact{
+      text-align:left; color:#ddd; margin-bottom:18px;
+      display:flex; flex-direction:column; gap:10px;
+    }
+    .footer-contact a{ color:#ddd; text-decoration:none; }
+    .footer-contact a:hover{ color:#b8aaff; }
 
-    @media (max-width: 1024px){
+    /* ===== Responsive ===== */
+    @media (min-width:1600px){ .hero-text{ max-width:820px; } .hero{ background-position:50% 36%; } }
+
+    @media (max-width:1024px){
       .menu-toggle{ display:flex; position:absolute; top:20px; right:20px; }
       header nav{ display:none; position:absolute; top:80px; right:0; left:0; background:rgba(18,18,18,.95); padding:12px 20px; gap:12px; }
       header nav.active{ display:flex; flex-direction:column; align-items:center; }
       header nav a{ padding:10px 0; }
-      /* para no saturar el header en móvil, ocultamos el bloque centrado */
-      .header-contacts{ display:none; }
     }
 
-    @media (max-width: 768px){
+    @media (max-width:768px){
       .hero{ min-height:72vh; padding:120px 5% 60px; background-position:50% 40%; }
       .hero-text{ max-width:100%; }
-      .hero-text h1{ font-size: clamp(1.8rem, 3.5vw + .6rem, 2.2rem); line-height:1.3; }
+      .hero-text h1{ font-size:clamp(1.8rem, 3.5vw + .6rem, 2.2rem); line-height:1.3; }
       .hero-text p{ font-size:1rem; }
 
       .serv-carousel__stage{ display:none }
@@ -177,24 +169,18 @@
 </head>
 <body>
   <header>
-    <!-- Izquierda: logo + BiAilitics Data -->
+    <!-- Izquierda: logo + BiAilitics Data (sin subrayado) -->
     <div class="brand">
       <img src="assets/Biailitics.png" alt="Logo BiAilitics">
       <span class="brand-name">BiAilitics Data</span>
-    </div>
-
-    <!-- Centro: teléfono y correo -->
-    <div class="header-contacts">
-      <a class="contact-link" href="tel:+34635673885">📞 <span>+34 635 673 885</span></a>
-      <a class="contact-link" href="mailto:infobiailitics@gmail.com">✉️ <span>infobiailitics@gmail.com</span></a>
     </div>
 
     <!-- Derecha: menú -->
     <div class="menu-toggle" id="menu-toggle"><span></span><span></span><span></span></div>
     <nav id="nav-menu">
       <a href="#inicio">Inicio</a>
-      <a href="#Servicios">Servicios</a>
-      <a href="#Quienes somos">Quienes somos</a>
+      <a href="#sobre-mi">Sobre mí</a>
+      <a href="#servicios">Servicios</a>
       <a href="#blog">Blog</a>
     </nav>
   </header>
@@ -271,7 +257,14 @@
 
     <div class="separador"></div>
 
+    <!-- ===== FOOTER ===== -->
     <footer style="padding: 40px 10%; background: #111; text-align: center; color: #888; font-size: 0.9em;">
+      <!-- Nuevo bloque de contacto, pegado a la izquierda y separado del copyright -->
+      <div class="footer-contact">
+        <a href="tel:+34635673885">📞 +34 635 673 885</a>
+        <a href="mailto:infobiailitics@gmail.com">✉️ infobiailitics@gmail.com</a>
+      </div>
+
       <p>&copy; 2025 BiAilitics - Consultoría Digital 100% Extremeña. Power BI, Automatización y Procesos para empresas locales. Todos los derechos reservados.</p>
     </footer>
   </main>
@@ -320,6 +313,7 @@
   </script>
 </body>
 </html>
+
 
 
 
