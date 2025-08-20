@@ -22,10 +22,9 @@
   <!-- Fuente Montserrat -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- PRELOAD de la imagen AVIF de portada -->
+  <!-- PRELOAD portada AVIF -->
   <link rel="preload" as="image" href="assets/c837a6_2119733e838e4a2f8813ebde736f99d5~mv2.avif" type="image/avif">
 
-  <!-- Estilos principales -->
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body {
@@ -34,100 +33,85 @@
       background-color: #121212;
       color: #ffffff;
     }
+
+    /* ===== HEADER ===== */
     header {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 10;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 10;
       height: 80px;
       background: rgba(18, 18, 18, 0.95);
       backdrop-filter: blur(6px);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      display: flex; align-items: center;
+      gap: 24px;
+      justify-content: flex-start;
       padding: 20px 30px;
       border-bottom: 1px solid #2d2d2d;
     }
-    header div {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
+    header div { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
     header div img { height: 40px; }
     header div strong { color: #fff; font-size: 1.1em; max-width: 200px; }
-    header nav { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
-    header nav a {
-      text-decoration: none; color: #b8aaff; padding: 6px 14px; border: 1px solid #b8aaff; border-radius: 20px; font-size: 0.85em; transition: all 0.3s ease;
+
+    /* Contacto (a la derecha, antes del menú) */
+    .header-contacts{
+      margin-left:auto;                 /* <<< empuja este bloque a la derecha */
+      display:flex; align-items:center; gap:12px; flex-wrap:wrap;
     }
-    header nav a:hover { background-color: #b8aaff; color: #121212; }
+    .header-contacts .contact-link{
+      color:#fff; text-decoration:none; padding:6px 0; /* sin borde ni píldora */
+      display:flex; align-items:center; gap:8px;
+      border:none; background:transparent; opacity:.95;
+    }
+    .header-contacts .contact-link:hover{ opacity:1; }
 
-    .header-contacts{ display:flex; align-items:center; gap:12px; flex-wrap:wrap; justify-content:center; }
-    .header-contacts .contact-link{ color:#fff; text-decoration:none; padding:6px 12px; border-radius:9999px; border:1px solid #444; display:flex; align-items:center; gap:8px; }
-    .header-contacts .contact-link:hover{ background:rgba(255,255,255,0.08); border-color:#777; }
+    /* Menú a la derecha del contacto, blanco y sin contorno */
+    header nav { display: flex; gap: 18px; flex-wrap: wrap; justify-content: flex-end; }
+    header nav a{
+      font-family:'Montserrat',sans-serif;
+      color:#fff; text-decoration:none;
+      padding: 6px 0; border:none; border-radius:0;
+      transition: color .2s ease; font-weight:600;
+    }
+    header nav a:hover { color: #b8aaff; }
 
-    .menu-toggle { display: flex; position: absolute; top: 20px; right: 20px; }
-    .header-contacts{ order: 3; margin-top: 8px; justify-content:center; }
-    .header-contacts .contact-link{ padding:8px 12px; }
+    /* Hamburguesa (solo móvil/tablet) */
+    .menu-toggle { display: none; flex-direction: column; cursor: pointer; gap: 4px; }
     .menu-toggle span { background: #fff; height: 3px; width: 24px; border-radius: 3px; }
 
-    /* ======= HERO con AVIF + fallbacks ======= */
+    /* ===== HERO con AVIF + fallbacks ===== */
     .hero {
-      /* Altura adaptable: llena la pantalla en escritorio y aporta cuerpo en móvil */
       min-height: 100vh;
-
-      /* Fallback básico (por compatibilidad) */
       background-image: url('assets/imagen_ampliada_comprimida.jpg');
-
-      /* image-set estándar */
       background-image: image-set(
         url('assets/c837a6_2119733e838e4a2f8813ebde736f99d5~mv2.avif') type('image/avif') 1x,
         url('assets/imagen_ampliada_comprimida.jpg') type('image/jpeg') 1x
       );
-      /* Safari/WebKit */
       background-image: -webkit-image-set(
         url('assets/c837a6_2119733e838e4a2f8813ebde736f99d5~mv2.avif') type('image/avif') 1x,
         url('assets/imagen_ampliada_comprimida.jpg') type('image/jpeg') 1x
       );
-
-      background-size: cover;                 /* rellena sin deformar */
-      background-position: 50% 38%;           /* foco un poco más arriba */
-      background-repeat: no-repeat;
+      background-size: cover; background-position: 50% 38%; background-repeat: no-repeat;
       display: flex; align-items: center; justify-content: flex-start;
       padding: 0 8%; position: relative;
     }
-    .hero::before {
-      content: ""; position: absolute; inset: 0;
-      background: rgba(0, 0, 0, 0.5);         /* overlay para legibilidad */
-    }
+    .hero::before { content: ""; position: absolute; inset: 0; background: rgba(0,0,0,.5); }
     .hero-text { position: relative; max-width: 700px; z-index: 1; }
-    .hero-text h1 { font-size: clamp(2rem, 2.2vw + 1rem, 3.2rem); margin-bottom: 20px; font-family: 'Montserrat', sans-serif; }
-    .hero-text p { font-size: clamp(1rem, 0.6vw + 0.9rem, 1.25rem); margin-bottom: 30px; color:#f0f0f0; }
+    .hero-text h1 { font-size: clamp(2rem, 2.2vw + 1rem, 3.2rem); margin-bottom: 20px; }
+    .hero-text p  { font-size: clamp(1rem, 0.6vw + 0.9rem, 1.25rem); margin-bottom: 30px; color:#f0f0f0; }
 
     :root{ --serv-speed: 50s; }
 
-    /* ======= Títulos de sección estilo “Services” ======= */
+    /* ===== Títulos ===== */
     .section-title{
-      position: relative;
-      display: inline-block;
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 800;
-      font-size: 3em;
-      color: #ffffff;
-      letter-spacing: 0.2px;
-      margin-bottom: 28px;
-      text-align: left;
+      position: relative; display: inline-block; font-weight: 800; font-size: 3em; color: #fff;
+      letter-spacing: .2px; margin-bottom: 28px; text-align: left;
     }
     .section-title::after{
-      content: "";
-      display: block;
-      width: 160px; height: 6px; margin-top: 10px;
-      border-radius: 3px;
-      background: linear-gradient(90deg, #7b6cf9, #b8aaff);
-      box-shadow: 0 0 10px rgba(184,170,255,0.4);
+      content:""; display:block; width:160px; height:6px; margin-top:10px; border-radius:3px;
+      background: linear-gradient(90deg, #7b6cf9, #b8aaff); box-shadow: 0 0 10px rgba(184,170,255,.4);
     }
 
+    /* ===== Carrusel servicios ===== */
     .servicios { position: relative; }
-    .servicios h2 { scroll-margin-top: 100px; font-family:'Montserrat', sans-serif; }
+    .servicios h2 { scroll-margin-top: 100px; }
 
     .serv-carousel{ display:grid; gap:24px; justify-items:center; }
     .serv-carousel__stage{ position:relative; width:min(420px, 92vw); height:400px; perspective: 1000px; margin-inline:auto; }
@@ -138,76 +122,70 @@
     .serv-item .serv-box{ background:#2a2a2a; border-left:5px solid #7b6cf9; border-radius:12px; box-shadow:0 10px 25px rgba(0,0,0,.35); padding:12px; }
     .serv-item .serv-box img{ width:100%; height:150px; object-fit:contain; border-radius:6px; display:block; }
     .serv-item .serv-text{ margin-top:12px; }
-    .serv-item .serv-text h3{ font-family:'Montserrat', sans-serif; font-size:1.2em; color:#b8aaff; margin:0 0 6px; }
+    .serv-item .serv-text h3{ font-size:1.2em; color:#b8aaff; margin:0 0 6px; }
     .serv-item .serv-text p{ font-size:.95em; color:#e8e8e8; line-height:1.4; }
 
     @keyframes serv-rotate{ from{ transform:rotateY(0deg) } to{ transform:rotateY(-360deg) } }
     @media (prefers-reduced-motion: reduce){ .serv-carousel__track{ animation:none } }
 
     .serv-carousel__list{ display:none }
+
+    /* ===== Responsive ===== */
+    @media (min-width:1600px){ .hero-text{ max-width: 820px; } .hero{ background-position:50% 36%; } }
+
+    @media (max-width: 1024px){
+      .menu-toggle{ display:flex; position:absolute; top:20px; right:20px; }
+      header nav{ display:none; position:absolute; top:80px; right:0; left:0; background:rgba(18,18,18,.95); padding:12px 20px; gap:12px; }
+      header nav.active{ display:flex; flex-direction:column; align-items:center; }
+      header nav a{ padding:10px 0; }
+    }
+
     @media (max-width: 768px){
-      /* Móvil: que el héroe siga luciendo la imagen */
-      .hero { min-height: 72vh; padding: 120px 5% 60px; background-position: 50% 40%; }
-      .hero-text { max-width: 100%; }
-      .hero-text h1 { font-size: clamp(1.8rem, 3.5vw + 0.6rem, 2.2rem); line-height: 1.3; }
-      .hero-text p { font-size: 1rem; }
+      .hero{ min-height:72vh; padding:120px 5% 60px; background-position:50% 40%; }
+      .hero-text{ max-width:100%; }
+      .hero-text h1{ font-size: clamp(1.8rem, 3.5vw + .6rem, 2.2rem); line-height:1.3; }
+      .hero-text p{ font-size:1rem; }
 
       .serv-carousel__stage{ display:none }
-      .serv-carousel__list{ display:flex; gap:15px; overflow-x:auto; -webkit-overflow-scrolling: touch; padding-bottom:10px; }
+      .serv-carousel__list{ display:flex; gap:15px; overflow-x:auto; -webkit-overflow-scrolling:touch; padding-bottom:10px; }
       .serv-carousel__list .serv-item{ position:relative; transform:none; width:260px; flex:0 0 260px; }
       .serv-carousel__list .serv-box img{ height:140px }
       .serv-carousel__list::-webkit-scrollbar{ display:none }
     }
 
     .separador{ background: linear-gradient(to right, #6c2cbf, #b8aaff); height: 6px; width: 70%; margin: 60px auto; border-radius: 3px; }
-
-    @media (min-width: 1600px){ /* monitores grandes ~32\" */
-      .hero-text{ max-width: 820px; }
-      .hero{ background-position: 50% 36%; } /* sube un poco el foco */
-    }
-
-    @media (max-width: 768px) {
-      header { flex-direction: column; height: auto; padding: 10px 15px; text-align: center; }
-      header div { justify-content: center; flex-direction: column; gap: 8px; text-align: center; }
-      header div strong { font-size: 0.9em; max-width: 100%; text-align: center; }
-      header nav { display: none; flex-direction: column; width: 100%; background: rgba(18,18,18,0.95); margin-top: 10px; padding: 10px 0; border-radius: 10px; }
-      header nav a { font-size: 0.9em; padding: 8px 0; }
-      header nav.active { display: flex; }
-      .menu-toggle { display: flex; position: absolute; top: 20px; right: 20px; }
-
-      .equipo > div { display: flex !important; flex-wrap: nowrap !important; gap: 15px !important; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 10px; }
-      .equipo > div::-webkit-scrollbar { display: none; }
-      .equipo > div > div { flex: 0 0 260px !important; max-width: 260px !important; }
-    }
   </style>
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-4PDXDV406W"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);} 
+    function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-4PDXDV406W');
   </script>
 </head>
 <body>
   <header>
+    <!-- Izquierda: logo + claim -->
     <div>
       <img src="assets/Biailitics.png" alt="Logo BiAilitics">
       <strong>Soluciones digitales 100% extremeñas para tu empresa</strong>
     </div>
+
+    <!-- Derecha (al inicio del menú): teléfono y correo, sin contorno -->
     <div class="header-contacts">
       <a class="contact-link" href="tel:+34635673885">📞 <span>+34 635 673 885</span></a>
       <a class="contact-link" href="mailto:infobiailitics@gmail.com">✉️ <span>infobiailitics@gmail.com</span></a>
     </div>
-    <div class="menu-toggle" id="menu-toggle">
-      <span></span><span></span><span></span>
-    </div>
+
+    <!-- Menú (pegado a la derecha) -->
+    <div class="menu-toggle" id="menu-toggle"><span></span><span></span><span></span></div>
     <nav id="nav-menu">
-        <a href="#inicio">Inicio</a>
-        <a href="#sobre-mi">Sobre mí</a>
-        <a href="#servicios">Servicios</a>
-        <a href="#blog">Blog</a>
+      <a href="#inicio">Inicio</a>
+      <a href="#sobre-mi">Sobre mí</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#blog">Blog</a>
     </nav>
   </header>
 
@@ -220,16 +198,13 @@
             Empresas Extremeñas
           </span>
         </h1>
-        <p>
-          Impulsa tu negocio con soluciones digitales diseñadas desde Extremadura. Dashboards, automatizaciones y formularios conectados a Excel para cooperativas, pymes y empresas rurales como la tuya.
-        </p>
+        <p>Impulsa tu negocio con soluciones digitales diseñadas desde Extremadura. Dashboards, automatizaciones y formularios conectados a Excel para cooperativas, pymes y empresas rurales como la tuya.</p>
       </div>
     </section>
 
-    <!-- ================= SERVICIOS (carrusel 3D frontal) ================ -->
+    <!-- ================= SERVICIOS ================= -->
     <section class="servicios" id="servicios" style="padding: 80px 10%; background: #1a1a1a; text-align: left;">
       <h2 class="section-title">Nuestros servicios</h2>
-
       <div class="serv-carousel">
         <div class="serv-carousel__stage">
           <div class="serv-carousel__track" id="servTrack"></div>
@@ -243,32 +218,23 @@
     <!-- ================= EQUIPO ================= -->
     <section class="equipo" id="sobre-mi" style="padding: 80px 10%; background: #181818; color: white; text-align: left;">
       <h2 class="section-title">¿Quiénes somos?</h2>
-
-      <p style="font-size: 1.2em; color: #ccc; margin: 20px 0 50px;">
-        Somos de aquí, trabajamos para los de aquí. Llevamos la tecnología a empresas extremeñas que quieren crecer desde su tierra.
-      </p>
-
+      <p style="font-size: 1.2em; color: #ccc; margin: 20px 0 50px;">Somos de aquí, trabajamos para los de aquí. Llevamos la tecnología a empresas extremeñas que quieren crecer desde su tierra.</p>
       <div style="display: flex; flex-wrap: wrap; gap: 40px; justify-content: center;">
         <div style="flex: 1 1 320px; max-width: 360px; background: #2a2a2a; padding: 30px; border-radius: 16px; box-shadow: 0 8px 20px rgba(123, 108, 249, 0.15); display: flex; flex-direction: column; align-items: center;">
           <div style="width: 130px; height: 130px; border-radius: 50%; overflow: hidden; margin-bottom: 20px; border: 3px solid #b8aaff;">
             <img src="assets/foto-perfil.png" alt="Miguel Ángel Domínguez" style="width: 100%; height: 100%; object-fit: cover;">
           </div>
-          <h3 style="margin: 10px 0 5px; font-family: 'Montserrat', sans-serif;">Miguel Ángel Domínguez</h3>
+          <h3 style="margin: 10px 0 5px;">Miguel Ángel Domínguez</h3>
           <div style="font-size: 0.95em; color: #aaa5f9; margin-bottom: 10px;">Analista de Datos y Procesos</div>
-          <p style="font-size: 0.95em; line-height: 1.5; color: #e0e0e0;">
-            Extremeño, analista de datos y optimizador de procesos. Ayudo a empresas de nuestra tierra a modernizarse sin perder su esencia. Conecto datos con decisiones para mejorar el rendimiento desde lo local.
-          </p>
+          <p style="font-size: 0.95em; line-height: 1.5; color: #e0e0e0;">Extremeño, analista de datos y optimizador de procesos. Ayudo a empresas de nuestra tierra a modernizarse sin perder su esencia. Conecto datos con decisiones para mejorar el rendimiento desde lo local.</p>
         </div>
-
         <div style="flex: 1 1 320px; max-width: 360px; background: #2a2a2a; padding: 30px; border-radius: 16px; box-shadow: 0 8px 20px rgba(123, 108, 249, 0.15); display: flex; flex-direction: column; align-items: center;">
           <div style="width: 130px; height: 130px; border-radius: 50%; overflow: hidden; margin-bottom: 20px; border: 3px solid #b8aaff;">
             <img src="assets/carlos.png" alt="Carlos Manzano Gómez" style="width: 100%; height: 100%; object-fit: cover;">
           </div>
-          <h3 style="margin: 10px 0 5px; font-family: 'Montserrat', sans-serif;">Carlos Manzano Gómez</h3>
+          <h3 style="margin: 10px 0 5px;">Carlos Manzano Gómez</h3>
           <div style="font-size: 0.95em; color: #aaa5f9; margin-bottom: 10px;">Desarrollador y Soporte Técnico</div>
-          <p style="font-size: 0.95em; line-height: 1.5; color: #e0e0e0;">
-            Desarrollador comprometido con la digitalización en entornos rurales. Creo soluciones que se adaptan a tu forma de trabajar, estés en una cooperativa, fábrica o empresa familiar.
-          </p>
+          <p style="font-size: 0.95em; line-height: 1.5; color: #e0e0e0;">Desarrollador comprometido con la digitalización en entornos rurales. Creo soluciones que se adaptan a tu forma de trabajar, estés en una cooperativa, fábrica o empresa familiar.</p>
         </div>
       </div>
     </section>
@@ -278,19 +244,16 @@
     <!-- ================= BLOG ================= -->
     <section class="blog-home" id="blog" style="background:#181818; padding: 80px 10%; text-align: left; color: white;">
       <h2 class="section-title">Blog</h2>
-
       <p style="font-size: 1.2em; color: #ccc; margin: 20px 0 50px;">Reflexiones sobre IA, automatización y empresa local desde Extremadura.</p>
-
-      <div style="background-color: #1b1b1b; padding: 30px; border-radius: 12px; max-width: 800px; margin: 0 auto 40px; text-align: left; box-shadow: 0 0 15px rgba(100, 100, 255, 0.1);">
-        <h3><a href="blog/post-1.html" style="color: #bb88ff; font-size: 1.6em; text-decoration: none; font-family: 'Montserrat', sans-serif;">¿Por qué sigue dando miedo el cambio?</a></h3>
-        <p style="font-size: 0.9em; color: #888; margin-bottom: 16px;">🗓 9 de julio de 2025</p>
+      <div style="background-color: #1b1b1b; padding: 30px; border-radius: 12px; max-width: 800px; margin: 0 auto 40px; text-align: left; box-shadow: 0 0 15px rgba(100,100,255,.1);">
+        <h3><a href="blog/post-1.html" style="color: #bb88ff; font-size: 1.6em; text-decoration: none;">¿Por qué sigue dando miedo el cambio?</a></h3>
+        <p style="font-size: .9em; color: #888; margin-bottom: 16px;">🗓 9 de julio de 2025</p>
         <p style="font-size: 1.1em; color: #ddd;">La IA puede mejorar radicalmente nuestras empresas locales, pero el cambio de mentalidad es el primer paso...</p>
         <a href="blog/post-1.html" style="display: inline-block; margin-top: 12px; color: #a678ff; text-decoration: none; font-weight: bold;">Leer más →</a>
       </div>
-
-      <div style="background-color: #1b1b1b; padding: 30px; border-radius: 12px; max-width: 800px; margin: 0 auto 40px; text-align: left; box-shadow: 0 0 15px rgba(100, 100, 255, 0.1);">
-        <h3><a href="blog/post2.html" style="color: #bb88ff; font-size: 1.6em; text-decoration: none; font-family: 'Montserrat', sans-serif;">La IA: un espejo incómodo… también en el campo</a></h3>
-        <p style="font-size: 0.9em; color: #888; margin-bottom: 16px;">🗓 24 de julio de 2025</p>
+      <div style="background-color: #1b1b1b; padding: 30px; border-radius: 12px; max-width: 800px; margin: 0 auto 40px; text-align: left; box-shadow: 0 0 15px rgba(100,100,255,.1);">
+        <h3><a href="blog/post2.html" style="color: #bb88ff; font-size: 1.6em; text-decoration: none;">La IA: un espejo incómodo… también en el campo</a></h3>
+        <p style="font-size: .9em; color: #888; margin-bottom: 16px;">🗓 24 de julio de 2025</p>
         <p style="font-size: 1.1em; color: #ddd;">La IA no es solo para ciudades o grandes empresas. También está transformando cómo se trabaja en el campo extremeño...</p>
         <a href="blog/post2.html" style="display: inline-block; margin-top: 12px; color: #a678ff; text-decoration: none; font-weight: bold;">Leer más →</a>
       </div>
@@ -303,17 +266,18 @@
     </footer>
   </main>
 
-  <!-- Scripts -->
   <script>
+    // Menú móvil
     document.getElementById('menu-toggle').addEventListener('click', function() {
       document.getElementById('nav-menu').classList.toggle('active');
     });
 
+    // Servicios
     const servicios = [
-      { img: 'assets/CDM.png', title: 'Cuadro de Mando Ejecutivo', desc: 'Visualiza tus ventas, márgenes y resultados con dashboards diseñados para pymes y cooperativas extremeñas. Toma decisiones basadas en datos desde cualquier pueblo o ciudad.' },
-      { img: 'assets/formulario_excel.png', title: 'Formularios Web conectados a Excel', desc: 'Recoge pedidos, clientes o incidencias desde el campo, el almacén o la oficina. Tus formularios web conectados a Excel funcionan desde cualquier dispositivo, incluso sin conexión constante.' },
-      { img: 'assets/consultoria_procesos.png', title: 'Consultoría de Procesos', desc: 'Entendemos los retos del entorno rural. Analizamos tus procesos y diseñamos soluciones prácticas para negocios agroalimentarios, logísticos o comerciales de Extremadura.' },
-      { img: 'assets/soluciones_personalizadas.png', title: 'Soluciones Personalizadas', desc: 'Nos implicamos en tu realidad local. Creamos soluciones digitales a medida para empresas extremeñas: desde automatizaciones hasta informes para ferias, cooperativas o cadenas de distribución.' }
+      { img:'assets/CDM.png', title:'Cuadro de Mando Ejecutivo', desc:'Visualiza tus ventas, márgenes y resultados con dashboards diseñados para pymes y cooperativas extremeñas. Toma decisiones basadas en datos desde cualquier pueblo o ciudad.' },
+      { img:'assets/formulario_excel.png', title:'Formularios Web conectados a Excel', desc:'Recoge pedidos, clientes o incidencias desde el campo, el almacén o la oficina. Tus formularios web conectados a Excel funcionan desde cualquier dispositivo, incluso sin conexión constante.' },
+      { img:'assets/consultoria_procesos.png', title:'Consultoría de Procesos', desc:'Entendemos los retos del entorno rural. Analizamos tus procesos y diseñamos soluciones prácticas para negocios agroalimentarios, logísticos o comerciales de Extremadura.' },
+      { img:'assets/soluciones_personalizadas.png', title:'Soluciones Personalizadas', desc:'Nos implicamos en tu realidad local. Creamos soluciones digitales a medida para empresas extremeñas: desde automatizaciones hasta informes para ferias, cooperativas o cadenas de distribución.' }
     ];
 
     (function(){
@@ -346,6 +310,7 @@
   </script>
 </body>
 </html>
+
 
 
 
