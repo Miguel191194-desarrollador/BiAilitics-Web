@@ -74,7 +74,7 @@
 
     /* ====== SERVICIOS (2 columnas) ====== */
     .servicios{
-      /* más aire respecto a la portada */
+      /* aire respecto a la portada */
       padding: clamp(140px, 12vh, 220px) 8% 100px;
       background:#0b0b0b;
     }
@@ -109,19 +109,39 @@
     .services-intro h3{ font-weight:800; font-size: clamp(1.8rem, 1.4vw + 1.3rem, 2.8rem); margin-bottom:18px; }
     .services-intro p{ color:#d9d9d9; line-height:1.6; }
 
-    /* Carrusel derecha */
+    /* ===== Carrusel derecha ===== */
     .serv-carousel{ display:grid; gap:24px; justify-items:center; align-content:flex-start; }
     .serv-carousel__stage{ position:relative; width:min(420px, 92vw); height:400px; perspective:1000px; margin-inline:auto; }
     .serv-carousel__track{ position:absolute; inset:0; transform-style:preserve-3d; animation: serv-rotate var(--serv-speed) linear infinite; }
     .serv-carousel__stage:hover .serv-carousel__track{ animation-play-state: paused; }
 
     .serv-item{ position:absolute; top:50%; left:50%; transform: translate(-50%,-50%); width:340px; text-align:center; }
-    .serv-item .serv-box{ background:#1e1e1e; border-left:5px solid #7b6cf9; border-radius:12px; box-shadow:0 10px 25px rgba(0,0,0,.35); padding:12px; }
-    .serv-item .serv-box img{ width:100%; height:150px; object-fit:contain; border-radius:6px; display:block; }
+
+    /* ---------- TARJETA MINIMALISTA (solo aquí) ---------- */
+    .serv-item .serv-box{
+      background: transparent;                 /* MINIMAL */
+      border: 1px solid #2a2a2a;               /* MINIMAL */
+      border-radius: 10px;                      /* MINIMAL */
+      padding: 16px;                            /* MINIMAL */
+      box-shadow: none;                         /* MINIMAL */
+      transition: border-color .2s ease, transform .2s ease; /* MINIMAL */
+    }
+    .serv-item .serv-box:hover{                 /* MINIMAL */
+      border-color:#555;                        /* sutil feedback */
+      transform: translateY(-2px);              /* micro elevación */
+    }
+    .serv-item .serv-box img{
+      width:100%; height:150px; object-fit:contain; border-radius:6px; display:block;
+      filter: none;                             /* MINIMAL: sin efectos extra */
+    }
     .serv-item .serv-text{ margin-top:12px; }
-    /* >>> Aquí el cambio a BLANCO <<< */
-    .serv-item .serv-text h3{ font-size:1.2em; color:#fff; margin:0 0 6px; }
-    .serv-item .serv-text p{ font-size:.95em; color:#e8e8e8; line-height:1.4; }
+    .serv-item .serv-text h3{
+      font-size:1.2em; color:#fff; margin:0 0 6px; font-weight:700; /* MINIMAL: títulos blancos */
+    }
+    .serv-item .serv-text p{
+      font-size:.95em; color:#cfcfcf; line-height:1.45;            /* MINIMAL: gris claro y limpio */
+    }
+    /* ----------------------------------------------------- */
 
     @keyframes serv-rotate{ from{ transform:rotateY(0deg) } to{ transform:rotateY(-360deg) } }
     @media (prefers-reduced-motion: reduce){ .serv-carousel__track{ animation:none } }
@@ -323,6 +343,7 @@
   </script>
 </body>
 </html>
+
 
     
 
