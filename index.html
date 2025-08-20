@@ -70,15 +70,13 @@
     .hero-text h1{ font-size:clamp(2rem, 2.2vw + 1rem, 3.2rem); margin-bottom:20px; }
     .hero-text p{ font-size:clamp(1rem, .6vw + .9rem, 1.25rem); margin-bottom:30px; color:#f0f0f0; }
 
-    :root{ --serv-speed: 50s; }
+    :root{ --serv-speed: 50s; } /* 360º en 50s */
 
     /* ====== SERVICIOS (2 columnas) ====== */
     .servicios{
-      /* aire respecto a la portada */
-      padding: clamp(140px, 12vh, 220px) 8% 100px;
+      padding: clamp(140px, 12vh, 220px) 8% 100px; /* aire respecto a hero */
       background:#0b0b0b;
     }
-
     .services-split{
       display:grid;
       grid-template-columns: 1.15fr 1fr;
@@ -88,7 +86,7 @@
       margin-inline:auto;
     }
 
-    /* Panel izquierdo con imagen + UN único borde */
+    /* Panel izquierdo */
     .services-intro{
       position:relative; min-height:520px;
       border:1px solid rgba(255,255,255,.18); border-radius:10px; overflow:hidden;
@@ -111,44 +109,35 @@
 
     /* ===== Carrusel derecha ===== */
     .serv-carousel{ display:grid; gap:24px; justify-items:center; align-content:flex-start; }
-    .serv-carousel__stage{ position:relative; width:min(420px, 92vw); height:400px; perspective:1000px; margin-inline:auto; }
-    .serv-carousel__track{ position:absolute; inset:0; transform-style:preserve-3d; animation: serv-rotate var(--serv-speed) linear infinite; }
-    .serv-carousel__stage:hover .serv-carousel__track{ animation-play-state: paused; }
+    .serv-carousel__stage{ position:relative; width:min(420px, 92vw); height:420px; perspective:1000px; margin-inline:auto; }
+    .serv-carousel__track{ position:absolute; inset:0; transform-style:preserve-3d; will-change: transform; }
 
-    .serv-item{ position:absolute; top:50%; left:50%; transform: translate(-50%,-50%); width:340px; text-align:center; }
-
-    /* ---------- TARJETA MINIMALISTA (solo aquí) ---------- */
+    /* TARJETA: bajamos un poco y estilo minimal */
+    .serv-item{
+      position:absolute; top:55%; /* ↓ bajado desde 50% */
+      left:50%; transform: translate(-50%,-50%);
+      width:340px; text-align:center;
+      backface-visibility:hidden; -webkit-backface-visibility:hidden;
+    }
     .serv-item .serv-box{
-      background: transparent;                 /* MINIMAL */
-      border: 1px solid #2a2a2a;               /* MINIMAL */
-      border-radius: 10px;                      /* MINIMAL */
-      padding: 16px;                            /* MINIMAL */
-      box-shadow: none;                         /* MINIMAL */
-      transition: border-color .2s ease, transform .2s ease; /* MINIMAL */
+      background: transparent;
+      border: 1px solid #2a2a2a;
+      border-radius: 10px;
+      padding: 16px;
+      box-shadow: none;
+      transition: border-color .2s ease, transform .2s ease;
+      backface-visibility:hidden; -webkit-backface-visibility:hidden;
     }
-    .serv-item .serv-box:hover{                 /* MINIMAL */
-      border-color:#555;                        /* sutil feedback */
-      transform: translateY(-2px);              /* micro elevación */
-    }
-    .serv-item .serv-box img{
-      width:100%; height:150px; object-fit:contain; border-radius:6px; display:block;
-      filter: none;                             /* MINIMAL: sin efectos extra */
-    }
+    .serv-item .serv-box:hover{ border-color:#555; transform: translateY(-2px); }
+    .serv-item .serv-box img{ width:100%; height:150px; object-fit:contain; border-radius:6px; display:block; }
     .serv-item .serv-text{ margin-top:12px; }
-    .serv-item .serv-text h3{
-      font-size:1.2em; color:#fff; margin:0 0 6px; font-weight:700; /* MINIMAL: títulos blancos */
-    }
-    .serv-item .serv-text p{
-      font-size:.95em; color:#cfcfcf; line-height:1.45;            /* MINIMAL: gris claro y limpio */
-    }
-    /* ----------------------------------------------------- */
+    .serv-item .serv-text h3{ font-size:1.2em; color:#fff; margin:0 0 6px; font-weight:700; }
+    .serv-item .serv-text p{ font-size:.95em; color:#cfcfcf; line-height:1.45; }
 
-    @keyframes serv-rotate{ from{ transform:rotateY(0deg) } to{ transform:rotateY(-360deg) } }
-    @media (prefers-reduced-motion: reduce){ .serv-carousel__track{ animation:none } }
-
+    /* Mobile lista */
     .serv-carousel__list{ display:none }
 
-    /* ===== Footer contacto ===== */
+    /* Footer contacto */
     .footer-contact{
       text-align:left; color:#ddd; margin-bottom:18px;
       display:flex; flex-direction:column; gap:10px;
@@ -179,7 +168,7 @@
 
       .serv-carousel__stage{ display:none }
       .serv-carousel__list{ display:flex; gap:15px; overflow-x:auto; -webkit-overflow-scrolling:touch; padding-bottom:10px; }
-      .serv-carousel__list .serv-item{ position:relative; transform:none; width:260px; flex:0 0 260px; }
+      .serv-carousel__list .serv-item{ position:relative; transform:none; width:260px; flex:0 0 260px; top:auto; left:auto; }
       .serv-carousel__list .serv-box img{ height:140px }
       .serv-carousel__list::-webkit-scrollbar{ display:none }
     }
@@ -237,7 +226,7 @@
         <!-- DERECHA: carrusel -->
         <div>
           <div class="serv-carousel">
-            <div class="serv-carousel__stage">
+            <div class="serv-carousel__stage" id="servStage">
               <div class="serv-carousel__track" id="servTrack"></div>
             </div>
             <div class="serv-carousel__list" id="servList"></div>
@@ -312,17 +301,22 @@
       { img:'assets/soluciones_personalizadas.png', title:'Soluciones Personalizadas', desc:'Nos implicamos en tu realidad local. Creamos soluciones digitales a medida para empresas extremeñas: desde automatizaciones hasta informes para ferias, cooperativas o cadenas de distribución.' }
     ];
 
-    // Carrusel
+    // Construcción carrusel + animación con atenuación de tarjetas traseras
     (function(){
+      const stage = document.getElementById('servStage');
       const track = document.getElementById('servTrack');
       const list  = document.getElementById('servList');
       const N = servicios.length;
       const angleStep = 360 / N;
       const radius = 520 / 2;
 
+      // Crear items
       servicios.forEach((s, i) => {
         const item = document.createElement('article');
         item.className = 'serv-item';
+        const angle = i * angleStep;
+        item.dataset.angle = angle; // base angle
+        item.style.transform = `translate(-50%,-50%) rotateY(${angle}deg) translateZ(${radius}px)`;
         item.innerHTML = `
           <div class="serv-box">
             <img src="${s.img}" alt="${s.title}">
@@ -331,33 +325,62 @@
               <p>${s.desc}</p>
             </div>
           </div>`;
-        const angle = i * angleStep;
-        item.style.transform = `translate(-50%,-50%) rotateY(${angle}deg) translateZ(${radius}px)`;
         track.appendChild(item);
 
+        // Versión móvil (lista)
         const clone = item.cloneNode(true);
         clone.style.transform = 'none';
         list.appendChild(clone);
       });
+
+      // Animación por JS para poder atenuar lo que está detrás
+      const prefersReduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const items = Array.from(track.children);
+      const rootStyles = getComputedStyle(document.documentElement);
+      // --serv-speed: "50s" -> segundos
+      const speedVar = rootStyles.getPropertyValue('--serv-speed').trim();
+      const secondsPerSpin = parseFloat(speedVar) || 50;
+      let degPerSec = 360 / secondsPerSpin; // 360º por vuelta
+
+      let rot = 0;
+      let paused = false;
+
+      // pausa al pasar el ratón
+      stage.addEventListener('mouseenter', () => paused = true);
+      stage.addEventListener('mouseleave', () => paused = false);
+
+      // bucle
+      let last = performance.now();
+      function frame(now){
+        const dt = (now - last) / 1000; // segundos
+        last = now;
+
+        if (!paused && !prefersReduce.matches) {
+          rot = (rot + degPerSec * dt) % 360;
+        }
+
+        // aplica rotación global
+        track.style.transform = `rotateY(${rot}deg)`;
+
+        // atenúa tarjetas traseras
+        for (const el of items){
+          const base = parseFloat(el.dataset.angle || '0');
+          let theta = (base + rot) % 360;
+          if (theta > 180) theta -= 360; // [-180,180]
+          const cosv = Math.cos(theta * Math.PI/180);
+          const front = Math.max(0, cosv); // 1 = frente, 0 = detrás
+          const opacity = 0.15 + 0.85 * front; // mínimo 0.15 para evitar “saltos”
+          el.style.opacity = opacity.toFixed(3);
+          el.style.filter = `blur(${(1 - front) * 1.0}px)`; // sutil blur atrás
+        }
+
+        requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
     })();
   </script>
 </body>
 </html>
-
-
-    
-
-
-
-
-  
-
-
-
-
-
-
-
 
     
 
