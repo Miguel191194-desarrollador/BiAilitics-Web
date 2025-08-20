@@ -46,31 +46,43 @@
       padding: 20px 30px;
       border-bottom: 1px solid #2d2d2d;
     }
-    header div { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
-    header div img { height: 40px; }
-    header div strong { color: #fff; font-size: 1.1em; max-width: 200px; }
+    header .brand { display: flex; align-items: center; gap: 16px; flex-wrap: nowrap; }
+    header .brand img { height: 40px; }
+    /* BiAilitics Data con degradado y subrayado */
+    .brand-name{
+      font-weight: 800; font-size: 1.1em; white-space: nowrap;
+      background: linear-gradient(135deg, #7b6cf9, #b8aaff);
+      -webkit-background-clip: text; background-clip: text;
+      color: transparent; position: relative; line-height: 1.1;
+    }
+    .brand-name::after{
+      content:""; position:absolute; left:0; right:0; bottom:-6px; height:3px; border-radius:2px;
+      background: linear-gradient(135deg, #7b6cf9, #b8aaff);
+      box-shadow: 0 0 8px rgba(184,170,255,.45);
+    }
 
-    /* Contacto (a la derecha, antes del menú) */
+    /* Contacto centrado */
     .header-contacts{
-      margin-left:auto;                 /* <<< empuja este bloque a la derecha */
+      margin-left: auto; margin-right: auto; /* centra el bloque entre logo y menú */
       display:flex; align-items:center; gap:12px; flex-wrap:wrap;
     }
     .header-contacts .contact-link{
-      color:#fff; text-decoration:none; padding:6px 0; /* sin borde ni píldora */
-      display:flex; align-items:center; gap:8px;
-      border:none; background:transparent; opacity:.95;
+      color:#fff; text-decoration:none; padding:6px 0;
+      display:flex; align-items:center; gap:8px; opacity:.95;
+      border:none; background:transparent;
     }
     .header-contacts .contact-link:hover{ opacity:1; }
 
-    /* Menú a la derecha del contacto, blanco y sin contorno */
+    /* Menú a la derecha, blanco y sin subrayado */
     header nav { display: flex; gap: 18px; flex-wrap: wrap; justify-content: flex-end; }
     header nav a{
-      font-family:'Montserrat',sans-serif;
-      color:#fff; text-decoration:none;
+      font-family:'Montserrat',sans-serif; font-weight:600;
+      color:#fff; text-decoration:none; /* sin subrayado */
       padding: 6px 0; border:none; border-radius:0;
-      transition: color .2s ease; font-weight:600;
+      transition: color .2s ease;
     }
     header nav a:hover { color: #b8aaff; }
+    header nav a:focus { outline: none; text-decoration: none; }
 
     /* Hamburguesa (solo móvil/tablet) */
     .menu-toggle { display: none; flex-direction: column; cursor: pointer; gap: 4px; }
@@ -138,6 +150,8 @@
       header nav{ display:none; position:absolute; top:80px; right:0; left:0; background:rgba(18,18,18,.95); padding:12px 20px; gap:12px; }
       header nav.active{ display:flex; flex-direction:column; align-items:center; }
       header nav a{ padding:10px 0; }
+      /* para no saturar el header en móvil, ocultamos el bloque centrado */
+      .header-contacts{ display:none; }
     }
 
     @media (max-width: 768px){
@@ -167,19 +181,19 @@
 </head>
 <body>
   <header>
-    <!-- Izquierda: logo + claim -->
-    <div>
+    <!-- Izquierda: logo + BiAilitics Data -->
+    <div class="brand">
       <img src="assets/Biailitics.png" alt="Logo BiAilitics">
-      <strong>Soluciones digitales 100% extremeñas para tu empresa</strong>
+      <span class="brand-name">BiAilitics Data</span>
     </div>
 
-    <!-- Derecha (al inicio del menú): teléfono y correo, sin contorno -->
+    <!-- Centro: teléfono y correo -->
     <div class="header-contacts">
       <a class="contact-link" href="tel:+34635673885">📞 <span>+34 635 673 885</span></a>
       <a class="contact-link" href="mailto:infobiailitics@gmail.com">✉️ <span>infobiailitics@gmail.com</span></a>
     </div>
 
-    <!-- Menú (pegado a la derecha) -->
+    <!-- Derecha: menú -->
     <div class="menu-toggle" id="menu-toggle"><span></span><span></span><span></span></div>
     <nav id="nav-menu">
       <a href="#inicio">Inicio</a>
@@ -310,6 +324,7 @@
   </script>
 </body>
 </html>
+
 
 
 
