@@ -152,7 +152,7 @@
       margin-inline:auto;
     }
 
-    /* Panel izquierdo (imagen + gif + marco). Fondo MÁS DIFUMINADO. */
+    /* ---------- PANEL IZQUIERDO (imagen + gif + marco) AJUSTADO PARA VER EL ANILLO ---------- */
     .about-hero{
       position:relative; min-height:520px;
       border:1px solid rgba(255,255,255,.18); border-radius:10px; overflow:hidden;
@@ -162,6 +162,7 @@
         url('assets/imagen_ampliada_comprimida.jpg') type('image/jpeg') 1x
       );
       background-size:cover; background-position:center;
+      isolation:isolate; /* mantiene el blending dentro del panel */
     }
     /* Capa de difuminado de la FOTO de fondo */
     .about-hero::after{
@@ -170,14 +171,14 @@
       background-size: inherit;
       background-position: inherit;
       background-repeat: inherit;
-      filter: blur(8px) brightness(.85);
+      filter: blur(8px) brightness(.9);
       transform: scale(1.03);
       z-index:0;
     }
-    /* Sombra/gradiente encima del fondo difuminado */
+    /* Sombra/gradiente encima del fondo difuminado (MENOS OSCURO) */
     .about-hero::before{
       content:""; position:absolute; inset:0; border-radius:10px;
-      background:linear-gradient(180deg, rgba(0,0,0,.6) 0%, rgba(0,0,0,.4) 100%);
+      background:linear-gradient(180deg, rgba(0,0,0,.35) 0%, rgba(0,0,0,.2) 100%);
       z-index:1;
     }
 
@@ -187,27 +188,29 @@
       display:grid; place-items:center;
       pointer-events:none;
     }
-    /* GIF rojo por encima, también suave/difuminado */
+    /* GIF rojo: MÁS visible, casi sin blur y con mezcla en screen para que “brille” */
     .sparkle-wrap .gif-bg{
       position:absolute; inset:0; margin:auto;
       width:100%; height:100%; object-fit:cover;
-      opacity:.55;
-      filter: blur(10px) brightness(.9) saturate(1.1);
+      opacity:.9; /* antes .55 */
+      filter: brightness(1.35) contrast(1.55) saturate(1.4) blur(2px); /* antes blur(10px) */
+      mix-blend-mode: screen; /* hace que el rojo destaque sobre el fondo oscuro */
+      z-index:2;
     }
-    /* Texto centrado y legible */
+    /* Texto centrado y legible (fondo más sutil para no tapar el anillo) */
     .sparkle-wrap h3{
       position:relative; z-index:3;
       text-align:center; color:#fff; font-weight:800;
       font-size:clamp(1.2rem, 1.2vw + 1rem, 2rem);
       max-width:76%; line-height:1.25;
-      text-shadow:0 2px 10px rgba(0,0,0,.8);
-      background:rgba(0,0,0,.35);
+      text-shadow:0 2px 10px rgba(0,0,0,.9);
+      background:rgba(0,0,0,.2); /* antes .35 */
       backdrop-filter: blur(2px);
       padding:12px 18px;
       border-radius:12px;
     }
 
-    /* Columna derecha: texto + tarjetas equipo minimalistas */
+    /* Columna derecha: texto + tarjetas equipo */
     .about-right{ display:grid; align-content:flex-start; gap:22px; }
     .about-right p.lead{ font-size:1.05em; color:#d0d0d0; margin-bottom:10px; }
 
@@ -331,7 +334,7 @@
       </div>
     </section>
 
-    <!-- QUIÉNES SOMOS (nuevo layout) -->
+    <!-- QUIÉNES SOMOS -->
     <section class="about" id="sobre-mi">
       <div class="about-split">
         <!-- IZQUIERDA: imagen + gif + marco -->
@@ -489,13 +492,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-    
-
-
-
-
-  
