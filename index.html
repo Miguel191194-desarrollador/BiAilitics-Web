@@ -90,6 +90,7 @@
     .services-intro .intro-content{ position:absolute; top:48px; left:48px; right:48px; z-index:1; max-width:700px }
     .services-intro h3{ font-weight:800; font-size:clamp(1.8rem,1.4vw + 1.3rem,2.8rem); margin-bottom:18px }
     .services-intro p{ color:#d9d9d9; line-height:1.6 }
+    .services-intro p.tagline{ margin-top:12px; color:#e9e9e9; font-weight:600 }
 
     .serv-carousel{ display:grid; gap:24px; justify-items:center; align-content:flex-start }
     .serv-carousel__stage{ position:relative; width:min(420px,92vw); height:420px; perspective:1000px; margin-inline:auto }
@@ -110,57 +111,46 @@
       gap:clamp(60px,7vw,120px); align-items:stretch; max-width:1500px; margin-inline:auto;
     }
 
-    /* Panel IZQUIERDO -> vídeo grande, circular, sin contornos ni cuadrícula */
+    /* Panel izquierdo: vídeo circular grande */
     .about-hero{
       position:relative;
-      height:clamp(540px, 54vh, 660px);      /* un poco más alto */
-      border:none;                           /* sin contorno */
-      border-radius:18px;
-      overflow:hidden;
-      background:#0b0b0b;                    /* fondo limpio (sin cuadrícula) */
-      box-shadow:0 22px 60px rgba(0,0,0,.45);
+      height:clamp(540px, 54vh, 660px);
+      border:none; border-radius:18px; overflow:hidden;
+      background:#0b0b0b; box-shadow:0 22px 60px rgba(0,0,0,.45);
       isolation:isolate;
     }
-    /* quitamos overlays que pudieran “ensuciar” */
-    .about-hero::before,
-    .about-hero::after{ content:none }
-
-    .sparkle-wrap{
-      position:absolute; inset:0; z-index:2;
-      display:grid; place-items:center; pointer-events:none;
-    }
-    /* tamaño del círculo (más grande) */
-    .ring-box{
-      width:min(92%, 820px);   /* controla el tamaño del círculo */
-      aspect-ratio:1/1;
-      position:relative;
-    }
+    .about-hero::before, .about-hero::after{ content:none }
+    .sparkle-wrap{ position:absolute; inset:0; z-index:2; display:grid; place-items:center; pointer-events:none }
+    .ring-box{ width:min(92%, 820px); aspect-ratio:1/1; position:relative }
     .ring-box > video{
-      position:absolute; inset:0;
-      width:100%; height:100%;
-      object-fit:cover;                /* rellena el círculo completo */
-      clip-path:circle(50% at 50% 50%);/* recorte circular real */
-      border-radius:50%;
-      filter:brightness(1.22) contrast(1.5) saturate(1.28);
-      pointer-events:none;
-      z-index:3;
+      position:absolute; inset:0; width:100%; height:100%;
+      object-fit:cover; clip-path:circle(50% at 50% 50%); border-radius:50%;
+      filter:brightness(1.22) contrast(1.5) saturate(1.28); pointer-events:none; z-index:3;
     }
 
-    /* Columna DERECHA */
+    /* Columna derecha: tarjetas sin marco + fondo Imagen2.avif */
     .about-right{ display:grid; gap:24px; align-content:stretch }
-    .about-right .lead{ font-size:1.08em; color:#d6d6d6; max-width:62ch }
-    .team-grid{ display:grid; gap:20px; grid-template-columns:1fr } /* tarjetas largas */
+    .team-grid{ display:grid; gap:20px; grid-template-columns:1fr } /* misma separación */
     .team-card{
-      border:1px solid #2a2a2a; border-radius:16px; padding:22px;
-      background:rgba(255,255,255,0.02);
+      position:relative;
+      border:none; border-radius:16px; padding:22px;
+      background-image:url('assets/Imagen2.avif');
+      background-size:cover; background-position:center;
       display:grid; grid-template-columns:72px auto; gap:18px; align-items:center;
       min-height:220px; box-shadow:0 10px 30px rgba(0,0,0,.25);
+      overflow:hidden;
     }
+    .team-card::before{
+      content:""; position:absolute; inset:0; border-radius:inherit;
+      background:linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.55));
+      z-index:0;
+    }
+    .team-avatar, .team-meta{ position:relative; z-index:1 }
     .team-avatar{ width:72px; height:72px; border-radius:50%; overflow:hidden; border:2px solid #b8aaff; display:block }
     .team-avatar img{ width:100%; height:100%; object-fit:cover; display:block }
     .team-meta h4{ margin:0 0 6px; font-weight:800; font-size:1.05rem }
-    .team-meta small{ color:#aaa5f9; display:block; margin-bottom:10px; font-weight:600 }
-    .team-meta p{ color:#d9d9d9; font-size:1rem; line-height:1.55 }
+    .team-meta small{ color:#fff; display:block; margin-bottom:10px; font-weight:600 }
+    .team-meta p{ color:#e9e9e9; font-size:1rem; line-height:1.55 }
 
     /* ===== BLOG / FOOTER ===== */
     .footer-contact{ text-align:left; color:#ddd; margin-bottom:18px; display:flex; flex-direction:column; gap:10px; max-width:1500px; margin-left:auto; margin-right:auto }
@@ -231,13 +221,17 @@
     <!-- SERVICIOS -->
     <section class="servicios" id="servicios">
       <div class="services-split">
+        <!-- IZQUIERDA -->
         <aside class="services-intro" role="img" aria-label="Panel destacado servicios">
           <div class="intro-content">
             <h3>Haz que tus datos te lleven a un nivel superior</h3>
             <p>Integramos datos, automatizamos procesos y diseñamos visualizaciones claras para que tomes mejores decisiones cada día. Tecnología útil, cercana y hecha a tu medida.</p>
+            <!-- Frase movida aquí -->
+            <p class="tagline">Somos de aquí, trabajamos para los de aquí. Llevamos la tecnología a empresas extremeñas que quieren crecer desde su tierra.</p>
           </div>
         </aside>
 
+        <!-- DERECHA: carrusel -->
         <div>
           <div class="serv-carousel">
             <div class="serv-carousel__stage" id="servStage">
@@ -252,7 +246,7 @@
     <!-- QUIÉNES SOMOS -->
     <section class="about" id="sobre-mi">
       <div class="about-split">
-        <!-- IZQUIERDA: vídeo circular grande -->
+        <!-- IZQUIERDA: vídeo circular -->
         <aside class="about-hero" role="img" aria-label="Panel Quienes somos">
           <div class="sparkle-wrap">
             <div class="ring-box">
@@ -264,17 +258,15 @@
           </div>
         </aside>
 
-        <!-- DERECHA: texto + tarjetas -->
+        <!-- DERECHA: tarjetas (sin el párrafo lead) -->
         <div class="about-right">
-          <p class="lead">Somos de aquí, trabajamos para los de aquí. Llevamos la tecnología a empresas extremeñas que quieren crecer desde su tierra.</p>
-
           <div class="team-grid">
             <article class="team-card">
               <span class="team-avatar"><img src="assets/foto-perfil.png" alt="Miguel Ángel Domínguez"></span>
               <div class="team-meta">
                 <h4>Miguel Ángel Domínguez</h4>
                 <small>Analista de Datos y Procesos</small>
-                <p>Extremeño, analista de datos y optimizador de procesos. Conecto datos con decisiones para mejorar el rendimiento desde lo local.</p>
+                <p>Analista de datos y optimizador de procesos. Conecto datos con decisiones para mejorar el rendimiento y las decisiones empresariales.</p>
               </div>
             </article>
 
@@ -324,7 +316,7 @@
       document.getElementById('nav-menu').classList.toggle('active')
     );
 
-    // Datos servicios (si usas el carrusel 3D)
+    // Carrusel 3D (si lo usas)
     const servicios = [
       { img:'assets/CDM.png', title:'Cuadro de Mando Ejecutivo', desc:'Visualiza tus ventas, márgenes y resultados con dashboards diseñados para pymes y cooperativas extremeñas. Toma decisiones basadas en datos desde cualquier pueblo o ciudad.' },
       { img:'assets/formulario_excel.png', title:'Formularios Web conectados a Excel', desc:'Recoge pedidos, clientes o incidencias desde el campo, el almacén o la oficina. Tus formularios web conectados a Excel funcionan desde cualquier dispositivo, incluso sin conexión constante.' },
@@ -332,7 +324,6 @@
       { img:'assets/soluciones_personalizadas.png', title:'Soluciones Personalizadas', desc:'Nos implicamos en tu realidad local. Creamos soluciones digitales a medida para empresas extremeñas: desde automatizaciones hasta informes para ferias, cooperativas o cadenas de distribución.' }
     ];
 
-    // Carrusel 3D (opcional)
     (function(){
       const stage = document.getElementById('servStage');
       const track = document.getElementById('servTrack');
@@ -396,6 +387,5 @@
   </script>
 </body>
 </html>
-
 
 
