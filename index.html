@@ -26,7 +26,7 @@
   <link rel="preload" as="image" href="assets/c837a6_2119733e838e4a2f8813ebde736f99d5~mv2.avif" type="image/avif">
   <link rel="preload" as="image" href="assets/ImagenNueva.avif" type="image/avif">
   <link rel="preload" as="image" href="assets/Imagen2.avif" type="image/avif">
-  <link rel="preload" as="image" href="assets/sparkle_ring_inbound.gif" type="image/gif">
+  <link rel="preload" as="image" href="assets/sparkle_ring_inbound_text%20(1).gif" type="image/gif">
 
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -114,7 +114,7 @@
     .serv-carousel__stage{ position:relative; width:min(420px, 92vw); height:420px; perspective:1000px; margin-inline:auto; }
     .serv-carousel__track{ position:absolute; inset:0; transform-style:preserve-3d; will-change: transform; }
 
-    /* TARJETA servicios: minimal y algo más baja */
+    /* TARJETA servicios */
     .serv-item{
       position:absolute; top:55%;
       left:50%; transform: translate(-50%,-50%);
@@ -151,7 +151,8 @@
       max-width: 1500px;
       margin-inline:auto;
     }
-    /* Panel izquierdo (imagen + bolitas + marco fino) */
+
+    /* Panel izquierdo (imagen + gif + marco). Fondo MÁS DIFUMINADO. */
     .about-hero{
       position:relative; min-height:520px;
       border:1px solid rgba(255,255,255,.18); border-radius:10px; overflow:hidden;
@@ -162,20 +163,48 @@
       );
       background-size:cover; background-position:center;
     }
+    /* Capa de difuminado de la FOTO de fondo */
+    .about-hero::after{
+      content:""; position:absolute; inset:-10px; border-radius:12px;
+      background-image: inherit;
+      background-size: inherit;
+      background-position: inherit;
+      background-repeat: inherit;
+      filter: blur(8px) brightness(.85);
+      transform: scale(1.03);
+      z-index:0;
+    }
+    /* Sombra/gradiente encima del fondo difuminado */
     .about-hero::before{
       content:""; position:absolute; inset:0; border-radius:10px;
-      background:linear-gradient(180deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.35) 100%);
+      background:linear-gradient(180deg, rgba(0,0,0,.6) 0%, rgba(0,0,0,.4) 100%);
+      z-index:1;
     }
+
+    /* Contenedor del GIF y texto */
     .sparkle-wrap{
-      position:absolute; inset:0; z-index:1;
+      position:absolute; inset:0; z-index:2;
       display:grid; place-items:center;
       pointer-events:none;
     }
-    .sparkle-wrap img{ width:min(72%, 560px); max-width:95%; height:auto; opacity:.95; }
+    /* GIF rojo por encima, también suave/difuminado */
+    .sparkle-wrap .gif-bg{
+      position:absolute; inset:0; margin:auto;
+      width:100%; height:100%; object-fit:cover;
+      opacity:.55;
+      filter: blur(10px) brightness(.9) saturate(1.1);
+    }
+    /* Texto centrado y legible */
     .sparkle-wrap h3{
-      position:absolute; text-align:center; color:#fff; font-weight:700;
+      position:relative; z-index:3;
+      text-align:center; color:#fff; font-weight:800;
       font-size:clamp(1.2rem, 1.2vw + 1rem, 2rem);
-      max-width:76%; line-height:1.25; text-shadow:0 2px 10px rgba(0,0,0,.6);
+      max-width:76%; line-height:1.25;
+      text-shadow:0 2px 10px rgba(0,0,0,.8);
+      background:rgba(0,0,0,.35);
+      backdrop-filter: blur(2px);
+      padding:12px 18px;
+      border-radius:12px;
     }
 
     /* Columna derecha: texto + tarjetas equipo minimalistas */
@@ -224,7 +253,6 @@
 
       .about-split{ grid-template-columns:1fr; gap:36px; }
       .about-hero{ min-height:420px; }
-      .sparkle-wrap img{ width:min(78%, 520px); }
       .team-grid{ grid-template-columns:1fr; }
     }
 
@@ -306,17 +334,15 @@
     <!-- QUIÉNES SOMOS (nuevo layout) -->
     <section class="about" id="sobre-mi">
       <div class="about-split">
-        <!-- IZQUIERDA: imagen + bolitas + marco -->
+        <!-- IZQUIERDA: imagen + gif + marco -->
         <aside class="about-hero" role="img" aria-label="Panel Quienes somos">
           <div class="sparkle-wrap">
-            <!-- Si prefieres el GIF con el texto integrado, cambia la ruta a sparkle_ring_inbound_text.gif
-                 y elimina el <h3> de abajo. -->
-            <img src="assets/sparkle_ring_inbound.gif" alt="Animación de partículas rojas">
+            <img class="gif-bg" src="assets/sparkle_ring_inbound_text%20(1).gif" alt="Animación de partículas rojas">
             <h3>¿Estás listo para acelerar tu negocio?</h3>
           </div>
         </aside>
 
-        <!-- DERECHA: texto + tarjetas minimalistas -->
+        <!-- DERECHA: texto + tarjetas -->
         <div class="about-right">
           <p class="lead">Somos de aquí, trabajamos para los de aquí. Llevamos la tecnología a empresas extremeñas que quieren crecer desde su tierra.</p>
 
@@ -463,6 +489,7 @@
   </script>
 </body>
 </html>
+
 
 
 
