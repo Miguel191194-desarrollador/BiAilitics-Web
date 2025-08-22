@@ -20,13 +20,13 @@
   </script>
 
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
-
-  <!-- Preloads -->
   <link rel="preload" as="image" href="assets/Prueba3.avif" type="image/avif">
+  <link rel="preload" as="video" href="assets/1166635_Screen_Man_3840x2160%20(1).mp4" type="video/mp4">
 
   <style>
     *{ box-sizing:border-box; margin:0; padding:0 }
-    html,body{ width:100%; font-family:'Montserrat',sans-serif; background:#0b0b0b; color:#fff }
+    :root{ --bg:#0b0b0b }
+    html,body{ width:100%; font-family:'Montserrat',sans-serif; background:var(--bg); color:#fff }
 
     /* ===== HEADER ===== */
     header{
@@ -50,15 +50,16 @@
     /* ===== HERO ===== */
     .hero{
       min-height:100vh;
-      background-size:cover; background-position:50% 38%;
+      background:
+        image-set(
+          url('assets/c837a6_2119733e838e4a2f8813ebde736f99d5~mv2.avif') type('image/avif') 1x,
+          url('assets/imagen_ampliada_comprimida.jpg') type('image/jpeg') 1x
+        )
+        center/cover no-repeat;
       display:flex; align-items:center; justify-content:flex-start;
       padding:0 8%; position:relative;
-      background-image:image-set(
-        url('assets/c837a6_2119733e838e4a2f8813ebde736f99d5~mv2.avif') type('image/avif') 1x,
-        url('assets/imagen_ampliada_comprimida.jpg') type('image/jpeg') 1x
-      );
     }
-    .hero::before{ content:""; position:absolute; inset:0; background:rgba(0,0,0,.5); z-index:0 }
+    .hero::before{ content:""; position:absolute; inset:0; background:rgba(0,0,0,.55); z-index:0 }
     .hero-text{ position:relative; max-width:700px; z-index:2 }
     .hero-text h1{ font-size:clamp(2rem, 2.2vw + 1rem, 3.2rem); margin-bottom:20px }
     .hero-text p{ font-size:clamp(1rem, .6vw + .9rem, 1.25rem); margin-bottom:30px; color:#f0f0f0 }
@@ -67,7 +68,7 @@
     .servicios{
       margin-top:clamp(48px, 6vh, 100px);
       padding:clamp(190px,14vh,280px) 8% 0;
-      background:#0b0b0b;
+      background:var(--bg);
       position:relative;
       overflow:hidden;
     }
@@ -78,58 +79,108 @@
     .services-intro{
       position:relative; min-height:420px;
       border:1px solid rgba(255,255,255,.18); border-radius:12px; overflow:hidden;
-      background-size:cover; background-position:center;
-      background-image:image-set(
-        url('assets/ImagenNueva.avif') type('image/avif') 1x,
-        url('assets/imagen_ampliada_comprimida.jpg') type('image/jpeg') 1x
-      );
+      background:
+        image-set(
+          url('assets/ImagenNueva.avif') type('image/avif') 1x,
+          url('assets/imagen_ampliada_comprimida.jpg') type('image/jpeg') 1x
+        )
+        center/cover no-repeat;
     }
     .services-intro::before{
       content:""; position:absolute; inset:0; border-radius:12px;
-      background:linear-gradient(180deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.35) 100%);
+      background:linear-gradient(180deg, rgba(0,0,0,.60) 0%, rgba(0,0,0,.40) 100%);
     }
     .services-intro .intro-content{ position:absolute; top:48px; left:48px; right:48px; z-index:1; max-width:700px }
     .services-intro h3{ font-weight:800; font-size:clamp(1.8rem,1.4vw + 1.3rem,2.8rem); margin-bottom:18px }
     .services-intro p{ color:#d9d9d9; line-height:1.6 }
 
+    /* Vídeo derecha con overlay para igualar negro */
     .services-video{
       position:relative; border-radius:12px; overflow:hidden;
       box-shadow:0 20px 50px rgba(0,0,0,.6);
-      isolation:isolate; background:#0b0b0b; min-height:420px;
+      isolation:isolate; background:var(--bg); min-height:420px;
     }
-    .services-video video{ width:100%; height:100%; object-fit:cover; display:block }
+    .services-video video{
+      width:100%; height:100%; object-fit:cover; display:block;
+      filter:brightness(0.85) contrast(1.15) saturate(1.05);
+    }
+    .services-video::after{
+      content:""; position:absolute; inset:0;
+      background:rgba(0,0,0,.50); /* unifica el tono con el fondo */
+      z-index:1; pointer-events:none;
+    }
 
-    /* Fondo decorativo al final */
+    /* Fondo decorativo debajo de las tarjetas con degradado de fusión */
     .services-bg{
       position:relative;
-      margin-top:40px;
+      margin-top:32px; /* separa de las tarjetas */
+    }
+    .services-bg::before{
+      /* Funde con el fondo: arriba transparente para no tocar tarjetas */
+      content:""; position:absolute; left:0; right:0; top:-40px; height:40px;
+      background:linear-gradient(to bottom, var(--bg) 0%, rgba(11,11,11,0) 100%);
+      z-index:2; pointer-events:none;
+    }
+    .services-bg::after{
+      /* Overlay suave para igualar negros del arte */
+      content:""; position:absolute; inset:0;
+      background:rgba(0,0,0,.45);
+      z-index:2; pointer-events:none;
     }
     .services-bg img{
-      display:block;
-      width:100%;
-      height:auto;
-      opacity:0.25; /* semitransparente */
-      object-fit:cover;
+      display:block; width:100%; height:auto; object-fit:cover;
+      filter:brightness(0.9) contrast(1.1);
+      /* difumina el borde inferior hacia el fondo */
+      -webkit-mask-image: linear-gradient(to bottom, #000 85%, rgba(0,0,0,0) 100%);
+              mask-image: linear-gradient(to bottom, #000 85%, rgba(0,0,0,0) 100%);
     }
 
     /* ===== QUIÉNES SOMOS ===== */
-    .about{ padding:80px 8% 110px; background:#0b0b0b }
+    .about{ padding:80px 8% 110px; background:var(--bg) }
     .about-split{
-      display:grid; grid-template-columns:1fr; gap:clamp(60px,7vw,120px); max-width:1500px; margin-inline:auto;
+      display:grid; grid-template-columns:1fr; gap:clamp(60px,7vw,120px);
+      align-items:center; max-width:1500px; margin-inline:auto;
     }
-    .about-hero{ position:relative; height:clamp(540px, 54vh, 660px); background:transparent; box-shadow:none; display:grid; place-items:center; }
-    .sparkle-wrap{ position:relative; z-index:2 }
+    /* sin fondo ni sombra para evitar “parche” + borde suave */
+    .about-hero{
+      position:relative; height:clamp(540px, 54vh, 660px);
+      border:none; overflow:visible; background:transparent; box-shadow:none;
+      display:grid; place-items:center; isolation:isolate;
+    }
+    .sparkle-wrap{ position:relative; z-index:2; pointer-events:none }
     .ring-box{ width:min(92%, 820px); aspect-ratio:1/1; position:relative }
     .ring-box > video{
       position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+      /* borde difuminado para fundir con el negro del body */
       -webkit-mask-image: radial-gradient(circle at 50% 50%, #fff 64%, rgba(255,255,255,0) 76%);
               mask-image: radial-gradient(circle at 50% 50%, #fff 64%, rgba(255,255,255,0) 76%);
+      filter:brightness(1.15) contrast(1.35) saturate(1.12);
     }
 
-    /* ===== FOOTER ===== */
+    /* ===== BLOG / FOOTER ===== */
     .footer-contact{ text-align:left; color:#ddd; margin-bottom:18px; display:flex; flex-direction:column; gap:10px; max-width:1500px; margin-left:auto; margin-right:auto }
     .footer-contact a{ color:#ddd; text-decoration:none }
     .footer-contact a:hover{ color:#b8aaff }
+
+    /* ===== Responsive ===== */
+    @media (min-width:1600px){ .hero{ background-position:50% 36% } .hero-text{ max-width:820px } }
+    @media (max-width:1200px){
+      .about-hero{ height:520px }
+      .services-video{ min-height:380px }
+    }
+    @media (max-width:1024px){
+      .menu-toggle{ display:flex; position:absolute; top:20px; right:20px }
+      header nav{ display:none; position:absolute; top:80px; right:0; left:0; background:rgba(18,18,18,.95); padding:12px 20px; gap:12px }
+      header nav.active{ display:flex; flex-direction:column; align-items:center }
+      header nav a{ padding:10px 0 }
+      .services-split{ grid-template-columns:1fr; gap:36px }
+      .services-intro{ min-height:380px }
+      .services-video{ min-height:320px }
+      .about-hero{ height:480px }
+    }
+    @media (max-width:768px){
+      .hero{ min-height:72vh; padding:120px 5% 60px; background-position:50% 40% }
+    }
   </style>
 </head>
 <body>
@@ -161,33 +212,36 @@
     <!-- SERVICIOS -->
     <section class="servicios" id="servicios">
       <div class="services-split">
-        <aside class="services-intro">
+        <aside class="services-intro" aria-label="Panel destacado servicios">
           <div class="intro-content">
             <h3>Haz que tus datos te lleven a un nivel superior</h3>
             <p>Ayudamos a entender tu empresa de un vistazo y gana tiempo para lo que importa.</p>
           </div>
         </aside>
+
         <div class="services-video">
           <video autoplay muted loop playsinline preload="auto">
             <source src="assets/1166635_Screen_Man_3840x2160%20(1).mp4" type="video/mp4">
+            Tu navegador no soporta vídeo HTML5.
           </video>
         </div>
       </div>
 
-      <!-- Fondo decorativo -->
-      <div class="services-bg">
-        <img src="assets/Prueba3.avif" alt="Fondo decorativo servicios">
+      <!-- Fondo decorativo integrado -->
+      <div class="services-bg" aria-hidden="true">
+        <img src="assets/Prueba3.avif" alt="">
       </div>
     </section>
 
     <!-- QUIÉNES SOMOS -->
     <section class="about" id="sobre-mi">
       <div class="about-split">
-        <aside class="about-hero">
+        <aside class="about-hero" aria-label="Vídeo anillo">
           <div class="sparkle-wrap">
             <div class="ring-box">
               <video autoplay muted loop playsinline preload="auto">
                 <source src="assets/assetsring.mp4" type="video/mp4">
+                Tu navegador no soporta vídeo HTML5.
               </video>
             </div>
           </div>
@@ -196,13 +250,13 @@
     </section>
 
     <!-- BLOG -->
-    <section class="blog-home" id="blog" style="background:#0b0b0b; padding:80px 10%; text-align:left; color:white;">
+    <section class="blog-home" id="blog" style="background:var(--bg); padding:80px 10%; text-align:left; color:white;">
       <p style="font-size:1.2em; color:#ccc; margin:0 0 50px;">Reflexiones sobre IA, asesoría y empresa local desde Extremadura.</p>
-      <!-- Ejemplo de post -->
-      <div style="background:#141414; padding:30px; border-radius:12px; max-width:800px; margin:0 auto 40px;">
+      <div style="background:#141414; padding:30px; border-radius:12px; max-width:800px; margin:0 auto 40px; text-align:left; box-shadow:0 0 15px rgba(100,100,255,.1);">
         <h3><a href="blog/post-1.html" style="color:#bb88ff; font-size:1.6em; text-decoration:none;">¿Por qué sigue dando miedo el cambio?</a></h3>
-        <p style="font-size:.9em; color:#888;">🗓 9 de julio de 2025</p>
+        <p style="font-size:.9em; color:#888; margin-bottom:16px;">🗓 9 de julio de 2025</p>
         <p style="font-size:1.1em; color:#ddd;">La IA puede mejorar radicalmente nuestras empresas locales, pero el cambio de mentalidad es el primer paso...</p>
+        <a href="blog/post-1.html" style="display:inline-block; margin-top:12px; color:#a678ff; text-decoration:none; font-weight:bold;">Leer más →</a>
       </div>
     </section>
 
@@ -212,14 +266,17 @@
         <a href="tel:+34635673885">📞 +34 635 673 885</a>
         <a href="mailto:infobiailitics@gmail.com">✉️ infobiailitics@gmail.com</a>
       </div>
-      <p>&copy; 2025 BiAilitics - Consultoría Digital 100% Extremeña.</p>
+      <p>&copy; 2025 BiAilitics - Consultoría Digital 100% Extremeña. Power BI, Asesoría y Procesos para empresas locales. Todos los derechos reservados.</p>
     </footer>
   </main>
+
+  <script>
+    // Menú móvil
+    document.getElementById('menu-toggle')?.addEventListener('click', () =>
+      document.getElementById('nav-menu').classList.toggle('active')
+    );
+  </script>
 </body>
 </html>
-
-
-
-
 
 
