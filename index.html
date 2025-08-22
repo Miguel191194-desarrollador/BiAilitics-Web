@@ -69,7 +69,12 @@
     :root{ --serv-speed:50s }
 
     /* ===== SERVICIOS ===== */
-    .servicios{ padding:clamp(140px,12vh,220px) 8% 100px; background:#0b0b0b }
+    /* más aire por encima y por debajo */
+    .servicios{
+      margin-top:clamp(48px, 6vh, 100px);
+      padding:clamp(190px,14vh,280px) 8% clamp(130px,12vh,180px);
+      background:#0b0b0b;
+    }
     .services-split{
       display:grid; grid-template-columns:1fr 1fr;
       gap:clamp(60px, 6vw, 120px); align-items:center; max-width:1500px; margin-inline:auto;
@@ -114,34 +119,33 @@
     /* ===== QUIÉNES SOMOS ===== */
     .about{ padding:80px 8% 110px; background:#0b0b0b }
     .about-split{
-      display:grid; grid-template-columns:1fr 1fr;
-      gap:clamp(60px,7vw,120px); align-items:stretch; max-width:1500px; margin-inline:auto;
+      display:grid; grid-template-columns:1fr;   /* dejamos solo la izquierda */
+      gap:clamp(60px,7vw,120px); align-items:center; max-width:1500px; margin-inline:auto;
     }
+
+    /* Contenedor del vídeo circular: sin fondo ni sombra para evitar "pegote" */
     .about-hero{
       position:relative;
       height:clamp(540px, 54vh, 660px);
-      border:none; border-radius:18px; overflow:hidden;
-      background:#0b0b0b; box-shadow:0 22px 60px rgba(0,0,0,.45);
+      border:none; border-radius:0; overflow:visible;
+      background:transparent; box-shadow:none;
       isolation:isolate;
+      display:grid; place-items:center;
     }
     .about-hero::before, .about-hero::after{ content:none }
-    .sparkle-wrap{ position:absolute; inset:0; z-index:2; display:grid; place-items:center; pointer-events:none }
+
+    .sparkle-wrap{ position:relative; z-index:2; pointer-events:none }
     .ring-box{ width:min(92%, 820px); aspect-ratio:1/1; position:relative }
+
+    /* Vídeo con borde suave para integrarlo con el fondo negro */
     .ring-box > video{
       position:absolute; inset:0; width:100%; height:100%;
-      object-fit:cover; clip-path:circle(50% at 50% 50%); border-radius:50%;
-      filter:brightness(1.22) contrast(1.5) saturate(1.28); pointer-events:none; z-index:3;
-    }
-
-    .about-hero-right{
-      position:relative;
-      height:clamp(540px, 54vh, 660px);
-      border:none; border-radius:18px; overflow:hidden;
-      background:#0b0b0b; box-shadow:0 22px 60px rgba(0,0,0,.45);
-      isolation:isolate; display:block;
-    }
-    .about-hero-right video{
-      position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+      object-fit:cover;
+      /* quitamos el círculo duro y añadimos borde difuminado */
+      -webkit-mask-image: radial-gradient(circle at 50% 50%, #fff 64%, rgba(255,255,255,0) 76%);
+              mask-image: radial-gradient(circle at 50% 50%, #fff 64%, rgba(255,255,255,0) 76%);
+      filter:brightness(1.18) contrast(1.35) saturate(1.18);
+      pointer-events:none; z-index:3;
     }
 
     /* ===== BLOG / FOOTER ===== */
@@ -152,7 +156,7 @@
     /* ===== Responsive ===== */
     @media (min-width:1600px){ .hero{ background-position:50% 36% } .hero-text{ max-width:820px } }
     @media (max-width:1200px){
-      .about-hero, .about-hero-right{ height:520px }
+      .about-hero{ height:520px }
       .services-video{ min-height:380px }
     }
     @media (max-width:1024px){
@@ -163,8 +167,7 @@
       .services-split{ grid-template-columns:1fr; gap:36px }
       .services-intro{ min-height:380px }
       .services-video{ min-height:320px }
-      .about-split{ grid-template-columns:1fr; gap:36px }
-      .about-hero, .about-hero-right{ height:480px }
+      .about-hero{ height:480px }
     }
     @media (max-width:768px){
       .hero{ min-height:72vh; padding:120px 5% 60px; background-position:50% 40% }
@@ -229,8 +232,8 @@
     <!-- QUIÉNES SOMOS -->
     <section class="about" id="sobre-mi">
       <div class="about-split">
-        <!-- IZQUIERDA: vídeo circular -->
-        <aside class="about-hero" role="img" aria-label="Vídeo anillo">
+        <!-- SOLO IZQUIERDA: vídeo circular con borde suave -->
+        <aside class="about-hero" aria-label="Vídeo anillo">
           <div class="sparkle-wrap">
             <div class="ring-box">
               <video autoplay muted loop playsinline preload="auto">
@@ -239,14 +242,6 @@
               </video>
             </div>
           </div>
-        </aside>
-
-        <!-- DERECHA: tu vídeo "miguel (1).mp4" -->
-        <aside class="about-hero-right" aria-label="Vídeo Miguel">
-          <video autoplay muted loop playsinline preload="auto">
-            <source src="assets/miguel%20(1).mp4" type="video/mp4">
-            Tu navegador no soporta vídeo HTML5.
-          </video>
         </aside>
       </div>
     </section>
@@ -286,6 +281,7 @@
   </script>
 </body>
 </html>
+
 
 
 
