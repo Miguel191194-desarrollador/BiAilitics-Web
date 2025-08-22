@@ -24,6 +24,8 @@
   <link rel="preload" as="image" href="assets/c837a6_2119733e838e4a2f8813ebde736f99d5~mv2.avif" type="image/avif">
   <link rel="preload" as="image" href="assets/ImagenNueva.avif" type="image/avif">
   <link rel="preload" as="image" href="assets/Imagen2.avif" type="image/avif">
+  <!-- NUEVO: preload de la imagen del hero derecha -->
+  <link rel="preload" as="image" href="assets/ss-analytics-data.jpg" type="image/jpeg">
 
   <style>
     *{ box-sizing:border-box; margin:0; padding:0 }
@@ -59,12 +61,34 @@
       display:flex; align-items:center; justify-content:flex-start;
       padding:0 8%; position:relative;
     }
-    .hero::before{ content:""; position:absolute; inset:0; background:rgba(0,0,0,.5) }
-    .hero-text{ position:relative; max-width:700px; z-index:1 }
+    /* bajamos la capa oscura por debajo de la imagen decorativa y del texto */
+    .hero::before{ content:""; position:absolute; inset:0; background:rgba(0,0,0,.5); z-index:0 }
+    /* texto por encima de la imagen decorativa */
+    .hero-text{ position:relative; max-width:700px; z-index:2 }
     .hero-text h1{ font-size:clamp(2rem, 2.2vw + 1rem, 3.2rem); margin-bottom:20px }
     .hero-text p{ font-size:clamp(1rem, .6vw + .9rem, 1.25rem); margin-bottom:30px; color:#f0f0f0 }
 
     :root{ --serv-speed:50s }
+
+    /* ==== HERO ART (imagen derecha del hero) ==== */
+    .hero-art{
+      position:absolute;
+      right:6%;
+      top:110px;                          /* debajo del header fijo */
+      width:clamp(320px, 34vw, 620px);
+      aspect-ratio:16/9;
+
+      background-image:url('assets/ss-analytics-data.jpg');
+      background-size:contain;
+      background-position:center;
+      background-repeat:no-repeat;
+
+      opacity:.32;                        /* transparencia elegante */
+      filter:brightness(1.05) contrast(1.08) saturate(1.06);
+      mix-blend-mode:screen;              /* se integra sobre el fondo oscuro */
+      pointer-events:none;                /* no bloquea interacciones */
+      z-index:1;                          /* entre la capa oscura (0) y el texto (2) */
+    }
 
     /* ===== SERVICIOS ===== */
     .servicios{ padding:clamp(140px,12vh,220px) 8% 100px; background:#0b0b0b }
@@ -138,7 +162,7 @@
     .about-hero-right video{
       position:absolute; inset:0;
       width:100%; height:100%;
-      object-fit:cover;  /* ocupa todo el contenedor */
+      object-fit:cover;
     }
 
     /* ===== BLOG / FOOTER ===== */
@@ -148,7 +172,10 @@
 
     /* ===== Responsive ===== */
     @media (min-width:1600px){ .hero{ background-position:50% 36% } .hero-text{ max-width:820px } }
-    @media (max-width:1200px){ .about-hero, .about-hero-right{ height:520px } }
+    @media (max-width:1200px){
+      .about-hero, .about-hero-right{ height:520px }
+      .hero-art{ right:5%; width:clamp(260px, 38vw, 520px); opacity:.30; top:120px }
+    }
     @media (max-width:1024px){
       .menu-toggle{ display:flex; position:absolute; top:20px; right:20px }
       header nav{ display:none; position:absolute; top:80px; right:0; left:0; background:rgba(18,18,18,.95); padding:12px 20px; gap:12px }
@@ -159,6 +186,7 @@
       .services-intro .intro-content{ top:36px; left:36px; right:36px }
       .about-split{ grid-template-columns:1fr; gap:36px }
       .about-hero, .about-hero-right{ height:480px }
+      .hero-art{ right:4%; width:min(60vw, 480px); opacity:.28; top:130px }
     }
     @media (max-width:768px){
       .hero{ min-height:72vh; padding:120px 5% 60px; background-position:50% 40% }
@@ -167,6 +195,8 @@
       .serv-carousel__list .serv-item{ position:relative; transform:none; width:260px; flex:0 0 260px; top:auto; left:auto }
       .serv-carousel__list .serv-box img{ height:140px }
       .serv-carousel__list::-webkit-scrollbar{ display:none }
+
+      .hero-art{ width:75vw; right:12%; top:auto; bottom:8%; opacity:.24 }
     }
   </style>
 
@@ -200,8 +230,11 @@
           Consultoría en Power BI y Automatización para
           <span style="background:linear-gradient(135deg,#7b6cf9,#b8aaff);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Empresas Extremeñas</span>
         </h1>
-        <p>Impulsa tu negocio con soluciones digitales diseñadas desde Extremadura. Dashboards, automatizaciones y soluciones a medida para cooperativas, pymes y empresas rurales como la tuya.</p>
+        <p>Usa los datos para una visión de 360 grados de tu negocio.</p>
       </div>
+
+      <!-- Imagen decorativa en el hueco de la derecha -->
+      <div class="hero-art" aria-hidden="true"></div>
     </section>
 
     <!-- SERVICIOS -->
@@ -211,8 +244,7 @@
         <aside class="services-intro" role="img" aria-label="Panel destacado servicios">
           <div class="intro-content">
             <h3>Haz que tus datos te lleven a un nivel superior</h3>
-            <p>Integramos datos, automatizamos procesos y diseñamos visualizaciones claras para que tomes mejores decisiones cada día. Tecnología útil, cercana y hecha a tu medida.</p>
-            <p class="tagline">Somos de aquí, trabajamos para los de aquí. Llevamos la tecnología a empresas extremeñas que quieren crecer desde su tierra.</p>
+            <p>Impulsa tu negocio con soluciones digitales diseñadas desde Extremadura. Cuadros de mando, automatizaciones y soluciones a medida para cooperativas, pymes y empresas rurales como la tuya.</p>
           </div>
         </aside>
 
@@ -357,6 +389,7 @@
   </script>
 </body>
 </html>
+
 
 
 
