@@ -21,74 +21,121 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Preloads -->
   <link rel="preload" as="image" href="assets/Prueba3.avif" type="image/avif">
   <link rel="preload" as="video" href="assets/1166635_Screen_Man_3840x2160%20(1).mp4" type="video/mp4">
   <link rel="preload" as="video" href="assets/Miguel1.mp4" type="video/mp4">
   <link rel="preload" as="video" href="assets/Miguel2.mp4" type="video/mp4">
 
   <style>
-    *{ box-sizing:border-box; margin:0; padding:0 }
-    :root{ --bg:#0b0b0b }
-    html,body{ width:100%; font-family:'Montserrat',sans-serif; color:#fff; background-color:var(--bg) }
+    * { box-sizing: border-box; margin: 0; padding: 0 }
+    :root { 
+        --bg: #0b0b0b;
+        --purple-gradient: linear-gradient(135deg, #7b6cf9, #b8aaff);
+        --purple-text: -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    html, body { 
+        width: 100%; 
+        font-family: 'Montserrat', sans-serif; 
+        color: #fff; 
+        background-color: var(--bg);
+        scroll-behavior: smooth; /* Agregado para un scroll suave */
+    }
 
     /* ===== HEADER ===== */
-    header{position:fixed; inset:0 0 auto 0; z-index:10; height:80px; background:rgba(18,18,18,.95); backdrop-filter:blur(6px); display:flex; align-items:center; gap:24px; padding:20px 30px; border-bottom:1px solid #2d2d2d}
-    header .brand{ display:flex; align-items:center; gap:16px }
-    header .brand img{ height:40px }
-    .brand-name{ font-weight:800; font-size:1.1em; white-space:nowrap; background:linear-gradient(135deg,#7b6cf9,#b8aaff); -webkit-background-clip:text; background-clip:text; color:transparent; line-height:1.1 }
-    header nav{ margin-left:auto; display:flex; gap:18px; flex-wrap:wrap }
-    header nav a{ font-weight:600; color:#fff; text-decoration:none; padding:6px 0; transition:color .2s }
-    header nav a:hover{ color:#b8aaff }
-    .menu-toggle{ display:none; flex-direction:column; gap:4px }
-    .menu-toggle span{ background:#fff; height:3px; width:24px; border-radius:3px }
+    header { position: fixed; inset: 0 0 auto 0; z-index: 10; height: 80px; background: rgba(18, 18, 18, .95); backdrop-filter: blur(6px); display: flex; align-items: center; gap: 24px; padding: 20px 30px; border-bottom: 1px solid #2d2d2d }
+    header .brand { display: flex; align-items: center; gap: 16px }
+    header .brand img { height: 40px }
+    .brand-name { font-weight: 800; font-size: 1.1em; white-space: nowrap; background: var(--purple-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; line-height: 1.1 }
+    header nav { margin-left: auto; display: flex; gap: 18px; flex-wrap: wrap }
+    header nav a { font-weight: 600; color: #fff; text-decoration: none; padding: 6px 0; transition: color .2s }
+    header nav a:hover { color: #b8aaff }
+    .menu-toggle { display: none; flex-direction: column; gap: 4px; cursor: pointer; }
+    .menu-toggle span { background: #fff; height: 3px; width: 24px; border-radius: 3px }
 
     /* ===== HERO ===== */
-    .hero{ min-height:100vh; background:image-set(url('assets/c837a6_2119733e838e4a2f8813ebde736f99d5~mv2.avif') type('image/avif') 1x, url('assets/imagen_ampliada_comprimida.jpg') type('image/jpeg') 1x) center/cover no-repeat; display:flex; align-items:center; justify-content:flex-start; padding:0 8%; position:relative }
-    .hero::before{ content:""; position:absolute; inset:0; background:rgba(0,0,0,.55); z-index:0 }
-    .hero-text{ position:relative; max-width:700px; z-index:2 }
-    .hero-text h1{ font-size:clamp(2rem, 2.2vw + 1rem, 3.2rem); margin-bottom:20px }
-    .hero-text p{ font-size:clamp(1rem, .6vw + .9rem, 1.25rem); margin-bottom:30px; color:#f0f0f0 }
+    .hero { min-height: 100vh; background: image-set(url('assets/c837a6_2119733e838e4a2f8813ebde736f99d5~mv2.avif') type('image/avif') 1x, url('assets/imagen_ampliada_comprimida.jpg') type('image/jpeg') 1x) center/cover no-repeat; display: flex; align-items: center; justify-content: flex-start; padding: 0 8%; position: relative }
+    .hero::before { content: ""; position: absolute; inset: 0; background: rgba(0, 0, 0, .55); z-index: 0 }
+    .hero-text { position: relative; max-width: 700px; z-index: 2 }
+    .hero-text h1 { font-size: clamp(2rem, 2.2vw + 1rem, 3.2rem); margin-bottom: 20px }
+    .hero-text h1 .gradient-text { background: var(--purple-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero-text p { font-size: clamp(1rem, .6vw + .9rem, 1.25rem); margin-bottom: 30px; color: #f0f0f0 }
 
-    /* ===== SERVICIOS ===== */
-    .servicios{ position:relative; padding:120px 8%; background:#000 }
-    .services-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:40px; max-width:1600px; margin:0 auto }
-    .service-block{ display:flex; flex-direction:column; gap:24px }
+    /* ===== SECCIONES PRINCIPALES ===== */
+    .section-title { font-weight: 800; font-size: clamp(2rem, 2.2vw + 1rem, 3.2rem); text-align: center; margin-bottom: 40px; }
 
-    .services-intro{ position:relative; min-height:280px; border:1px solid rgba(255,255,255,.18); border-radius:12px; overflow:hidden; box-shadow:0 20px 50px rgba(0,0,0,.6) }
-    .services-intro::before{ content:""; position:absolute; inset:0; border-radius:12px; background:linear-gradient(180deg, rgba(0,0,0,.60) 0%, rgba(0,0,0,.40) 100%) }
-    .services-intro .intro-content{ position:absolute; top:30px; left:30px; right:30px; z-index:1; max-width:700px }
-    .services-intro h3{ font-weight:800; font-size:clamp(1.4rem,1.2vw + 1.1rem,2.2rem); margin-bottom:12px }
-    .services-intro p{ color:#d9d9d9; line-height:1.6; font-size:.95rem }
-
-    .services-intro.bg1{ background:image-set(url('assets/ImagenNueva.avif') type('image/avif') 1x, url('assets/imagen_ampliada_comprimida.jpg') type('image/jpeg') 1x) center/cover no-repeat }
-    .services-intro.bg2{ background:image-set(url('assets/Prueba3.avif') type('image/avif') 1x, url('assets/imagen_ampliada_comprimida.jpg') type('image/jpeg') 1x) center/cover no-repeat }
-    .services-intro.bg3{ background:image-set(url('assets/c837a6_2119733e838e4a2f8813ebde736f99d5~mv2.avif') type('image/avif') 1x, url('assets/imagen_ampliada_comprimida.jpg') type('image/jpeg') 1x) center/cover no-repeat }
-
-    .services-video{ position:relative; border-radius:12px; overflow:hidden; box-shadow:0 20px 50px rgba(0,0,0,.6); isolation:isolate; min-height:220px }
-    .services-video video{ width:100%; height:100%; object-fit:cover; display:block; filter:brightness(0.9) contrast(1.15) saturate(1.05) }
-    .services-video::after{ content:""; position:absolute; inset:0; background:rgba(0,0,0,.40); z-index:1; pointer-events:none }
+    /* ===== SERVICIOS - Separación de tarjetas ===== */
+    .servicios { position: relative; padding: 120px 8%; background: #000 }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 60px; max-width: 1600px; margin: 0 auto }
+    .service-block { display: flex; flex-direction: column; gap: 24px }
+    .services-intro { position: relative; min-height: 280px; border: 1px solid rgba(255, 255, 255, .18); border-radius: 12px; overflow: hidden; box-shadow: 0 20px 50px rgba(0, 0, 0, .6); margin-bottom: 30px; }
+    .services-intro::before { content: ""; position: absolute; inset: 0; border-radius: 12px; background: linear-gradient(180deg, rgba(0, 0, 0, .60) 0%, rgba(0, 0, 0, .40) 100%) }
+    .services-intro .intro-content { position: absolute; top: 30px; left: 30px; right: 30px; z-index: 1; max-width: 700px }
+    .services-intro h3 { font-weight: 800; font-size: clamp(1.4rem, 1.2vw + 1.1rem, 2.2rem); margin-bottom: 12px }
+    .services-intro p { color: #d9d9d9; line-height: 1.6; font-size: .95rem }
+    .services-intro.bg1 { background: image-set(url('assets/ImagenNueva.avif') type('image/avif') 1x, url('assets/imagen_ampliada_comprimida.jpg') type('image/jpeg') 1x) center/cover no-repeat }
+    .services-intro.bg2 { background: image-set(url('assets/Prueba3.avif') type('image/avif') 1x, url('assets/imagen_ampliada_comprimida.jpg') type('image/jpeg') 1x) center/cover no-repeat }
+    .services-intro.bg3 { background: image-set(url('assets/c837a6_2119733e838e4a2f8813ebde736f99d5~mv2.avif') type('image/avif') 1x, url('assets/imagen_ampliada_comprimida.jpg') type('image/jpeg') 1x) center/cover no-repeat }
+    .services-video { position: relative; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 50px rgba(0, 0, 0, .6); isolation: isolate; min-height: 220px }
+    .services-video video { width: 100%; height: 100%; object-fit: cover; display: block; filter: brightness(0.9) contrast(1.15) saturate(1.05) }
+    .services-video::after { content: ""; position: absolute; inset: 0; background: rgba(0, 0, 0, .40); z-index: 1; pointer-events: none }
 
     /* ===== QUIÉNES SOMOS ===== */
-    .about{ padding:80px 8% 110px; background:#000 }
-    .about-split{ display:grid; grid-template-columns:1fr; gap:clamp(60px,7vw,120px); align-items:center; max-width:1500px; margin-inline:auto }
-    .about-hero{ position:relative; height:clamp(540px, 54vh, 660px); border:none; overflow:visible; background:transparent; box-shadow:none; display:grid; place-items:center; isolation:isolate }
-    .sparkle-wrap{ position:relative; z-index:2; pointer-events:none }
-    .ring-box{ width:min(92%, 820px); aspect-ratio:1/1; position:relative }
-    .ring-box > video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; -webkit-mask-image: radial-gradient(circle at 50% 50%, #fff 64%, rgba(255,255,255,0) 76%); mask-image: radial-gradient(circle at 50% 50%, #fff 64%, rgba(255,255,255,0) 76%); filter:brightness(1.15) contrast(1.35) saturate(1.12) }
+    .about { padding: 80px 8% 110px; background: #000 }
+    .about-split { display: grid; grid-template-columns: 1fr; gap: clamp(60px, 7vw, 120px); align-items: center; max-width: 1500px; margin-inline: auto }
+    .about-hero { position: relative; height: clamp(540px, 54vh, 660px); border: none; overflow: visible; background: transparent; box-shadow: none; display: grid; place-items: center; isolation: isolate }
+    .sparkle-wrap { position: relative; z-index: 2; pointer-events: none }
+    .ring-box { width: min(92%, 820px); aspect-ratio: 1/1; position: relative }
+    .ring-box > video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; -webkit-mask-image: radial-gradient(circle at 50% 50%, #fff 64%, rgba(255, 255, 255, 0) 76%); mask-image: radial-gradient(circle at 50% 50%, #fff 64%, rgba(255, 255, 255, 0) 76%); filter: brightness(1.15) contrast(1.35) saturate(1.12) }
 
-    /* ===== BLOG ===== */
-    .blog-home{ background:#000; padding:100px 8%; text-align:center; color:#fff }
-    .blog-min{ max-width:760px; margin:0 auto; display:flex; flex-direction:column; gap:16px; align-items:center }
-    .blog-min h2{ font-weight:800; font-size:clamp(1.6rem,1.4vw + 1.2rem,2.2rem) }
-    .blog-min p{ color:#cfcfcf; max-width:56ch }
-    .btn{ display:inline-flex; align-items:center; gap:10px; padding:14px 22px; border-radius:999px; font-weight:700; text-decoration:none }
-    .btn-gradient{ background:linear-gradient(135deg,#7b6cf9,#b8aaff); color:#111 }
-    .btn-gradient:hover{ filter:brightness(1.05) }
+    /* ===== BLOG - Simplificado y minimalista ===== */
+    .blog-home { background: #0b0b0b; padding: 80px 8%; text-align: center; color: #fff }
+    .blog-min { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; align-items: center }
+    .blog-min h2 { font-weight: 800; font-size: clamp(1.6rem, 1.4vw + 1.2rem, 2.2rem) }
+    .blog-min p { color: #cfcfcf; max-width: 56ch }
+    .btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 22px; border-radius: 999px; font-weight: 700; text-decoration: none }
+    .btn-gradient { background: var(--purple-gradient); color: #111 }
+    .btn-gradient:hover { filter: brightness(1.05) }
+
+    /* ===== FOOTER - Contacto a la izquierda ===== */
+    footer {
+        padding: 40px 10%; 
+        background: #111; 
+        color: #888; 
+        font-size: .9em;
+        display: flex;
+        flex-direction: column; 
+        align-items: flex-start; 
+        gap: 20px;
+    }
+    .footer-contact {
+        display: flex;
+        flex-direction: column; 
+        align-items: flex-start; 
+        gap: 10px;
+        margin-right: auto;
+    }
+    .footer-contact a {
+        text-decoration: none;
+        color: inherit;
+        transition: color 0.2s;
+    }
+    .footer-contact a:hover {
+        color: #fff;
+    }
+    footer p {
+        text-align: left;
+    }
 
     /* ===== Responsive ===== */
-    @media(max-width:1200px){ .services-grid{grid-template-columns:1fr 1fr} }
-    @media(max-width:768px){ .services-grid{grid-template-columns:1fr} }
+    @media (max-width: 1200px) { 
+        .services-grid { grid-template-columns: 1fr 1fr } 
+    }
+    @media (max-width: 768px) { 
+        .services-grid { grid-template-columns: 1fr } 
+        header nav { display: none; flex-direction: column; gap: 10px; padding: 20px; position: absolute; top: 80px; left: 0; width: 100%; background: rgba(18, 18, 18, 0.95); backdrop-filter: blur(6px); transition: transform 0.3s ease-in-out; transform: translateY(-150%); }
+        header nav.active { display: flex; transform: translateY(0); }
+        .menu-toggle { display: flex; }
+    }
   </style>
 </head>
 <body>
@@ -97,7 +144,11 @@
       <img src="assets/Biailitics.png" alt="Logo BiAilitics">
       <span class="brand-name">BiAilitics Data</span>
     </div>
-    <div class="menu-toggle" id="menu-toggle"><span></span><span></span><span></span></div>
+    <div class="menu-toggle" id="menu-toggle" aria-controls="nav-menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
     <nav id="nav-menu">
       <a href="#inicio">Inicio</a>
       <a href="#servicios">Servicios</a>
@@ -106,21 +157,19 @@
   </header>
 
   <main>
-    <!-- HERO -->
     <section class="hero" id="inicio">
       <div class="hero-text">
         <h1>
           Consultoría en Power BI y Asesoría Empresarial para
-          <span style="background:linear-gradient(135deg,#7b6cf9,#b8aaff);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Empresas Extremeñas</span>
+          <span class="gradient-text">Empresas Extremeñas</span>
         </h1>
         <p>Usa los datos para tomar mejores decisiones en tu negocio.</p>
       </div>
     </section>
 
-    <!-- SERVICIOS EN GRID -->
     <section class="servicios" id="servicios">
+      <h2 class="section-title">Nuestros Servicios</h2>
       <div class="services-grid">
-        <!-- Servicio 1 -->
         <div class="service-block">
           <aside class="services-intro bg1">
             <div class="intro-content">
@@ -135,7 +184,6 @@
           </div>
         </div>
 
-        <!-- Servicio 2 -->
         <div class="service-block">
           <aside class="services-intro bg2">
             <div class="intro-content">
@@ -150,7 +198,6 @@
           </div>
         </div>
 
-        <!-- Servicio 3 -->
         <div class="service-block">
           <aside class="services-intro bg3">
             <div class="intro-content">
@@ -167,8 +214,8 @@
       </div>
     </section>
 
-    <!-- QUIÉNES SOMOS -->
     <section class="about" id="sobre-mi">
+      <h2 class="section-title">Quiénes Somos</h2>
       <div class="about-split">
         <aside class="about-hero">
           <div class="sparkle-wrap">
@@ -182,7 +229,6 @@
       </div>
     </section>
 
-    <!-- BLOG -->
     <section class="blog-home" id="blog">
       <div class="blog-min">
         <h2>Blog</h2>
@@ -190,21 +236,37 @@
         <a class="btn btn-gradient" href="blog/post-1.html">Leer el primer artículo</a>
       </div>
     </section>
-
-    <!-- FOOTER -->
-    <footer style="padding:40px 10%; background:#111; text-align:center; color:#888; font-size:.9em;">
-      <div class="footer-contact">
-        <a href="tel:+34635673885">📞 +34 635 673 885</a>
-        <a href="mailto:infobiailitics@gmail.com">✉️ infobiailitics@gmail.com</a>
-      </div>
-      <p>&copy; 2025 BiAilitics - Consultoría Digital 100% Extremeña. Power BI, Asesoría y Procesos para empresas locales. Todos los derechos reservados.</p>
-    </footer>
   </main>
 
+  <footer>
+    <div class="footer-contact">
+      <a href="tel:+34635673885">📞 +34 635 673 885</a>
+      <a href="mailto:infobiailitics@gmail.com">✉️ infobiailitics@gmail.com</a>
+    </div>
+    <p>&copy; 2025 BiAilitics - Consultoría Digital 100% Extremeña. Power BI, Asesoría y Procesos para empresas locales. Todos los derechos reservados.</p>
+  </footer>
+
   <script>
-    document.getElementById('menu-toggle')?.addEventListener('click', () =>
-      document.getElementById('nav-menu').classList.toggle('active')
-    );
+    document.addEventListener('DOMContentLoaded', () => {
+      const menuToggle = document.getElementById('menu-toggle');
+      const navMenu = document.getElementById('nav-menu');
+
+      if (menuToggle && navMenu) {
+        menuToggle.addEventListener('click', () => {
+          navMenu.classList.toggle('active');
+          const isExpanded = navMenu.classList.contains('active');
+          menuToggle.setAttribute('aria-expanded', isExpanded);
+        });
+
+        // Opcional: Cerrar el menú al hacer clic en un enlace de anclaje
+        navMenu.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+            menuToggle.setAttribute('aria-expanded', 'false');
+          });
+        });
+      }
+    });
   </script>
 </body>
 </html>
