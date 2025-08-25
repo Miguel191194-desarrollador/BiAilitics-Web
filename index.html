@@ -70,21 +70,37 @@
     .hero-text h1{ font-size:clamp(2rem, 2.2vw + 1rem, 3.2rem); margin-bottom:20px }
     .hero-text p{ font-size:clamp(1rem, .6vw + .9rem, 1.25rem); margin-bottom:30px; color:#f0f0f0 }
 
-    /* ===== SERVICIOS ===== */
-   .servicios{
-  position:relative;
-  margin-top:clamp(48px, 6vh, 100px);
-  padding:clamp(190px,14vh,280px) 8% clamp(140px,12vh,220px);
-
-  background:
-    linear-gradient(to top, #000 0%, rgba(0,0,0,0) 40%) , /* negro arriba */
-    image-set(
-      url('assets/Prueba3.avif') type('image/avif') 1x,
-      url('assets/imagen_ampliada_comprimida.jpg') type('image/jpeg') 1x
-    ) center bottom / cover no-repeat fixed;
-
-  isolation:isolate;
-}
+    /* ===== SERVICIOS (BASE) ===== */
+    .servicios{
+      position:relative;
+      margin-top:clamp(48px, 6vh, 100px);
+      padding:clamp(190px,14vh,280px) 8% clamp(140px,12vh,220px);
+      background:
+        linear-gradient(to top, #000 0%, rgba(0,0,0,0) 40%) ,
+        image-set(
+          url('assets/Prueba3.avif') type('image/avif') 1x,
+          url('assets/imagen_ampliada_comprimida.jpg') type('image/jpeg') 1x
+        ) center bottom / cover no-repeat fixed;
+      isolation:isolate;
+    }
+    /* Fondo alternativo sección 2 */
+    .servicios.serv2{
+      background:
+        linear-gradient(to top, #000 0%, rgba(0,0,0,0) 40%),
+        image-set(
+          url('assets/ImagenNueva.avif') type('image/avif') 1x,
+          url('assets/imagen_ampliada_comprimida.jpg') type('image/jpeg') 1x
+        ) center bottom / cover no-repeat fixed;
+    }
+    /* Fondo alternativo sección 3 */
+    .servicios.serv3{
+      background:
+        linear-gradient(to top, #000 0%, rgba(0,0,0,0) 40%),
+        image-set(
+          url('assets/c837a6_2119733e838e4a2f8813ebde736f99d5~mv2.avif') type('image/avif') 1x,
+          url('assets/imagen_ampliada_comprimida.jpg') type('image/jpeg') 1x
+        ) center bottom / cover no-repeat fixed;
+    }
 
     /* Oscurecedor para legibilidad */
     .servicios::before{
@@ -152,10 +168,16 @@
     /* ===== BLOG / FOOTER ===== */
     .blog-home{
       background:#000;
-      padding:80px 10%;
-      text-align:left;
-      color:white;
+      padding:100px 8%;
+      text-align:center;
+      color:#fff;
     }
+    .blog-min{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:16px;align-items:center}
+    .blog-min h2{font-weight:800;font-size:clamp(1.6rem,1.4vw + 1.2rem,2.2rem);letter-spacing:.2px}
+    .blog-min p{color:#cfcfcf;max-width:56ch}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border-radius:999px;font-weight:700;text-decoration:none}
+    .btn-gradient{background:linear-gradient(135deg,#7b6cf9,#b8aaff);color:#111}
+    .btn-gradient:hover{filter:brightness(1.05)}
     .footer-contact{ text-align:left; color:#ddd; margin-bottom:18px; display:flex; flex-direction:column; gap:10px; max-width:1500px; margin-left:auto; margin-right:auto }
     .footer-contact a{ color:#ddd; text-decoration:none }
     .footer-contact a:hover{ color:#b8aaff }
@@ -207,7 +229,7 @@
       </div>
     </section>
 
-    <!-- SERVICIOS -->
+    <!-- SERVICIO 1: (igual que tenías) -->
     <section class="servicios" id="servicios">
       <div class="services-split">
         <aside class="services-intro" aria-label="Panel destacado servicios">
@@ -220,6 +242,36 @@
         <div class="services-video">
           <video autoplay muted loop playsinline preload="auto">
             <source src="assets/1166635_Screen_Man_3840x2160%20(1).mp4" type="video/mp4">
+            Tu navegador no soporta vídeo HTML5.
+          </video>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICIO 2: Nuevo copy + nuevo vídeo -->
+    <section class="servicios serv2" id="servicios-2">
+      <div class="services-split">
+        <aside class="services-intro" aria-label="Panel servicio 2">
+          <div class="intro-content">
+            <h3>Tus decisiones, más rápidas y seguras</h3>
+            <p>
+              Creación de informes visuales automatizados para un mayor control de tus <strong>compras</strong>,
+              <strong>ventas</strong> y <strong>almacén</strong>. Además, recibe <strong>asesoramiento empresarial</strong>
+              a través del estudio de estos informes.
+            </p>
+          </div>
+        </aside>
+        <div class="services-video">
+          <video autoplay muted loop playsinline preload="auto">
+            <source src="assets/Miguel1.mp4" type="video/mp4">
+            Tu navegador no soporta vídeo HTML5.
+          </video>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICIO 3: Propuesto (puedes ajustar el texto cuando quieras) -->
+    $1assets/Miguel2.mp4$2
             Tu navegador no soporta vídeo HTML5.
           </video>
         </div>
@@ -244,12 +296,10 @@
 
     <!-- BLOG -->
     <section class="blog-home" id="blog">
-      <p style="font-size:1.2em; color:#ccc; margin:0 0 50px;">Reflexiones sobre IA, asesoría y empresa local desde Extremadura.</p>
-      <div style="background:#141414; padding:30px; border-radius:12px; max-width:800px; margin:0 auto 40px; text-align:left; box-shadow:0 0 15px rgba(100,100,255,.1);">
-        <h3><a href="blog/post-1.html" style="color:#bb88ff; font-size:1.6em; text-decoration:none;">¿Por qué sigue dando miedo el cambio?</a></h3>
-        <p style="font-size:.9em; color:#888; margin-bottom:16px;">🗓 9 de julio de 2025</p>
-        <p style="font-size:1.1em; color:#ddd;">La IA puede mejorar radicalmente nuestras empresas locales, pero el cambio de mentalidad es el primer paso...</p>
-        <a href="blog/post-1.html" style="display:inline-block; margin-top:12px; color:#a678ff; text-decoration:none; font-weight:bold;">Leer más →</a>
+      <div class="blog-min">
+        <h2>Blog</h2>
+        <p>Ideas rápidas sobre datos, automatización y gestión práctica.</p>
+        <a class="btn btn-gradient" href="blog/post-1.html" aria-label="Leer el primer artículo del blog">Leer el primer artículo</a>
       </div>
     </section>
 
