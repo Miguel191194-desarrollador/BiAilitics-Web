@@ -71,18 +71,21 @@
     .hero-text p{ font-size:clamp(1rem, .6vw + .9rem, 1.25rem); margin-bottom:30px; color:#f0f0f0 }
 
     /* ===== SERVICIOS ===== */
-    .servicios{
-      position:relative;
-      margin-top:clamp(48px, 6vh, 100px);
-      padding:clamp(190px,14vh,280px) 8% clamp(140px,12vh,220px);
-      /* Imagen de fondo EXCLUSIVA con los pinchos más abajo */
-      background:
-        image-set(
-          url('assets/Prueba3.avif') type('image/avif') 1x,
-          url('assets/imagen_ampliada_comprimida.jpg') type('image/jpeg') 1x
-        ) center 120% / cover no-repeat fixed;
-      isolation:isolate;
-    }
+   .servicios{
+  position:relative;
+  margin-top:clamp(48px, 6vh, 100px);
+  padding:clamp(190px,14vh,280px) 8% clamp(140px,12vh,220px);
+
+  background:
+    linear-gradient(to top, #000 0%, rgba(0,0,0,0) 40%) , /* negro arriba */
+    image-set(
+      url('assets/Prueba3.avif') type('image/avif') 1x,
+      url('assets/imagen_ampliada_comprimida.jpg') type('image/jpeg') 1x
+    ) center bottom / cover no-repeat fixed;
+
+  isolation:isolate;
+}
+
     /* Oscurecedor para legibilidad */
     .servicios::before{
       content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
