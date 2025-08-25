@@ -32,13 +32,7 @@
       width:100%;
       font-family:'Montserrat',sans-serif;
       color:#fff;
-      background-color:var(--bg);
-      /* Fondo global de la página (entero), pegado abajo */
-      background-image:image-set(url('assets/Prueba3.avif') type('image/avif') 1x);
-      background-repeat:no-repeat;
-      background-position:center bottom;
-      background-size:cover;       /* cubre todo el ancho */
-      background-attachment:fixed; /* efecto sutil y evita "pegote" */
+      background-color:var(--bg); /* Fondo negro global, sin imagen */
     }
 
     /* ===== HEADER ===== */
@@ -60,7 +54,7 @@
     .menu-toggle{ display:none; flex-direction:column; gap:4px }
     .menu-toggle span{ background:#fff; height:3px; width:24px; border-radius:3px }
 
-    /* ===== HERO ===== */
+    /* ===== HERO (mantiene su propia imagen de fondo) ===== */
     .hero{
       min-height:100vh;
       background:
@@ -76,15 +70,26 @@
     .hero-text h1{ font-size:clamp(2rem, 2.2vw + 1rem, 3.2rem); margin-bottom:20px }
     .hero-text p{ font-size:clamp(1rem, .6vw + .9rem, 1.25rem); margin-bottom:30px; color:#f0f0f0 }
 
-    /* ===== SERVICIOS ===== */
+    /* ===== SERVICIOS con fondo fijo ===== */
     .servicios{
-      margin-top:clamp(48px, 6vh, 100px);
-      /* quitamos fondo sólido para que se vea el fondo global donde no haya tarjetas */
-      background:transparent;
-      padding:clamp(190px,14vh,280px) 8% clamp(140px,12vh,220px);
       position:relative;
+      margin-top:clamp(48px, 6vh, 100px);
+      padding:clamp(190px,14vh,280px) 8% clamp(140px,12vh,220px);
+      /* Imagen de fondo EXCLUSIVA de esta sección, fija */
+      background:
+        image-set(
+          url('assets/Prueba3.avif') type('image/avif') 1x,
+          url('assets/imagen_ampliada_comprimida.jpg') type('image/jpeg') 1x
+        ) center bottom / cover no-repeat fixed;
+      isolation:isolate;
+    }
+    /* Oscurecedor para legibilidad */
+    .servicios::before{
+      content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
+      background:linear-gradient(180deg, rgba(0,0,0,.60) 0%, rgba(0,0,0,.50) 60%, rgba(0,0,0,.60) 100%);
     }
     .services-split{
+      position:relative; z-index:1;
       display:grid; grid-template-columns:1fr 1fr;
       gap:clamp(60px, 6vw, 120px); align-items:center; max-width:1500px; margin-inline:auto;
     }
@@ -97,6 +102,7 @@
           url('assets/ImagenNueva.avif') type('image/avif') 1x,
           url('assets/imagen_ampliada_comprimida.jpg') type('image/jpeg') 1x
         ) center/cover no-repeat;
+      box-shadow:0 20px 50px rgba(0,0,0,.6);
     }
     .services-intro::before{
       content:""; position:absolute; inset:0; border-radius:12px;
@@ -122,8 +128,8 @@
       z-index:1; pointer-events:none;
     }
 
-    /* ===== QUIÉNES SOMOS ===== */
-    .about{ padding:80px 8% 110px; background:transparent }
+    /* ===== QUIÉNES SOMOS (fondo negro sólido) ===== */
+    .about{ padding:80px 8% 110px; background:#000 }
     .about-split{
       display:grid; grid-template-columns:1fr; gap:clamp(60px,7vw,120px);
       align-items:center; max-width:1500px; margin-inline:auto;
@@ -142,7 +148,13 @@
       filter:brightness(1.15) contrast(1.35) saturate(1.12);
     }
 
-    /* ===== BLOG / FOOTER ===== */
+    /* ===== BLOG / FOOTER (fondo negro) ===== */
+    .blog-home{
+      background:#000;
+      padding:80px 10%;
+      text-align:left;
+      color:white;
+    }
     .footer-contact{ text-align:left; color:#ddd; margin-bottom:18px; display:flex; flex-direction:column; gap:10px; max-width:1500px; margin-left:auto; margin-right:auto }
     .footer-contact a{ color:#ddd; text-decoration:none }
     .footer-contact a:hover{ color:#b8aaff }
@@ -194,7 +206,7 @@
       </div>
     </section>
 
-    <!-- SERVICIOS -->
+    <!-- SERVICIOS (con fondo fijo) -->
     <section class="servicios" id="servicios">
       <div class="services-split">
         <aside class="services-intro" aria-label="Panel destacado servicios">
@@ -213,7 +225,7 @@
       </div>
     </section>
 
-    <!-- QUIÉNES SOMOS -->
+    <!-- QUIÉNES SOMOS (fondo negro) -->
     <section class="about" id="sobre-mi">
       <div class="about-split">
         <aside class="about-hero" aria-label="Vídeo anillo">
@@ -229,8 +241,8 @@
       </div>
     </section>
 
-    <!-- BLOG -->
-    <section class="blog-home" id="blog" style="background:transparent; padding:80px 10%; text-align:left; color:white;">
+    <!-- BLOG (fondo negro) -->
+    <section class="blog-home" id="blog">
       <p style="font-size:1.2em; color:#ccc; margin:0 0 50px;">Reflexiones sobre IA, asesoría y empresa local desde Extremadura.</p>
       <div style="background:#141414; padding:30px; border-radius:12px; max-width:800px; margin:0 auto 40px; text-align:left; box-shadow:0 0 15px rgba(100,100,255,.1);">
         <h3><a href="blog/post-1.html" style="color:#bb88ff; font-size:1.6em; text-decoration:none;">¿Por qué sigue dando miedo el cambio?</a></h3>
@@ -240,7 +252,7 @@
       </div>
     </section>
 
-    <!-- FOOTER -->
+    <!-- FOOTER (fondo negro) -->
     <footer style="padding:40px 10%; background:#111; text-align:center; color:#888; font-size:.9em;">
       <div class="footer-contact">
         <a href="tel:+34635673885">📞 +34 635 673 885</a>
@@ -258,5 +270,6 @@
   </script>
 </body>
 </html>
+
 
 
