@@ -118,12 +118,16 @@
     .footer-contact a:hover{ color:#fff }
 
     /* ===== Responsive ===== */
-    @media(max-width:1200px){ .services-grid{grid-template-columns:1fr 1fr} }
+    @media(max-width:1200px){
+      .services-grid{ grid-template-columns:1fr 1fr }
+    }
 
-    /* ===== Mobile right drawer ===== */
+    /* ===== Mobile right drawer + Servicios 1 columna ===== */
     @media(max-width:768px){
-      .menu-toggle{ display:flex }                 /* muestra botón */
-      header nav{                                  /* convierte el nav en panel lateral */
+      .menu-toggle{ display:flex } /* muestra botón */
+
+      /* Drawer lateral derecho */
+      header nav{
         position:fixed; top:80px; right:0;
         height:calc(100vh - 80px); width:min(78vw,320px);
         background:rgba(17,17,17,.98); backdrop-filter:blur(8px);
@@ -137,6 +141,10 @@
       header nav a{ padding:12px 0; font-size:1.1rem }
       header nav.active{ transform:translateX(0) }
       #nav-overlay.active{ opacity:1; pointer-events:auto }
+
+      /* 👉 Restaura Servicios en 1 columna y separa caja/vídeo */
+      .services-grid{ grid-template-columns:1fr; gap:36px; }
+      .service-block{ gap:20px; }
 
       /* Footer responsive */
       footer{ align-items:flex-start }
@@ -286,4 +294,5 @@
   </script>
 </body>
 </html>
+
 
