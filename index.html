@@ -61,7 +61,7 @@
 
     /* ===== HERO ===== */
     .hero{
-      min-height:100vh;
+      min-height:clamp(560px, 80vh, 900px);            /* ↓ menos alto que 100vh por defecto */
       background:image-set(url('assets/c837a6_2119733e838e4a2f8813ebde736f99d5~mv2.avif') type('image/avif') 1x, url('assets/imagen_ampliada_comprimida.jpg') type('image/jpeg') 1x) center/cover no-repeat;
       display:flex; align-items:center; justify-content:flex-start; padding:0 8%; position:relative
     }
@@ -75,7 +75,7 @@
     .services-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:60px; max-width:1600px; margin:0 auto }
     .service-block{ display:flex; flex-direction:column; gap:24px }
 
-    /* ⛏️ Tarjetas: altura adaptativa (evita que "se acorten" en portátiles) */
+    /* Tarjetas (altura adaptativa) */
     .services-intro{
       position:relative;
       min-height:clamp(280px, 28vw, 460px);
@@ -106,10 +106,9 @@
     /* ===== BLOG ===== */
     .blog-home{
       position:relative;
+      /* mantenemos "pantalla completa" pero sin centrar vertical */
       min-height:100vh;
-      padding:60px 8%;
-      display:grid;
-      place-items:center;
+      padding:80px 8%;
       text-align:center; color:#fff;
       background: url('assets/Fondo3.jpg') center/cover no-repeat;
     }
@@ -171,13 +170,41 @@
       header nav.active{ transform:translateX(0) }
       #nav-overlay.active{ opacity:1; pointer-events:auto }
 
-      /* 👉 Restaura Servicios en 1 columna y separa caja/vídeo */
+      /* 👉 Servicios en 1 columna */
       .services-grid{ grid-template-columns:1fr; gap:36px; }
       .service-block{ gap:20px; }
 
       /* Footer responsive */
       footer{ align-items:flex-start }
       .footer-contact{ margin-right:0; margin-bottom:20px }
+    }
+
+    /* 🧳 Portátiles 15–17" (1024–1700px): compactar y subir contenido */
+    @media (min-width:1024px) and (max-width:1700px){
+      .servicios{ padding:80px 6% 60px; }
+      .services-grid{ gap:32px; }
+      .services-intro{ min-height: clamp(240px, 24vw, 380px); margin-bottom:16px; }
+      .services-video{ min-height: clamp(160px, 16vw, 260px); }
+      .hero{ min-height: clamp(520px, 74vh, 760px); }
+      .blog-home{ padding:70px 8%; } /* mismo look, menos aire */
+    }
+
+    /* 🖥️ Monitores grandes (≥ 1500px): evitar “pegote” del blog y hero más corto */
+    @media (min-width:1500px){
+      .hero{ min-height: clamp(520px, 70vh, 780px); }
+      .hero::before{ background: rgba(0,0,0,.45); }
+
+      .servicios{ padding: 90px 8% 90px; }
+      .services-grid{ gap: 44px; }
+      .services-intro{ min-height: clamp(240px, 22vw, 380px); }
+      .services-video{  min-height: clamp(170px, 16vw, 300px); }
+
+      .blog-home{
+        display:block;
+        min-height:auto;             /* ya no ocupa 100vh */
+        padding:90px 8% 110px;
+        background-attachment: fixed;
+      }
     }
   </style>
 </head>
@@ -247,7 +274,7 @@
         <div class="service-block">
           <aside class="services-intro bg3">
             <div class="intro-content">
-              <h3>Porque tu empresa es única, tus soluciones también deben serlo</h3>
+              <h3>Soluciones a medida</h3>
               <p>Cada empresa es distinta. Te damos la herramienta práctica para ahorrar tiempo y dinero en tu día a día.</p>
             </div>
           </aside>
@@ -326,3 +353,4 @@
   </script>
 </body>
 </html>
+
