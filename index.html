@@ -30,6 +30,7 @@
     *{ box-sizing:border-box; margin:0; padding:0 }
     :root{ --bg:#0b0b0b }
     html,body{ width:100%; font-family:'Montserrat',sans-serif; color:#fff; background-color:var(--bg) }
+    section{ scroll-margin-top: 90px; }
 
     /* ===== HEADER ===== */
     header{
@@ -70,12 +71,15 @@
     .hero-text p{ font-size:clamp(1rem, .6vw + .9rem, 1.25rem); margin-bottom:30px; color:#f0f0f0 }
 
     /* ===== SERVICIOS ===== */
-    .servicios{ position:relative; padding:180px 8%; background:#000 }
+    .servicios{ position:relative; padding:140px 8% 120px; background:#000 }
     .services-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:60px; max-width:1600px; margin:0 auto }
     .service-block{ display:flex; flex-direction:column; gap:24px }
 
+    /* ⛏️ Tarjetas: altura adaptativa (evita que "se acorten" en portátiles) */
     .services-intro{
-      position:relative; min-height:280px; border:1px solid rgba(255,255,255,.18); border-radius:12px; overflow:hidden; box-shadow:0 20px 50px rgba(0,0,0,.6);
+      position:relative;
+      min-height:clamp(320px, 32vw, 520px);
+      border:1px solid rgba(255,255,255,.18); border-radius:12px; overflow:hidden; box-shadow:0 20px 50px rgba(0,0,0,.6);
       margin-bottom:30px;
     }
     .services-intro::before{ content:""; position:absolute; inset:0; border-radius:12px; background:linear-gradient(180deg, rgba(0,0,0,.60) 0%, rgba(0,0,0,.40) 100%) }
@@ -87,23 +91,48 @@
     .services-intro.bg2{ background:image-set(url('assets/Prueba3.avif') type('image/avif') 1x, url('assets/imagen_ampliada_comprimida.jpg') type('image/jpeg') 1x) center/cover no-repeat }
     .services-intro.bg3{ background:image-set(url('assets/c837a6_2119733e838e4a2f8813ebde736f99d5~mv2.avif') type('image/avif') 1x, url('assets/imagen_ampliada_comprimida.jpg') type('image/jpeg') 1x) center/cover no-repeat }
 
-    .services-video{ position:relative; border-radius:12px; overflow:hidden; box-shadow:0 20px 50px rgba(0,0,0,.6); isolation:isolate; min-height:220px }
+    .services-video{ position:relative; border-radius:12px; overflow:hidden; box-shadow:0 20px 50px rgba(0,0,0,.6); isolation:isolate; min-height:240px }
     .services-video video{ width:100%; height:100%; object-fit:cover; display:block; filter:brightness(0.9) contrast(1.15) saturate(1.05) }
     .services-video::after{ content:""; position:absolute; inset:0; background:rgba(0,0,0,.40); z-index:1; pointer-events:none }
 
     /* ===== QUIÉNES SOMOS ===== */
-    .about{ padding:80px 8% 110px; background:#000 }
-    .about-split{ display:grid; grid-template-columns:1fr; gap:clamp(60px,7vw,120px); align-items:center; max-width:1500px; margin-inline:auto }
-    .about-hero{ position:relative; height:clamp(540px, 54vh, 660px); border:none; overflow:visible; background:transparent; box-shadow:none; display:grid; place-items:center; isolation:isolate }
+    .about{ padding:50px 8% 70px; background:#000 }
+    .about-split{ display:grid; grid-template-columns:1fr; gap:clamp(40px,6vw,90px); align-items:center; max-width:1500px; margin-inline:auto }
+    .about-hero{ position:relative; height:clamp(360px, 42vh, 520px); border:none; overflow:visible; background:transparent; box-shadow:none; display:grid; place-items:center; isolation:isolate }
     .sparkle-wrap{ position:relative; z-index:2; pointer-events:none }
     .ring-box{ width:min(92%, 820px); aspect-ratio:1/1; position:relative }
     .ring-box > video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; -webkit-mask-image: radial-gradient(circle at 50% 50%, #fff 64%, rgba(255,255,255,0) 76%); mask-image: radial-gradient(circle at 50% 50%, #fff 64%, rgba(255,255,255,0) 76%); filter:brightness(1.15) contrast(1.35) saturate(1.12) }
 
     /* ===== BLOG ===== */
-    .blog-home{ background:#0b0b0b; padding:80px 8%; text-align:center; color:#fff }
-    .blog-min{ max-width:760px; margin:0 auto; display:flex; flex-direction:column; gap:16px; align-items:center }
-    .blog-min h2{ font-weight:800; font-size:clamp(1.6rem,1.4vw + 1.2rem,2.2rem) }
-    .blog-min p{ color:#cfcfcf; max-width:56ch }
+    .blog-home{
+      position:relative;
+      min-height:100vh;
+      padding:60px 8%;
+      display:grid;
+      place-items:center;
+      text-align:center; color:#fff;
+      background: url('assets/Fondo3.jpg') center/cover no-repeat;
+    }
+    .blog-home::before{
+      content:""; position:absolute; inset:0; background:rgba(0,0,0,.55); z-index:0;
+    }
+    .blog-min{ position:relative; z-index:1; width:100%; max-width:980px; margin:0 auto; display:flex; flex-direction:column; gap:20px; align-items:center }
+    .blog-min h2{ font-weight:800; font-size:clamp(1.8rem,1.4vw + 1.2rem,2.4rem) }
+
+    /* Caja minimalista para el texto del blog */
+    .blog-card{
+      width:100%;
+      max-width:740px;
+      padding:26px 28px 32px;
+      border-radius:16px;
+      background:rgba(0,0,0,.45);
+      border:1px solid rgba(255,255,255,.14);
+      backdrop-filter:blur(6px);
+      box-shadow:0 12px 36px rgba(0,0,0,.55);
+      display:flex; flex-direction:column; gap:16px; align-items:center;
+    }
+    .blog-card p{ color:#e9e9e9; max-width:56ch }
+
     .btn{ display:inline-flex; align-items:center; gap:10px; padding:14px 22px; border-radius:999px; font-weight:700; text-decoration:none }
     .btn-gradient{ background:linear-gradient(135deg,#7b6cf9,#b8aaff); color:#111 }
     .btn-gradient:hover{ filter:brightness(1.05) }
@@ -248,8 +277,11 @@
     <section class="blog-home" id="blog">
       <div class="blog-min">
         <h2>Blog</h2>
-        <p>Ideas rápidas sobre datos, automatización y gestión práctica.</p>
-        <a class="btn btn-gradient" href="blog/post-1.html">Leer el primer artículo</a>
+
+        <div class="blog-card">
+          <p>Ideas rápidas sobre datos, automatización y gestión práctica.</p>
+          <a class="btn btn-gradient" href="blog/post-1.html">Leer el primer artículo</a>
+        </div>
       </div>
     </section>
 
@@ -294,5 +326,3 @@
   </script>
 </body>
 </html>
-
-
