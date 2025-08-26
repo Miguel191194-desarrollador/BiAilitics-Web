@@ -7,7 +7,7 @@
   <title>Consultoría en Power BI y Asesoría Empresarial para Empresas Extremeñas</title>
   <meta name="description" content="Soluciones digitales extremeñas: Power BI, asesoría práctica y formularios conectados a Excel. Apoyamos a pymes y cooperativas de Extremadura con tecnología útil y cercana.">
   <link rel="canonical" href="https://www.biailitics.com/" />
-  <link rel="icon" type="image/png" href="/favicon.png"> en mi pantlla de 32 se ve asi todo eso en negro no se llega a ver los servicios y parece un pegote el blog 
+  <link rel="icon" type="image/png" href="/favicon.png">
 
   <script type="application/ld+json">
   {
@@ -103,35 +103,50 @@
     .ring-box{ width:min(92%, 820px); aspect-ratio:1/1; position:relative }
     .ring-box > video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; -webkit-mask-image: radial-gradient(circle at 50% 50%, #fff 64%, rgba(255,255,255,0) 76%); mask-image: radial-gradient(circle at 50% 50%, #fff 64%, rgba(255,255,255,0) 76%); filter:brightness(1.15) contrast(1.35) saturate(1.12) }
 
+    /* ===== SEPARADOR — minimalista ===== */
+    .section-divider{
+      position:relative; z-index:1;
+      width:min(92%,1200px); height:2px; margin:0 auto 28px;
+      background:linear-gradient(90deg, rgba(123,108,249,.10), rgba(184,170,255,.75), rgba(123,108,249,.10));
+      border-radius:999px; box-shadow:0 0 18px rgba(184,170,255,.25);
+    }
+
     /* ===== BLOG ===== */
     .blog-home{
       position:relative;
-      min-height:100vh;
-      padding:60px 8%;
-      display:grid;
-      place-items:center;
+      padding:48px 8% 90px; /* sin min-height: evita ‘pantallazo’ negro */
       text-align:center; color:#fff;
       background: url('assets/Fondo3.jpg') center/cover no-repeat;
     }
     .blog-home::before{
-      content:""; position:absolute; inset:0; background:rgba(0,0,0,.55); z-index:0;
+      content:""; position:absolute; inset:0; background:rgba(0,0,0,.50); z-index:0;
     }
     .blog-min{ position:relative; z-index:1; width:100%; max-width:980px; margin:0 auto; display:flex; flex-direction:column; gap:20px; align-items:center }
     .blog-min h2{ font-weight:800; font-size:clamp(1.8rem,1.4vw + 1.2rem,2.4rem) }
 
-    /* Caja minimalista para el texto del blog */
+    /* Caja minimalista para el texto del blog / artículos */
     .blog-card{
       width:100%;
       max-width:740px;
       padding:26px 28px 32px;
-      border-radius:16px;
+      border-radius:12px;
       background:rgba(0,0,0,.45);
       border:1px solid rgba(255,255,255,.14);
       backdrop-filter:blur(6px);
       box-shadow:0 12px 36px rgba(0,0,0,.55);
-      display:flex; flex-direction:column; gap:16px; align-items:center;
+      display:flex; flex-direction:column; gap:14px; align-items:center;
     }
-    .blog-card p{ color:#e9e9e9; max-width:56ch }
+    .blog-card p{ color:#e9e9e9; max-width:60ch; line-height:1.55 }
+
+    .kicker{
+      display:inline-block; font-weight:700; font-size:.78rem; letter-spacing:.04em;
+      padding:6px 10px; border-radius:999px;
+      background:rgba(184,170,255,.12); border:1px solid rgba(184,170,255,.4); color:#e7e1ff;
+    }
+
+    .blog-card h3{ font-size:clamp(1.1rem, .7vw + 1rem, 1.45rem); font-weight:800; }
+    .blog-image img{ width:100%; height:auto; display:block; border-radius:10px; object-fit:cover }
+    .blog-image figcaption{ font-size:.9rem; color:#cfcfcf; margin-top:8px }
 
     .btn{ display:inline-flex; align-items:center; gap:10px; padding:14px 22px; border-radius:999px; font-weight:700; text-decoration:none }
     .btn-gradient{ background:linear-gradient(135deg,#7b6cf9,#b8aaff); color:#111 }
@@ -275,13 +290,25 @@
     </section>
 
     <section class="blog-home" id="blog">
+      <!-- Línea separadora minimalista -->
+      <div class="section-divider" aria-hidden="true"></div>
+
       <div class="blog-min">
         <h2>Blog</h2>
 
-        <div class="blog-card">
-          <p>Ideas rápidas sobre datos, automatización y gestión práctica.</p>
+        <!-- Tarjeta 1: Primer artículo -->
+        <article class="blog-card">
+          <span class="kicker">Nuevo</span>
+          <h3>Miedo al cambio: por qué frena la IA en Extremadura</h3>
+          <p>Las pymes extremeñas suelen pararse por tres miedos: perder control, costes y falta de tiempo.</p>
           <a class="btn btn-gradient" href="blog/post-1.html">Leer el primer artículo</a>
-        </div>
+        </article>
+
+        <!-- Tarjeta 2: Imagen destacada -->
+        <figure class="blog-card blog-image">
+          <img src="assets/eye-4063134_1280.jpg" alt="Ilustración de un ojo tecnológico sobre fondo oscuro">
+          <figcaption>Próximamente: automatizaciones sencillas que ahorran horas cada semana.</figcaption>
+        </figure>
       </div>
     </section>
 
@@ -326,3 +353,4 @@
   </script>
 </body>
 </html>
+
