@@ -75,7 +75,6 @@
     .services-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:60px; max-width:1600px; margin:0 auto }
     .service-block{ display:flex; flex-direction:column; gap:24px }
 
-    /* ⛏️ Tarjetas: altura adaptativa (evita que "se acorten" en portátiles) */
     .services-intro{
       position:relative;
       min-height:clamp(280px, 28vw, 460px);
@@ -95,15 +94,7 @@
     .services-video video{ width:100%; height:100%; object-fit:cover; display:block; filter:brightness(0.9) contrast(1.15) saturate(1.05) }
     .services-video::after{ content:""; position:absolute; inset:0; background:rgba(0,0,0,.40); z-index:1; pointer-events:none }
 
-    /* ===== QUIÉNES SOMOS ===== */
-    .about{ padding:50px 8% 70px; background:#000 }
-    .about-split{ display:grid; grid-template-columns:1fr; gap:clamp(40px,6vw,90px); align-items:center; max-width:1500px; margin-inline:auto }
-    .about-hero{ position:relative; height:clamp(360px, 42vh, 520px); border:none; overflow:visible; background:transparent; box-shadow:none; display:grid; place-items:center; isolation:isolate }
-    .sparkle-wrap{ position:relative; z-index:2; pointer-events:none }
-    .ring-box{ width:min(92%, 820px); aspect-ratio:1/1; position:relative }
-    .ring-box > video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; -webkit-mask-image: radial-gradient(circle at 50% 50%, #fff 64%, rgba(255,255,255,0) 76%); mask-image: radial-gradient(circle at 50% 50%, #fff 64%, rgba(255,255,255,0) 76%); filter:brightness(1.15) contrast(1.35) saturate(1.12) }
-
-    /* ===== SEPARADOR — minimalista ===== */
+    /* ===== SEPARADOR (para blog) ===== */
     .section-divider{
       position:relative; z-index:1;
       width:min(92%,1200px); height:2px; margin:0 auto 28px;
@@ -114,7 +105,7 @@
     /* ===== BLOG ===== */
     .blog-home{
       position:relative;
-      padding:48px 8% 90px; /* sin min-height: evita ‘pantallazo’ negro */
+      padding:48px 8% 90px;
       text-align:center; color:#fff;
       background: url('assets/Fondo3.jpg') center/cover no-repeat;
     }
@@ -124,7 +115,6 @@
     .blog-min{ position:relative; z-index:1; width:100%; max-width:980px; margin:0 auto; display:flex; flex-direction:column; gap:20px; align-items:center }
     .blog-min h2{ font-weight:800; font-size:clamp(1.8rem,1.4vw + 1.2rem,2.4rem) }
 
-    /* Caja minimalista para el texto del blog / artículos */
     .blog-card{
       width:100%;
       max-width:740px;
@@ -166,11 +156,8 @@
       .services-grid{ grid-template-columns:1fr 1fr }
     }
 
-    /* ===== Mobile right drawer + Servicios 1 columna ===== */
     @media(max-width:768px){
-      .menu-toggle{ display:flex } /* muestra botón */
-
-      /* Drawer lateral derecho */
+      .menu-toggle{ display:flex }
       header nav{
         position:fixed; top:80px; right:0;
         height:calc(100vh - 80px); width:min(78vw,320px);
@@ -186,11 +173,9 @@
       header nav.active{ transform:translateX(0) }
       #nav-overlay.active{ opacity:1; pointer-events:auto }
 
-      /* 👉 Restaura Servicios en 1 columna y separa caja/vídeo */
       .services-grid{ grid-template-columns:1fr; gap:36px; }
       .service-block{ gap:20px; }
 
-      /* Footer responsive */
       footer{ align-items:flex-start }
       .footer-contact{ margin-right:0; margin-bottom:20px }
     }
@@ -203,7 +188,6 @@
       <span class="brand-name">BiAilitics Data</span>
     </div>
 
-    <!-- Botón hamburguesa (derecha) -->
     <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
@@ -215,7 +199,6 @@
     </nav>
   </header>
 
-  <!-- Overlay para cerrar el menú tocando fuera (solo móvil) -->
   <div id="nav-overlay"></div>
 
   <main>
@@ -275,28 +258,12 @@
       </div>
     </section>
 
-    <section class="about" id="sobre-mi">
-      <div class="about-split">
-        <aside class="about-hero">
-          <div class="sparkle-wrap">
-            <div class="ring-box">
-              <video autoplay muted loop playsinline preload="auto">
-                <source src="assets/assetsring.mp4" type="video/mp4">
-              </video>
-            </div>
-          </div>
-        </aside>
-      </div>
-    </section>
-
     <section class="blog-home" id="blog">
-      <!-- Línea separadora minimalista -->
       <div class="section-divider" aria-hidden="true"></div>
 
       <div class="blog-min">
         <h2>Blog</h2>
 
-        <!-- Tarjeta 1: Primer artículo -->
         <article class="blog-card">
           <span class="kicker">Nuevo</span>
           <h3>Miedo al cambio: por qué frena la IA en Extremadura</h3>
@@ -304,7 +271,6 @@
           <a class="btn btn-gradient" href="blog/post-1.html">Leer el primer artículo</a>
         </article>
 
-        <!-- Tarjeta 2: Imagen destacada -->
         <figure class="blog-card blog-image">
           <img src="assets/eye-4063134_1280.jpg" alt="Ilustración de un ojo tecnológico sobre fondo oscuro">
           <figcaption>Próximamente: automatizaciones sencillas que ahorran horas cada semana.</figcaption>
