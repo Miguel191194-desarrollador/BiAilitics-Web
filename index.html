@@ -106,34 +106,45 @@
     /* ===== METODOLOGÍA ===== */
     .metodologia{
       position:relative; padding:120px 8% 120px; text-align:center;
-      background:
-        radial-gradient(1200px 600px at 20% -10%, rgba(184,170,255,.10), transparent 60%),
-        radial-gradient(1200px 600px at 80% 110%, rgba(123,108,249,.08), transparent 60%),
-        #0f0f10;
+      background: url('assets/Fondo3.jpg') center/cover no-repeat;
     }
+    .metodologia::before{
+      content:""; position:absolute; inset:0; z-index:0;
+      background: linear-gradient(180deg, rgba(0,0,0,.65), rgba(0,0,0,.65));
+    }
+    .metodologia > *{ position:relative; z-index:1 }
+
     .metodologia h2{ font-weight:800; font-size:clamp(1.9rem,1.5vw + 1.2rem,2.5rem); margin-bottom:60px }
+
     .metodologia-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:50px; max-width:1400px; margin:0 auto; text-align:left }
 
     .metodologia-card{
-      background:rgba(255,255,255,.04);
+      background:rgba(0,0,0,.55);
       border:1px solid rgba(255,255,255,.10);
       border-radius:14px; padding:26px; box-shadow:0 10px 30px rgba(0,0,0,.45)
     }
-    .metodologia-card h3{ font-size:1.5rem; font-weight:800; margin-bottom:16px }
+    /* TITULOS un poco más grandes y en una sola línea (escritorio) */
+    .metodologia-card h3{
+      font-size:clamp(1.1rem, 0.9vw + 1rem, 1.35rem);
+      font-weight:800; margin-bottom:16px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+    }
+    @media(max-width:768px){
+      .metodologia-card h3{ white-space:normal } /* en móvil puede partir línea */
+    }
+
     .metodologia-card p{ color:#ddd; font-size:1.05rem; line-height:1.65; margin-bottom:14px }
 
-    /* Marco para imágenes claras (fondo blanco) */
+    /* Imágenes mismo tamaño (recorte suave) */
     .method-image{
       position:relative; border-radius:12px; overflow:hidden;
-      background:linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,255,255,.82));
+      background:linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,255,255,.85));
       border:1px solid rgba(255,255,255,.28);
-      box-shadow:
-        0 12px 26px rgba(0,0,0,.45),
-        0 0 0 1px rgba(255,255,255,.06) inset;
+      box-shadow:0 12px 26px rgba(0,0,0,.45), 0 0 0 1px rgba(255,255,255,.06) inset;
       margin:-4px -4px 18px; padding:10px;
+      aspect-ratio: 16 / 10; /* asegura mismo alto-ancho visual */
     }
     .method-image img{
-      width:100%; height:auto; display:block; border-radius:10px;
+      width:100%; height:100%; display:block; border-radius:10px; object-fit:cover;
       filter:contrast(1.02) saturate(1.03);
     }
     .method-image::after{
@@ -142,7 +153,7 @@
       pointer-events:none;
     }
 
-    /* Lista numerada continua con separadores sutiles */
+    /* Lista numerada continua + separadores sutiles */
     .metodologia-card ol{ list-style:none; counter-reset:item; padding-left:0; margin:0 }
     .metodologia-card li{
       counter-increment:item; padding:12px 0;
@@ -163,15 +174,12 @@
       border-radius:999px; box-shadow:0 0 18px rgba(184,170,255,.25);
     }
 
-    /* ===== BLOG ===== */
+    /* ===== BLOG (fondo liso ahora) ===== */
     .blog-home{
       position:relative;
       padding:48px 8% 90px;
       text-align:center; color:#fff;
-      background: url('assets/Fondo3.jpg') center/cover no-repeat;
-    }
-    .blog-home::before{
-      content:""; position:absolute; inset:0; background:rgba(0,0,0,.50); z-index:0;
+      background:#0b0b0b;
     }
     .blog-min{ position:relative; z-index:1; width:100%; max-width:980px; margin:0 auto; display:flex; flex-direction:column; gap:20px; align-items:center }
     .blog-min h2{ font-weight:800; font-size:clamp(1.8rem,1.4vw + 1.2rem,2.4rem) }
