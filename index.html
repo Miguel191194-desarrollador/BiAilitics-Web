@@ -104,13 +104,56 @@
     .services-video::after{ content:""; position:absolute; inset:0; background:rgba(0,0,0,.40); z-index:1; pointer-events:none }
 
     /* ===== METODOLOGÍA ===== */
-    .metodologia{ position:relative; padding:120px 8% 120px; background:#0b0b0b; text-align:center }
-    .metodologia h2{ font-weight:800; font-size:clamp(1.8rem,1.4vw + 1.2rem,2.4rem); margin-bottom:60px }
+    .metodologia{
+      position:relative; padding:120px 8% 120px; text-align:center;
+      background:
+        radial-gradient(1200px 600px at 20% -10%, rgba(184,170,255,.10), transparent 60%),
+        radial-gradient(1200px 600px at 80% 110%, rgba(123,108,249,.08), transparent 60%),
+        #0f0f10;
+    }
+    .metodologia h2{ font-weight:800; font-size:clamp(1.9rem,1.5vw + 1.2rem,2.5rem); margin-bottom:60px }
     .metodologia-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:50px; max-width:1400px; margin:0 auto; text-align:left }
-    .metodologia-card{ background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.12); border-radius:12px; padding:28px 26px; box-shadow:0 8px 28px rgba(0,0,0,.5) }
-    .metodologia-card h3{ font-size:1.35rem; font-weight:800; margin-bottom:14px }
-    .metodologia-card p, .metodologia-card li{ color:#ddd; font-size:.95rem; line-height:1.55 }
-    .metodologia-card ul{ padding-left:20px; list-style:disc }
+
+    .metodologia-card{
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:14px; padding:26px; box-shadow:0 10px 30px rgba(0,0,0,.45)
+    }
+    .metodologia-card h3{ font-size:1.5rem; font-weight:800; margin-bottom:16px }
+    .metodologia-card p{ color:#ddd; font-size:1.05rem; line-height:1.65; margin-bottom:14px }
+
+    /* Marco para imágenes claras (fondo blanco) */
+    .method-image{
+      position:relative; border-radius:12px; overflow:hidden;
+      background:linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,255,255,.82));
+      border:1px solid rgba(255,255,255,.28);
+      box-shadow:
+        0 12px 26px rgba(0,0,0,.45),
+        0 0 0 1px rgba(255,255,255,.06) inset;
+      margin:-4px -4px 18px; padding:10px;
+    }
+    .method-image img{
+      width:100%; height:auto; display:block; border-radius:10px;
+      filter:contrast(1.02) saturate(1.03);
+    }
+    .method-image::after{
+      content:""; position:absolute; inset:0;
+      background:radial-gradient(70% 70% at 50% 50%, rgba(0,0,0,.04), transparent 60%);
+      pointer-events:none;
+    }
+
+    /* Lista numerada continua con separadores sutiles */
+    .metodologia-card ol{ list-style:none; counter-reset:item; padding-left:0; margin:0 }
+    .metodologia-card li{
+      counter-increment:item; padding:12px 0;
+      font-size:1.05rem; color:#eee; line-height:1.6;
+      border-bottom:1px solid rgba(255,255,255,.09);
+    }
+    .metodologia-card li::before{
+      content: counter(item) ". ";
+      font-weight:800; color:#b8aaff; margin-right:2px;
+    }
+    .metodologia-card li:last-child{ border-bottom:none }
 
     /* ===== SEPARADOR (para blog) ===== */
     .section-divider{
@@ -224,6 +267,7 @@
   <div id="nav-overlay"></div>
 
   <main>
+    <!-- HERO -->
     <section class="hero" id="inicio">
       <div class="hero-text">
         <h1>
@@ -234,13 +278,14 @@
       </div>
     </section>
 
+    <!-- SERVICIOS -->
     <section class="servicios" id="servicios">
       <div class="services-grid">
         <div class="service-block">
           <aside class="services-intro bg1">
             <div class="intro-content">
               <h3>Haz que tus datos te lleven a un nivel superior</h3>
-              <p>Olvídate de horas en Excel. Ten tu empresa clara de un vistazo y gana tiempo para lo importante.</p>
+              <p>Agrupamos todos los datos relevantes para tu negocio en un único modelo, sin importar su formato, para que puedas analizarlos fácilmente y anticiparte al futuro con Microsoft Power BI.</p>
             </div>
           </aside>
           <div class="services-video">
@@ -254,7 +299,7 @@
           <aside class="services-intro bg2">
             <div class="intro-content">
               <h3>Tus decisiones, más rápidas y seguras</h3>
-              <p>Controla tus <strong>compras</strong>, <strong>ventas</strong> y <strong>almacén</strong> con informes automáticos. La información justa, cuando la necesitas. Además, recibe <strong>asesoramiento empresarial cercano</strong>.</p>
+              <p>Controla tus <strong>compras</strong>, <strong>ventas</strong> y <strong>almacén</strong> con informes automáticos y fáciles de leer. Tendrás la información clara, justo cuando la necesitas, y además contarás con nuestro asesoramiento cercano.</p>
             </div>
           </aside>
           <div class="services-video">
@@ -267,8 +312,8 @@
         <div class="service-block">
           <aside class="services-intro bg3">
             <div class="intro-content">
-              <h3>Soluciones a medida</h3>
-              <p>Cada empresa es distinta. Te damos la herramienta práctica para ahorrar tiempo y dinero en tu día a día.</p>
+              <h3>Mejora de procesos</h3>
+              <p>Te aportamos nuestra experiencia y capacitación en consultoría sobre mejora de procesos de negocios. Implementamos y desarrollamos herramientas digitales para profesionalizar tus procedimientos.</p>
             </div>
           </aside>
           <div class="services-video">
@@ -284,41 +329,54 @@
     <section class="metodologia" id="metodologia">
       <h2>Nuestra Metodología</h2>
       <div class="metodologia-grid">
+        <!-- Card 1 -->
         <div class="metodologia-card">
+          <div class="method-image">
+            <img src="assets/1.png" alt="Análisis de necesidades - Metodología paso 1">
+          </div>
           <h3>🔎 Análisis de necesidades</h3>
-          <p>Para dar comienzo a la creación de un proyecto a medida con Power BI, realizamos un análisis de tu compañía para determinar:</p>
-          <ul>
-            <li>Hacia dónde quiere ir la empresa y dónde se va a posicionar en los próximos años, teniendo en cuenta las necesidades de información actuales y futuras.</li>
-            <li>Qué herramientas de reporting podrán ayudarte a cumplir mejor con tus objetivos y diseñar un plan de implantación de estas.</li>
-            <li>Qué tipo de infraestructura para recopilar datos se adecúa más a las necesidades de tu negocio: en tus instalaciones, en nube pública, en nube privada o un sistema mixto.</li>
-            <li>Los principales KPIs en función del sector y de los objetivos fijados en el plan estratégico del negocio.</li>
-          </ul>
+          <p>Para iniciar un proyecto a medida con Power BI, analizamos tu compañía para determinar:</p>
+          <ol start="1">
+            <li>Hacia dónde quiere ir la empresa y su posicionamiento en los próximos años.</li>
+            <li>Qué herramientas de reporting te ayudan mejor a cumplir objetivos.</li>
+            <li>Qué infraestructura de datos encaja: on-premise, nube pública, privada o mixta.</li>
+            <li>Cuáles son los KPIs clave según sector y objetivos estratégicos.</li>
+          </ol>
         </div>
 
+        <!-- Card 2 -->
         <div class="metodologia-card">
+          <div class="method-image">
+            <img src="assets/2.png" alt="Diseño de proyecto Power BI - Metodología paso 2">
+          </div>
           <h3>🛠️ Diseño de proyecto Power BI</h3>
-          <p>En función de las necesidades y los recursos internos de tu empresa, diseñamos un plan de implantación del proyecto Power BI, en el que tenemos en cuenta:</p>
-          <ul>
-            <li>Áreas donde va a tener un mayor impacto positivo con menor esfuerzo. Estructura progresiva para ver resultados a corto plazo.</li>
-            <li>Cómo es el acceso a la información de tu empresa y la mejor visualización desde diferentes dispositivos.</li>
-            <li>Cómo se va a hacer la entrega de la información: inmediatez requerida, volumetría y concurrencia de accesos.</li>
-            <li>Calendario y equipo que va a participar en el desarrollo del proyecto.</li>
-          </ul>
+          <p>Con tus necesidades y recursos, definimos un plan de implantación teniendo en cuenta:</p>
+          <ol start="5">
+            <li>Áreas de mayor impacto con menor esfuerzo (resultados a corto plazo).</li>
+            <li>Acceso a la información y visualización óptima en cada dispositivo.</li>
+            <li>Entrega: inmediatez requerida, volumetría y concurrencia de accesos.</li>
+            <li>Calendario y equipo participante en el desarrollo.</li>
+          </ol>
         </div>
 
+        <!-- Card 3 -->
         <div class="metodologia-card">
+          <div class="method-image">
+            <img src="assets/3.png" alt="Implantación de proyecto Power BI - Metodología paso 3">
+          </div>
           <h3>🚀 Implantación de proyecto Power BI</h3>
-          <p>Una vez analizada la situación y definido el diseño, procedemos a la implantación siguiendo la metodología de Golive:</p>
-          <ul>
-            <li>Gestión del proyecto conjunta: tu equipo y el nuestro, implicación 100%.</li>
-            <li>Explicamos la implantación y formamos a tu equipo interno.</li>
+          <p>Con el diseño definido, implantamos siguiendo nuestra metodología:</p>
+          <ol start="9">
+            <li>Gestión del proyecto conjunta con tu equipo.</li>
+            <li>Explicación de la implantación y formación interna.</li>
             <li>Puesta en marcha progresiva por áreas o departamentos.</li>
-            <li>Adaptación continua siguiendo el ciclo de modelado, materialización, construcción, diseño y entrega.</li>
-          </ul>
+            <li>Adaptación continua: modelado, materialización, construcción, diseño y entrega.</li>
+          </ol>
         </div>
       </div>
     </section>
 
+    <!-- BLOG -->
     <section class="blog-home" id="blog">
       <div class="section-divider" aria-hidden="true"></div>
 
@@ -339,6 +397,7 @@
       </div>
     </section>
 
+    <!-- FOOTER -->
     <footer>
       <div class="footer-contact">
         <a href="tel:+34635673885">📞 +34 635 673 885</a>
