@@ -35,8 +35,6 @@
     gtag('config', 'G-4PDXDV406W');
   </script>
 
-
-  
   <style>
     *{ box-sizing:border-box; margin:0; padding:0 }
     :root{ --bg:#0b0b0b }
@@ -105,6 +103,15 @@
     .services-video video{ width:100%; height:100%; object-fit:cover; display:block; filter:brightness(0.9) contrast(1.15) saturate(1.05) }
     .services-video::after{ content:""; position:absolute; inset:0; background:rgba(0,0,0,.40); z-index:1; pointer-events:none }
 
+    /* ===== METODOLOGÍA ===== */
+    .metodologia{ position:relative; padding:120px 8% 120px; background:#0b0b0b; text-align:center }
+    .metodologia h2{ font-weight:800; font-size:clamp(1.8rem,1.4vw + 1.2rem,2.4rem); margin-bottom:60px }
+    .metodologia-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:50px; max-width:1400px; margin:0 auto; text-align:left }
+    .metodologia-card{ background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.12); border-radius:12px; padding:28px 26px; box-shadow:0 8px 28px rgba(0,0,0,.5) }
+    .metodologia-card h3{ font-size:1.35rem; font-weight:800; margin-bottom:14px }
+    .metodologia-card p, .metodologia-card li{ color:#ddd; font-size:.95rem; line-height:1.55 }
+    .metodologia-card ul{ padding-left:20px; list-style:disc }
+
     /* ===== SEPARADOR (para blog) ===== */
     .section-divider{
       position:relative; z-index:1;
@@ -165,6 +172,7 @@
     /* ===== Responsive ===== */
     @media(max-width:1200px){
       .services-grid{ grid-template-columns:1fr 1fr }
+      .metodologia-grid{ grid-template-columns:1fr 1fr }
     }
 
     @media(max-width:768px){
@@ -187,6 +195,8 @@
       .services-grid{ grid-template-columns:1fr; gap:36px; }
       .service-block{ gap:20px; }
 
+      .metodologia-grid{ grid-template-columns:1fr; gap:36px; }
+
       footer{ align-items:flex-start }
       .footer-contact{ margin-right:0; margin-bottom:20px }
     }
@@ -206,6 +216,7 @@
     <nav id="nav-menu" aria-hidden="true">
       <a href="#inicio">Inicio</a>
       <a href="#servicios">Servicios</a>
+      <a href="#metodologia">Metodología</a>
       <a href="#blog">Blog</a>
     </nav>
   </header>
@@ -265,6 +276,45 @@
               <source src="assets/Miguel2.mp4" type="video/mp4">
             </video>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- METODOLOGÍA -->
+    <section class="metodologia" id="metodologia">
+      <h2>Nuestra Metodología</h2>
+      <div class="metodologia-grid">
+        <div class="metodologia-card">
+          <h3>🔎 Análisis de necesidades</h3>
+          <p>Para dar comienzo a la creación de un proyecto a medida con Power BI, realizamos un análisis de tu compañía para determinar:</p>
+          <ul>
+            <li>Hacia dónde quiere ir la empresa y dónde se va a posicionar en los próximos años, teniendo en cuenta las necesidades de información actuales y futuras.</li>
+            <li>Qué herramientas de reporting podrán ayudarte a cumplir mejor con tus objetivos y diseñar un plan de implantación de estas.</li>
+            <li>Qué tipo de infraestructura para recopilar datos se adecúa más a las necesidades de tu negocio: en tus instalaciones, en nube pública, en nube privada o un sistema mixto.</li>
+            <li>Los principales KPIs en función del sector y de los objetivos fijados en el plan estratégico del negocio.</li>
+          </ul>
+        </div>
+
+        <div class="metodologia-card">
+          <h3>🛠️ Diseño de proyecto Power BI</h3>
+          <p>En función de las necesidades y los recursos internos de tu empresa, diseñamos un plan de implantación del proyecto Power BI, en el que tenemos en cuenta:</p>
+          <ul>
+            <li>Áreas donde va a tener un mayor impacto positivo con menor esfuerzo. Estructura progresiva para ver resultados a corto plazo.</li>
+            <li>Cómo es el acceso a la información de tu empresa y la mejor visualización desde diferentes dispositivos.</li>
+            <li>Cómo se va a hacer la entrega de la información: inmediatez requerida, volumetría y concurrencia de accesos.</li>
+            <li>Calendario y equipo que va a participar en el desarrollo del proyecto.</li>
+          </ul>
+        </div>
+
+        <div class="metodologia-card">
+          <h3>🚀 Implantación de proyecto Power BI</h3>
+          <p>Una vez analizada la situación y definido el diseño, procedemos a la implantación siguiendo la metodología de Golive:</p>
+          <ul>
+            <li>Gestión del proyecto conjunta: tu equipo y el nuestro, implicación 100%.</li>
+            <li>Explicamos la implantación y formamos a tu equipo interno.</li>
+            <li>Puesta en marcha progresiva por áreas o departamentos.</li>
+            <li>Adaptación continua siguiendo el ciclo de modelado, materialización, construcción, diseño y entrega.</li>
+          </ul>
         </div>
       </div>
     </section>
