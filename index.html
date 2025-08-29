@@ -141,7 +141,8 @@
       border:1px solid rgba(255,255,255,.28);
       box-shadow:0 12px 26px rgba(0,0,0,.45), 0 0 0 1px rgba(255,255,255,.06) inset;
       margin:-4px -4px 18px; padding:10px;
-      aspect-ratio: 16 / 10; /* asegura mismo alto-ancho visual */
+      /* MOD: altura uniforme para todas las cajas de metodología */
+      height: clamp(180px, 20vw, 220px);
     }
     .method-image img{
       width:100%; height:100%; display:block; border-radius:10px; object-fit:cover;
