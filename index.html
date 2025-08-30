@@ -103,10 +103,18 @@
     .services-video video{ width:100%; height:100%; object-fit:cover; display:block; filter:brightness(0.9) contrast(1.15) saturate(1.05) }
     .services-video::after{ content:""; position:absolute; inset:0; background:rgba(0,0,0,.40); z-index:1; pointer-events:none }
 
-    /* ===== METODOLOGÍA (minimal) ===== */
+    /* ===== SEPARADOR (reutilizable) ===== */
+    .section-divider{
+      position:relative; z-index:1;
+      width:min(92%,1200px); height:2px; margin:0 auto 28px;
+      background:linear-gradient(90deg, rgba(123,108,249,.10), rgba(184,170,255,.75), rgba(123,108,249,.10));
+      border-radius:999px; box-shadow:0 0 18px rgba(184,170,255,.25);
+    }
+
+    /* ===== METODOLOGÍA (minimal + fondos por tarjeta) ===== */
     .metodologia{
       position:relative; padding:100px 8%; text-align:center;
-      background:#0b0b0b; /* minimal: fondo liso */
+      background:#0b0b0b;
     }
     .metodologia h2{
       font-weight:800; font-size:clamp(2rem,1.8vw + 1.4rem,2.8rem); margin-bottom:46px;
@@ -114,28 +122,45 @@
     .meto-wrap{
       display:grid; gap:28px; max-width:1200px; margin:0 auto; text-align:left;
     }
+
+    /* Fila base con grid areas (seguro para alternar) */
     .meto-row{
-      display:grid; grid-template-columns: 1fr 1fr; gap:24px;
-      align-items:stretch; /* imagen y texto misma altura */
-      background:rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.1);
-      border-radius:14px; overflow:hidden;
+      position:relative;
+      display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+      grid-template-areas:"img txt";
+      gap:24px; align-items:stretch; overflow:hidden;
+      border:1px solid rgba(255,255,255,.12); border-radius:14px;
+      background:#0d0d0d;
     }
-    .meto-row.reverse .meto-img{ grid-column:2; }
-    .meto-row.reverse .meto-text{ grid-column:1; }
-    .meto-img{ position:relative; display:block; }
-    .meto-img .frame{ position:relative; height:100%; width:100%; overflow:hidden; }
+    .meto-row.reverse{ grid-template-areas:"txt img"; }
+    .meto-row::after{
+      content:""; position:absolute; inset:0; pointer-events:none;
+      background:rgba(0,0,0,.35); /* oscurecido para legibilidad */
+      mix-blend-mode:normal;
+    }
+    /* Fondos por tarjeta (usa assets existentes) */
+    .meto-row.bg1{ background-image:image-set(url('assets/Fondo3.jpg') type('image/jpeg') 1x); background-size:cover; background-position:center; }
+    .meto-row.bg2{ background-image:image-set(url('assets/Prueba3.avif') type('image/avif') 1x, url('assets/imagen_ampliada_comprimida.jpg') type('image/jpeg') 1x); background-size:cover; background-position:center; }
+    .meto-row.bg3{ background-image:image-set(url('assets/ImagenNueva.avif') type('image/avif') 1x, url('assets/imagen_ampliada_comprimida.jpg') type('image/jpeg') 1x); background-size:cover; background-position:center; }
+
+    /* Imagen – ocupa el área "img" y cuadra en altura con el texto */
+    .meto-img{ grid-area:img; position:relative; display:block; z-index:1; }
+    .meto-img .frame{ position:relative; height:100%; width:100%; overflow:hidden; border-radius:12px; }
     .meto-img img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+    /* Texto – ocupa el área "txt" */
     .meto-text{
+      grid-area:txt; z-index:1;
       display:flex; flex-direction:column; justify-content:center;
       padding:28px clamp(18px, 2.5vw, 36px);
+      backdrop-filter:blur(0.5px);
     }
     .meto-text h3{
-      font-size:clamp(1.35rem, 1vw + 1.1rem, 1.7rem); /* más grande */
+      font-size:clamp(1.45rem, 1vw + 1.2rem, 1.8rem);
       font-weight:800; margin-bottom:12px;
     }
     .meto-text p{
-      color:#eaeaea; font-size:clamp(1.05rem, .5vw + 1rem, 1.2rem); /* más grande */
+      color:#eaeaea; font-size:clamp(1.05rem, .5vw + 1rem, 1.2rem);
       line-height:1.7; margin-bottom:14px;
     }
     .meto-list{
@@ -145,31 +170,29 @@
     .meto-list li{
       position:relative; padding-left:22px;
       color:#f2f2f2; font-size:clamp(1rem, .5vw + .95rem, 1.15rem); line-height:1.6;
-      border-bottom:1px solid rgba(255,255,255,.08);
+      border-bottom:1px solid rgba(255,255,255,.10);
     }
     .meto-list li:last-child{ border-bottom:none; }
     .meto-list li::before{
       content:""; position:absolute; left:0; top:0.8em;
       width:8px; height:8px; border-radius:50%;
-      background:#b8aaff; /* mismo color que los números antes */
+      background:#b8aaff;
     }
+
+    /* Responsive */
     @media(max-width: 900px){
-      .meto-row{ grid-template-columns: 1fr; }
-      .meto-row.reverse .meto-img{ grid-column:auto; }
-      .meto-row.reverse .meto-text{ grid-column:auto; }
-      .meto-img{ height:220px; } /* altura amable en móvil */
+      .meto-row,
+      .meto-row.reverse{
+        grid-template-columns:1fr;
+        grid-template-areas:
+          "img"
+          "txt";
+      }
+      .meto-img{ height:220px; }
       .meto-img .frame{ height:100%; }
     }
 
-    /* ===== SEPARADOR (para blog) ===== */
-    .section-divider{
-      position:relative; z-index:1;
-      width:min(92%,1200px); height:2px; margin:0 auto 28px;
-      background:linear-gradient(90deg, rgba(123,108,249,.10), rgba(184,170,255,.75), rgba(123,108,249,.10));
-      border-radius:999px; box-shadow:0 0 18px rgba(184,170,255,.25);
-    }
-
-    /* ===== BLOG (fondo liso ahora) ===== */
+    /* ===== BLOG ===== */
     .blog-home{
       position:relative;
       padding:48px 8% 90px;
@@ -218,9 +241,7 @@
     /* ===== Responsive ===== */
     @media(max-width:1200px){
       .services-grid{ grid-template-columns:1fr 1fr }
-      /* (el grid de metodología ya se adapta solo) */
     }
-
     @media(max-width:768px){
       .menu-toggle{ display:flex }
       header nav{
@@ -228,19 +249,14 @@
         height:calc(100vh - 80px); width:min(78vw,320px);
         background:rgba(17,17,17,.98); backdrop-filter:blur(8px);
         border-left:1px solid #2d2d2d;
-        display:flex; flex-direction:column; gap:12px;
-        padding:22px;
-        transform:translateX(100%);
-        transition:transform .25s ease;
-        z-index:10;
+        display:flex; flex-direction:column; gap:12px; padding:22px;
+        transform:translateX(100%); transition:transform .25s ease; z-index:10;
       }
       header nav a{ padding:12px 0; font-size:1.1rem }
       header nav.active{ transform:translateX(0) }
       #nav-overlay.active{ opacity:1; pointer-events:auto }
-
       .services-grid{ grid-template-columns:1fr; gap:36px; }
       .service-block{ gap:20px; }
-
       footer{ align-items:flex-start }
       .footer-contact{ margin-right:0; margin-bottom:20px }
     }
@@ -326,12 +342,15 @@
       </div>
     </section>
 
-    <!-- METODOLOGÍA (NUEVA) -->
+    <!-- NUEVO SEPARADOR entre Servicios y Metodología -->
+    <div class="section-divider" aria-hidden="true"></div>
+
+    <!-- METODOLOGÍA -->
     <section class="metodologia" id="metodologia">
       <h2>Nuestra Metodología</h2>
       <div class="meto-wrap">
         <!-- 1) Imagen izquierda / Texto derecha -->
-        <article class="meto-row">
+        <article class="meto-row bg1">
           <figure class="meto-img">
             <div class="frame">
               <img src="assets/1.png" alt="Análisis de necesidades - Metodología paso 1">
@@ -349,8 +368,8 @@
           </div>
         </article>
 
-        <!-- 2) Imagen derecha / Texto izquierda -->
-        <article class="meto-row reverse">
+        <!-- 2) Texto izquierda / Imagen derecha -->
+        <article class="meto-row reverse bg2">
           <figure class="meto-img">
             <div class="frame">
               <img src="assets/2.png" alt="Diseño de proyecto Power BI - Metodología paso 2">
@@ -369,7 +388,7 @@
         </article>
 
         <!-- 3) Imagen izquierda / Texto derecha -->
-        <article class="meto-row">
+        <article class="meto-row bg3">
           <figure class="meto-img">
             <div class="frame">
               <img src="assets/3.png" alt="Implantación de proyecto Power BI - Metodología paso 3">
@@ -389,10 +408,11 @@
       </div>
     </section>
 
+    <!-- SEPARADOR Metodología → Blog -->
+    <div class="section-divider" aria-hidden="true"></div>
+
     <!-- BLOG -->
     <section class="blog-home" id="blog">
-      <div class="section-divider" aria-hidden="true"></div>
-
       <div class="blog-min">
         <h2>Blog</h2>
 
