@@ -103,69 +103,63 @@
     .services-video video{ width:100%; height:100%; object-fit:cover; display:block; filter:brightness(0.9) contrast(1.15) saturate(1.05) }
     .services-video::after{ content:""; position:absolute; inset:0; background:rgba(0,0,0,.40); z-index:1; pointer-events:none }
 
-    /* ===== METODOLOGÍA ===== */
+    /* ===== METODOLOGÍA (minimal) ===== */
     .metodologia{
-      position:relative; padding:120px 8% 120px; text-align:center;
-      background: url('assets/Fondo3.jpg') center/cover no-repeat;
+      position:relative; padding:100px 8%; text-align:center;
+      background:#0b0b0b; /* minimal: fondo liso */
     }
-    .metodologia::before{
-      content:""; position:absolute; inset:0; z-index:0;
-      background: linear-gradient(180deg, rgba(0,0,0,.65), rgba(0,0,0,.65));
+    .metodologia h2{
+      font-weight:800; font-size:clamp(2rem,1.8vw + 1.4rem,2.8rem); margin-bottom:46px;
     }
-    .metodologia > *{ position:relative; z-index:1 }
-
-    .metodologia h2{ font-weight:800; font-size:clamp(1.9rem,1.5vw + 1.2rem,2.5rem); margin-bottom:60px }
-
-    .metodologia-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:50px; max-width:1400px; margin:0 auto; text-align:left }
-
-    .metodologia-card{
-      background:rgba(0,0,0,.55);
-      border:1px solid rgba(255,255,255,.10);
-      border-radius:14px; padding:26px; box-shadow:0 10px 30px rgba(0,0,0,.45)
+    .meto-wrap{
+      display:grid; gap:28px; max-width:1200px; margin:0 auto; text-align:left;
     }
-    /* TITULOS un poco más grandes y en una sola línea (escritorio) */
-    .metodologia-card h3{
-      font-size:clamp(1.1rem, 0.9vw + 1rem, 1.35rem);
-      font-weight:800; margin-bottom:16px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+    .meto-row{
+      display:grid; grid-template-columns: 1fr 1fr; gap:24px;
+      align-items:stretch; /* imagen y texto misma altura */
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.1);
+      border-radius:14px; overflow:hidden;
     }
-    @media(max-width:768px){
-      .metodologia-card h3{ white-space:normal } /* en móvil puede partir línea */
+    .meto-row.reverse .meto-img{ grid-column:2; }
+    .meto-row.reverse .meto-text{ grid-column:1; }
+    .meto-img{ position:relative; display:block; }
+    .meto-img .frame{ position:relative; height:100%; width:100%; overflow:hidden; }
+    .meto-img img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .meto-text{
+      display:flex; flex-direction:column; justify-content:center;
+      padding:28px clamp(18px, 2.5vw, 36px);
     }
-
-    .metodologia-card p{ color:#ddd; font-size:1.05rem; line-height:1.65; margin-bottom:14px }
-
-    /* Imágenes mismo tamaño (recorte suave) */
-    .method-image{
-      position:relative; border-radius:12px; overflow:hidden;
-      background:linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,255,255,.85));
-      border:1px solid rgba(255,255,255,.28);
-      box-shadow:0 12px 26px rgba(0,0,0,.45), 0 0 0 1px rgba(255,255,255,.06) inset;
-      margin:-4px -4px 18px; padding:10px;
-      /* MOD: altura uniforme para todas las cajas de metodología */
-      height: clamp(180px, 20vw, 220px);
+    .meto-text h3{
+      font-size:clamp(1.35rem, 1vw + 1.1rem, 1.7rem); /* más grande */
+      font-weight:800; margin-bottom:12px;
     }
-    .method-image img{
-      width:100%; height:100%; display:block; border-radius:10px; object-fit:cover;
-      filter:contrast(1.02) saturate(1.03);
+    .meto-text p{
+      color:#eaeaea; font-size:clamp(1.05rem, .5vw + 1rem, 1.2rem); /* más grande */
+      line-height:1.7; margin-bottom:14px;
     }
-    .method-image::after{
-      content:""; position:absolute; inset:0;
-      background:radial-gradient(70% 70% at 50% 50%, rgba(0,0,0,.04), transparent 60%);
-      pointer-events:none;
+    .meto-list{
+      list-style:none; padding:0; margin:0;
+      display:flex; flex-direction:column; gap:10px;
     }
-
-    /* Lista numerada continua + separadores sutiles */
-    .metodologia-card ol{ list-style:none; counter-reset:item; padding-left:0; margin:0 }
-    .metodologia-card li{
-      counter-increment:item; padding:12px 0;
-      font-size:1.05rem; color:#eee; line-height:1.6;
-      border-bottom:1px solid rgba(255,255,255,.09);
+    .meto-list li{
+      position:relative; padding-left:22px;
+      color:#f2f2f2; font-size:clamp(1rem, .5vw + .95rem, 1.15rem); line-height:1.6;
+      border-bottom:1px solid rgba(255,255,255,.08);
     }
-    .metodologia-card li::before{
-      content: counter(item) ". ";
-      font-weight:800; color:#b8aaff; margin-right:2px;
+    .meto-list li:last-child{ border-bottom:none; }
+    .meto-list li::before{
+      content:""; position:absolute; left:0; top:0.8em;
+      width:8px; height:8px; border-radius:50%;
+      background:#b8aaff; /* mismo color que los números antes */
     }
-    .metodologia-card li:last-child{ border-bottom:none }
+    @media(max-width: 900px){
+      .meto-row{ grid-template-columns: 1fr; }
+      .meto-row.reverse .meto-img{ grid-column:auto; }
+      .meto-row.reverse .meto-text{ grid-column:auto; }
+      .meto-img{ height:220px; } /* altura amable en móvil */
+      .meto-img .frame{ height:100%; }
+    }
 
     /* ===== SEPARADOR (para blog) ===== */
     .section-divider{
@@ -224,7 +218,7 @@
     /* ===== Responsive ===== */
     @media(max-width:1200px){
       .services-grid{ grid-template-columns:1fr 1fr }
-      .metodologia-grid{ grid-template-columns:1fr 1fr }
+      /* (el grid de metodología ya se adapta solo) */
     }
 
     @media(max-width:768px){
@@ -246,8 +240,6 @@
 
       .services-grid{ grid-template-columns:1fr; gap:36px; }
       .service-block{ gap:20px; }
-
-      .metodologia-grid{ grid-template-columns:1fr; gap:36px; }
 
       footer{ align-items:flex-start }
       .footer-contact{ margin-right:0; margin-bottom:20px }
@@ -334,54 +326,66 @@
       </div>
     </section>
 
-    <!-- METODOLOGÍA -->
+    <!-- METODOLOGÍA (NUEVA) -->
     <section class="metodologia" id="metodologia">
       <h2>Nuestra Metodología</h2>
-      <div class="metodologia-grid">
-        <!-- Card 1 -->
-        <div class="metodologia-card">
-          <div class="method-image">
-            <img src="assets/1.png" alt="Análisis de necesidades - Metodología paso 1">
+      <div class="meto-wrap">
+        <!-- 1) Imagen izquierda / Texto derecha -->
+        <article class="meto-row">
+          <figure class="meto-img">
+            <div class="frame">
+              <img src="assets/1.png" alt="Análisis de necesidades - Metodología paso 1">
+            </div>
+          </figure>
+          <div class="meto-text">
+            <h3>🔎 Análisis de necesidades</h3>
+            <p>Para iniciar un proyecto a medida con Power BI, analizamos tu compañía para determinar:</p>
+            <ul class="meto-list">
+              <li>Hacia dónde quiere ir la empresa y su posicionamiento en los próximos años.</li>
+              <li>Qué herramientas de reporting te ayudan mejor a cumplir objetivos.</li>
+              <li>Qué infraestructura de datos encaja: on-premise, nube pública, privada o mixta.</li>
+              <li>Cuáles son los KPIs clave según sector y objetivos estratégicos.</li>
+            </ul>
           </div>
-          <h3>🔎 Análisis de necesidades</h3>
-          <p>Para iniciar un proyecto a medida con Power BI, analizamos tu compañía para determinar:</p>
-          <ol start="1">
-            <li>Hacia dónde quiere ir la empresa y su posicionamiento en los próximos años.</li>
-            <li>Qué herramientas de reporting te ayudan mejor a cumplir objetivos.</li>
-            <li>Qué infraestructura de datos encaja: on-premise, nube pública, privada o mixta.</li>
-            <li>Cuáles son los KPIs clave según sector y objetivos estratégicos.</li>
-          </ol>
-        </div>
+        </article>
 
-        <!-- Card 2 -->
-        <div class="metodologia-card">
-          <div class="method-image">
-            <img src="assets/2.png" alt="Diseño de proyecto Power BI - Metodología paso 2">
+        <!-- 2) Imagen derecha / Texto izquierda -->
+        <article class="meto-row reverse">
+          <figure class="meto-img">
+            <div class="frame">
+              <img src="assets/2.png" alt="Diseño de proyecto Power BI - Metodología paso 2">
+            </div>
+          </figure>
+          <div class="meto-text">
+            <h3>🛠️ Diseño de proyecto Power BI</h3>
+            <p>Con tus necesidades y recursos, definimos un plan de implantación teniendo en cuenta:</p>
+            <ul class="meto-list">
+              <li>Áreas de mayor impacto con menor esfuerzo (resultados a corto plazo).</li>
+              <li>Acceso a la información y visualización óptima en cada dispositivo.</li>
+              <li>Entrega: inmediatez requerida, volumetría y concurrencia de accesos.</li>
+              <li>Calendario y equipo participante en el desarrollo.</li>
+            </ul>
           </div>
-          <h3>🛠️ Diseño de proyecto Power BI</h3>
-          <p>Con tus necesidades y recursos, definimos un plan de implantación teniendo en cuenta:</p>
-          <ol start="5">
-            <li>Áreas de mayor impacto con menor esfuerzo (resultados a corto plazo).</li>
-            <li>Acceso a la información y visualización óptima en cada dispositivo.</li>
-            <li>Entrega: inmediatez requerida, volumetría y concurrencia de accesos.</li>
-            <li>Calendario y equipo participante en el desarrollo.</li>
-          </ol>
-        </div>
+        </article>
 
-        <!-- Card 3 -->
-        <div class="metodologia-card">
-          <div class="method-image">
-            <img src="assets/3.png" alt="Implantación de proyecto Power BI - Metodología paso 3">
+        <!-- 3) Imagen izquierda / Texto derecha -->
+        <article class="meto-row">
+          <figure class="meto-img">
+            <div class="frame">
+              <img src="assets/3.png" alt="Implantación de proyecto Power BI - Metodología paso 3">
+            </div>
+          </figure>
+          <div class="meto-text">
+            <h3>🚀 Implantación de proyecto Power BI</h3>
+            <p>Con el diseño definido, implantamos siguiendo nuestra metodología:</p>
+            <ul class="meto-list">
+              <li>Gestión del proyecto conjunta con tu equipo.</li>
+              <li>Explicación de la implantación y formación interna.</li>
+              <li>Puesta en marcha progresiva por áreas o departamentos.</li>
+              <li>Adaptación continua: modelado, materialización, construcción, diseño y entrega.</li>
+            </ul>
           </div>
-          <h3>🚀 Implantación de proyecto Power BI</h3>
-          <p>Con el diseño definido, implantamos siguiendo nuestra metodología:</p>
-          <ol start="9">
-            <li>Gestión del proyecto conjunta con tu equipo.</li>
-            <li>Explicación de la implantación y formación interna.</li>
-            <li>Puesta en marcha progresiva por áreas o departamentos.</li>
-            <li>Adaptación continua: modelado, materialización, construcción, diseño y entrega.</li>
-          </ol>
-        </div>
+        </article>
       </div>
     </section>
 
@@ -448,4 +452,3 @@
   </script>
 </body>
 </html>
-
