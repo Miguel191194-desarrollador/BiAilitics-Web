@@ -81,6 +81,13 @@
 
     /* ===== SERVICIOS ===== */
     .servicios{ position:relative; padding:140px 8% 120px; background:#000 }
+    /* Título de servicios igual que metodología + separación */
+    .servicios h2{
+      font-weight:800; 
+      font-size:clamp(2rem,1.8vw + 1.4rem,2.8rem);
+      margin-bottom:46px;
+      text-align:left;
+    }
     .services-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:60px; max-width:1600px; margin:0 auto }
     .service-block{ display:flex; flex-direction:column; gap:24px }
 
@@ -93,7 +100,7 @@
     .services-intro::before{ content:""; position:absolute; inset:0; border-radius:12px; background:linear-gradient(180deg, rgba(0,0,0,.60) 0%, rgba(0,0,0,.40) 100%) }
     .services-intro .intro-content{ position:absolute; top:30px; left:30px; right:30px; z-index:1; max-width:700px }
     .services-intro h3{ font-weight:800; font-size:clamp(1.4rem,1.2vw + 1.1rem,2.2rem); margin-bottom:12px }
-    .services-intro p{ color:#d9d9d9; line-height:1.6; font-size:.95rem }
+    .services-intro p{ color:#d9d9d9; line-height:1.6; font-size:.95rem } /* subtítulo de servicios */
 
     .services-intro.bg1{ background:image-set(url('assets/ImagenNueva.avif') type('image/avif') 1x, url('assets/imagen_ampliada_comprimida.jpg') type('image/jpeg') 1x) center/cover no-repeat }
     .services-intro.bg2{ background:image-set(url('assets/Prueba3.avif') type('image/avif') 1x, url('assets/imagen_ampliada_comprimida.jpg') type('image/jpeg') 1x) center/cover no-repeat }
@@ -135,13 +142,17 @@
     .meto-row.reverse{ grid-template-areas:"txt img"; }
     .meto-row::after{
       content:""; position:absolute; inset:0; pointer-events:none;
-      background:rgba(0,0,0,.35); /* oscurecido para legibilidad */
+      background:rgba(0,0,0,.35);
       mix-blend-mode:normal;
     }
-    /* Fondos por tarjeta (usa assets existentes) */
-    .meto-row.bg1{ background-image:image-set(url('assets/Fondo3.jpg') type('image/jpeg') 1x); background-size:cover; background-position:center; }
-    .meto-row.bg2{ background-image:image-set(url('assets/Prueba3.avif') type('image/avif') 1x, url('assets/imagen_ampliada_comprimida.jpg') type('image/jpeg') 1x); background-size:cover; background-position:center; }
-    .meto-row.bg3{ background-image:image-set(url('assets/ImagenNueva.avif') type('image/avif') 1x, url('assets/imagen_ampliada_comprimida.jpg') type('image/jpeg') 1x); background-size:cover; background-position:center; }
+
+    /* === FONDO UNIFICADO: usar el de la tarjeta 3 en las tres === */
+    .meto-row.bg1,
+    .meto-row.bg2,
+    .meto-row.bg3{
+      background-image:image-set(url('assets/ImagenNueva.avif') type('image/avif') 1x, url('assets/imagen_ampliada_comprimida.jpg') type('image/jpeg') 1x);
+      background-size:cover; background-position:center;
+    }
 
     /* Imagen – ocupa el área "img" y cuadra en altura con el texto */
     .meto-img{ grid-area:img; position:relative; display:block; z-index:1; }
@@ -159,9 +170,12 @@
       font-size:clamp(1.45rem, 1vw + 1.2rem, 1.8rem);
       font-weight:800; margin-bottom:12px;
     }
+    /* Subtítulo de metodología con el mismo tamaño que el de servicios */
     .meto-text p{
-      color:#eaeaea; font-size:clamp(1.05rem, .5vw + 1rem, 1.2rem);
-      line-height:1.7; margin-bottom:14px;
+      color:#eaeaea;
+      font-size:.95rem;   /* igual que .services-intro p */
+      line-height:1.6;
+      margin-bottom:14px;
     }
     .meto-list{
       list-style:none; padding:0; margin:0;
@@ -297,6 +311,9 @@
 
     <!-- SERVICIOS -->
     <section class="servicios" id="servicios">
+      <!-- NUEVO TÍTULO -->
+      <h2>Nuestros servicios</h2>
+
       <div class="services-grid">
         <div class="service-block">
           <aside class="services-intro bg1">
@@ -472,3 +489,4 @@
   </script>
 </body>
 </html>
+
