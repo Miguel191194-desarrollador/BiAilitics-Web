@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Solicita una demostración | BiAilitics</title>
+  <base href="https://www.biailitics.com/" />
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <!-- Estilos base reutilizados -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *{ box-sizing:border-box; margin:0; padding:0 }
+    body{
+      font-family:'Montserrat',sans-serif;
+      color:#fff;
+      background-color:#0b0b0b;
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+    }
+    header{
+      position:relative;
+      height:80px;
+      background:rgba(18,18,18,.95);
+      backdrop-filter:blur(6px);
+      display:flex;
+      align-items:center;
+      gap:24px;
+      padding:20px 30px;
+      border-bottom:1px solid #2d2d2d;
+    }
+    header .brand{ display:flex; align-items:center; gap:16px }
+    header .brand img{ height:40px }
+    .brand-name{
+      font-weight:800; font-size:1.1em; white-space:nowrap;
+      background:linear-gradient(135deg,#7b6cf9,#b8aaff);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+      line-height:1.1;
+    }
+    main{
+      flex:1;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:60px 20px;
+    }
+    .demo-container{
+      max-width:600px;
+      width:100%;
+      background:rgba(0,0,0,.45);
+      border:1px solid rgba(255,255,255,.14);
+      backdrop-filter:blur(6px);
+      border-radius:12px;
+      padding:40px 36px;
+      box-shadow:0 12px 36px rgba(0,0,0,.55);
+    }
+    .demo-container h1{
+      font-size:clamp(1.8rem,1.5vw + 1.2rem,2.6rem);
+      margin-bottom:20px;
+      text-align:center;
+      font-weight:800;
+    }
+    .demo-container label{
+      display:block;
+      margin-top:16px;
+      margin-bottom:6px;
+      color:#eaeaea;
+      font-weight:600;
+    }
+    .demo-container input,
+    .demo-container textarea{
+      width:100%;
+      padding:12px;
+      border-radius:6px;
+      border:none;
+      font-size:1rem;
+      color:#0d0d0d;
+    }
+    .demo-container textarea{
+      resize:vertical;
+      min-height:120px;
+    }
+    .demo-container button{
+      display:block;
+      margin-top:28px;
+      width:100%;
+      padding:14px 20px;
+      font-weight:700;
+      border-radius:999px;
+      border:none;
+      color:#111;
+      background:linear-gradient(135deg,#7b6cf9,#b8aaff);
+      cursor:pointer;
+    }
+    .demo-container button:hover{
+      filter:brightness(1.05);
+    }
+    footer{
+      padding:40px 10%;
+      background:#111;
+      color:#888;
+      font-size:.9em;
+      text-align:center;
+    }
+    footer a{ color:inherit; text-decoration:none; transition:color .2s }
+    footer a:hover{ color:#fff }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <img src="assets/Biailitics.png" alt="Logo BiAilitics">
+      <span class="brand-name">BiAilitics Data</span>
+    </div>
+  </header>
+  <main>
+    <div class="demo-container">
+      <h1>Solicita tu demo gratuita</h1>
+      <form action="https://formsubmit.co/infobiailitics@gmail.com" method="POST">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_subject" value="Nueva solicitud de demostración">
+        <label for="demo-name">Nombre y apellidos *</label>
+        <input type="text" id="demo-name" name="Nombre" required>
+        <label for="demo-email">Correo electrónico *</label>
+        <input type="email" id="demo-email" name="Email" required>
+        <label for="demo-company">Empresa</label>
+        <input type="text" id="demo-company" name="Empresa">
+        <label for="demo-message">¿Qué quieres ver en la demo?</label>
+        <textarea id="demo-message" name="Mensaje"></textarea>
+        <button type="submit">Enviar solicitud</button>
+      </form>
+    </div>
+  </main>
+  <footer>
+    <p>📞 <a href="tel:+34635673885">+34 635 673 885</a> &nbsp;|&nbsp; ✉️ <a href="mailto:infobiailitics@gmail.com">infobiailitics@gmail.com</a></p>
+    <p>&copy; 2025 BiAilitics - Consultoría Digital 100% Extremeña.</p>
+  </footer>
+</body>
+</html>
