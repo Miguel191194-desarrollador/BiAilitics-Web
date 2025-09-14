@@ -30,7 +30,7 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-4PDXDV406W"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);} 
+    function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-4PDXDV406W');
   </script>
@@ -82,7 +82,7 @@
     /* ===== SERVICIOS ===== */
     .servicios{ position:relative; padding:140px 8% 120px; background:#000 }
     .servicios h2{
-      font-weight:800; 
+      font-weight:800;
       font-size:clamp(2rem,1.8vw + 1.4rem,2.8rem);
       margin-bottom:46px;
       text-align:left;
@@ -124,10 +124,7 @@
     }
 
     /* CTA button below services */
-    .cta-servicio{
-      margin-top:60px;
-      text-align:center;
-    }
+    .cta-servicio{ margin-top:60px; text-align:center; }
     .cta-servicio .btn-demo{
       display:inline-block;
       padding:16px 28px;
@@ -138,68 +135,7 @@
       color:#111;
       transition:filter .2s ease;
     }
-    .cta-servicio .btn-demo:hover{
-      filter:brightness(1.05);
-    }
-
-    /* ===== DEMO FORM SECTION ===== */
-    .demo-section{
-      position:relative;
-      padding:80px 8% 100px;
-      background:#0d0d0d;
-      text-align:center;
-    }
-    .demo-section h2{
-      font-weight:800;
-      font-size:clamp(2rem,1.6vw + 1.4rem,2.6rem);
-      margin-bottom:30px;
-    }
-    .demo-form{
-      max-width:520px;
-      margin:0 auto;
-      background:rgba(0,0,0,.45);
-      border:1px solid rgba(255,255,255,.14);
-      backdrop-filter:blur(6px);
-      border-radius:12px;
-      padding:30px 32px 36px;
-      box-shadow:0 12px 36px rgba(0,0,0,.55);
-      text-align:left;
-    }
-    .demo-form label{
-      display:block;
-      margin-top:16px;
-      margin-bottom:6px;
-      color:#eaeaea;
-      font-weight:600;
-    }
-    .demo-form input,
-    .demo-form textarea{
-      width:100%;
-      padding:10px;
-      border-radius:6px;
-      border:none;
-      font-size:1rem;
-      color:#0d0d0d;
-    }
-    .demo-form textarea{
-      resize:vertical;
-      min-height:120px;
-    }
-    .demo-form button{
-      display:block;
-      margin-top:24px;
-      width:100%;
-      padding:14px 20px;
-      font-weight:700;
-      border-radius:999px;
-      border:none;
-      color:#111;
-      background:linear-gradient(135deg,#7b6cf9,#b8aaff);
-      cursor:pointer;
-    }
-    .demo-form button:hover{
-      filter:brightness(1.05);
-    }
+    .cta-servicio .btn-demo:hover{ filter:brightness(1.05); }
 
     /* ===== SEPARADOR ===== */
     .section-divider{
@@ -316,44 +252,61 @@
       text-align:center; color:#fff;
       background:#0b0b0b;
     }
-    .blog-min{ position:relative; z-index:1; width:100%; max-width:980px; margin:0 auto; display:flex; flex-direction:column; gap:20px; align-items:center }
+    .blog-min{ position:relative; z-index:1; width:100%; max-width:1100px; margin:0 auto; display:flex; flex-direction:column; gap:24px; align-items:center }
     .blog-min h2{ font-weight:800; font-size:clamp(1.8rem,1.4vw + 1.2rem,2.4rem) }
 
-    /* NUEVO: grid para colocar post 1 y post 2 en la misma fila */
+    /* Grid responsive con tarjetas uniformes */
     .blog-grid{
       width:100%;
       display:grid;
       grid-template-columns:repeat(2, minmax(0,1fr));
-      gap:20px;
+      gap:24px;
+      align-items:stretch; /* estira las tarjetas a igual altura */
     }
-    @media(max-width:768px){
-      .blog-grid{ grid-template-columns:1fr; }
-    }
+    @media(max-width:900px){ .blog-grid{ grid-template-columns:1fr; } }
 
     .blog-card{
-      width:100%;
-      padding:26px 28px 32px;
+      height:100%;
+      padding:18px 18px 22px;
       border-radius:12px;
       background:rgba(0,0,0,.45);
       border:1px solid rgba(255,255,255,.14);
       backdrop-filter:blur(6px);
       box-shadow:0 12px 36px rgba(0,0,0,.55);
-      display:flex; flex-direction:column; gap:14px; align-items:center;
+      display:flex; flex-direction:column; gap:14px;
+      text-align:left;
     }
-    .blog-card p{ color:#e9e9e9; max-width:60ch; line-height:1.55 }
+
+    /* Imagen con tamaño uniforme (16:9) */
+    .blog-thumb{
+      width:100%;
+      aspect-ratio:16/9;
+      border-radius:10px;
+      overflow:hidden;
+      background:#111;
+    }
+    .blog-thumb img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
 
     .kicker{
+      align-self:flex-start;
       display:inline-block; font-weight:700; font-size:.78rem; letter-spacing:.04em;
       padding:6px 10px; border-radius:999px;
       background:rgba(184,170,255,.12); border:1px solid rgba(184,170,255,.4); color:#e7e1ff;
+      margin-top:4px;
     }
 
-    .blog-card h3{ font-size:clamp(1.1rem, .7vw + 1rem, 1.45rem); font-weight:800; }
-    .blog-image img{ width:100%; height:auto; display:block; border-radius:10px; object-fit:cover }
-    .blog-image figcaption{ font-size:.9rem; color:#cfcfcf; margin-top:8px }
+    .blog-title{ font-size:clamp(1.05rem, .6vw + 1rem, 1.35rem); font-weight:800; line-height:1.3; }
+    .blog-excerpt{ color:#e9e9e9; line-height:1.55; }
 
-    .btn{ display:inline-flex; align-items:center; gap:10px; padding:14px 22px; border-radius:999px; font-weight:700; text-decoration:none }
-    .btn-gradient{ background:linear-gradient(135deg,#7b6cf9,#b8aaff); color:#111 }
+    /* Contenido flexible para que el botón quede alineado abajo y todas igualen altura */
+    .card-body{ display:flex; flex-direction:column; gap:10px; flex:1; }
+    .btn{ display:inline-flex; align-items:center; gap:10px; padding:12px 18px; border-radius:999px; font-weight:700; text-decoration:none }
+    .btn-gradient{ background:linear-gradient(135deg,#7b6cf9,#b8aaff); color:#111; margin-top:auto; }
     .btn-gradient:hover{ filter:brightness(1.05) }
 
     /* ===== FOOTER ===== */
@@ -547,30 +500,34 @@
       <div class="blog-min">
         <h2>Blog</h2>
 
-        <!-- NUEVO: grid con dos posts lado a lado -->
+        <!-- Dos tarjetas uniformes -->
         <div class="blog-grid">
           <!-- Post 1 -->
           <article class="blog-card">
+            <div class="blog-thumb">
+              <img src="assets/eye-4063134_1280.jpg" alt="Portada del post: Miedo al cambio y la IA en Extremadura" loading="lazy">
+            </div>
             <span class="kicker">Nuevo</span>
-            <h3>Miedo al cambio: por qué frena la IA en Extremadura</h3>
-            <p>Las pymes extremeñas suelen pararse por tres miedos: perder control, costes y falta de tiempo.</p>
-            <a class="btn btn-gradient" href="blog/post-1.html">Leer el primer artículo</a>
+            <div class="card-body">
+              <h3 class="blog-title">Miedo al cambio: por qué frena la IA en Extremadura</h3>
+              <p class="blog-excerpt">Las pymes extremeñas suelen pararse por tres miedos: perder control, costes y falta de tiempo.</p>
+              <a class="btn btn-gradient" href="blog/post-1.html">Leer el primer artículo</a>
+            </div>
           </article>
 
-          <!-- Post 2 (a la derecha del post 1) -->
+          <!-- Post 2 -->
           <article class="blog-card">
+            <div class="blog-thumb">
+              <img src="assets/Post%202.png" alt="Portada del post: Automatizaciones sencillas que ahorran horas" loading="lazy">
+            </div>
             <span class="kicker">Nuevo</span>
-            <h3>Automatizaciones sencillas que ahorran horas cada semana</h3>
-            <p>Identifica tus tareas repetitivas y pon en marcha automatizaciones prácticas sin necesidad de programar.</p>
-            <a class="btn btn-gradient" href="blog/post2.html">Leer el segundo artículo</a>
+            <div class="card-body">
+              <h3 class="blog-title">Automatizaciones sencillas que ahorran horas cada semana</h3>
+              <p class="blog-excerpt">Identifica tus tareas repetitivas y pon en marcha automatizaciones prácticas sin necesidad de programar.</p>
+              <a class="btn btn-gradient" href="blog/post2.html">Leer el segundo artículo</a>
+            </div>
           </article>
         </div>
-
-        <!-- Imagen ilustrativa del post 2 -->
-        <figure class="blog-card blog-image">
-          <img src="assets/Post%202.png" alt="Portada del artículo: Automatizaciones sencillas que ahorran horas cada semana">
-          <figcaption>Imagen del artículo: Automatizaciones sencillas que ahorran horas cada semana.</figcaption>
-        </figure>
       </div>
     </section>
 
@@ -616,5 +573,4 @@
   </script>
 </body>
 </html>
-
 
