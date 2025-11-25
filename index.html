@@ -1,855 +1,499 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <base href="https://www.biailitics.com/" />
-  <title>Especialistas en integrar datos, escalar soluciones y aportar experiencia</title>
-  <meta name="description" content="Especialistas en integrar datos, escalar soluciones y aportar experiencia. Hacemos latir tu marca. Impulsamos tu negocio.">
-  <link rel="canonical" href="https://www.biailitics.com/" />
-  <link rel="icon" type="image/png" href="/favicon.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>React Bits - Orb Animation</title>
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "BiAilitics",
-    "url": "https://www.biailitics.com",
-    "logo": "https://www.biailitics.com/assets/Biailitics.png"
-  }
-  </script>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
 
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-  <link rel="preload" as="image" href="assets/Prueba3.avif" type="image/avif">
-  <link rel="preload" as="video" href="assets/1166635_Screen_Man_3840x2160%20(1).mp4" type="video/mp4">
-  <link rel="preload" as="video" href="assets/TARJETA2.mp4" type="video/mp4">
-  <link rel="preload" as="video" href="assets/Miguel2.mp4" type="video/mp4">
+    <script src="https://unpkg.com/ogl"></script>
 
-  
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4PDXDV406W"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-4PDXDV406W');
-  </script>
-
-  <style>
-    /* ESTILOS GLOBALES Y COMPONENTES ORIGINALES */
-    *{ box-sizing:border-box; margin:0; padding:0 }
-    :root{ --bg:#0b0b0b }
-    html,body{ width:100%; font-family:'Montserrat',sans-serif; color:#fff; background-color:var(--bg) }
-    section{ scroll-margin-top: 90px; }
-
-    /* ===== HEADER ===== */
-    header{
-      position:fixed; inset:0 0 auto 0; z-index:10; height:80px;
-      background:rgba(18,18,18,.95); backdrop-filter:blur(6px);
-      display:flex; align-items:center; gap:24px; padding:20px 30px;
-      border-bottom:1px solid #2d2d2d
-    }
-    header .brand{ display:flex; align-items:center; gap:16px }
-    header .brand img{ height:40px }
-    .brand-name{
-      font-weight:800; font-size:1.1em; white-space:nowrap;
-      background:linear-gradient(135deg,#7b6cf9,#b8aaff);
-      -webkit-background-clip:text; background-clip:text;
-      color:transparent; line-height:1.1
-    }
-    header nav{ margin-left:auto; display:flex; gap:18px; flex-wrap:wrap }
-    header nav a{ font-weight:600; color:#fff; text-decoration:none; padding:6px 0; transition:color .2s }
-    header nav a:hover{ color:#b8aaff }
-    .menu-toggle{ display:none; flex-direction:column; gap:4px; margin-left:auto; cursor:pointer; background:transparent; border:0 }
-    .menu-toggle span{ background:#fff; height:3px; width:24px; border-radius:3px }
-
-    /* Overlay base (oculto por defecto) */
-    #nav-overlay{
-      position:fixed; inset:0; background:rgba(0,0,0,.45);
-      opacity:0; pointer-events:none; transition:opacity .25s ease; z-index:9;
-    }
-    
-    /* ===== ESTILOS DEL NUEVO HERO CON ORBE ===== */
-    .orb-hero {
-      width: 100%;
-      height: 100vh; /* Ocupa toda la altura de la ventana */
-      background-color: #000; /* Fondo oscuro */
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-      overflow: hidden; /* Para que el orbe no se desborde */
-    }
-
+    <style>
+    /* Estilos del Orbe */
     .orb-container {
-      position: absolute; /* Permite que el canvas se posicione libremente */
+      position: relative;
       z-index: 0;
-      top: 0;
-      left: 0;
       width: 100%;
       height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
     }
-    /* El canvas del orbe se inyectará aquí */
 
-    .orb-content {
-      position: relative;
-      z-index: 1; /* Asegura que el contenido esté sobre el orbe */
+    .orb-container canvas {
+      display: block;
+    }
+
+    /* Estilos Globales y de la App */
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #0d0d15;
+      color: white;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      overflow: hidden; /* Oculta barras de desplazamiento si la altura es 100vh */
+    }
+
+    .app-container {
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
+    }
+
+    /* Header/Nav Styles */
+    .header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      z-index: 10;
+      background: rgba(18, 18, 25, 0.6);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .brand h1 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      padding: 8px 12px;
+      border-radius: 6px;
+      transition: background-color 0.2s;
+    }
+
+    .nav a:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Hero Section Styles */
+    .hero-section {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding-top: 80px;
+    }
+
+    .orb-wrapper {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100%;
+      height: 80vh; /* Ajustado para mejor visualización */
+      max-width: 800px;
+      max-height: 800px;
+      margin: 0 auto;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
       text-align: center;
-      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 500px;
     }
 
-    .orb-content h2 {
-      font-size: clamp(1.8rem, 2.5vw + 1rem, 3.5rem);
+    .new-background-btn {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 8px 15px;
+      border-radius: 999px;
+      font-size: 0.8rem;
       margin-bottom: 20px;
-      color: #fff;
+      cursor: pointer;
+    }
+
+    .hero-content h2 {
+      font-size: clamp(1.8rem, 5vw, 2.5rem);
       font-weight: 800;
-      /* Efecto de brillo de neón con los colores de la marca */
-      text-shadow: 0 0 8px rgba(184,170,255,0.7), 0 0 16px rgba(123,108,249,0.5);
-    }
-
-    .orb-content .subtitle {
-      font-size: clamp(1rem, 1.2vw + 0.5rem, 1.5rem);
       margin-bottom: 30px;
-      color: #e0e0e0;
-      max-width: 600px;
-      line-height: 1.4;
+      line-height: 1.2;
     }
 
-    .orb-buttons {
+    .buttons-group {
       display: flex;
       gap: 15px;
     }
 
-    .orb-button {
-      padding: 12px 28px;
-      border-radius: 999px;
-      text-decoration: none;
-      font-weight: 700;
-      transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+    .btn-primary, .btn-secondary {
+      padding: 12px 25px;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.2s;
     }
 
-    .orb-button.primary {
-      background: linear-gradient(135deg, #7b6cf9, #b8aaff);
-      color: #111;
-      box-shadow: 0 4px 15px rgba(184, 170, 255, 0.4);
+    .btn-primary {
+      background-color: white;
+      color: black;
     }
 
-    .orb-button.primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(184, 170, 255, 0.6);
-    }
-
-    .orb-button.secondary {
+    .btn-secondary {
       background-color: rgba(255, 255, 255, 0.1);
-      color: #fff;
-      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
-    .orb-button.secondary:hover {
-      background-color: rgba(255, 255, 255, 0.2);
-      transform: translateY(-2px);
-    }
-    @media (max-width: 768px) {
-      .orb-content h2 { font-size: 2.2rem; }
-      .orb-content .subtitle { font-size: 1.1rem; }
-      .orb-buttons { flex-direction: column; gap: 10px; width: 80%; }
-      .orb-button { width: 100%; }
-    }
-
-
-    /* ===== SERVICIOS - ESTILOS ORIGINALES RESTAURADOS ===== */
-    .servicios{ position:relative; padding:140px 8% 120px; background:#000 }
-    .servicios h2{
-      font-weight:800;
-      font-size:clamp(2rem,1.8vw + 1.4rem,2.8rem);
-      margin-bottom:46px;
-      text-align:left;
-    }
-    .services-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:60px; max-width:1600px; margin:0 auto }
-    .service-block{ display:flex; flex-direction:column; gap:24px }
-
-    .services-intro{
-      position:relative;
-      min-height:clamp(280px, 28vw, 460px);
-      border:1px solid rgba(255,255,255,.18); border-radius:12px; overflow:hidden; box-shadow:0 20px 50px rgba(0,0,0,.6);
-      margin-bottom:30px;
-    }
-    .services-intro::before{ content:""; position:absolute; inset:0; border-radius:12px; background:linear-gradient(180deg, rgba(0,0,0,.45) 0%, rgba(0,0,0,.20) 100%) }
-    .services-intro .intro-content{ position:absolute; top:30px; left:30px; right:30px; z-index:1; max-width:700px }
-    .services-intro h3{ font-weight:800; font-size:clamp(1.4rem,1.2vw + 1.1rem,2.2rem); margin-bottom:12px }
-    .services-intro p{ color:#d9d9d9; line-height:1.6; font-size:.95rem }
-
-    .services-intro.bg1{ background:image-set(url('assets/ImagenNueva.avif') type('image/avif') 1x, url('assets/imagen_ampliada_comprimida.jpg') type('image/jpeg') 1x) center/cover no-repeat }
-    .services-intro.bg2{ background:image-set(url('assets/Prueba3.avif') type('image/avif') 1x, url('assets/imagen_ampliada_comprimida.jpg') type('image/jpeg') 1x) center/cover no-repeat }
-    .services-intro.bg3{ background:image-set(url('assets/c837a6_2119733e838e4a2f8813ebde736f99d5~mv2.avif') type('image/avif') 1x, url('assets/imagen_ampliada_comprimida.jpg') type('image/jpeg') 1x) center/cover no-repeat }
-
-    /* 👇 Fuerza misma altura en los vídeos para alinear las 3 tarjetas */
-    .services-video{
-      position:relative; border-radius:12px; overflow:hidden; box-shadow:0 20px 50px rgba(0,0,0,.6);
-      isolation:isolate; height:240px;
-    }
-    .services-video video{
-      width:100%; height:100%; object-fit:cover; display:block;
-      filter:brightness(1) contrast(1.1) saturate(1.1);
-    }
-    .services-video::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:rgba(0,0,0,.20);
-      z-index:1;
-      pointer-events:none;
-    }
-
-    /* CTA button below services */
-    .cta-servicio{ margin-top:60px; text-align:center; }
-    .cta-servicio .btn-demo{
-      display:inline-block;
-      padding:16px 28px;
-      font-weight:700;
-      border-radius:999px;
-      text-decoration:none;
-      background:linear-gradient(135deg,#7b6cf9,#b8aaff);
-      color:#111;
-      transition:filter .2s ease;
-    }
-    .cta-servicio .btn-demo:hover{ filter:brightness(1.05); }
-
-    /* ===== SEPARADOR ===== */
-    .section-divider{
-      position:relative; z-index:1;
-      width:min(92%,1200px); height:2px; margin:0 auto 28px;
-      background:linear-gradient(90deg, rgba(123,108,249,.10), rgba(184,170,255,.75), rgba(123,108,249,.10));
-      border-radius:999px; box-shadow:0 0 18px rgba(184,170,255,.25);
-    }
-
-    /* ===== METODOLOGÍA ===== */
-    .metodologia{
-      position:relative; padding:100px 8%; text-align:center;
-      background:#0b0b0b;
-    }
-    .metodologia h2{
-      font-weight:800; font-size:clamp(2rem,1.8vw + 1.4rem,2.8rem); margin-bottom:46px;
-    }
-    .meto-wrap{
-      display:grid; gap:28px; max-width:1200px; margin:0 auto; text-align:left;
-    }
-
-    .meto-row{
-      position:relative;
-      display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr);
-      grid-template-areas:"img txt";
-      gap:24px; align-items:stretch; overflow:hidden;
-      border:1px solid rgba(255,255,255,.12); border-radius:14px;
-      background:#0d0d0d;
-    }
-    .meto-row.reverse{ grid-template-areas:"txt img"; }
-    .meto-row::after{
-      content:""; position:absolute; inset:0; pointer-events:none;
-      background:rgba(0,0,0,.35);
-      mix-blend-mode:normal;
-    }
-
-    .meto-row.bg1,
-    .meto-row.bg2,
-    .meto-row.bg3{
-      background-image:image-set(url('assets/ImagenNueva.avif') type('image/avif') 1x, url('assets/imagen_ampliada_comprimida.jpg') type('image/jpeg') 1x);
-      background-size:cover; background-position:center;
-    }
-
-    .meto-img{
-      grid-area:img;
-      position:relative;
-      display:block;
-      z-index:1;
-      align-self:center;
-    }
-    .meto-img .frame{
-      position:relative;
-      width:100%;
-      overflow:hidden;
-      border-radius:12px;
-      max-height:360px;
-    }
-    .meto-img img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      object-position:center;
-      display:block;
-    }
-
-    .meto-text{
-      grid-area:txt; z-index:1;
-      display:flex; flex-direction:column; justify-content:center;
-      padding:28px clamp(18px, 2.5vw, 36px);
-      backdrop-filter:blur(0.5px);
-    }
-    .meto-text h3{
-      font-size:clamp(1.45rem, 1vw + 1.2rem, 1.8rem);
-      font-weight:800; margin-bottom:12px;
-    }
-    .meto-text p{
-      color:#eaeaea;
-      font-size:.95rem;
-      line-height:1.6;
-      margin-bottom:14px;
-    }
-    .meto-list{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:10px; }
-    .meto-list li{
-      position:relative; padding-left:22px;
-      color:#f2f2f2; font-size:clamp(1rem, .5vw + .95rem, 1.15rem); line-height:1.6;
-      border-bottom:1px solid rgba(255,255,255,.10);
-    }
-    .meto-list li:last-child{ border-bottom:none; }
-    .meto-list li::before{
-      content:""; position:absolute; left:0; top:0.8em;
-      width:8px; height:8px; border-radius:50%;
-      background:#b8aaff;
-    }
-
-    /* Responsive */
-    @media(max-width: 900px){
-      .meto-row,
-      .meto-row.reverse{
-        grid-template-columns:1fr;
-        grid-template-areas:
-          "img"
-          "txt";
-      }
-      .meto-img{ height:220px; }
-      .meto-img .frame{
-        max-height:360px;
-      }
-    }
-
-    /* ===== BLOG ===== */
-    .blog-home{
-      position:relative;
-      padding:48px 8% 90px;
-      text-align:center; color:#fff;
-      background:#0b0b0b;
-    }
-    .blog-min{ position:relative; z-index:1; width:100%; max-width:1100px; margin:0 auto; display:flex; flex-direction:column; gap:24px; align-items:center }
-    .blog-min h2{ font-weight:800; font-size:clamp(1.8rem,1.4vw + 1.2rem,2.4rem) }
-
-    /* Grid responsive con tarjetas uniformes */
-    .blog-grid{
-      width:100%;
-      display:grid;
-      grid-template-columns:repeat(2, minmax(0,1fr));
-      gap:24px;
-      align-items:stretch; /* estira las tarjetas a igual altura */
-    }
-    @media(max-width:900px){ .blog-grid{ grid-template-columns:1fr; } }
-
-    .blog-card{
-      height:100%;
-      padding:18px 18px 22px;
-      border-radius:12px;
-      background:rgba(0,0,0,.45);
-      border:1px solid rgba(255,255,255,.14);
-      backdrop-filter:blur(6px);
-      box-shadow:0 12px 36px rgba(0,0,0,.55);
-      display:flex; flex-direction:column; gap:14px;
-      text-align:left;
-    }
-
-    /* Imagen con tamaño uniforme (16:9) */
-    .blog-thumb{
-      width:100%;
-      aspect-ratio:16/9;
-      border-radius:10px;
-      overflow:hidden;
-      background:#111;
-    }
-    .blog-thumb img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-    }
-
-    .kicker{
-      align-self:flex-start;
-      display:inline-block; font-weight:700; font-size:.78rem; letter-spacing:.04em;
-      padding:6px 10px; border-radius:999px;
-      background:rgba(184,170,255,.12); border:1px solid rgba(184,170,255,.4); color:#e7e1ff;
-      margin-top:4px;
-    }
-
-    .blog-title{ font-size:clamp(1.05rem, .6vw + 1rem, 1.35rem); font-weight:800; line-height:1.3; }
-    .blog-excerpt{ color:#e9e9e9; line-height:1.55; }
-
-    /* Contenido flexible para que el botón quede alineado abajo y todas igualen altura */
-    .card-body{ display:flex; flex-direction:column; gap:10px; flex:1; }
-    .btn{ display:inline-flex; align-items:center; gap:10px; padding:12px 18px; border-radius:999px; font-weight:700; text-decoration:none }
-    .btn-gradient{ background:linear-gradient(135deg,#7b6cf9,#b8aaff); color:#111; transition:filter .2s }
-    .btn-gradient:hover{ filter:brightness(1.05) }
-
-    /* ===== FOOTER ===== */
-    footer{
-      background:linear-gradient(180deg, #0b0b0b, #000);
-      padding:40px 8%;
-      border-top:1px solid rgba(255,255,255,.12);
-      color:#ccc; font-size:.9rem; line-height:1.6
-    }
-    .footer-grid{
-      display:grid; grid-template-columns:repeat(4,1fr); gap:40px; max-width:1200px; margin:0 auto;
-    }
-    footer h4{ font-weight:700; font-size:1.1rem; margin-bottom:15px; color:#fff }
-    footer a{ color:#ccc; text-decoration:none; transition:color .2s }
-    footer a:hover{ color:#b8aaff }
-    .footer-links{ display:flex; flex-direction:column; gap:8px }
-    .footer-bottom{
-      margin-top:30px; padding-top:20px; border-top:1px solid rgba(255,255,255,.1);
-      text-align:center; color:#999; font-size:.8rem
-    }
-
-    /* Responsive */
-    @media(max-width: 900px){
-      header nav{ display:none; flex-direction:column; position:fixed; inset:80px 0 0 0; background:#0b0b0b; padding:20px 30px; gap:12px }
-      header nav.is-active{ display:flex; }
-      .menu-toggle{ display:flex; }
-      .footer-grid{ grid-template-columns:repeat(2,1fr); }
-      .services-grid{ grid-template-columns:1fr; gap:40px; }
-      .servicios, .metodologia, .blog-home, footer{ padding-left:20px; padding-right:20px; }
-    }
-    @media(max-width: 500px){
-      .footer-grid{ grid-template-columns:1fr; }
+    .btn-primary:hover, .btn-secondary:hover {
+      transform: translateY(-1px);
     }
   </style>
 </head>
 <body>
+    <div id="root"></div>
 
-  <header>
-    <a href="/" class="brand">
-      <img src="assets/Biailitics.png" alt="Logo de BiAilitics">
-      <div class="brand-name">BiAilitics</div>
-    </a>
-    <button class="menu-toggle" aria-label="Abrir menú de navegación">
-      <span></span><span></span><span></span>
-    </button>
-    <nav>
-      <a href="#servicios">Servicios</a>
-      <a href="#metodologia">Metodología</a>
-      <a href="#blog">Blog</a>
-      <a href="#contacto">Contacto</a>
-    </nav>
-    <div id="nav-overlay"></div>
-  </header>
+    <script type="text/babel">
+    // Desestructuración para usar las librerías necesarias
+    const { useEffect, useRef } = React;
+    const { Renderer, Program, Mesh, Triangle, Vec3 } = OGL;
 
-  <main>
-    
-                <section class="orb-hero">
-      <div class="orb-container">
-              </div>
-      <div class="orb-content">
-        <h2>Especialistas en integrar datos, escalar soluciones y aportar experiencia</h2>
-        <p class="subtitle">
-          Hacemos latir tu marca. Impulsamos tu negocio. 
-        </p>
-        <div class="orb-buttons">
-          <a href="#contacto" class="orb-button primary">Solicitar Demo</a>
-          <a href="#servicios" class="orb-button secondary">Ver Servicios</a>
-        </div>
-      </div>
-    </section>
+    // =========================================
+    // Componente ORB
+    // =========================================
 
+    function Orb({ hue = 0, hoverIntensity = 0.2, rotateOnHover = true, forceHoverState = false }) {
+      const ctnDom = useRef(null);
 
-                <div class="section-divider"></div>
+      // --- SHADERS ---
+      const vert = `
+        precision highp float;
+        attribute vec2 position;
+        attribute vec2 uv;
+        varying vec2 vUv;
+        void main() {
+          vUv = uv;
+          gl_Position = vec4(position, 0.0, 1.0);
+        }
+      `;
 
-    <section id="servicios" class="servicios">
-      <h2>Nuestros Servicios</h2>
-      <div class="services-grid">
+      const frag = `
+        precision highp float;
+
+        uniform float iTime;
+        uniform vec3 iResolution;
+        uniform float hue;
+        uniform float hover;
+        uniform float rot;
+        uniform float hoverIntensity;
+        varying vec2 vUv;
+
+        vec3 rgb2yiq(vec3 c) {
+          float y = dot(c, vec3(0.299, 0.587, 0.114));
+          float i = dot(c, vec3(0.596, -0.274, -0.322));
+          float q = dot(c, vec3(0.211, -0.523, 0.312));
+          return vec3(y, i, q);
+        }
         
-                <div class="service-block">
-          <div class="services-intro bg1">
-            <div class="intro-content">
-              <h3>Integración de Datos y Analítica Avanzada</h3>
-              <p>
-                Unifica tus fuentes de datos y obtén insights accionables. 
-                Desarrollamos pipelines de datos robustos y dashboards dinámicos para una toma de decisiones inteligente.
-              </p>
-            </div>
-            </div>
-          <div class="services-video">
-            <video autoplay loop muted playsinline src="assets/TARJETA2.mp4"></video>
-          </div>
-        </div>
-
-                <div class="service-block">
-          <div class="services-intro bg2">
-            <div class="intro-content">
-              <h3>Escalado de Soluciones Cloud y DevOps</h3>
-              <p>
-                Llevamos tus proyectos a la nube con eficiencia y seguridad. 
-                Implementamos prácticas DevOps para la entrega continua y el escalado de tu infraestructura.
-              </p>
-            </div>
-          </div>
-          <div class="services-video">
-            <video autoplay loop muted playsinline src="assets/1166635_Screen_Man_3840x2160%20(1).mp4"></video>
-          </div>
-        </div>
-
-                <div class="service-block">
-          <div class="services-intro bg3">
-            <div class="intro-content">
-              <h3>Modelos de Inteligencia Artificial (IA)</h3>
-              <p>
-                Desarrollamos y desplegamos modelos predictivos y generativos personalizados 
-                que se integran con tu negocio para automatizar y optimizar procesos.
-              </p>
-            </div>
-          </div>
-          <div class="services-video">
-            <video autoplay loop muted playsinline src="assets/Miguel2.mp4"></video>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="cta-servicio">
-        <a href="#contacto" class="btn-demo">Descubre la diferencia BiAilitics</a>
-      </div>
-
-    </section>
-
-    <div class="section-divider"></div>
-
-    <section id="metodologia" class="metodologia">
-      <h2>Metodología de Trabajo</h2>
-      <div class="meto-wrap">
+        vec3 yiq2rgb(vec3 c) {
+          float r = c.x + 0.956 * c.y + 0.621 * c.z;
+          float g = c.x - 0.272 * c.y - 0.647 * c.z;
+          float b = c.x - 1.106 * c.y + 1.703 * c.z;
+          return vec3(r, g, b);
+        }
         
-        <div class="meto-row">
-          <div class="meto-text">
-            <h3>1. Análisis y Definición Estratégica</h3>
-            <p>
-              Comprendemos a fondo tus necesidades de negocio, los retos que enfrentas y los objetivos a corto y largo plazo. 
-              Definimos el MVP (Producto Mínimo Viable) y la hoja de ruta tecnológica.
-            </p>
-            <ul class="meto-list">
-              <li>Estudio de viabilidad técnica y económica.</li>
-              <li>Mapeo de arquitectura de datos ideal.</li>
-              <li>Diseño de experiencia de usuario (UX).</li>
-            </ul>
-          </div>
-          <div class="meto-img">
-            <div class="frame">
-              <img src="assets/ImagenNueva.avif" alt="Analizando diagramas y datos estratégicos.">
-            </div>
-          </div>
-        </div>
-        
-        <div class="meto-row reverse">
-          <div class="meto-text">
-            <h3>2. Desarrollo y Despliegue Ágil</h3>
-            <p>
-              Empleamos sprints cortos y entregas incrementales para asegurar la calidad y adaptabilidad. 
-              Nuestro enfoque DevOps garantiza que las soluciones se integren y escalen sin problemas.
-            </p>
-            <ul class="meto-list">
-              <li>Desarrollo de microservicios y APIs.</li>
-              <li>Integración y Despliegue Continuo (CI/CD).</li>
-              <li>Automatización de pruebas y seguridad.</li>
-            </ul>
-          </div>
-          <div class="meto-img">
-            <div class="frame">
-              <img src="assets/Prueba3.avif" alt="Código en una pantalla que representa el desarrollo ágil.">
-            </div>
-            </div>
-        </div>
+        vec3 adjustHue(vec3 color, float hueDeg) {
+          float hueRad = hueDeg * 3.14159265 / 180.0;
+          vec3 yiq = rgb2yiq(color);
+          float cosA = cos(hueRad);
+          float sinA = sin(hueRad);
+          float i = yiq.y * cosA - yiq.z * sinA;
+          float q = yiq.y * sinA + yiq.z * cosA;
+          yiq.y = i;
+          yiq.z = q;
+          return yiq2rgb(yiq);
+        }
 
-        <div class="meto-row">
-          <div class="meto-text">
-            <h3>3. Monitorización y Optimización Continua</h3>
-            <p>
-              Una vez desplegada, la solución entra en una fase de mejora constante. 
-              Monitorizamos el rendimiento, recolectamos feedback y aplicamos optimizaciones para maximizar el ROI.
-            </p>
-            <ul class="meto-list">
-              <li>Monitorización en tiempo real de KPIs.</li>
-              <li>Mantenimiento preventivo y correctivo.</li>
-              <li>Iteración de modelos de IA para mayor precisión.</li>
-            </ul>
-          </div>
-          <div class="meto-img">
-            <div class="frame">
-              <img src="assets/c837a6_2119733e838e4a2f8813ebde736f99d5~mv2.avif" alt="Representación visual de un tablero de análisis y optimización.">
-            </div>
-          </div>
-        </div>
+        vec3 hash33(vec3 p3) {
+          p3 = fract(p3 * vec3(0.1031, 0.11369, 0.13787));
+          p3 += dot(p3, p3.yxz + 19.19);
+          return -1.0 + 2.0 * fract(vec3(
+            p3.x + p3.y,
+            p3.x + p3.z,
+            p3.y + p3.z
+          ) * p3.zyx);
+        }
 
-      </div>
-    </section>
+        float snoise3(vec3 p) {
+          const float K1 = 0.333333333;
+          const float K2 = 0.166666667;
+          vec3 i = floor(p + (p.x + p.y + p.z) * K1);
+          vec3 d0 = p - (i - (i.x + i.y + i.z) * K2);
+          vec3 e = step(vec3(0.0), d0 - d0.yzx);
+          vec3 i1 = e * (1.0 - e.zxy);
+          vec3 i2 = 1.0 - e.zxy * (1.0 - e);
+          vec3 d1 = d0 - (i1 - K2);
+          vec3 d2 = d0 - (i2 - K1);
+          vec3 d3 = d0 - 0.5;
+          vec4 h = max(0.6 - vec4(
+            dot(d0, d0),
+            dot(d1, d1),
+            dot(d2, d2),
+            dot(d3, d3)
+          ), 0.0);
+          vec4 n = h * h * h * h * vec4(
+            dot(d0, hash33(i)),
+            dot(d1, hash33(i + i1)),
+            dot(d2, hash33(i + i2)),
+            dot(d3, hash33(i + 1.0))
+          );
+          return dot(vec4(31.316), n);
+        }
 
-    <div class="section-divider"></div>
+        vec4 extractAlpha(vec3 colorIn) {
+          float a = max(max(colorIn.r, colorIn.g), colorIn.b);
+          return vec4(colorIn.rgb / (a + 1e-5), a);
+        }
 
-    <section id="blog" class="blog-home">
-      <div class="blog-min">
-        <h2>Insights y Tendencias</h2>
-        <div class="blog-grid">
+        const vec3 baseColor1 = vec3(0.611765, 0.262745, 0.996078);
+        const vec3 baseColor2 = vec3(0.298039, 0.760784, 0.913725);
+        const vec3 baseColor3 = vec3(0.062745, 0.078431, 0.600000);
+        const float innerRadius = 0.6;
+        const float noiseScale = 0.65;
+
+        float light1(float intensity, float attenuation, float dist) {
+          return intensity / (1.0 + dist * attenuation);
+        }
+        float light2(float intensity, float attenuation, float dist) {
+          return intensity / (1.0 + dist * dist * attenuation);
+        }
+
+        vec4 draw(vec2 uv) {
+          vec3 color1 = adjustHue(baseColor1, hue);
+          vec3 color2 = adjustHue(baseColor2, hue);
+          vec3 color3 = adjustHue(baseColor3, hue);
           
-                    <div class="blog-card">
-            <div class="blog-thumb">
-              <img src="assets/img1.jpg" alt="Imagen de un cerebro y conexiones de datos.">
-            </div>
-            <div class="card-body">
-              <span class="kicker">Inteligencia Artificial</span>
-              <h3 class="blog-title">El poder de la IA generativa para la optimización de procesos</h3>
-              <p class="blog-excerpt">
-                Descubre cómo las IAs generativas están redefiniendo la eficiencia operativa,
-                desde la creación de contenido hasta la simulación avanzada.
-              </p>
-              <a href="#" class="btn btn-gradient">Leer Artículo &rarr;</a>
-            </div>
-          </div>
+          float ang = atan(uv.y, uv.x);
+          float len = length(uv);
+          float invLen = len > 0.0 ? 1.0 / len : 0.0;
+          
+          float n0 = snoise3(vec3(uv * noiseScale, iTime * 0.5)) * 0.5 + 0.5;
+          float r0 = mix(mix(innerRadius, 1.0, 0.4), mix(innerRadius, 1.0, 0.6), n0);
+          float d0 = distance(uv, (r0 * invLen) * uv);
+          float v0 = light1(1.0, 10.0, d0);
+          v0 *= smoothstep(r0 * 1.05, r0, len);
+          float cl = cos(ang + iTime * 2.0) * 0.5 + 0.5;
+          
+          float a = iTime * -1.0;
+          vec2 pos = vec2(cos(a), sin(a)) * r0;
+          float d = distance(uv, pos);
+          float v1 = light2(1.5, 5.0, d);
+          v1 *= light1(1.0, 50.0, d0);
+          
+          float v2 = smoothstep(1.0, mix(innerRadius, 1.0, n0 * 0.5), len);
+          float v3 = smoothstep(innerRadius, mix(innerRadius, 1.0, 0.5), len);
+          
+          vec3 col = mix(color1, color2, cl);
+          col = mix(color3, col, v0);
+          col = (col + v1) * v2 * v3;
+          col = clamp(col, 0.0, 1.0);
+          
+          return extractAlpha(col);
+        }
 
-                    <div class="blog-card">
-            <div class="blog-thumb">
-              <img src="assets/img2.jpg" alt="Imagen de servidores y conexión cloud.">
-            </div>
-            <div class="card-body">
-              <span class="kicker">Cloud & DevOps</span>
-              <h3 class="blog-title">Migración a la nube: Guía paso a paso para no fallar</h3>
-              <p class="blog-excerpt">
-                Exploramos las mejores prácticas y los errores comunes al trasladar tu infraestructura
-                legacy a plataformas cloud de última generación.
-              </p>
-              <a href="#" class="btn btn-gradient">Leer Artículo &rarr;</a>
-            </div>
-          </div>
+        vec4 mainImage(vec2 fragCoord) {
+          vec2 center = iResolution.xy * 0.5;
+          float size = min(iResolution.x, iResolution.y);
+          vec2 uv = (fragCoord - center) / size * 2.0;
+          
+          float angle = rot;
+          float s = sin(angle);
+          float c = cos(angle);
+          uv = vec2(c * uv.x - s * uv.y, s * uv.x + c * uv.y);
+          
+          uv.x += hover * hoverIntensity * 0.1 * sin(uv.y * 10.0 + iTime);
+          uv.y += hover * hoverIntensity * 0.1 * sin(uv.x * 10.0 + iTime);
+          
+          return draw(uv);
+        }
 
-        </div>
-      </div>
-    </section>
-    
-  </main>
+        void main() {
+          vec2 fragCoord = vUv * iResolution.xy;
+          vec4 col = mainImage(fragCoord);
+          gl_FragColor = vec4(col.rgb * col.a, col.a);
+        }
+      `;
+      // --- FIN SHADERS ---
 
-  <footer id="contacto">
-    <div class="footer-grid">
-      <div>
-        <h4>BiAilitics</h4>
-        <p>
-          Especialistas en soluciones de datos, IA y Cloud.<br>
-          Transformamos datos en valor.
-        </p>
-      </div>
-      <div>
-        <h4>Navegación</h4>
-        <div class="footer-links">
-          <a href="#servicios">Servicios</a>
-          <a href="#metodologia">Metodología</a>
-          <a href="#blog">Blog</a>
-        </div>
-      </div>
-      <div>
-        <h4>Contacto</h4>
-        <p>
-          Email: <a href="mailto:info@biailitics.com">info@biailitics.com</a><br>
-          Teléfono: +34 XXX XXX XXX<br>
-        </p>
-      </div>
-      <div>
-        <h4>Legal</h4>
-        <div class="footer-links">
-          <a href="/politica-privacidad">Política de Privacidad</a>
-          <a href="/aviso-legal">Aviso Legal</a>
-        </div>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      &copy; 2025 BiAilitics. Todos los derechos reservados.
-    </div>
-  </footer>
+      useEffect(() => {
+        const container = ctnDom.current;
+        if (!container) return;
 
-  <script>
-    /* ================================================= */
-    /* SCRIPTS ORIGINALES (Menú Móvil y VÍDEOS) */
-    /* ================================================= */
+        const renderer = new Renderer({ alpha: true, premultipliedAlpha: false });
+        const gl = renderer.gl;
+        gl.clearColor(0, 0, 0, 0);
+        container.appendChild(gl.canvas);
 
-    // Toggle de menú para móvil
-    const nav = document.querySelector('header nav');
-    const toggle = document.querySelector('.menu-toggle');
-    const overlay = document.getElementById('nav-overlay');
+        const geometry = new Triangle(gl);
+        const program = new Program(gl, {
+          vertex: vert,
+          fragment: frag,
+          uniforms: {
+            iTime: { value: 0 },
+            iResolution: {
+              value: new Vec3(gl.canvas.width, gl.canvas.height, gl.canvas.width / gl.canvas.height)
+            },
+            hue: { value: hue },
+            hover: { value: 0 },
+            rot: { value: 0 },
+            hoverIntensity: { value: hoverIntensity }
+          }
+        });
 
-    function toggleMenu() {
-      nav.classList.toggle('is-active');
-      overlay.style.opacity = nav.classList.contains('is-active') ? '1' : '0';
-      overlay.style.pointerEvents = nav.classList.contains('is-active') ? 'auto' : 'none';
+        const mesh = new Mesh(gl, { geometry, program });
+
+        function resize() {
+          if (!container) return;
+          const dpr = window.devicePixelRatio || 1;
+          const width = container.clientWidth;
+          const height = container.clientHeight;
+          renderer.setSize(width * dpr, height * dpr);
+          gl.canvas.style.width = width + 'px';
+          gl.canvas.style.height = height + 'px';
+          program.uniforms.iResolution.value.set(gl.canvas.width, gl.canvas.height, gl.canvas.width / gl.canvas.height);
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        let targetHover = 0;
+        let lastTime = 0;
+        let currentRot = 0;
+        const rotationSpeed = 0.3;
+
+        const handleMouseMove = e => {
+          const rect = container.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          const width = rect.width;
+          const height = rect.height;
+          const size = Math.min(width, height);
+          const centerX = width / 2;
+          const centerY = height / 2;
+          const uvX = ((x - centerX) / size) * 2.0;
+          const uvY = ((y - centerY) / size) * 2.0;
+
+          if (Math.sqrt(uvX * uvX + uvY * uvY) < 0.8) {
+            targetHover = 1;
+          } else {
+            targetHover = 0;
+          }
+        };
+
+        const handleMouseLeave = () => {
+          targetHover = 0;
+        };
+
+        container.addEventListener('mousemove', handleMouseMove);
+        container.addEventListener('mouseleave', handleMouseLeave);
+
+        let rafId;
+        const update = t => {
+          rafId = requestAnimationFrame(update);
+          const dt = (t - lastTime) * 0.001;
+          lastTime = t;
+          program.uniforms.iTime.value = t * 0.001;
+          program.uniforms.hue.value = hue;
+          program.uniforms.hoverIntensity.value = hoverIntensity;
+
+          const effectiveHover = forceHoverState ? 1 : targetHover;
+          program.uniforms.hover.value += (effectiveHover - program.uniforms.hover.value) * 0.1;
+
+          if (rotateOnHover && effectiveHover > 0.5) {
+            currentRot += dt * rotationSpeed;
+          }
+          program.uniforms.rot.value = currentRot;
+
+          renderer.render({ scene: mesh });
+        };
+        rafId = requestAnimationFrame(update);
+
+        return () => {
+          cancelAnimationFrame(rafId);
+          window.removeEventListener('resize', resize);
+          container.removeEventListener('mousemove', handleMouseMove);
+          container.removeEventListener('mouseleave', handleMouseLeave);
+          if(container.contains(gl.canvas)) {
+            container.removeChild(gl.canvas);
+          }
+          gl.getExtension('WEBGL_lose_context')?.loseContext();
+        };
+      }, [hue, hoverIntensity, rotateOnHover, forceHoverState]);
+
+      return <div ref={ctnDom} className="orb-container" />;
     }
 
-    toggle.addEventListener('click', toggleMenu);
-    overlay.addEventListener('click', toggleMenu);
-    nav.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        if (nav.classList.contains('is-active')) {
-          toggleMenu(); // Cierra el menú al hacer clic en un enlace
-        }
-      });
-    });
+    // =========================================
+    // Componente APP PRINCIPAL
+    // =========================================
 
-    // Reproducción y control de bucle de vídeos
-    document.addEventListener('DOMContentLoaded', () => {
-      document.querySelectorAll('.services-video video').forEach(video => {
-        video.play().catch(error => {
-          console.log("Autoplay prevented:", error);
-          // Si falla el autoplay (común en navegadores), el usuario puede interactuar
-        });
-      });
-    });
-    
+    const Header = () => (
+      <header className="header">
+        <div className="brand">
+          <h1>⚛️ React Bits</h1>
+        </div>
+        <nav className="nav">
+          <a href="#">Home</a>
+          <a href="#">Docs</a>
+        </nav>
+      </header>
+    );
 
-    /* ================================================= */
-    /* SCRIPT DEL ORBE (Animación en Canvas) */
-    /* ================================================= */
-    document.addEventListener('DOMContentLoaded', () => {
-      const container = document.querySelector('.orb-container');
-      if (!container) return;
+    function App() {
+      return (
+        <div className="app-container">
+          <Header />
+          <div className="hero-section">
+            <div 
+              className="orb-wrapper" 
+            >
+              {/* Componente Orb con un poco de ajuste de color (hue) */}
+              <Orb 
+                hoverIntensity={0.5}
+                rotateOnHover={true}
+                hue={-15} 
+                forceHoverState={false}
+              />
+            </div>
+            
+            {/* Contenido */}
+            <div className="hero-content">
+              <button className="new-background-btn">New Background</button>
+              <h2>This orb is hiding something, try hovering!</h2>
+              <div className="buttons-group">
+                <button className="btn-primary">Get Started</button>
+                <button className="btn-secondary">Learn More</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
 
-      const canvas = document.createElement('canvas');
-      canvas.style.width = '100%';
-      canvas.style.height = '100%';
-      canvas.style.display = 'block';
-      container.appendChild(canvas);
+    // Renderizar la aplicación en el DOM
+    const container = document.getElementById('root');
+    const root = ReactDOM.createRoot(container);
+    root.render(<App />);
 
-      const ctx = canvas.getContext('2d');
-      let width, height, orbs = [], mouseX = 0, mouseY = 0;
-      const NUM_ORBS = 40;
-      // Colores de BiAilitics para el orbe
-      const colors = ['#7b6cf9', '#b8aaff', '#e7e1ff', '#5849d7']; 
-
-      class Orb {
-        constructor(x, y, radius, color) {
-          this.x = x;
-          this.y = y;
-          this.radius = radius;
-          this.color = color;
-          this.velocity = { x: (Math.random() - 0.5) * 0.5, y: (Math.random() - 0.5) * 0.5 };
-          this.originalRadius = radius;
-          this.baseOpacity = 0.2 + Math.random() * 0.3;
-        }
-
-        draw() {
-          ctx.beginPath();
-          ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-          // Función para convertir color hexadecimal a RGB para la opacidad
-          const hexToRgb = (hex) => [
-            parseInt(hex.slice(1, 3), 16),
-            parseInt(hex.slice(3, 5), 16),
-            parseInt(hex.slice(5, 7), 16)
-          ];
-          const [r, g, b] = hexToRgb(this.color);
-          ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${this.baseOpacity})`;
-          ctx.fill();
-          ctx.closePath();
-        }
-
-        update() {
-          // Distancia al ratón para el efecto de repulsión/escala
-          const dist = Math.sqrt(Math.pow(mouseX - this.x, 2) + Math.pow(mouseY - this.y, 2));
-          const maxDist = 150;
-          
-          if (dist < maxDist) {
-            // Efecto de escala/brillo
-            const scale = 1 + (1 - dist / maxDist) * 0.8; 
-            this.radius = this.originalRadius * scale;
-          } else {
-            this.radius += (this.originalRadius - this.radius) * 0.1;
-          }
-
-          // Movimiento
-          this.x += this.velocity.x;
-          this.y += this.velocity.y;
-
-          // Rebotar en los bordes
-          if (this.x + this.radius > width || this.x - this.radius < 0) {
-            this.velocity.x = -this.velocity.x;
-          }
-          if (this.y + this.radius > height || this.y - this.radius < 0) {
-            this.velocity.y = -this.velocity.y;
-          }
-
-          this.draw();
-        }
-      }
-
-      function init() {
-        resizeCanvas();
-        orbs = [];
-        for (let i = 0; i < NUM_ORBS; i++) {
-          const radius = Math.random() * 20 + 10;
-          const x = Math.random() * (width - radius * 2) + radius;
-          const y = Math.random() * (height - radius * 2) + radius;
-          const color = colors[Math.floor(Math.random() * colors.length)];
-          orbs.push(new Orb(x, y, radius, color));
-        }
-      }
-
-      function resizeCanvas() {
-        width = container.clientWidth;
-        height = container.clientHeight;
-        canvas.width = width;
-        canvas.height = height;
-      }
-
-      function connectOrbs() {
-        for (let i = 0; i < orbs.length; i++) {
-          for (let j = i + 1; j < orbs.length; j++) {
-            const orb1 = orbs[i];
-            const orb2 = orbs[j];
-            const dist = Math.sqrt(Math.pow(orb1.x - orb2.x, 2) + Math.pow(orb1.y - orb2.y, 2));
-
-            const maxLineDist = 120; // Distancia máxima para conectar
-            if (dist < maxLineDist) {
-              const opacity = 1 - dist / maxLineDist;
-              ctx.beginPath();
-              ctx.moveTo(orb1.x, orb1.y);
-              ctx.lineTo(orb2.x, orb2.y);
-              ctx.strokeStyle = `rgba(184, 170, 255, ${opacity * 0.5})`; // Color de línea semi-transparente
-              ctx.lineWidth = 1;
-              ctx.stroke();
-              ctx.closePath();
-            }
-          }
-        }
-      }
-
-      function animate() {
-        requestAnimationFrame(animate);
-        ctx.clearRect(0, 0, width, height); // Limpia el canvas
-
-        connectOrbs(); // Dibuja las líneas de conexión
-
-        orbs.forEach(orb => {
-          orb.update(); // Actualiza posición y dibuja los orbes
-        });
-      }
-
-      window.addEventListener('resize', init);
-      // Asegura que el mouseX/Y es relativo al contenedor
-      container.addEventListener('mousemove', (e) => {
-        const rect = container.getBoundingClientRect();
-        mouseX = e.clientX - rect.left;
-        mouseY = e.clientY - rect.top;
-      });
-      
-      // Inicializa y comienza la animación
-      init();
-      animate();
-    });
   </script>
-
 </body>
 </html>
-
-
