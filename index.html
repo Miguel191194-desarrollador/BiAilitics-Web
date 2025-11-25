@@ -570,6 +570,34 @@
       });
     });
   </script>
+
+  <!-- 🚀 Cursor animado -->
+  <style>
+    #cursor {
+      position: fixed;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: #5227FF;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      mix-blend-mode: difference;
+      transition: 0.07s ease-out;
+      z-index: 9999;
+    }
+  </style>
+
+  <div id="cursor"></div>
+
+  <script>
+    const cursor = document.getElementById("cursor");
+    window.addEventListener("mousemove", (e) => {
+      cursor.style.left = e.clientX + "px";
+      cursor.style.top  = e.clientY + "px";
+    });
+  </script>
+
 </body>
 </html>
+
 
