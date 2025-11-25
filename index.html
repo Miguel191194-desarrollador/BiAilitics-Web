@@ -1,4 +1,4 @@
-<!DOCTYPEocatore HTML>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
@@ -26,7 +26,8 @@
   <link rel="preload" as="video" href="assets/TARJETA2.mp4" type="video/mp4">
   <link rel="preload" as="video" href="assets/Miguel2.mp4" type="video/mp4">
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4PDXDV406W"></script>
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4PDXDV406W"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -35,6 +36,7 @@
   </script>
 
   <style>
+    /* ESTILOS GLOBALES Y COMPONENTES ORIGINALES */
     *{ box-sizing:border-box; margin:0; padding:0 }
     :root{ --bg:#0b0b0b }
     html,body{ width:100%; font-family:'Montserrat',sans-serif; color:#fff; background-color:var(--bg) }
@@ -66,19 +68,103 @@
       position:fixed; inset:0; background:rgba(0,0,0,.45);
       opacity:0; pointer-events:none; transition:opacity .25s ease; z-index:9;
     }
-
-    /* ===== HERO ===== */
-    .hero{
-      min-height:100vh;
-      background:image-set(url('assets/c837a6_2119733e838e4a2f8813ebde736f99d5~mv2.avif') type('image/avif') 1x, url('assets/imagen_ampliada_comprimida.jpg') type('image/jpeg') 1x) center/cover no-repeat;
-      display:flex; align-items:center; justify-content:flex-start; padding:0 8%; position:relative
+    
+    /* ===== ESTILOS DEL NUEVO HERO CON ORBE ===== */
+    .orb-hero {
+      width: 100%;
+      height: 100vh; /* Ocupa toda la altura de la ventana */
+      background-color: #000; /* Fondo oscuro */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden; /* Para que el orbe no se desborde */
     }
-    .hero::before{ content:""; position:absolute; inset:0; background:rgba(0,0,0,.55); z-index:0 }
-    .hero-text{ position:relative; max-width:700px; z-index:2 }
-    .hero-text h1{ font-size:clamp(2rem, 2.2vw + 1rem, 3.2rem); margin-bottom:20px }
-    .hero-text p{ font-size:clamp(1rem, .6vw + .9rem, 1.25rem); margin-bottom:30px; color:#f0f0f0 }
 
-    /* ===== SERVICIOS ===== */
+    .orb-container {
+      position: absolute; /* Permite que el canvas se posicione libremente */
+      z-index: 0;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    /* El canvas del orbe se inyectará aquí */
+
+    .orb-content {
+      position: relative;
+      z-index: 1; /* Asegura que el contenido esté sobre el orbe */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .orb-content h2 {
+      font-size: clamp(1.8rem, 2.5vw + 1rem, 3.5rem);
+      margin-bottom: 20px;
+      color: #fff;
+      font-weight: 800;
+      /* Efecto de brillo de neón con los colores de la marca */
+      text-shadow: 0 0 8px rgba(184,170,255,0.7), 0 0 16px rgba(123,108,249,0.5);
+    }
+
+    .orb-content .subtitle {
+      font-size: clamp(1rem, 1.2vw + 0.5rem, 1.5rem);
+      margin-bottom: 30px;
+      color: #e0e0e0;
+      max-width: 600px;
+      line-height: 1.4;
+    }
+
+    .orb-buttons {
+      display: flex;
+      gap: 15px;
+    }
+
+    .orb-button {
+      padding: 12px 28px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 700;
+      transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+    }
+
+    .orb-button.primary {
+      background: linear-gradient(135deg, #7b6cf9, #b8aaff);
+      color: #111;
+      box-shadow: 0 4px 15px rgba(184, 170, 255, 0.4);
+    }
+
+    .orb-button.primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(184, 170, 255, 0.6);
+    }
+
+    .orb-button.secondary {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .orb-button.secondary:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
+    @media (max-width: 768px) {
+      .orb-content h2 { font-size: 2.2rem; }
+      .orb-content .subtitle { font-size: 1.1rem; }
+      .orb-buttons { flex-direction: column; gap: 10px; width: 80%; }
+      .orb-button { width: 100%; }
+    }
+
+
+    /* ===== SERVICIOS - ESTILOS ORIGINALES RESTAURADOS ===== */
     .servicios{ position:relative; padding:140px 8% 120px; background:#000 }
     .servicios h2{
       font-weight:800;
@@ -305,285 +391,458 @@
     /* Contenido flexible para que el botón quede alineado abajo y todas igualen altura */
     .card-body{ display:flex; flex-direction:column; gap:10px; flex:1; }
     .btn{ display:inline-flex; align-items:center; gap:10px; padding:12px 18px; border-radius:999px; font-weight:700; text-decoration:none }
-    .btn-gradient{ background:linear-gradient(135deg,#7b6cf9,#b8aaff); color:#111; margin-top:auto; }
+    .btn-gradient{ background:linear-gradient(135deg,#7b6cf9,#b8aaff); color:#111; transition:filter .2s }
     .btn-gradient:hover{ filter:brightness(1.05) }
 
     /* ===== FOOTER ===== */
     footer{
-      padding:40px 10%; background:#111; color:#888; font-size:.9em;
-      display:flex; flex-direction:column; align-items:center; gap:20px;
+      background:linear-gradient(180deg, #0b0b0b, #000);
+      padding:40px 8%;
+      border-top:1px solid rgba(255,255,255,.12);
+      color:#ccc; font-size:.9rem; line-height:1.6
     }
-    .footer-contact{ display:flex; flex-direction:column; align-items:flex-start; gap:10px; margin-right:auto }
-    .footer-contact a{ text-decoration:none; color:inherit; transition:color 0.2s }
-    .footer-contact a:hover{ color:#fff }
+    .footer-grid{
+      display:grid; grid-template-columns:repeat(4,1fr); gap:40px; max-width:1200px; margin:0 auto;
+    }
+    footer h4{ font-weight:700; font-size:1.1rem; margin-bottom:15px; color:#fff }
+    footer a{ color:#ccc; text-decoration:none; transition:color .2s }
+    footer a:hover{ color:#b8aaff }
+    .footer-links{ display:flex; flex-direction:column; gap:8px }
+    .footer-bottom{
+      margin-top:30px; padding-top:20px; border-top:1px solid rgba(255,255,255,.1);
+      text-align:center; color:#999; font-size:.8rem
+    }
 
-    /* ===== Responsive ===== */
-    @media(max-width:1200px){
-      .services-grid{ grid-template-columns:1fr 1fr }
+    /* Responsive */
+    @media(max-width: 900px){
+      header nav{ display:none; flex-direction:column; position:fixed; inset:80px 0 0 0; background:#0b0b0b; padding:20px 30px; gap:12px }
+      header nav.is-active{ display:flex; }
+      .menu-toggle{ display:flex; }
+      .footer-grid{ grid-template-columns:repeat(2,1fr); }
+      .services-grid{ grid-template-columns:1fr; gap:40px; }
+      .servicios, .metodologia, .blog-home, footer{ padding-left:20px; padding-right:20px; }
     }
-    @media(max-width:768px){
-      .menu-toggle{ display:flex }
-      header nav{
-        position:fixed; top:80px; right:0;
-        height:calc(100vh - 80px); width:min(78vw,320px);
-        background:rgba(17,17,17,.98); backdrop-filter:blur(8px);
-        border-left:1px solid #2d2d2d;
-        display:flex; flex-direction:column; gap:12px; padding:22px;
-        transform:translateX(100%); transition:transform .25s ease; z-index:10;
-      }
-      header nav a{ padding:12px 0; font-size:1.1rem }
-      header nav.active{ transform:translateX(0) }
-      #nav-overlay.active{ opacity:1; pointer-events:auto }
-      .services-grid{ grid-template-columns:1fr; gap:36px; }
-      .service-block{ gap:20px; }
-      .services-video{ height:220px; }
-      footer{ align-items:flex-start }
-      .footer-contact{ margin-right:0; margin-bottom:20px }
+    @media(max-width: 500px){
+      .footer-grid{ grid-template-columns:1fr; }
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="brand">
-      <img src="assets/Biailitics.png" alt="Logo BiAilitics">
-      <span class="brand-name">BiAilitics Data</span>
-    </div>
 
-    <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú" aria-expanded="false">
+  <header>
+    <a href="/" class="brand">
+      <img src="assets/Biailitics.png" alt="Logo de BiAilitics">
+      <div class="brand-name">BiAilitics</div>
+    </a>
+    <button class="menu-toggle" aria-label="Abrir menú de navegación">
       <span></span><span></span><span></span>
     </button>
-
-    <nav id="nav-menu" aria-hidden="true">
-      <a href="#inicio">Inicio</a>
+    <nav>
       <a href="#servicios">Servicios</a>
       <a href="#metodologia">Metodología</a>
       <a href="#blog">Blog</a>
+      <a href="#contacto">Contacto</a>
     </nav>
+    <div id="nav-overlay"></div>
   </header>
 
-  <div id="nav-overlay"></div>
-
   <main>
-        <section class="hero" id="inicio">
-      <div class="hero-text">
-        <h1>
-          Especialistas en integrar datos, escalar soluciones y aportar experiencia.
-          <span style="background:linear-gradient(135deg,#7b6cf9,#b8aaff);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Impulsamos tu negocio</span>
-        </h1>
+    
+                <section class="orb-hero">
+      <div class="orb-container">
+              </div>
+      <div class="orb-content">
+        <h2>Especialistas en integrar datos, escalar soluciones y aportar experiencia</h2>
+        <p class="subtitle">
+          Hacemos latir tu marca. Impulsamos tu negocio. 
+        </p>
+        <div class="orb-buttons">
+          <a href="#contacto" class="orb-button primary">Solicitar Demo</a>
+          <a href="#servicios" class="orb-button secondary">Ver Servicios</a>
+        </div>
       </div>
     </section>
 
-        <section class="servicios" id="servicios">
-      <h2>Nuestros servicios</h2>
 
+                <div class="section-divider"></div>
+
+    <section id="servicios" class="servicios">
+      <h2>Nuestros Servicios</h2>
       <div class="services-grid">
-        <div class="service-block">
-          <aside class="services-intro bg1">
+        
+                <div class="service-block">
+          <div class="services-intro bg1">
             <div class="intro-content">
-              <h3>Haz que tus datos te lleven a un nivel superior</h3>
-              <p>Agrupamos todos los datos relevantes para tu negocio en un único modelo, sin importar su formato, para que puedas analizarlos fácilmente y anticiparte al futuro con Microsoft Power BI.</p>
+              <h3>Integración de Datos y Analítica Avanzada</h3>
+              <p>
+                Unifica tus fuentes de datos y obtén insights accionables. 
+                Desarrollamos pipelines de datos robustos y dashboards dinámicos para una toma de decisiones inteligente.
+              </p>
             </div>
-          </aside>
+          </div>
           <div class="services-video">
-            <video autoplay muted loop playsinline preload="auto">
-              <source src="assets/1166635_Screen_Man_3840x2160%20(1).mp4" type="video/mp4">
-            </video>
+            <video autoplay loop muted playsinline src="assets/TARJETA2.mp4"></video>
           </div>
         </div>
 
-        <div class="service-block">
-          <aside class="services-intro bg2">
+                <div class="service-block">
+          <div class="services-intro bg2">
             <div class="intro-content">
-              <h3>Tus decisiones, más rápidas y seguras</h3>
-              <p>Controla tus <strong>compras</strong>, <strong>ventas</strong> y <strong>almacén</strong> con informes automáticos y fáciles de leer. Tendrás información clara, justo cuando la necesitas, y además contarás con nuestro asesoramiento cercano.</p>
+              <h3>Escalado de Soluciones Cloud y DevOps</h3>
+              <p>
+                Llevamos tus proyectos a la nube con eficiencia y seguridad. 
+                Implementamos prácticas DevOps para la entrega continua y el escalado de tu infraestructura.
+              </p>
             </div>
-          </aside>
+          </div>
           <div class="services-video">
-            <video autoplay muted loop playsinline preload="auto">
-              <source src="assets/TARJETA2.mp4" type="video/mp4">
-            </video>
+            <video autoplay loop muted playsinline src="assets/1166635_Screen_Man_3840x2160%20(1).mp4"></video>
           </div>
         </div>
 
-        <div class="service-block">
-          <aside class="services-intro bg3">
+                <div class="service-block">
+          <div class="services-intro bg3">
             <div class="intro-content">
-              <h3>Mejora de procesos</h3>
-              <p>Te aportamos nuestra experiencia y capacitación en consultoría sobre mejora de procesos de negocios. Implementamos y desarrollamos herramientas digitales para profesionalizar tus procedimientos.</p>
+              <h3>Modelos de Inteligencia Artificial (IA)</h3>
+              <p>
+                Desarrollamos y desplegamos modelos predictivos y generativos personalizados 
+                que se integran con tu negocio para automatizar y optimizar procesos.
+              </p>
             </div>
-          </aside>
+          </div>
           <div class="services-video">
-            <video autoplay muted loop playsinline preload="auto">
-              <source src="assets/Miguel2.mp4" type="video/mp4">
-            </video>
+            <video autoplay loop muted playsinline src="assets/Miguel2.mp4"></video>
           </div>
         </div>
+
       </div>
 
-            <div class="cta-servicio">
-        <a href="solicitar-demo.html" class="btn-demo">Solicitar demostración</a>
+      <div class="cta-servicio">
+        <a href="#contacto" class="btn-demo">Descubre la diferencia BiAilitics</a>
       </div>
+
     </section>
 
-        <div class="section-divider" aria-hidden="true"></div>
+    <div class="section-divider"></div>
 
-        <section class="metodologia" id="metodologia">
-      <h2>Nuestra Metodología</h2>
+    <section id="metodologia" class="metodologia">
+      <h2>Metodología de Trabajo</h2>
       <div class="meto-wrap">
-        <article class="meto-row bg1">
-          <figure class="meto-img">
-            <div class="frame">
-              <img src="assets/1.png" alt="Análisis de necesidades - Metodología paso 1">
-            </div>
-          </figure>
+        
+        <div class="meto-row">
           <div class="meto-text">
-            <h3>🔎 Análisis de necesidades</h3>
-            <p>Para iniciar un proyecto a medida con Power BI, analizamos tu compañía para determinar:</p>
+            <h3>1. Análisis y Definición Estratégica</h3>
+            <p>
+              Comprendemos a fondo tus necesidades de negocio, los retos que enfrentas y los objetivos a corto y largo plazo. 
+              Definimos el MVP (Producto Mínimo Viable) y la hoja de ruta tecnológica.
+            </p>
             <ul class="meto-list">
-              <li>Hacia dónde quiere ir la empresa y su posicionamiento en los próximos años.</li>
-              <li>Qué herramientas de reporting te ayudan a cumplir tus objetivos.</li>
-              <li>Qué infraestructura encaja mejor con tu compañía para almacenar tus datos.</li>
-              <li>Cuáles son los KPIs clave según el sector y los objetivos estratégicos.</li>
+              <li>Estudio de viabilidad técnica y económica.</li>
+              <li>Mapeo de arquitectura de datos ideal.</li>
+              <li>Diseño de experiencia de usuario (UX).</li>
             </ul>
           </div>
-        </article>
+          <div class="meto-img">
+            <div class="frame">
+              <img src="assets/ImagenNueva.avif" alt="Analizando diagramas y datos estratégicos.">
+            </div>
+          </div>
+        </div>
+        
+        <div class="meto-row reverse">
+          <div class="meto-text">
+            <h3>2. Desarrollo y Despliegue Ágil</h3>
+            <p>
+              Empleamos sprints cortos y entregas incrementales para asegurar la calidad y adaptabilidad. 
+              Nuestro enfoque DevOps garantiza que las soluciones se integren y escalen sin problemas.
+            </p>
+            <ul class="meto-list">
+              <li>Desarrollo de microservicios y APIs.</li>
+              <li>Integración y Despliegue Continuo (CI/CD).</li>
+              <li>Automatización de pruebas y seguridad.</li>
+            </ul>
+          </div>
+          <div class="meto-img">
+            <div class="frame">
+              <img src="assets/Prueba3.avif" alt="Código en una pantalla que representa el desarrollo ágil.">
+            </div>
+          </div>
+        </div>
 
-        <article class="meto-row reverse bg2">
-          <figure class="meto-img">
-            <div class="frame">
-              <img src="assets/2.png" alt="Diseño de proyecto Power BI - Metodología paso 2">
-            </div>
-          </figure>
+        <div class="meto-row">
           <div class="meto-text">
-            <h3>🛠️ Diseño de proyecto Power BI</h3>
-            <p>Con tus necesidades y recursos, definimos un plan de implantación teniendo en cuenta:</p>
+            <h3>3. Monitorización y Optimización Continua</h3>
+            <p>
+              Una vez desplegada, la solución entra en una fase de mejora constante. 
+              Monitorizamos el rendimiento, recolectamos feedback y aplicamos optimizaciones para maximizar el ROI.
+            </p>
             <ul class="meto-list">
-              <li>Áreas de mayor impacto con menor esfuerzo (resultados a corto plazo).</li>
-              <li>Acceso a la información y visualización óptima en cada dispositivo.</li>
-              <li>Entrega: inmediatez requerida, volumetría y concurrencia de accesos.</li>
-              <li>Calendario y equipo participante en el desarrollo.</li>
+              <li>Monitorización en tiempo real de KPIs.</li>
+              <li>Mantenimiento preventivo y correctivo.</li>
+              <li>Iteración de modelos de IA para mayor precisión.</li>
             </ul>
           </div>
-        </article>
+          <div class="meto-img">
+            <div class="frame">
+              <img src="assets/c837a6_2119733e838e4a2f8813ebde736f99d5~mv2.avif" alt="Representación visual de un tablero de análisis y optimización.">
+            </div>
+          </div>
+        </div>
 
-        <article class="meto-row bg3">
-          <figure class="meto-img">
-            <div class="frame">
-              <img src="assets/3.png" alt="Implantación de proyecto Power BI - Metodología paso 3">
-            </div>
-          </figure>
-          <div class="meto-text">
-            <h3>🚀 Implantación de proyecto Power BI</h3>
-            <p>Con el diseño definido, implantamos siguiendo nuestra metodología:</p>
-            <ul class="meto-list">
-              <li>Gestión del proyecto conjunta con tu equipo.</li>
-              <li>Exposición de la implantación y formación interna a tu equipo.</li>
-              <li>Puesta en marcha progresiva por áreas o departamentos.</li>
-              <li>Adaptación continua: modelado, materialización, construcción, diseño y entrega.</li>
-            </ul>
-          </div>
-        </article>
       </div>
     </section>
 
-    <div class="section-divider" aria-hidden="true"></div>
+    <div class="section-divider"></div>
 
-        <section class="blog-home" id="blog">
+    <section id="blog" class="blog-home">
       <div class="blog-min">
-        <h2>Blog</h2>
-
-                <div class="blog-grid">
-                    <article class="blog-card">
+        <h2>Insights y Tendencias</h2>
+        <div class="blog-grid">
+          
+                    <div class="blog-card">
             <div class="blog-thumb">
-              <img src="assets/eye-4063134_1280.jpg" alt="Portada del post: Miedo al cambio y la IA en Extremadura" loading="lazy">
+              <img src="assets/img1.jpg" alt="Imagen de un cerebro y conexiones de datos.">
             </div>
-            <span class="kicker">Nuevo</span>
             <div class="card-body">
-              <h3 class="blog-title">Miedo al cambio: por qué frena la IA en Extremadura</h3>
-              <p class="blog-excerpt">Las pymes extremeñas suelen pararse por tres miedos: perder control, costes y falta de tiempo.</p>
-              <a class="btn btn-gradient" href="blog/post-1.html">Leer el primer artículo</a>
+              <span class="kicker">Inteligencia Artificial</span>
+              <h3 class="blog-title">El poder de la IA generativa para la optimización de procesos</h3>
+              <p class="blog-excerpt">
+                Descubre cómo las IAs generativas están redefiniendo la eficiencia operativa,
+                desde la creación de contenido hasta la simulación avanzada.
+              </p>
+              <a href="#" class="btn btn-gradient">Leer Artículo &rarr;</a>
             </div>
-          </article>
+          </div>
 
-                    <article class="blog-card">
+                    <div class="blog-card">
             <div class="blog-thumb">
-              <img src="assets/Post%202.png" alt="Portada del post: Automatizaciones sencillas que ahorran horas" loading="lazy">
+              <img src="assets/img2.jpg" alt="Imagen de servidores y conexión cloud.">
             </div>
-            <span class="kicker">Nuevo</span>
             <div class="card-body">
-              <h3 class="blog-title">Automatizaciones sencillas que ahorran horas cada semana</h3>
-              <p class="blog-excerpt">Identifica tus tareas repetitivas y pon en marcha automatizaciones prácticas sin necesidad de programar.</p>
-              <a class="btn btn-gradient" href="blog/post2.html">Leer el segundo artículo</a>
+              <span class="kicker">Cloud & DevOps</span>
+              <h3 class="blog-title">Migración a la nube: Guía paso a paso para no fallar</h3>
+              <p class="blog-excerpt">
+                Exploramos las mejores prácticas y los errores comunes al trasladar tu infraestructura
+                legacy a plataformas cloud de última generación.
+              </p>
+              <a href="#" class="btn btn-gradient">Leer Artículo &rarr;</a>
             </div>
-          </article>
+          </div>
+
         </div>
       </div>
     </section>
-
-        <footer>
-      <div class="footer-contact">
-        <a href="tel:+34635673885">📞 +34 635 673 885</a>
-        <a href="mailto:infobiailitics@gmail.com">✉️ infobiailitics@gmail.com</a>
-      </div>
-      <p>&copy; 2025 BiAilitics - Consultoría Digital 100% Extremeña. Power BI, Asesoría y Procesos para empresas locales. Todos los derechos reservados.</p>
-    </footer>
+    
   </main>
 
-  <script>
-    const menuToggle = document.getElementById('menu-toggle');
-    const navMenu   = document.getElementById('nav-menu');
-    const overlay   = document.getElementById('nav-overlay');
+  <footer id="contacto">
+    <div class="footer-grid">
+      <div>
+        <h4>BiAilitics</h4>
+        <p>
+          Especialistas en soluciones de datos, IA y Cloud.<br>
+          Transformamos datos en valor.
+        </p>
+      </div>
+      <div>
+        <h4>Navegación</h4>
+        <div class="footer-links">
+          <a href="#servicios">Servicios</a>
+          <a href="#metodologia">Metodología</a>
+          <a href="#blog">Blog</a>
+        </div>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <p>
+          Email: <a href="mailto:info@biailitics.com">info@biailitics.com</a><br>
+          Teléfono: +34 XXX XXX XXX<br>
+        </p>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <div class="footer-links">
+          <a href="/politica-privacidad">Política de Privacidad</a>
+          <a href="/aviso-legal">Aviso Legal</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2025 BiAilitics. Todos los derechos reservados.
+    </div>
+  </footer>
 
-    function toggleMenu(force){
-      const willOpen = (typeof force === 'boolean') ? force : !navMenu.classList.contains('active');
-      navMenu.classList.toggle('active', willOpen);
-      overlay.classList.toggle('active', willOpen);
-      menuToggle?.setAttribute('aria-expanded', String(willOpen));
-      navMenu?.setAttribute('aria-hidden', String(!willOpen));
+  <script>
+    /* ================================================= */
+    /* SCRIPTS ORIGINALES (Menú Móvil y VÍDEOS) */
+    /* ================================================= */
+
+    // Toggle de menú para móvil
+    const nav = document.querySelector('header nav');
+    const toggle = document.querySelector('.menu-toggle');
+    const overlay = document.getElementById('nav-overlay');
+
+    function toggleMenu() {
+      nav.classList.toggle('is-active');
+      overlay.style.opacity = nav.classList.contains('is-active') ? '1' : '0';
+      overlay.style.pointerEvents = nav.classList.contains('is-active') ? 'auto' : 'none';
     }
 
-    menuToggle?.addEventListener('click', () => toggleMenu());
-    overlay?.addEventListener('click', () => toggleMenu(false));
-
-    // Cerrar al hacer click en un enlace del menú
-    navMenu?.querySelectorAll('a').forEach(a=>{
-      a.addEventListener('click', () => toggleMenu(false));
-    });
-
-    // Scroll suave
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if(target){ target.scrollIntoView({behavior:'smooth'}); }
+    toggle.addEventListener('click', toggleMenu);
+    overlay.addEventListener('click', toggleMenu);
+    nav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (nav.classList.contains('is-active')) {
+          toggleMenu(); // Cierra el menú al hacer clic en un enlace
+        }
       });
     });
-  </script>
 
-    <style>
-    #cursor {
-      position: fixed;
-      width: 45px;
-      height: 45px;
-      border-radius: 50%;
-      background: #5227FF;
-      pointer-events: none;
-      transform: translate(-50%, -50%);
-      mix-blend-mode: difference;
-      transition: 0.07s ease-out;
-      z-index: 9999;
-    }
-  </style>
+    // Reproducción y control de bucle de vídeos
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.services-video video').forEach(video => {
+        video.play().catch(error => {
+          console.log("Autoplay prevented:", error);
+          // Si falla el autoplay (común en navegadores), el usuario puede interactuar
+        });
+      });
+    });
+    
 
-  <div id="cursor"></div>
+    /* ================================================= */
+    /* SCRIPT DEL ORBE (Adaptado de Orb.jsx) */
+    /* Esto crea y anima el efecto del orbe interactivo. */
+    /* ================================================= */
+    document.addEventListener('DOMContentLoaded', () => {
+      const container = document.querySelector('.orb-container');
+      if (!container) return;
 
-  <script>
-    const cursor = document.getElementById("cursor");
-    window.addEventListener("mousemove", (e) => {
-      cursor.style.left = e.clientX + "px";
-      cursor.style.top  = e.clientY + "px";
+      const canvas = document.createElement('canvas');
+      canvas.style.width = '100%';
+      canvas.style.height = '100%';
+      canvas.style.display = 'block';
+      container.appendChild(canvas);
+
+      const ctx = canvas.getContext('2d');
+      let width, height, orbs = [], mouseX = 0, mouseY = 0;
+      const NUM_ORBS = 40;
+      const colors = ['#7b6cf9', '#b8aaff', '#e7e1ff', '#5849d7']; // Colores de BiAilitics
+
+      class Orb {
+        constructor(x, y, radius, color) {
+          this.x = x;
+          this.y = y;
+          this.radius = radius;
+          this.color = color;
+          this.velocity = { x: (Math.random() - 0.5) * 0.5, y: (Math.random() - 0.5) * 0.5 };
+          this.originalRadius = radius;
+          this.baseOpacity = 0.2 + Math.random() * 0.3;
+        }
+
+        draw() {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${parseInt(this.color.slice(1, 3), 16)}, ${parseInt(this.color.slice(3, 5), 16)}, ${parseInt(this.color.slice(5, 7), 16)}, ${this.baseOpacity})`;
+          ctx.fill();
+          ctx.closePath();
+        }
+
+        update() {
+          // Distancia al ratón para el efecto de repulsión/escala
+          const dist = Math.sqrt(Math.pow(mouseX - this.x, 2) + Math.pow(mouseY - this.y, 2));
+          const maxDist = 150;
+          
+          if (dist < maxDist) {
+            // Efecto de escala
+            const scale = 1 + (1 - dist / maxDist) * 0.8; 
+            this.radius = this.originalRadius * scale;
+          } else {
+            this.radius += (this.originalRadius - this.radius) * 0.1;
+          }
+
+          // Movimiento
+          this.x += this.velocity.x;
+          this.y += this.velocity.y;
+
+          // Rebotar en los bordes
+          if (this.x + this.radius > width || this.x - this.radius < 0) {
+            this.velocity.x = -this.velocity.x;
+          }
+          if (this.y + this.radius > height || this.y - this.radius < 0) {
+            this.velocity.y = -this.velocity.y;
+          }
+
+          this.draw();
+        }
+      }
+
+      function init() {
+        resizeCanvas();
+        orbs = [];
+        for (let i = 0; i < NUM_ORBS; i++) {
+          const radius = Math.random() * 20 + 10;
+          const x = Math.random() * (width - radius * 2) + radius;
+          const y = Math.random() * (height - radius * 2) + radius;
+          const color = colors[Math.floor(Math.random() * colors.length)];
+          orbs.push(new Orb(x, y, radius, color));
+        }
+      }
+
+      function resizeCanvas() {
+        width = container.clientWidth;
+        height = container.clientHeight;
+        canvas.width = width;
+        canvas.height = height;
+      }
+
+      function connectOrbs() {
+        for (let i = 0; i < orbs.length; i++) {
+          for (let j = i + 1; j < orbs.length; j++) {
+            const orb1 = orbs[i];
+            const orb2 = orbs[j];
+            const dist = Math.sqrt(Math.pow(orb1.x - orb2.x, 2) + Math.pow(orb1.y - orb2.y, 2));
+
+            const maxLineDist = 120; // Distancia máxima para conectar
+            if (dist < maxLineDist) {
+              const opacity = 1 - dist / maxLineDist;
+              ctx.beginPath();
+              ctx.moveTo(orb1.x, orb1.y);
+              ctx.lineTo(orb2.x, orb2.y);
+              ctx.strokeStyle = `rgba(184, 170, 255, ${opacity * 0.5})`; // Color de línea semi-transparente
+              ctx.lineWidth = 1;
+              ctx.stroke();
+              ctx.closePath();
+            }
+          }
+        }
+      }
+
+      function animate() {
+        requestAnimationFrame(animate);
+        ctx.clearRect(0, 0, width, height); // Limpia el canvas
+
+        connectOrbs(); // Dibuja las líneas de conexión
+
+        orbs.forEach(orb => {
+          orb.update(); // Actualiza posición y dibuja los orbes
+        });
+      }
+
+      window.addEventListener('resize', init);
+      container.addEventListener('mousemove', (e) => {
+        const rect = container.getBoundingClientRect();
+        mouseX = e.clientX - rect.left;
+        mouseY = e.clientY - rect.top;
+      });
+      
+      // Inicializa y comienza la animación
+      init();
+      animate();
     });
   </script>
+
+</body>
+</html>
 
 </body>
 </html>
