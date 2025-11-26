@@ -17,7 +17,7 @@
                 100% { background-position: 0% 50%; }
             }
             .gradient-bg {
-                background: linear-gradient(90deg, #ff9900, #33ccb5); /* Colores naranja a verde/cian */
+                background: linear-gradient(90deg, #ff9900, #33ccb5); 
                 background-size: 200% 100%;
                 animation: gradient-animation 10s ease infinite;
             }
@@ -29,8 +29,10 @@
                 flex-direction: column;
                 position: relative;
                 padding: 0 1em;
-                margin-top: 0.5em;
-                margin-bottom: 0.5em;
+                /** Ajuste clave para SUBIR todo el bloque de cajas **/
+                margin-top: 0.5em; 
+                /** Ajuste para compactar el espacio inferior del contenedor **/
+                margin-bottom: 0.5em; 
                 height: auto;
                 overflow: hidden;
                 box-sizing: border-box;
@@ -42,8 +44,9 @@
 
             /* 2. Estilo base para cada paso individual: convierte el paso en un BLOQUE con fondo */
             .process-step {
-                padding: 8px 15px; /* Relleno interno para el bloque (Ligeramente reducido) */
-                margin-bottom: 0.2em !important; /* MUY COMPACTO: Mínimo espacio entre bloques */
+                padding: 8px 15px; 
+                /** Ajuste clave para reducir el espacio ENTRE las cajas (la última compactación) **/
+                margin-bottom: 0.2em !important; 
                 border-radius: 6px; 
                 box-sizing: border-box;
                 width: 100%;
@@ -66,21 +69,21 @@
                 animation: gradient-animation 10s ease infinite;
                 
                 /* Separación vertical mínima para que no expanda el contenido */
-                margin-top: 0.8em; /* AJUSTE: Mínima separación arriba */
-                margin-bottom: 0.8em !important; /* AJUSTE: Mínima separación abajo */
+                margin-top: 0.8em; 
+                margin-bottom: 0.8em !important; 
                 
                 /* Hacemos el texto más visible sobre el fondo de color */
                 color: #000000; 
 
-                padding: 6px 15px; /* <--- AJUSTE CLAVE: Reducimos AÚN MÁS el padding interno para compactar la caja */
+                padding: 6px 15px; 
             }
 
             /* 4. Contenido del paso (Título, icono y texto) */
             .process-step .header-content {
                 display: flex; 
                 align-items: center; 
-                gap: 15px; /* <--- AJUSTE CLAVE: Aumenta la separación entre el icono y el título */
-                margin-bottom: 3px; /* Espacio mínimo entre el título y el párrafo */
+                gap: 15px; /* Separación Icono/Título */
+                margin-bottom: 3px; 
             }
 
             /* 5. Estilo para la caja del icono: Fijo, grande y alineado */
@@ -101,30 +104,30 @@
                 font-size: 1em; 
                 font-weight: bold;
                 color: #ffffff; 
-                line-height: 1.1; /* Aseguramos compacidad */
+                line-height: 1.1; 
                 flex-grow: 1;
             }
             /* 6a. Título en el paso resaltado: lo ponemos oscuro para el contraste */
             .process-step.highlight h3 {
                 color: #000000;
-                margin-bottom: 2px; /* Mínimo margen inferior */
+                margin-bottom: 2px; 
                 line-height: 1.1; 
             }
             
             /* 7. Estilo del párrafo */
             .process-step p {
                 opacity: 0.9;
-                font-size: 0.78em; /* <--- AJUSTE CLAVE: Reducido un poco para que quepa todo */
-                line-height: 1.3; /* Compacto */
+                font-size: 0.78em; 
+                line-height: 1.3; 
                 margin-bottom: 0; 
-                padding-left: 35px; /* Indentación ajustada para el nuevo gap del icono */
+                padding-left: 35px; 
                 color: #dddddd; 
                 margin-top: 0;
             }
             /* 7a. Párrafo en el paso resaltado: lo ponemos oscuro para el contraste */
             .process-step.highlight p {
                 color: #333333;
-                padding-left: 35px; /* Indentación ajustada */
+                padding-left: 35px; 
                 margin-top: 0; 
                 line-height: 1.3;
             }
@@ -135,6 +138,33 @@
                 height: auto !important; 
                 max-height: none !important;
                 padding-bottom: 1em;
+            }
+            
+            /* ======================================================= */
+            /* NUEVO: Estilos para el efecto de cursor interactivo */
+            /* ======================================================= */
+            #cursor-glow {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                pointer-events: none; /* Permite interactuar con los elementos debajo */
+                z-index: 9999; 
+                mix-blend-mode: overlay; /* Crea el efecto de mezcla de luz y color */
+                opacity: 0.8;
+                transition: opacity 0.3s ease;
+            }
+
+            .cursor-blob {
+                position: absolute;
+                width: 100px; /* Tamaño del blob */
+                height: 100px;
+                border-radius: 50%;
+                /* Degradado de los colores de tu marca */
+                background: radial-gradient(circle, rgba(255, 153, 0, 0.7) 0%, rgba(51, 204, 181, 0) 70%); 
+                transform: translate(-50%, -50%);
+                transition: transform 0.1s linear; /* Movimiento suave */
             }
         </style>
 
@@ -557,12 +587,34 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 					</div>
 
 			</div>
+        
+        <div id="cursor-glow"></div>
 
 		<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/browser.min.js"></script>
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/main.js"></script>
+        
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const glowContainer = document.getElementById('cursor-glow');
+                const blob = document.createElement('div');
+                blob.className = 'cursor-blob';
+                glowContainer.appendChild(blob);
 
+                // Función para actualizar la posición del blob
+                function updateBlobPosition(e) {
+                    // Mueve el blob con el cursor, asegurando que el centro del blob esté en la posición del ratón
+                    blob.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
+                }
+
+                // Escucha el movimiento del ratón
+                document.addEventListener('mousemove', updateBlobPosition);
+
+                // Opcional: Ocultar el cursor normal
+                document.body.style.cursor = 'none';
+            });
+        </script>
 	</body>
 
 </html>
