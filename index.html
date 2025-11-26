@@ -73,7 +73,6 @@
 				margin-bottom: 0.8em !important; 
 				
 				/* Hacemos el texto más visible sobre el fondo de color */
-				/** AJUSTE DE COLOR: CAMBIAR COLOR BASE A BLANCO O CASI BLANCO **/
 				color: #ffffff; /* Blanco para texto base */
 
 				padding: 6px 15px; 
@@ -163,23 +162,32 @@
 				height: 100px;
 				border-radius: 50%;
 				transform: translate(-50%, -50%);
-				transition: transform 0.1s linear, background 0.3s ease-in-out; /* Añadida transición de color */
+				transition: transform 0.1s linear, background 0.3s ease-in-out; 
 			}
 
 			/* 🟠 MODO OSCURO (Fondo debajo es OSCURO, el blob es NARANJA) */
 			.cursor-blob.dark-mode {
 				background: radial-gradient(circle, 
-					rgba(255, 153, 0, 0.9) 30%,    /* Naranja fuerte */
-					rgba(255, 153, 0, 0.3) 60%,    
+					rgba(255, 153, 0, 1.0) 30%,    /* Opacidad 1.0 */
+					rgba(255, 153, 0, 0.5) 60%,    /* Opacidad 0.5 */
 					rgba(51, 204, 181, 0) 100%);
 			}
 
 			/* 🔵 MODO CLARO (Fondo debajo es CLARO, el blob es AZUL BRILLANTE) */
 			.cursor-blob.light-mode {
 				background: radial-gradient(circle, 
-					rgba(0, 150, 255, 0.9) 30%,    /* Azul Brillante fuerte */
-					rgba(0, 150, 255, 0.3) 60%,    
+					rgba(0, 150, 255, 1.0) 30%,    /* Opacidad 1.0 */
+					rgba(0, 150, 255, 0.5) 60%,    /* Opacidad 0.5 */
 					rgba(51, 204, 181, 0) 100%);
+			}
+
+			/* ======================================================= */
+			/* OCULTAR CURSOR INTERACTIVO EN MÓVILES/PANTALLAS PEQUEÑAS */
+			/* ======================================================= */
+			@media screen and (max-width: 736px) { 
+				#cursor-glow {
+					display: none !important;
+				}
 			}
 		</style>
 
@@ -614,20 +622,38 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 				document.addEventListener('DOMContentLoaded', () => {
 					const glowContainer = document.getElementById('cursor-glow');
 					const blob = document.createElement('div');
-					blob.className = 'cursor-blob dark-mode'; // Inicia en modo oscuro (Naranja)
+					// Usamos una clase al inicio que garantice visibilidad en el fondo inicial (oscuro)
+					blob.className = 'cursor-blob dark-mode'; 
 					glowContainer.appendChild(blob);
 
-					// Umbral de luminancia: 150 es el punto de corte para decidir si un fondo es claro u oscuro.
-					const LUMINANCE_THRESHOLD = 150; 
-					let currentMode = 'dark'; // Seguimiento del modo actual para evitar cambios constantes
+					// Umbral de Luminancia: 100.
+					const LUMINANCE_THRESHOLD = 100; 
+					let currentMode = 'dark'; 
 
 					// Función para verificar si un color (RGB) es oscuro o claro
 					function isDark(r, g, b) {
 						// Fórmula simple de luminancia percibida
 						const luminance = (0.299 * r + 0.587 * g + 0.114 * b);
 						
-						// Si la luminancia es baja (oscuro), devolvemos true
 						return luminance < LUMINANCE_THRESHOLD;
+					}
+
+					// Función para obtener el color de fondo RGB de un elemento
+					function getBgColorRgb(element) {
+						const style = window.getComputedStyle(element);
+						const bgColor = style.backgroundColor;
+						// Busca 'rgb(x, y, z)' o 'rgba(x, y, z, a)'
+						const match = bgColor.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d*\.?\d+))?\)/);
+						if (match) {
+							return {
+								r: parseInt(match[1]),
+								g: parseInt(match[2]),
+								b: parseInt(match[3]),
+								// Si el alfa es 0, lo tratamos como transparente
+								a: match[4] ? parseFloat(match[4]) : 1.0 
+							};
+						}
+						return null;
 					}
 
 					// Función principal para actualizar el color y posición del blob
@@ -636,38 +662,35 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 						blob.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
 
 						// 1. Obtener el elemento bajo el cursor
-						const targetElement = document.elementFromPoint(e.clientX, e.clientY);
+						let targetElement = document.elementFromPoint(e.clientX, e.clientY);
+						let colorData = null;
 
-						if (targetElement) {
-							// 2. Obtener el color de fondo computado
-							const style = window.getComputedStyle(targetElement);
-							const bgColor = style.backgroundColor;
-
-							// 3. Extraer los valores RGB del string 'rgb(x, y, z)'
-							const match = bgColor.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d*\.?\d+))?\)/);
+						// Bucle para buscar un elemento con un color de fondo definido (no transparente)
+						while (targetElement && targetElement !== document.body) {
+							colorData = getBgColorRgb(targetElement);
 							
-							// Si encontramos RGB
-							if (match) {
-								const r = parseInt(match[1]);
-								const g = parseInt(match[2]);
-								const b = parseInt(match[3]);
+							// Si encontramos un color opaco (Alpha > 0.1), usamos ese y rompemos el bucle.
+							if (colorData && colorData.a > 0.1) {
+								break;
+							}
+							// Si no hay color de fondo, subimos al padre
+							targetElement = targetElement.parentElement;
+						}
+						
+						// Si se encontró un color definido
+						if (colorData) {
+							const targetIsDark = isDark(colorData.r, colorData.g, colorData.b);
 
-								// 4. Determinar si el fondo es oscuro
-								const targetIsDark = isDark(r, g, b);
-
-								// 5. Aplicar la clase de modo (sólo si el modo ha cambiado)
-								// Si el fondo es oscuro, el BLOB debe ser NARANJA (dark-mode)
-								if (targetIsDark && currentMode !== 'dark') {
-									blob.classList.add('dark-mode');
-									blob.classList.remove('light-mode');
-									currentMode = 'dark';
-								} 
-								// Si el fondo es claro, el BLOB debe ser AZUL (light-mode)
-								else if (!targetIsDark && currentMode !== 'light') {
-									blob.classList.add('light-mode');
-									blob.classList.remove('dark-mode');
-									currentMode = 'light';
-								}
+							// 2. Aplicar la clase de modo (sólo si el modo ha cambiado)
+							if (targetIsDark && currentMode !== 'dark') {
+								blob.classList.add('dark-mode');
+								blob.classList.remove('light-mode');
+								currentMode = 'dark';
+							} 
+							else if (!targetIsDark && currentMode !== 'light') {
+								blob.classList.add('light-mode');
+								blob.classList.remove('dark-mode');
+								currentMode = 'light';
 							}
 						}
 					}
