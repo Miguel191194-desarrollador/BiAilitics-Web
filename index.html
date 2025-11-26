@@ -10,8 +10,6 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 		<style>
-			/* ... (El CSS existente que me pasaste) ... */
-
 			/* 0. Definición del degradado de resaltado */
 			@keyframes gradient-animation {
 				0% { background-position: 0% 50%; }
@@ -47,8 +45,8 @@
 			/* 2. Estilo base para cada paso individual: convierte el paso en un BLOQUE con fondo */
 			.process-step {
 				padding: 8px 15px; 
-				/** Ajuste clave para reducir el espacio ENTRE las cajas (la última compactación) **/
-				margin-bottom: 0.2em !important; 
+				/** AJUSTE CLAVE: Aumentamos el espacio ENTRE las cajas para que sea notorio **/
+				margin-bottom: 0.8em !important; 
 				border-radius: 6px; 
 				box-sizing: border-box;
 				width: 100%;
@@ -70,7 +68,7 @@
 				background-size: 200% 100%;
 				animation: gradient-animation 10s ease infinite;
 				
-				/* Separación vertical mínima para que no expanda el contenido */
+				/* Mantenemos una separación vertical mínima */
 				margin-top: 0.8em; 
 				margin-bottom: 0.8em !important; 
 				
@@ -279,7 +277,7 @@
 									</ul>
 								</div>
 								<div class="inner">
-									<ul class="grid-icons three connected">
+									<ul class="grid-icons three">
 										<li><span class="icon solid fa-cog"><span class="label">Automatización</span></span></li>
 										<li><span class="icon solid fa-lightbulb"><span class="label">Innovación</span></span></li>
 										<li><span class="icon solid fa-handshake"><span class="label">Soporte</span></span></li>
@@ -712,4 +710,3 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 			</script>
 	</body>
 </html>
-
