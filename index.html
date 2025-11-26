@@ -37,34 +37,28 @@
 				height: auto;
 				overflow: hidden;
 				box-sizing: border-box;
-				/* AJUSTE: Limitamos el ancho del contenedor de los pasos para evitar desbordamiento */
-				max-width: 450px; 
+				/* AJUSTE: Limitamos el ancho del contenedor a 400px para que las cajas sean más estrechas */
+				max-width: 400px; 
 				margin-left: auto;
 				margin-right: auto;
 			}
 
 			/* 2. Estilo base para cada paso individual: convierte el paso en un BLOQUE con fondo */
 			.process-step {
-				padding: 8px 12px; 
-				/* AJUSTE: Moderamos el margen para asegurar separación sin desbordar */
+				padding: 6px 10px; /* Reducimos el padding para hacer la caja más compacta */
 				margin-bottom: 1em !important; 
 				border-radius: 6px; 
 				box-sizing: border-box;
 				width: 100%;
 				
-				/* Fondo por defecto (oscuro/transparente para los NO resaltados) */
-				background-color: rgba(0, 0, 0, 0.3); 
+				/* AJUSTE: Mayor transparencia en cajas no resaltadas */
+				background-color: rgba(0, 0, 0, 0.15); 
 				transition: all 0.3s ease;
-			}
-			
-			/* 2a. Aseguramos que cada paso sea un bloque compacto */
-			.process-step {
 				display: block; 
 			}
-
+			
 			/* 3. Estilo para el PASO RESALTADO */
 			.process-step.highlight {
-				/* Aplicamos el degradado */
 				background-image: linear-gradient(90deg, #ff9900, #33ccb5);
 				background-size: 200% 100%;
 				animation: gradient-animation 10s ease infinite;
@@ -73,14 +67,15 @@
 				margin-bottom: 1em !important; 
 				
 				color: #ffffff; 
-				padding: 6px 12px;  
+				padding: 6px 10px;  /* Mantenemos el padding reducido */
 			}
 
 			/* 4. Contenido del paso (Título, icono y texto) */
 			.process-step .header-content {
 				display: flex; 
 				align-items: center; 
-				gap: 15px; 
+				/* AJUSTE: Incrementamos la separación entre icono y texto */
+				gap: 20px; 
 				margin-bottom: 3px; 
 			}
 
@@ -91,7 +86,6 @@
 				font-size: 1.4em;
 				color: #ffffff; 
 			}
-			/* 5a. Icono en el paso resaltado: lo ponemos blanco para el contraste */
 			.process-step.highlight .icon-box {
 				color: #ffffff; 
 			}
@@ -105,7 +99,6 @@
 				line-height: 1.1; 
 				flex-grow: 1;
 			}
-			/* 6a. Título en el paso resaltado: lo ponemos blanco para el contraste */
 			.process-step.highlight h3 {
 				color: #ffffff;
 				margin-bottom: 2px; 
@@ -119,17 +112,16 @@
 				font-size: 0.75em; 
 				line-height: 1.3; 
 				margin-bottom: 0; 
-				padding-left: 35px; 
+				/* Ajustamos el padding-left para alinear con el icono */
+				padding-left: 40px; 
 				color: #dddddd; 
 				margin-top: 0;
 			}
-			/* 7a. Párrafo en el paso resaltado: lo ponemos gris claro para el contraste */
 			.process-step.highlight p {
 				color: #eeeeee;
-				padding-left: 35px; 
+				padding-left: 40px; 
 				margin-top: 0; 
 				line-height: 1.3;
-				/* AJUSTE: Reducimos el tamaño de la fuente del párrafo resaltado */
 				font-size: 0.75em; 
 			}
 
@@ -149,6 +141,16 @@
 				color: #00ffff !important; 
 				/* Añadimos un pequeño resplandor para el efecto flúor/neón */
 				text-shadow: 0 0 10px rgba(0, 255, 255, 0.7), 0 0 5px rgba(0, 255, 255, 0.5);
+			}
+
+			/* NUEVO AJUSTE: Efecto de Ampliación al pasar el ratón */
+			.panel.color1 .grid-icons li {
+				/* Asegura la animación fluida */
+				transition: transform 0.2s ease-in-out; 
+			}
+			.panel.color1 .grid-icons li:hover {
+				/* Amplia ligeramente el icono al pasar el ratón */
+				transform: scale(1.08);
 			}
 
 			/* ======================================================= */
