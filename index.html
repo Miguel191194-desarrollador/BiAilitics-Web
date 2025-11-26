@@ -181,9 +181,7 @@
 				justify-content: space-between;
 				align-items: center;
 				padding: 5em 2em;
-				/* Fondo degradado suave */
-				/* Color de fondo MORADO oscuro MANTENIDO */
-				background: linear-gradient(135deg, #4b3d73 0%, #2f254e 100%); 
+				/* Fondo degradado suave (Este se aplica directamente al section.panel para color1) */
 				color: #ffffff;
 			}
 
@@ -206,7 +204,6 @@
 			.subtitle-glow {
 				font-size: 1.4em;
 				font-weight: 400;
-				/* Color AZUL RADIANTE MANTENIDO */
 				color: #33ccb5; 
 				margin-bottom: 2em;
 			}
@@ -285,6 +282,18 @@
 					font-size: 2em;
 				}
 			}
+			
+			/* ------------------------------------------- */
+			/* ESTILO ESPECÍFICO PARA LA SECCIÓN DE SERVICIOS (panel color1) */
+			/* ------------------------------------------- */
+			/* Aplicamos el fondo morado oscuro que buscabas a esta sección */
+			.panel.color1 {
+				background: linear-gradient(135deg, #4b3d73 0%, #2f254e 100%) !important;
+			}
+			/* Aseguramos que el intro de la sección no herede el fondo de color1 (que es el morado oscuro ahora) */
+			.panel.color1 .intro.joined {
+				background-color: transparent !important;
+			}
 		</style>
 
 	</head>
@@ -300,7 +309,7 @@
 									is BiAilitcs</h1>
 									<p>Somos una empresa especializada en  <strong>Soluciones Tecnológicas</strong>, para cualquier tipo de negocio y departamento. <a>Ayudamos</a> a las organizaciones a tomar decisiones inteligentes mediante automatizaciones, análisis de datos y herramientas de productividad adaptadas a cada necesidad. :)</p>
 									<ul class="actions">
-										<li><a href="#services" class="button primary color1 circle icon solid fa-angle-right">Next</a></li>
+										<li><a href="#services-list" class="button primary color1 circle icon solid fa-angle-right">Next</a></li>
 									</ul>
 								</div>
 								<div class="image filtered span-1-75" data-position="25% 25%">
@@ -308,59 +317,6 @@
 								</div>
 							</section>
 
-						<section class="panel color0" id="services">
-							<div class="minimal-service-container">
-								
-								<div class="text-content">
-									<h2 class="major title-glow">
-										Transforma tu Negocio.
-									</h2>
-									<h3 class="subtitle-glow">
-										Soluciones Tecnológicas Inteligentes
-									</h3>
-									
-									<ul class="key-points-list">
-										<li>Automatización de Procesos.</li>
-										<li>Soporte y Mantenimiento.</li>
-										<li>Formación Personalizada.</li>
-										<li>Herramientas de Productividad.</li>
-									</ul>
-								</div>
-
-								<div class="icon-grid">
-									
-									<div class="service-item">
-										<div class="icon-circle"><i class="far fa-cog"></i></div> 
-										<p>Automatización</p>
-									</div>
-									
-									<div class="service-item">
-										<div class="icon-circle"><i class="far fa-lightbulb"></i></div> 
-										<p>Innovación</p>
-									</div>
-									
-									<div class="service-item">
-										<div class="icon-circle"><i class="far fa-handshake"></i></div> 
-										<p>Soporte</p>
-									</div>
-									
-									<div class="service-item">
-										<div class="icon-circle"><i class="fas fa-chalkboard-teacher"></i></div> 
-										<p>Formación</p> </div>
-									
-									<div class="service-item">
-										<div class="icon-circle"><i class="fas fa-cloud-upload-alt"></i></div> 
-										<p>Migración Digital</p>
-									</div>
-									
-									<div class="service-item">
-										<div class="icon-circle"><i class="fas fa-shield-alt"></i></div> 
-										<p>Ciberseguridad</p>
-									</div>
-								</div>
-
-							</div>
-						</section>
 						<section class="panel spotlight medium right" id="first">
 							<div class="content span-7">
 								<h2 class="major">Cómo lo hacemos</h2>
@@ -414,23 +370,60 @@
 						</section>
 
 
-						<section class="panel color1">
-								<div class="intro joined">
-									<h2 class="major">Amet lorem</h2>
-									<p>Sed vel nibh libero. Mauris et lorem pharetra massa lorem turpis congue pulvinar. Vivamus sed feugiat finibus. Duis amet bibendum amet sed. Duis mauris ex, dapibus sed ligula tempus volutpat magna etiam.</p>
-								</div>
-								<div class="inner">
-									<ul class="grid-icons three connected">
-										<li><span class="icon fa-gem"><span class="label">Lorem</span></span></li>
-										<li><span class="icon solid fa-camera-retro"><span class="label">Ipsum</span></span></li>
-										<li><span class="icon solid fa-cog"><span class="label">Dolor</span></span></li>
-										<li><span class="icon solid fa-paper-plane"><span class="label">Sit</span></span></li>
-										<li><span class="icon solid fa-chart-bar"><span class="label">Amet</span></span></li>
-										<li><span class="icon solid fa-code"><span class="label">Nullam</span></span></li>
+						<section class="panel color1" id="services-list"> 
+							<div class="minimal-service-container">
+								
+								<div class="text-content">
+									<h2 class="major title-glow">
+										Transforma tu Negocio.
+									</h2>
+									<h3 class="subtitle-glow">
+										Soluciones Tecnológicas Inteligentes
+									</h3>
+									
+									<ul class="key-points-list">
+										<li>Automatización de Procesos.</li>
+										<li>Soporte y Mantenimiento.</li>
+										<li>Formación Personalizada.</li>
+										<li>Herramientas de Productividad.</li>
 									</ul>
 								</div>
-							</section>
 
+								<div class="icon-grid">
+									
+									<div class="service-item">
+										<div class="icon-circle"><i class="far fa-cog"></i></div> 
+										<p>Automatización</p>
+									</div>
+									
+									<div class="service-item">
+										<div class="icon-circle"><i class="far fa-lightbulb"></i></div> 
+										<p>Innovación</p>
+									</div>
+									
+									<div class="service-item">
+										<div class="icon-circle"><i class="far fa-handshake"></i></div> 
+										<p>Soporte</p>
+									</div>
+									
+									<div class="service-item">
+										<div class="icon-circle"><i class="fas fa-chalkboard-teacher"></i></div> 
+										<p>Formación</p>
+									</div>
+									
+									<div class="service-item">
+										<div class="icon-circle"><i class="fas fa-cloud-upload-alt"></i></div> 
+										<p>Migración Digital</p>
+									</div>
+									
+									<div class="service-item">
+										<div class="icon-circle"><i class="fas fa-shield-alt"></i></div> 
+										<p>Ciberseguridad</p>
+									</div>
+								</div>
+
+							</div>
+						</section>
 						<section class="panel spotlight large left">
 								<div class="content span-5">
 									<h2 class="major">Magna amet tempus</h2>
@@ -846,7 +839,3 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 			</script>
 	</body>
 </html>
-
-
-
-
