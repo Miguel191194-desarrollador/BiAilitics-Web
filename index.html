@@ -7,89 +7,85 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 
-                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-                <style>
-            /* Ajustes para el contenedor de los pasos */
-            .process-steps-container {
-                display: flex;
-                flex-direction: column; /* Apila verticalmente */
-                position: relative;
-                padding: 0 1em; /* Reduce padding horizontal del contenedor */
-                margin-top: 1em; /* Reduce el margen superior para acercarlo al título */
-                margin-bottom: 1em; /* Añade margen inferior */
-                height: auto; 
-                overflow: hidden; /* Intenta evitar scrollbar interno */
-                box-sizing: border-box; 
-            }
-
-            /* Estilo para cada paso individual */
-            .process-step {
-                position: relative;
-                padding: 0.8em 0 0.8em 45px; /* Ajusta padding para icono y texto */
-                margin-bottom: 0.5em; /* Menor separación entre cada paso */
-                border-left: none; 
-                box-sizing: border-box;
-                width: 100%; 
-            }
-
-            /* *************************************** */
-            /* EFECTO ESCALERA (DIAGONAL) */
-            /* *************************************** */
-            .process-step:nth-child(2) { /* Segundo paso */
-                margin-left: 5%; 
-            }
-            .process-step:nth-child(3) { /* Tercer paso */
-                margin-left: 10%; 
-            }
-            .process-step:nth-child(4) { /* Cuarto paso */
-                margin-left: 15%; 
+        <style>
+            /* 1. Ajustes para el contenedor de los pasos: alineación y espaciado */
+            .process-steps-container {
+                display: flex;
+                flex-direction: column; /* Apila verticalmente */
+                position: relative;
+                padding: 0 1em; /* Un poco de padding horizontal */
+                margin-top: 1em; /* Espacio superior para separar del título "Cómo lo hacemos" */
+                margin-bottom: 1em; /* Espacio inferior */
+                height: auto; /* La altura se ajusta al contenido */
+                overflow: hidden; /* Evita scrollbar interno si por alguna razón el contenido se desborda */
+                box-sizing: border-box; 
+                /* Para que funcione mejor en PC, reducimos el ancho máximo para centrar el contenido */
+                max-width: 600px; /* Limita el ancho del contenedor de los pasos */
+                margin-left: auto; /* Centra el contenedor en pantallas anchas */
+                margin-right: auto;
             }
 
-            /* Eliminar pseudo-elementos (círculos) */
-            .process-step::before {
-                content: none;
-            }
+            /* 2. Estilo para cada paso individual: convierte el paso en una fila (icono + texto) */
+            .process-step {
+                display: flex; 
+                align-items: flex-start; /* Alinea el ícono con la parte superior del texto */
+                padding: 0; 
+                margin-bottom: 1.5em; /* Más separación entre los puntos */
+                border-left: none; 
+                box-sizing: border-box;
+                gap: 15px; /* Espacio entre el ícono y el texto */
+                width: 100%; /* Ocupa el ancho completo disponible */
+            }
 
-            /* Estilo para la caja del icono */
-            .process-step .icon-box {
-                position: absolute;
-                left: 0; 
-                top: 50%;
-                transform: translateY(-50%);
-                z-index: 10;
-                font-size: 1.6em; /* Un poco más grande para destacar */
-                color: #ffffff; 
-                line-height: 1; 
-                width: 40px; 
-                text-align: left; 
-            }
+            /* 3. Eliminar pseudo-elementos (círculos) */
+            .process-step::before {
+                content: none;
+            }
 
-            /* Estilo del título */
-            .process-step h3 {
-                margin-top: 0;
-                margin-bottom: 0.1em; 
-                font-size: 1.1em; 
-                font-weight: bold;
-                color: #ffffff; 
-                line-height: 1.2; 
-            }
-            /* Estilo del párrafo */
-            .process-step p {
-                opacity: 0.8; 
-                font-size: 0.85em; /* Un poco más pequeño */
-                line-height: 1.5; 
-                margin-bottom: 0;
-            }
+            /* 4. Estilo para la caja del icono: Fijo, grande y alineado */
+            .process-step .icon-box {
+                position: relative; /* Ya no es absoluto */
+                flex-shrink: 0; /* Impide que el ícono se encoja */
+                width: 30px; /* Ancho fijo para el icono */
+                font-size: 1.8em; /* Ícono grande para destacar */
+                color: #ffffff; /* Color blanco para el fondo oscuro */
+                text-align: left; /* Alinea el icono a la izquierda de su "caja" */
+                line-height: 1; 
+                margin-top: 5px; /* Empuja el ícono un poco hacia abajo para centrarlo mejor con el título */
+            }
+            
+            /* 5. Contenedor de texto: asegura que el texto fluya correctamente */
+            .process-text-content {
+                flex-grow: 1; /* Permite que el contenido de texto ocupe el espacio restante */
+            }
+
+            /* 6. Estilo del título */
+            .process-step h3 {
+                margin-top: 0;
+                margin-bottom: 0.1em; /* Menos espacio entre título y párrafo */
+                font-size: 1.1em; /* Tamaño del título */
+                font-weight: bold;
+                color: #ffffff; /* Color blanco para el título */
+                line-height: 1.2; /* Espaciado entre líneas para títulos largos */
+            }
+            /* 7. Estilo del párrafo */
+            .process-step p {
+                opacity: 0.8; /* Texto un poco más claro */
+                font-size: 0.8em; /* ¡Más pequeño para asegurar que quepa! */
+                line-height: 1.5; /* Espaciado entre líneas */
+                margin-bottom: 0; /* Eliminar margen inferior del párrafo */
+            }
 
             /* Reglas para eliminar el scrollbar del panel (si la plantilla lo fuerza) */
             .panel#first .content {
                 overflow: hidden !important;
-                height: auto !important;
-                max-height: none !important;
-                padding-bottom: 1em;
+                height: auto !important; /* Permitir que la altura se ajuste al contenido */
+                max-height: none !important; /* Eliminar cualquier límite de altura */
+                padding-bottom: 1em; /* Asegura un padding inferior */
             }
-        </style>
+        </style>
 
 	</head>
 	<body class="is-preload">
@@ -121,32 +117,40 @@
 										<div class="icon-box">
 											<i class="fas fa-microscope"></i> 
 										</div>
-										<h3>Diagnóstico gratuito:</h3>
-										<p>analizamos tus procesos y necesidades.</p>
+										<div class="process-text-content">
+											<h3>Diagnóstico gratuito:</h3>
+											<p>analizamos tus procesos y necesidades.</p>
+										</div>
 									</div>
 
 									<div class="process-step">
 										<div class="icon-box">
 											<i class="fas fa-handshake"></i>
 										</div>
-										<h3>Solución a medida:</h3>
-										<p>diseñamos e implementamos la automatización o el dashboard.</p>
+										<div class="process-text-content">
+											<h3>Solución a medida:</h3>
+											<p>diseñamos e implementamos la automatización o el dashboard.</p>
+										</div>
 									</div>
 
 									<div class="process-step">
 										<div class="icon-box">
 											<i class="fas fa-graduation-cap"></i>
 										</div>
-										<h3>Formación y soporte:</h3>
-										<p>capacitamos a tu equipo y ofrecemos acompañamiento continuo.</p>
+										<div class="process-text-content">
+											<h3>Formación y soporte:</h3>
+											<p>capacitamos a tu equipo y ofrecemos acompañamiento continuo.</p>
+										</div>
 									</div>
 
 									<div class="process-step">
 										<div class="icon-box">
 											<i class="fas fa-trophy"></i>
 										</div>
-										<h3>Resultados medibles:</h3>
-										<p>realizamos seguimiento del ROI y aplicamos mejoras continuas.</p>
+										<div class="process-text-content">
+											<h3>Resultados medibles:</h3>
+											<p>realizamos seguimiento del ROI y aplicamos mejoras continuas.</p>
+										</div>
 									</div>
 									
 								</div>
@@ -155,6 +159,8 @@
 								<img src="images/Badajoz.jpg" alt="Proceso de consultoría tecnológica: diagnóstico, solución a medida, formación y resultados" />
 							</div>
 						</section>
+
+
 						<section class="panel color1">
 								<div class="intro joined">
 									<h2 class="major">Amet lorem</h2>
@@ -509,3 +515,4 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 	</body>
 
 </html>
+```http://googleusercontent.com/image_generation_content/7
