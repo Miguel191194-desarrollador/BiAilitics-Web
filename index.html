@@ -73,7 +73,8 @@
                 margin-bottom: 0.8em !important; 
                 
                 /* Hacemos el texto más visible sobre el fondo de color */
-                color: #000000; 
+                /** AJUSTE DE COLOR: CAMBIAR COLOR BASE A BLANCO O CASI BLANCO **/
+                color: #ffffff; /* Blanco para texto base */
 
                 padding: 6px 15px; 
             }
@@ -93,9 +94,9 @@
                 font-size: 1.4em;
                 color: #ffffff; 
             }
-            /* 5a. Icono en el paso resaltado: lo ponemos oscuro para el contraste */
+            /* 5a. Icono en el paso resaltado: lo ponemos blanco para el contraste */
             .process-step.highlight .icon-box {
-                color: #000000; 
+                color: #ffffff; 
             }
             
             /* 6. Estilo del título */
@@ -107,9 +108,9 @@
                 line-height: 1.1; 
                 flex-grow: 1;
             }
-            /* 6a. Título en el paso resaltado: lo ponemos oscuro para el contraste */
+            /* 6a. Título en el paso resaltado: lo ponemos blanco para el contraste */
             .process-step.highlight h3 {
-                color: #000000;
+                color: #ffffff;
                 margin-bottom: 2px; 
                 line-height: 1.1; 
             }
@@ -124,9 +125,9 @@
                 color: #dddddd; 
                 margin-top: 0;
             }
-            /* 7a. Párrafo en el paso resaltado: lo ponemos oscuro para el contraste */
+            /* 7a. Párrafo en el paso resaltado: lo ponemos gris claro para el contraste */
             .process-step.highlight p {
-                color: #333333;
+                color: #eeeeee;
                 padding-left: 35px; 
                 margin-top: 0; 
                 line-height: 1.3;
@@ -141,7 +142,7 @@
             }
             
             /* ======================================================= */
-            /* NUEVO: Estilos para el efecto de cursor interactivo */
+            /* CURSOR INTERACTIVO: AJUSTADO PARA SER NARANJA DOMINANTE */
             /* ======================================================= */
             #cursor-glow {
                 position: fixed;
@@ -161,8 +162,9 @@
                 width: 100px; /* Tamaño del blob */
                 height: 100px;
                 border-radius: 50%;
-                /* Degradado de los colores de tu marca */
-                background: radial-gradient(circle, rgba(255, 153, 0, 0.7) 0%, rgba(51, 204, 181, 0) 70%); 
+                /* GRADIENTE NARANJA DOMINANTE: 
+                   Naranja opaco (90%) en el centro y se desvanece al 60% antes de tocar el color cian, asegurando que el naranja sea el principal. */
+                background: radial-gradient(circle, rgba(255, 153, 0, 0.9) 30%, rgba(255, 153, 0, 0.3) 60%, rgba(51, 204, 181, 0) 100%); 
                 transform: translate(-50%, -50%);
                 transition: transform 0.1s linear; /* Movimiento suave */
             }
