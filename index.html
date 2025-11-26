@@ -7,168 +7,181 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-        <style>
-            /* 0. Definición del degradado de resaltado */
-            @keyframes gradient-animation {
-                0% { background-position: 0% 50%; }
-                50% { background-position: 100% 50%; }
-                100% { background-position: 0% 50%; }
-            }
-            .gradient-bg {
-                background: linear-gradient(90deg, #ff9900, #33ccb5); 
-                background-size: 200% 100%;
-                animation: gradient-animation 10s ease infinite;
-            }
+		<style>
+			/* 0. Definición del degradado de resaltado */
+			@keyframes gradient-animation {
+				0% { background-position: 0% 50%; }
+				50% { background-position: 100% 50%; }
+				100% { background-position: 0% 50%; }
+			}
+			.gradient-bg {
+				background: linear-gradient(90deg, #ff9900, #33ccb5); 
+				background-size: 200% 100%;
+				animation: gradient-animation 10s ease infinite;
+			}
 
 
-            /* 1. Ajustes para el contenedor de los pasos: alineación y espaciado */
-            .process-steps-container {
-                display: flex;
-                flex-direction: column;
-                position: relative;
-                padding: 0 1em;
-                /** Ajuste clave para SUBIR todo el bloque de cajas **/
-                margin-top: 0.5em; 
-                /** Ajuste para compactar el espacio inferior del contenedor **/
-                margin-bottom: 0.5em; 
-                height: auto;
-                overflow: hidden;
-                box-sizing: border-box;
-                /* Para centrar en PC y asegurar que todo quepa: */
-                max-width: 600px; 
-                margin-left: auto;
-                margin-right: auto;
-            }
+			/* 1. Ajustes para el contenedor de los pasos: alineación y espaciado */
+			.process-steps-container {
+				display: flex;
+				flex-direction: column;
+				position: relative;
+				padding: 0 1em;
+				/** Ajuste clave para SUBIR todo el bloque de cajas **/
+				margin-top: 0.5em; 
+				/** Ajuste para compactar el espacio inferior del contenedor **/
+				margin-bottom: 0.5em; 
+				height: auto;
+				overflow: hidden;
+				box-sizing: border-box;
+				/* Para centrar en PC y asegurar que todo quepa: */
+				max-width: 600px; 
+				margin-left: auto;
+				margin-right: auto;
+			}
 
-            /* 2. Estilo base para cada paso individual: convierte el paso en un BLOQUE con fondo */
-            .process-step {
-                padding: 8px 15px; 
-                /** Ajuste clave para reducir el espacio ENTRE las cajas (la última compactación) **/
-                margin-bottom: 0.2em !important; 
-                border-radius: 6px; 
-                box-sizing: border-box;
-                width: 100%;
-                
-                /* Fondo por defecto (oscuro/transparente para los NO resaltados) */
-                background-color: rgba(0, 0, 0, 0.3); 
-                transition: all 0.3s ease;
-            }
-            
-            /* 2a. Aseguramos que cada paso sea un bloque compacto */
-            .process-step {
-                display: block; 
-            }
+			/* 2. Estilo base para cada paso individual: convierte el paso en un BLOQUE con fondo */
+			.process-step {
+				padding: 8px 15px; 
+				/** Ajuste clave para reducir el espacio ENTRE las cajas (la última compactación) **/
+				margin-bottom: 0.2em !important; 
+				border-radius: 6px; 
+				box-sizing: border-box;
+				width: 100%;
+				
+				/* Fondo por defecto (oscuro/transparente para los NO resaltados) */
+				background-color: rgba(0, 0, 0, 0.3); 
+				transition: all 0.3s ease;
+			}
+			
+			/* 2a. Aseguramos que cada paso sea un bloque compacto */
+			.process-step {
+				display: block; 
+			}
 
-            /* 3. Estilo para el PASO RESALTADO */
-            .process-step.highlight {
-                /* Aplicamos el degradado */
-                background-image: linear-gradient(90deg, #ff9900, #33ccb5);
-                background-size: 200% 100%;
-                animation: gradient-animation 10s ease infinite;
-                
-                /* Separación vertical mínima para que no expanda el contenido */
-                margin-top: 0.8em; 
-                margin-bottom: 0.8em !important; 
-                
-                /* Hacemos el texto más visible sobre el fondo de color */
-                /** AJUSTE DE COLOR: CAMBIAR COLOR BASE A BLANCO O CASI BLANCO **/
-                color: #ffffff; /* Blanco para texto base */
+			/* 3. Estilo para el PASO RESALTADO */
+			.process-step.highlight {
+				/* Aplicamos el degradado */
+				background-image: linear-gradient(90deg, #ff9900, #33ccb5);
+				background-size: 200% 100%;
+				animation: gradient-animation 10s ease infinite;
+				
+				/* Separación vertical mínima para que no expanda el contenido */
+				margin-top: 0.8em; 
+				margin-bottom: 0.8em !important; 
+				
+				/* Hacemos el texto más visible sobre el fondo de color */
+				/** AJUSTE DE COLOR: CAMBIAR COLOR BASE A BLANCO O CASI BLANCO **/
+				color: #ffffff; /* Blanco para texto base */
 
-                padding: 6px 15px; 
-            }
+				padding: 6px 15px; 
+			}
 
-            /* 4. Contenido del paso (Título, icono y texto) */
-            .process-step .header-content {
-                display: flex; 
-                align-items: center; 
-                gap: 15px; /* Separación Icono/Título */
-                margin-bottom: 3px; 
-            }
+			/* 4. Contenido del paso (Título, icono y texto) */
+			.process-step .header-content {
+				display: flex; 
+				align-items: center; 
+				gap: 15px; /* Separación Icono/Título */
+				margin-bottom: 3px; 
+			}
 
-            /* 5. Estilo para la caja del icono: Fijo, grande y alineado */
-            .process-step .icon-box {
-                flex-shrink: 0;
-                width: 20px; 
-                font-size: 1.4em;
-                color: #ffffff; 
-            }
-            /* 5a. Icono en el paso resaltado: lo ponemos blanco para el contraste */
-            .process-step.highlight .icon-box {
-                color: #ffffff; 
-            }
-            
-            /* 6. Estilo del título */
-            .process-step h3 {
-                margin: 0;
-                font-size: 1em; 
-                font-weight: bold;
-                color: #ffffff; 
-                line-height: 1.1; 
-                flex-grow: 1;
-            }
-            /* 6a. Título en el paso resaltado: lo ponemos blanco para el contraste */
-            .process-step.highlight h3 {
-                color: #ffffff;
-                margin-bottom: 2px; 
-                line-height: 1.1; 
-            }
-            
-            /* 7. Estilo del párrafo */
-            .process-step p {
-                opacity: 0.9;
-                font-size: 0.78em; 
-                line-height: 1.3; 
-                margin-bottom: 0; 
-                padding-left: 35px; 
-                color: #dddddd; 
-                margin-top: 0;
-            }
-            /* 7a. Párrafo en el paso resaltado: lo ponemos gris claro para el contraste */
-            .process-step.highlight p {
-                color: #eeeeee;
-                padding-left: 35px; 
-                margin-top: 0; 
-                line-height: 1.3;
-            }
+			/* 5. Estilo para la caja del icono: Fijo, grande y alineado */
+			.process-step .icon-box {
+				flex-shrink: 0;
+				width: 20px; 
+				font-size: 1.4em;
+				color: #ffffff; 
+			}
+			/* 5a. Icono en el paso resaltado: lo ponemos blanco para el contraste */
+			.process-step.highlight .icon-box {
+				color: #ffffff; 
+			}
+			
+			/* 6. Estilo del título */
+			.process-step h3 {
+				margin: 0;
+				font-size: 1em; 
+				font-weight: bold;
+				color: #ffffff; 
+				line-height: 1.1; 
+				flex-grow: 1;
+			}
+			/* 6a. Título en el paso resaltado: lo ponemos blanco para el contraste */
+			.process-step.highlight h3 {
+				color: #ffffff;
+				margin-bottom: 2px; 
+				line-height: 1.1; 
+			}
+			
+			/* 7. Estilo del párrafo */
+			.process-step p {
+				opacity: 0.9;
+				font-size: 0.78em; 
+				line-height: 1.3; 
+				margin-bottom: 0; 
+				padding-left: 35px; 
+				color: #dddddd; 
+				margin-top: 0;
+			}
+			/* 7a. Párrafo en el paso resaltado: lo ponemos gris claro para el contraste */
+			.process-step.highlight p {
+				color: #eeeeee;
+				padding-left: 35px; 
+				margin-top: 0; 
+				line-height: 1.3;
+			}
 
-            /* Reglas para eliminar el scrollbar del panel (si la plantilla lo fuerza) */
-            .panel#first .content {
-                overflow: hidden !important;
-                height: auto !important; 
-                max-height: none !important;
-                padding-bottom: 1em;
-            }
-            
-            /* ======================================================= */
-            /* CURSOR INTERACTIVO: AJUSTADO PARA SER NARANJA DOMINANTE */
-            /* ======================================================= */
-            #cursor-glow {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100vw;
-                height: 100vh;
-                pointer-events: none; /* Permite interactuar con los elementos debajo */
-                z-index: 9999; 
-                mix-blend-mode: overlay; /* Crea el efecto de mezcla de luz y color */
-                opacity: 0.8;
-                transition: opacity 0.3s ease;
-            }
+			/* Reglas para eliminar el scrollbar del panel (si la plantilla lo fuerza) */
+			.panel#first .content {
+				overflow: hidden !important;
+				height: auto !important; 
+				max-height: none !important;
+				padding-bottom: 1em;
+			}
+			
+			/* ======================================================= */
+			/* CURSOR INTERACTIVO: DEFINICIÓN DE MODOS */
+			/* ======================================================= */
+			#cursor-glow {
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100vw;
+				height: 100vh;
+				pointer-events: none; 
+				z-index: 9999; 
+				mix-blend-mode: overlay; 
+				opacity: 0.8;
+				transition: opacity 0.3s ease;
+			}
 
-            .cursor-blob {
-                position: absolute;
-                width: 100px; /* Tamaño del blob */
-                height: 100px;
-                border-radius: 50%;
-                /* GRADIENTE NARANJA DOMINANTE: 
-                   Naranja opaco (90%) en el centro y se desvanece al 60% antes de tocar el color cian, asegurando que el naranja sea el principal. */
-                background: radial-gradient(circle, rgba(255, 153, 0, 0.9) 30%, rgba(255, 153, 0, 0.3) 60%, rgba(51, 204, 181, 0) 100%); 
-                transform: translate(-50%, -50%);
-                transition: transform 0.1s linear; /* Movimiento suave */
-            }
-        </style>
+			.cursor-blob {
+				position: absolute;
+				width: 100px; /* Tamaño del blob */
+				height: 100px;
+				border-radius: 50%;
+				transform: translate(-50%, -50%);
+				transition: transform 0.1s linear, background 0.3s ease-in-out; /* Añadida transición de color */
+			}
+
+			/* 🟠 MODO OSCURO (Fondo debajo es OSCURO, el blob es NARANJA) */
+			.cursor-blob.dark-mode {
+				background: radial-gradient(circle, 
+					rgba(255, 153, 0, 0.9) 30%,    /* Naranja fuerte */
+					rgba(255, 153, 0, 0.3) 60%,    
+					rgba(51, 204, 181, 0) 100%);
+			}
+
+			/* 🔵 MODO CLARO (Fondo debajo es CLARO, el blob es AZUL BRILLANTE) */
+			.cursor-blob.light-mode {
+				background: radial-gradient(circle, 
+					rgba(0, 150, 255, 0.9) 30%,    /* Azul Brillante fuerte */
+					rgba(0, 150, 255, 0.3) 60%,    
+					rgba(51, 204, 181, 0) 100%);
+			}
+		</style>
 
 	</head>
 	<body class="is-preload">
@@ -589,37 +602,86 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 					</div>
 
 			</div>
-        
-        <div id="cursor-glow"></div>
+			
+			<div id="cursor-glow"></div>
 
-		<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/browser.min.js"></script>
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/main.js"></script>
-        
-        <script>
-            document.addEventListener('DOMContentLoaded', () => {
-                const glowContainer = document.getElementById('cursor-glow');
-                const blob = document.createElement('div');
-                blob.className = 'cursor-blob';
-                glowContainer.appendChild(blob);
+			
+			<script>
+				document.addEventListener('DOMContentLoaded', () => {
+					const glowContainer = document.getElementById('cursor-glow');
+					const blob = document.createElement('div');
+					blob.className = 'cursor-blob dark-mode'; // Inicia en modo oscuro (Naranja)
+					glowContainer.appendChild(blob);
 
-                // Función para actualizar la posición del blob
-                function updateBlobPosition(e) {
-                    // Mueve el blob con el cursor, asegurando que el centro del blob esté en la posición del ratón
-                    blob.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
-                }
+					// Umbral de luminancia: 150 es el punto de corte para decidir si un fondo es claro u oscuro.
+					const LUMINANCE_THRESHOLD = 150; 
+					let currentMode = 'dark'; // Seguimiento del modo actual para evitar cambios constantes
 
-                // Escucha el movimiento del ratón
-                document.addEventListener('mousemove', updateBlobPosition);
+					// Función para verificar si un color (RGB) es oscuro o claro
+					function isDark(r, g, b) {
+						// Fórmula simple de luminancia percibida
+						const luminance = (0.299 * r + 0.587 * g + 0.114 * b);
+						
+						// Si la luminancia es baja (oscuro), devolvemos true
+						return luminance < LUMINANCE_THRESHOLD;
+					}
 
-                // Opcional: Ocultar el cursor normal
-                document.body.style.cursor = 'none';
-            });
-        </script>
+					// Función principal para actualizar el color y posición del blob
+					function updateBlobPosition(e) {
+						// Mueve el blob con el cursor
+						blob.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
+
+						// 1. Obtener el elemento bajo el cursor
+						const targetElement = document.elementFromPoint(e.clientX, e.clientY);
+
+						if (targetElement) {
+							// 2. Obtener el color de fondo computado
+							const style = window.getComputedStyle(targetElement);
+							const bgColor = style.backgroundColor;
+
+							// 3. Extraer los valores RGB del string 'rgb(x, y, z)'
+							const match = bgColor.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d*\.?\d+))?\)/);
+							
+							// Si encontramos RGB
+							if (match) {
+								const r = parseInt(match[1]);
+								const g = parseInt(match[2]);
+								const b = parseInt(match[3]);
+
+								// 4. Determinar si el fondo es oscuro
+								const targetIsDark = isDark(r, g, b);
+
+								// 5. Aplicar la clase de modo (sólo si el modo ha cambiado)
+								// Si el fondo es oscuro, el BLOB debe ser NARANJA (dark-mode)
+								if (targetIsDark && currentMode !== 'dark') {
+									blob.classList.add('dark-mode');
+									blob.classList.remove('light-mode');
+									currentMode = 'dark';
+								} 
+								// Si el fondo es claro, el BLOB debe ser AZUL (light-mode)
+								else if (!targetIsDark && currentMode !== 'light') {
+									blob.classList.add('light-mode');
+									blob.classList.remove('dark-mode');
+									currentMode = 'light';
+								}
+							}
+						}
+					}
+
+					// Escucha el movimiento del ratón
+					document.addEventListener('mousemove', updateBlobPosition);
+
+					// Opcional: Ocultar el cursor normal
+					document.body.style.cursor = 'none';
+				});
+			</script>
 	</body>
-
 </html>
+
 
 
 
