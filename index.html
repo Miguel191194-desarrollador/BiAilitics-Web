@@ -10,6 +10,8 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 		<style>
+			/* ... (El CSS existente que me pasaste) ... */
+
 			/* 0. Definición del degradado de resaltado */
 			@keyframes gradient-animation {
 				0% { background-position: 0% 50%; }
@@ -29,36 +31,52 @@
 				flex-direction: column;
 				position: relative;
 				padding: 0 1em;
+				/** Ajuste clave para SUBIR todo el bloque de cajas **/
 				margin-top: 0.5em; 
+				/** Ajuste para compactar el espacio inferior del contenedor **/
 				margin-bottom: 0.5em; 
 				height: auto;
 				overflow: hidden;
 				box-sizing: border-box;
+				/* Para centrar en PC y asegurar que todo quepa: */
 				max-width: 600px; 
 				margin-left: auto;
 				margin-right: auto;
 			}
 
-			/* 2. Estilo base para cada paso individual */
+			/* 2. Estilo base para cada paso individual: convierte el paso en un BLOQUE con fondo */
 			.process-step {
 				padding: 8px 15px; 
+				/** Ajuste clave para reducir el espacio ENTRE las cajas (la última compactación) **/
 				margin-bottom: 0.2em !important; 
 				border-radius: 6px; 
 				box-sizing: border-box;
 				width: 100%;
+				
+				/* Fondo por defecto (oscuro/transparente para los NO resaltados) */
 				background-color: rgba(0, 0, 0, 0.3); 
 				transition: all 0.3s ease;
-				display: block; 
 			}
 			
+			/* 2a. Aseguramos que cada paso sea un bloque compacto */
+			.process-step {
+				display: block; 
+			}
+
 			/* 3. Estilo para el PASO RESALTADO */
 			.process-step.highlight {
+				/* Aplicamos el degradado */
 				background-image: linear-gradient(90deg, #ff9900, #33ccb5);
 				background-size: 200% 100%;
 				animation: gradient-animation 10s ease infinite;
+				
+				/* Separación vertical mínima para que no expanda el contenido */
 				margin-top: 0.8em; 
 				margin-bottom: 0.8em !important; 
-				color: #ffffff; 
+				
+				/* Hacemos el texto más visible sobre el fondo de color */
+				color: #ffffff; /* Blanco para texto base */
+
 				padding: 6px 15px; 
 			}
 
@@ -66,17 +84,18 @@
 			.process-step .header-content {
 				display: flex; 
 				align-items: center; 
-				gap: 15px; 
+				gap: 15px; /* Separación Icono/Título */
 				margin-bottom: 3px; 
 			}
 
-			/* 5. Estilo para la caja del icono */
+			/* 5. Estilo para la caja del icono: Fijo, grande y alineado */
 			.process-step .icon-box {
 				flex-shrink: 0;
 				width: 20px; 
 				font-size: 1.4em;
 				color: #ffffff; 
 			}
+			/* 5a. Icono en el paso resaltado: lo ponemos blanco para el contraste */
 			.process-step.highlight .icon-box {
 				color: #ffffff; 
 			}
@@ -90,6 +109,7 @@
 				line-height: 1.1; 
 				flex-grow: 1;
 			}
+			/* 6a. Título en el paso resaltado: lo ponemos blanco para el contraste */
 			.process-step.highlight h3 {
 				color: #ffffff;
 				margin-bottom: 2px; 
@@ -106,6 +126,7 @@
 				color: #dddddd; 
 				margin-top: 0;
 			}
+			/* 7a. Párrafo en el paso resaltado: lo ponemos gris claro para el contraste */
 			.process-step.highlight p {
 				color: #eeeeee;
 				padding-left: 35px; 
@@ -113,7 +134,7 @@
 				line-height: 1.3;
 			}
 
-			/* Reglas para eliminar el scrollbar del panel */
+			/* Reglas para eliminar el scrollbar del panel (si la plantilla lo fuerza) */
 			.panel#first .content {
 				overflow: hidden !important;
 				height: auto !important; 
@@ -139,26 +160,26 @@
 
 			.cursor-blob {
 				position: absolute;
-				width: 100px; 
+				width: 100px; /* Tamaño del blob */
 				height: 100px;
 				border-radius: 50%;
 				transform: translate(-50%, -50%);
 				transition: transform 0.1s linear, background 0.3s ease-in-out; 
 			}
 
-			/* 🟠 MODO OSCURO (Fondo debajo es OSCURO, el blob es NARANJA MÁS FUERTE) */
+			/* 🟠 MODO OSCURO (Fondo debajo es OSCURO, el blob es NARANJA) */
 			.cursor-blob.dark-mode {
 				background: radial-gradient(circle, 
-					rgba(255, 153, 0, 1.0) 30%,    
-					rgba(255, 153, 0, 0.5) 60%,    
+					rgba(255, 153, 0, 1.0) 30%,    /* Opacidad 1.0 */
+					rgba(255, 153, 0, 0.5) 60%,    /* Opacidad 0.5 */
 					rgba(51, 204, 181, 0) 100%);
 			}
 
-			/* 🔵 MODO CLARO (Fondo debajo es CLARO, el blob es AZUL MÁS FUERTE) */
+			/* 🔵 MODO CLARO (Fondo debajo es CLARO, el blob es AZUL BRILLANTE) */
 			.cursor-blob.light-mode {
 				background: radial-gradient(circle, 
-					rgba(0, 150, 255, 1.0) 30%,    
-					rgba(0, 150, 255, 0.5) 60%,    
+					rgba(0, 150, 255, 1.0) 30%,    /* Opacidad 1.0 */
+					rgba(0, 150, 255, 0.5) 60%,    /* Opacidad 0.5 */
 					rgba(51, 204, 181, 0) 100%);
 			}
 
@@ -169,130 +190,6 @@
 				#cursor-glow {
 					display: none !important;
 				}
-			}
-
-			/* ------------------------------------------- */
-			/* Estilos para el nuevo diseño de servicios (Minimalista Neón) */
-			/* ------------------------------------------- */
-
-			.minimal-service-container {
-				display: flex;
-				flex-wrap: wrap; 
-				justify-content: space-between;
-				align-items: center;
-				padding: 5em 2em;
-				/* Fondo degradado suave (Este se aplica directamente al section.panel para color1) */
-				color: #ffffff;
-			}
-
-			/* Columna de Texto */
-			.minimal-service-container .text-content {
-				flex-basis: 45%; 
-				padding-right: 3em;
-			}
-			
-			/* Titulares con brillo (Glow) */
-			.title-glow {
-				font-size: 2.5em;
-				font-weight: 800;
-				margin-bottom: 0.2em;
-				/* El 'text-shadow' crea el efecto de neón */
-				text-shadow: 0 0 10px rgba(102, 204, 255, 0.5), 0 0 20px rgba(102, 204, 255, 0.3);
-				color: #fff;
-			}
-
-			.subtitle-glow {
-				font-size: 1.4em;
-				font-weight: 400;
-				color: #33ccb5; 
-				margin-bottom: 2em;
-			}
-
-			.key-points-list {
-				list-style: none;
-				padding: 0;
-				margin: 0;
-				font-size: 1em;
-				line-height: 1.8;
-				color: #d0d0d0;
-			}
-			.key-points-list li {
-				margin-bottom: 0.5em;
-			}
-
-			/* Columna de Iconos (Grid) */
-			.minimal-service-container .icon-grid {
-				flex-basis: 50%; 
-				display: grid;
-				grid-template-columns: repeat(3, 1fr); 
-				gap: 1.5em;
-				text-align: center;
-			}
-
-			.service-item p {
-				color: #ffffff;
-				font-size: 0.9em;
-				margin-top: 0.5em;
-				opacity: 0.8;
-			}
-
-			/* Círculo de Icono con efecto Neón */
-			.icon-circle {
-				width: 70px;
-				height: 70px;
-				border: 2px solid #66ccff; /* Borde azul vibrante */
-				border-radius: 50%;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				margin: 0 auto;
-				font-size: 1.8em;
-				color: #66ccff; /* Color del icono azul vibrante */
-				
-				/* Efecto de Brillo (Glow) MÁS INTENSO */
-				box-shadow: 0 0 18px rgba(102, 204, 255, 0.7), 0 0 8px rgba(102, 204, 255, 0.5) inset; /* Dos sombras para más profundidad */
-				transition: all 0.3s ease-in-out;
-			}
-
-			.icon-circle:hover {
-				transform: scale(1.1);
-				box-shadow: 0 0 30px rgba(102, 204, 255, 1), 0 0 12px rgba(102, 204, 255, 0.8) inset;
-				cursor: pointer;
-			}
-			
-			/* Media Query para Móviles: apila el contenido */
-			@media screen and (max-width: 980px) {
-				.minimal-service-container {
-					flex-direction: column;
-					padding: 3em 1em;
-				}
-
-				.minimal-service-container .text-content,
-				.minimal-service-container .icon-grid {
-					flex-basis: 100%;
-					padding-right: 0;
-					margin-bottom: 2em;
-				}
-				
-				.minimal-service-container .icon-grid {
-					grid-template-columns: repeat(2, 1fr); 
-				}
-
-				.title-glow {
-					font-size: 2em;
-				}
-			}
-			
-			/* ------------------------------------------- */
-			/* ESTILO ESPECÍFICO PARA LA SECCIÓN DE SERVICIOS (panel color1) */
-			/* ------------------------------------------- */
-			/* Aplicamos el fondo morado oscuro que buscabas a esta sección */
-			.panel.color1 {
-				background: linear-gradient(135deg, #4b3d73 0%, #2f254e 100%) !important;
-			}
-			/* Aseguramos que el intro de la sección no herede el fondo de color1 (que es el morado oscuro ahora) */
-			.panel.color1 .intro.joined {
-				background-color: transparent !important;
 			}
 		</style>
 
@@ -309,7 +206,7 @@
 									is BiAilitcs</h1>
 									<p>Somos una empresa especializada en  <strong>Soluciones Tecnológicas</strong>, para cualquier tipo de negocio y departamento. <a>Ayudamos</a> a las organizaciones a tomar decisiones inteligentes mediante automatizaciones, análisis de datos y herramientas de productividad adaptadas a cada necesidad. :)</p>
 									<ul class="actions">
-										<li><a href="#services-list" class="button primary color1 circle icon solid fa-angle-right">Next</a></li>
+										<li><a href="#first" class="button primary color1 circle icon solid fa-angle-right">Next</a></li>
 									</ul>
 								</div>
 								<div class="image filtered span-1-75" data-position="25% 25%">
@@ -370,17 +267,10 @@
 						</section>
 
 
-						<section class="panel color1" id="services-list"> 
-							<div class="minimal-service-container">
-								
-								<div class="text-content">
-									<h2 class="major title-glow">
-										Transforma tu Negocio.
-									</h2>
-									<h3 class="subtitle-glow">
-										Soluciones Tecnológicas Inteligentes
-									</h3>
-									
+						<section class="panel color1">
+								<div class="intro joined">
+									<h2 class="major">Transforma tu Negocio.</h2>
+									<p>Soluciones Tecnológicas Inteligentes</p>
 									<ul class="key-points-list">
 										<li>Automatización de Procesos.</li>
 										<li>Soporte y Mantenimiento.</li>
@@ -388,42 +278,18 @@
 										<li>Herramientas de Productividad.</li>
 									</ul>
 								</div>
-
-								<div class="icon-grid">
-									
-									<div class="service-item">
-										<div class="icon-circle"><i class="far fa-cog"></i></div> 
-										<p>Automatización</p>
-									</div>
-									
-									<div class="service-item">
-										<div class="icon-circle"><i class="far fa-lightbulb"></i></div> 
-										<p>Innovación</p>
-									</div>
-									
-									<div class="service-item">
-										<div class="icon-circle"><i class="far fa-handshake"></i></div> 
-										<p>Soporte</p>
-									</div>
-									
-									<div class="service-item">
-										<div class="icon-circle"><i class="fas fa-chalkboard-teacher"></i></div> 
-										<p>Formación</p>
-									</div>
-									
-									<div class="service-item">
-										<div class="icon-circle"><i class="fas fa-cloud-upload-alt"></i></div> 
-										<p>Migración Digital</p>
-									</div>
-									
-									<div class="service-item">
-										<div class="icon-circle"><i class="fas fa-shield-alt"></i></div> 
-										<p>Ciberseguridad</p>
-									</div>
+								<div class="inner">
+									<ul class="grid-icons three connected">
+										<li><span class="icon solid fa-cog"><span class="label">Automatización</span></span></li>
+										<li><span class="icon solid fa-lightbulb"><span class="label">Innovación</span></span></li>
+										<li><span class="icon solid fa-handshake"><span class="label">Soporte</span></span></li>
+										<li><span class="icon solid fa-chalkboard-teacher"><span class="label">Formación</span></span></li>
+										<li><span class="icon solid fa-cloud-upload-alt"><span class="label">Migración Digital</span></span></li>
+										<li><span class="icon solid fa-shield-alt"><span class="label">Ciberseguridad</span></span></li>
+									</ul>
 								</div>
+							</section>
 
-							</div>
-						</section>
 						<section class="panel spotlight large left">
 								<div class="content span-5">
 									<h2 class="major">Magna amet tempus</h2>
@@ -567,8 +433,8 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 											<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
 											<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
 											<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-											<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-											<li><a href="#" class="icon brands fa-medium-m"><span class="label">Medium</a></li>
+											<li><a href="#" class="icon brands fa-github"><a href="#">GitHub</a></li>
+											<li><a href="#" class="icon brands fa-medium-m"><a href="#">Medium</a></li>
 										</ul>
 										<h4>Contact Icons</h4>
 										<ul class="contact-icons color2">
@@ -764,7 +630,7 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 				document.addEventListener('DOMContentLoaded', () => {
 					const glowContainer = document.getElementById('cursor-glow');
 					const blob = document.createElement('div');
-					// Inicia en modo oscuro (Naranja)
+					// Usamos una clase al inicio que garantice visibilidad en el fondo inicial (oscuro)
 					blob.className = 'cursor-blob dark-mode'; 
 					glowContainer.appendChild(blob);
 
@@ -774,7 +640,9 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 
 					// Función para verificar si un color (RGB) es oscuro o claro
 					function isDark(r, g, b) {
+						// Fórmula simple de luminancia percibida
 						const luminance = (0.299 * r + 0.587 * g + 0.114 * b);
+						
 						return luminance < LUMINANCE_THRESHOLD;
 					}
 
@@ -782,12 +650,14 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 					function getBgColorRgb(element) {
 						const style = window.getComputedStyle(element);
 						const bgColor = style.backgroundColor;
+						// Busca 'rgb(x, y, z)' o 'rgba(x, y, z, a)'
 						const match = bgColor.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d*\.?\d+))?\)/);
 						if (match) {
 							return {
 								r: parseInt(match[1]),
 								g: parseInt(match[2]),
 								b: parseInt(match[3]),
+								// Si el alfa es 0, lo tratamos como transparente
 								a: match[4] ? parseFloat(match[4]) : 1.0 
 							};
 						}
@@ -796,30 +666,30 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 
 					// Función principal para actualizar el color y posición del blob
 					function updateBlobPosition(e) {
-						// Ocultar si la pantalla es pequeña (Móvil/Tablet)
-						if (window.innerWidth <= 736) {
-							return;
-						}
-						
+						// Mueve el blob con el cursor
 						blob.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
 
+						// 1. Obtener el elemento bajo el cursor
 						let targetElement = document.elementFromPoint(e.clientX, e.clientY);
 						let colorData = null;
 
-						// Bucle para buscar un color de fondo definido (no transparente)
+						// Bucle para buscar un elemento con un color de fondo definido (no transparente)
 						while (targetElement && targetElement !== document.body) {
 							colorData = getBgColorRgb(targetElement);
 							
+							// Si encontramos un color opaco (Alpha > 0.1), usamos ese y rompemos el bucle.
 							if (colorData && colorData.a > 0.1) {
 								break;
 							}
+							// Si no hay color de fondo, subimos al padre
 							targetElement = targetElement.parentElement;
 						}
 						
+						// Si se encontró un color definido
 						if (colorData) {
 							const targetIsDark = isDark(colorData.r, colorData.g, colorData.b);
 
-							// Aplicar la clase de modo (sólo si el modo ha cambiado)
+							// 2. Aplicar la clase de modo (sólo si el modo ha cambiado)
 							if (targetIsDark && currentMode !== 'dark') {
 								blob.classList.add('dark-mode');
 								blob.classList.remove('light-mode');
@@ -833,9 +703,13 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 						}
 					}
 
+					// Escucha el movimiento del ratón
 					document.addEventListener('mousemove', updateBlobPosition);
+
+					// Opcional: Ocultar el cursor normal
 					document.body.style.cursor = 'none';
 				});
 			</script>
 	</body>
 </html>
+
