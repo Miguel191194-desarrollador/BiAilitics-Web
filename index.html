@@ -34,16 +34,17 @@
                 height: auto;
                 overflow: hidden;
                 box-sizing: border-box;
-                max-width: 600px;
+                /* Para centrar en PC y asegurar que todo quepa: */
+                max-width: 600px; 
                 margin-left: auto;
                 margin-right: auto;
             }
 
             /* 2. Estilo base para cada paso individual: convierte el paso en un BLOQUE con fondo */
             .process-step {
-                padding: 10px 15px; /* Relleno interno para el bloque */
-                margin-bottom: 0.5em !important; /* MUY COMPACTO: Poco espacio entre bloques */
-                border-radius: 6px; /* Bordes redondeados sutiles */
+                padding: 8px 15px; /* Relleno interno para el bloque (Ligeramente reducido) */
+                margin-bottom: 0.4em !important; /* MUY COMPACTO: Mínimo espacio entre bloques */
+                border-radius: 6px; 
                 box-sizing: border-box;
                 width: 100%;
                 
@@ -52,9 +53,9 @@
                 transition: all 0.3s ease;
             }
             
-            /* 2a. Eliminamos la disposición flex para que cada paso sea un bloque compacto */
+            /* 2a. Aseguramos que cada paso sea un bloque compacto */
             .process-step {
-                display: block; /* Vuelve a ser un bloque normal */
+                display: block; 
             }
 
             /* 3. Estilo para el PASO RESALTADO */
@@ -64,28 +65,30 @@
                 background-size: 200% 100%;
                 animation: gradient-animation 10s ease infinite;
                 
-                /* Aumentamos la separación vertical para que destaque más */
-                margin-top: 1em; /* Más espacio arriba */
-                margin-bottom: 1em !important; /* Más espacio abajo */
+                /* Separación vertical mínima para que no expanda el contenido */
+                margin-top: 0.8em; /* AJUSTE: Mínima separación arriba */
+                margin-bottom: 0.8em !important; /* AJUSTE: Mínima separación abajo */
                 
                 /* Hacemos el texto más visible sobre el fondo de color */
-                color: #000000; /* Texto oscuro para contraste */
+                color: #000000; 
+
+                padding: 6px 15px; /* <--- AJUSTE CLAVE: Reducimos AÚN MÁS el padding interno para compactar la caja */
             }
 
             /* 4. Contenido del paso (Título, icono y texto) */
             .process-step .header-content {
-                display: flex; /* Usamos flex para alinear el icono y el título dentro del bloque */
-                align-items: center; /* Alineación vertical en el centro */
-                gap: 10px;
-                margin-bottom: 5px; /* Pequeño espacio entre el título y el párrafo */
+                display: flex; 
+                align-items: center; 
+                gap: 15px; /* <--- AJUSTE CLAVE: Aumenta la separación entre el icono y el título */
+                margin-bottom: 3px; /* Espacio mínimo entre el título y el párrafo */
             }
 
             /* 5. Estilo para la caja del icono: Fijo, grande y alineado */
             .process-step .icon-box {
                 flex-shrink: 0;
-                width: 20px; /* Icono más pequeño para el diseño compacto */
+                width: 20px; 
                 font-size: 1.4em;
-                color: #ffffff; /* Iconos blancos por defecto */
+                color: #ffffff; 
             }
             /* 5a. Icono en el paso resaltado: lo ponemos oscuro para el contraste */
             .process-step.highlight .icon-box {
@@ -95,29 +98,35 @@
             /* 6. Estilo del título */
             .process-step h3 {
                 margin: 0;
-                font-size: 1em; /* Títulos compactos */
+                font-size: 1em; 
                 font-weight: bold;
-                color: #ffffff; /* Títulos blancos por defecto */
-                line-height: 1; 
+                color: #ffffff; 
+                line-height: 1.1; /* Aseguramos compacidad */
                 flex-grow: 1;
             }
             /* 6a. Título en el paso resaltado: lo ponemos oscuro para el contraste */
             .process-step.highlight h3 {
                 color: #000000;
+                margin-bottom: 2px; /* Mínimo margen inferior */
+                line-height: 1.1; 
             }
             
             /* 7. Estilo del párrafo */
             .process-step p {
                 opacity: 0.9;
-                font-size: 0.8em; /* ¡Texto muy pequeño para que quepa! */
-                line-height: 1.4;
+                font-size: 0.78em; /* <--- AJUSTE CLAVE: Reducido un poco para que quepa todo */
+                line-height: 1.3; /* Compacto */
                 margin-bottom: 0; 
-                padding-left: 30px; /* Un poco de indentación para alinearse con el título */
-                color: #dddddd; /* Texto gris claro para el fondo oscuro */
+                padding-left: 35px; /* Indentación ajustada para el nuevo gap del icono */
+                color: #dddddd; 
+                margin-top: 0;
             }
             /* 7a. Párrafo en el paso resaltado: lo ponemos oscuro para el contraste */
             .process-step.highlight p {
                 color: #333333;
+                padding-left: 35px; /* Indentación ajustada */
+                margin-top: 0; 
+                line-height: 1.3;
             }
 
             /* Reglas para eliminar el scrollbar del panel (si la plantilla lo fuerza) */
@@ -557,9 +566,5 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 	</body>
 
 </html>
-```http://googleusercontent.com/image_generation_content/7
-
-
-
 
 
