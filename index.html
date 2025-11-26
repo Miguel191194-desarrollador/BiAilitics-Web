@@ -53,7 +53,7 @@
                 color: #ffffff; /* Color blanco para el fondo oscuro */
                 text-align: left; /* Alinea el icono a la izquierda de su "caja" */
                 line-height: 1; 
-                margin-top: 5px; /* Empuja el ícono un poco hacia abajo para centrarlo mejor con el título */
+                margin-top: 0; /* <-- AJUSTE CLAVE: Elimina el desplazamiento superior */
             }
             
             /* 5. Contenedor de texto: asegura que el texto fluya correctamente */
@@ -68,7 +68,7 @@
                 font-size: 1.1em; /* Tamaño del título */
                 font-weight: bold;
                 color: #ffffff; /* Color blanco para el título */
-                line-height: 1.2; /* Espaciado entre líneas para títulos largos */
+                line-height: 1; /* <-- AJUSTE CLAVE: Reduce el espacio entre líneas del título */
             }
             /* 7. Estilo del párrafo */
             .process-step p {
@@ -516,3 +516,4 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 
 </html>
 ```http://googleusercontent.com/image_generation_content/7
+
