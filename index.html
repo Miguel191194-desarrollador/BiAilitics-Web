@@ -98,17 +98,80 @@
 			}
 
 			/* ======================================================= */
-			/* SECCIÓN 3 — Iconos neón (igual que estaba) */
+			/* SECCIÓN 3: Iconos de Servicios (ACTUALIZADA a 3x3) */
 			/* ======================================================= */
+
+			/* Contenedor general de iconos */
+			.panel.color1 .grid-icons.nine {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+				display: grid;
+				/* 3 columnas fijas para todos los tamaños */
+				grid-template-columns: repeat(3, 1fr); 
+				gap: 15px 10px; /* Menor espacio en móvil para que quepan bien */
+				text-align: center;
+			}
+
+			/* Ajuste de espacio solo para escritorio (opcional, para que no queden muy juntos) */
+			@media screen and (min-width: 737px) {
+				.panel.color1 .grid-icons.nine {
+					gap: 30px 20px; 
+				}
+			}
+
+			.panel.color1 .grid-icons.nine li {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: flex-start; 
+				transition: transform 0.3s ease;
+				cursor: default;
+			}
+
+			.panel.color1 .grid-icons.nine li:hover {
+				transform: translateY(-5px); /* Efecto sutil de elevación */
+			}
+
+			/* Estilo del texto del servicio (título) */
+			.panel.color1 .grid-icons .service-title {
+				order: 1; 
+				margin-bottom: 0.5em; 
+				font-size: 0.8em; /* Un poco más pequeño para caber mejor */
+				font-weight: bold;
+				line-height: 1.1;
+				color: #ffffff; 
+				text-shadow: 0 0 5px rgba(0, 255, 255, 0.2); 
+				/* Word break para que los títulos largos como "Automatización de tareas con IA" quepan */
+				word-break: break-word; 
+				padding: 0 5px; /* Pequeño padding lateral */
+			}
+
+			/* Contenedor del icono con el círculo */
+			.panel.color1 .grid-icons .icon-container {
+				order: 2; 
+				position: relative;
+				width: 50px; /* Tamaño del círculo ajustado */
+				height: 50px;
+				border-radius: 50%;
+				/* Borde neón que simula un círculo minimalista */
+				border: 2px solid #00ffff;
+				box-shadow: 0 0 10px rgba(0, 255, 255, 0.5); 
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+
+			/* Estilo del icono (fa-...) */
 			.panel.color1 .grid-icons .icon {
+				font-size: 1.8em; /* Tamaño del icono ajustado */
 				color: #00ffff !important;
 				text-shadow: 0 0 10px rgba(0, 255, 255, 0.7), 0 0 5px rgba(0, 255, 255, 0.5);
 			}
-			.panel.color1 .grid-icons li {
-				transition: transform 0.2s ease-in-out;
-			}
-			.panel.color1 .grid-icons li:hover {
-				transform: scale(1.08);
+
+			/* OCULTAR LA ETIQUETA INNECESARIA (LABEL) */
+			.panel.color1 .grid-icons .icon .label {
+				display: none;
 			}
 
 			/* ======================================================= */
@@ -158,10 +221,9 @@
 		<div id="page-wrapper">
 			<div id="wrapper">
 
-				<!-- PANEL 1 -->
 				<section class="panel banner right">
 					<div class="content color0 span-3-75">
-						<h1 class="major">Hello, my name<br />is BiAilitcs</h1>
+						<h1 class="major">Hello, my&nbsp;<span class="spacer-fix"></span>name<br />is BiAilitcs</h1>
 						<p>Somos una empresa especializada en <strong>Soluciones Tecnológicas</strong>, para cualquier tipo de negocio y departamento. <a>Ayudamos</a> a las organizaciones a tomar decisiones inteligentes mediante automatizaciones, análisis de datos y herramientas de productividad adaptadas a cada necesidad. :)</p>
 						<ul class="actions">
 							<li><a href="#first" class="button primary color1 circle icon solid fa-angle-right">Next</a></li>
@@ -172,7 +234,6 @@
 					</div>
 				</section>
 
-				<!-- PANEL 2 — CÓMO LO HACEMOS -->
 				<section class="panel spotlight medium right" id="first">
 					<div class="content span-7">
 						<h2 class="major">CÓMO LO HACEMOS</h2>
@@ -219,33 +280,96 @@
 					</div>
 				</section>
 
-				<!-- TODO LO DEMÁS SE MANTIENE IGUAL (SERVICIOS, GALERÍA, CONTACTO, ETC) -->
-
-
-
-						<section class="panel color1">
-								<div class="intro joined">
-									<h2 class="major">SERVICIOS.</h2>
-									<p>Transforma tu negocio</p>
-									<ul class="key-points-list">
-										<li>Automatización empresarial.</li>
-										<li>Dashboard inteligente de análisis.</li>
-										<li>Formaciones personalizadas.</li>
-										<li>Consultoria estrategica con IA y data.</li>
-										<li>Soporte.</li>
-									</ul>
+				<section class="panel color1">
+					<div class="intro joined">
+						<h2 class="major">SERVICIOS.</h2>
+						<p>Transforma tu negocio</p>
+						<ul class="key-points-list">
+							<li>Automatización de tareas con IA</li>
+							<li>Agentes con IA</li>
+							<li>Cuadros de Mando</li>
+							<li>Data Analyst</li>
+							<li>Automatización de tareas</li>
+							<li>Consultoría Digitalización</li>
+							<li>Soporte</li>
+							<li>Formación</li>
+							<li>Ciberseguridad</li>
+						</ul>
+					</div>
+					<div class="inner">
+						<ul class="grid-icons nine"> 
+							
+							<li>
+								<div class="service-title">Automatización de tareas con IA</div>
+								<div class="icon-container">
+									<span class="icon solid fa-robot"><span class="label">Auto Tareas con IA</span></span>
 								</div>
-								<div class="inner">
-									<ul class="grid-icons three">
-										<li><span class="icon solid fa-cog"><span class="label">Automatización</span></span></li>
-										<li><span class="icon solid fa-lightbulb"><span class="label">Innovación</span></span></li>
-										<li><span class="icon solid fa-handshake"><span class="label">Soporte</span></span></li>
-										<li><span class="icon solid fa-chalkboard-teacher"><span class="label">Formación</span></span></li>
-										<li><span class="icon solid fa-cloud-upload-alt"><span class="label">Migración Digital</span></span></li>
-										<li><span class="icon solid fa-shield-alt"><span class="label">Ciberseguridad</span></span></li>
-									</ul>
+							</li>
+							
+							<li>
+								<div class="service-title">Agentes con IA</div>
+								<div class="icon-container">
+									<span class="icon solid fa-brain"><span class="label">Agentes con IA</span></span>
 								</div>
-							</section>
+							</li>
+							
+							<li>
+								<div class="service-title">Cuadros de Mando</div>
+								<div class="icon-container">
+									<span class="icon solid fa-chart-pie"><span class="label">Cuadros de Mando</span></span>
+								</div>
+							</li>
+							
+							<li>
+								<div class="service-title">Data Analyst</div>
+								<div class="icon-container">
+									<span class="icon solid fa-search-dollar"><span class="label">Data Analyst</span></span>
+								</div>
+							</li>
+							
+							<li>
+								<div class="service-title">Automatización de tareas</div>
+								<div class="icon-container">
+									<span class="icon solid fa-sync-alt"><span class="label">Auto Tareas</span></span>
+								</div>
+							</li>
+							
+							<li>
+								<div class="service-title">Consultoría Digitalización</div>
+								<div class="icon-container">
+									<span class="icon solid fa-chess-knight"><span class="label">Consultoría</span></span>
+								</div>
+							</li>
+							
+							<li>
+								<div class="service-title">Soporte y Formación</div>
+								<div class="icon-container">
+									<span class="icon solid fa-headset"><span class="label">Soporte</span></span>
+								</div>
+							</li>
+							
+							<li>
+								<div class="service-title">Gestión con IA</div>
+								<div class="icon-container">
+									<span class="icon solid fa-graduation-cap"><span class="label">Formación</span></span>
+								</div>
+							</li>
+							
+							<li>
+								<div class="service-title">Acompañamiento Digital</div>
+								<div class="icon-container">
+									<span class="icon solid fa-user-lock"><span class="label">Ciberseguridad</span></span>
+								</div>
+							</li>
+
+						</ul>
+					</div>
+				</section>
+				</div>
+		</div>
+
+		</body>
+</html>
 
 						<section class="panel spotlight large left">
 								<div class="content span-5">
@@ -669,6 +793,7 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 			</script>
 	</body>
 </html>
+
 
 
 
