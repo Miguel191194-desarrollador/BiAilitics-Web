@@ -1,597 +1,383 @@
 <!DOCTYPE HTML>
-
 <html>
 
 <head>
-
-<title>BiAilitcs | Soluciones Tecnológicas Inteligentes para tu Negocio</title>
-
-<meta charset="utf-8" />
-
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-
-<link rel="stylesheet" href="assets/css/main.css" />
-
-<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-
-
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-
-
-<style>
-
-/* 0. Definición del degradado de resaltado */
-
-@keyframes gradient-animation {
-
-0% { background-position: 0% 50%; }
-
-50% { background-position: 100% 50%; }
-
-100% { background-position: 0% 50%; }
-
-}
-
-.gradient-bg {
-
-background: linear-gradient(90deg, #ff9900, #33ccb5);
-
-background-size: 200% 100%;
-
-animation: gradient-animation 10s ease infinite;
-
-}
-
-
-/* ======================================================= */
-
-/* SECCIÓN 2: AJUSTES DE PROCESO (Cajas) — ACTUALIZADA */
-
-/* ======================================================= */
-
-.process-steps-container {
-
-display: flex;
-
-flex-direction: column;
-
-position: relative;
-
-padding: 0 1em;
-
-margin-top: 0.5em;
-
-margin-bottom: 0.5em;
-
-height: auto;
-
-box-sizing: border-box;
-
-max-width: 400px;
-
-margin-left: auto;
-
-margin-right: auto;
-
-overflow: visible; /* 🔥 evita que se corte la última caja */
-
-}
-
-
-
-.process-step {
-
-padding: 6px 10px;
-
-margin-bottom: 1em !important;
-
-border-radius: 6px;
-
-box-sizing: border-box;
-
-width: 100%;
-
-background-color: rgba(0, 0, 0, 0.15);
-
-transition: all 0.3s ease;
-
-display: block;
-
-}
-
-
-.process-step.highlight {
-
-background-image: linear-gradient(90deg, #ff9900, #33ccb5);
-
-background-size: 200% 100%;
-
-animation: gradient-animation 10s ease infinite;
-
-padding: 6px 10px; /* 🔥 igual que las otras */
-
-margin-top: 0; /* 🔥 mismo tamaño visual */
-
-margin-bottom: 1em !important;
-
-color: #ffffff;
-
-}
-
-
-
-.process-step .header-content {
-
-display: flex;
-
-align-items: center;
-
-gap: 28px;
-
-margin-bottom: 3px;
-
-}
-
-
-
-.process-step .icon-box {
-
-flex-shrink: 0;
-
-width: 20px;
-
-font-size: 1.4em;
-
-color: #ffffff;
-
-}
-
-
-
-.process-step h3 {
-
-margin: 0;
-
-font-size: 1em;
-
-font-weight: bold;
-
-color: #ffffff;
-
-line-height: 1.1;
-
-flex-grow: 1;
-
-}
-
-
-
-.process-step p {
-
-opacity: 0.9;
-
-font-size: 0.75em;
-
-line-height: 1.3;
-
-margin-bottom: 0;
-
-padding-left: 40px;
-
-color: #dddddd;
-
-margin-top: 0;
-
-}
-
-.process-step.highlight p {
-
-color: #eeeeee;
-
-}
-
-
-
-/* ======================================================= */
-
-/* SECCIÓN 3 — Iconos neón (igual que estaba) */
-
-/* ======================================================= */
-
-.panel.color1 .grid-icons .icon {
-
-color: #00ffff !important;
-
-text-shadow: 0 0 10px rgba(0, 255, 255, 0.7), 0 0 5px rgba(0, 255, 255, 0.5);
-
-}
-
-.panel.color1 .grid-icons li {
-
-transition: transform 0.2s ease-in-out;
-
-}
-
-.panel.color1 .grid-icons li:hover {
-
-transform: scale(1.08);
-
-}
-
-
-
-/* ======================================================= */
-
-/* CURSOR INTERACTIVO / MODO OSCURO–CLARO (igual que estaba) */
-
-/* ======================================================= */
-
-#cursor-glow {
-
-position: fixed;
-
-top: 0;
-
-left: 0;
-
-width: 100vw;
-
-height: 100vh;
-
-pointer-events: none;
-
-z-index: 9999;
-
-mix-blend-mode: overlay;
-
-opacity: 0.8;
-
-transition: opacity 0.3s ease;
-
-}
-
-.cursor-blob {
-
-position: absolute;
-
-width: 100px;
-
-height: 100px;
-
-border-radius: 50%;
-
-transform: translate(-50%, -50%);
-
-transition: transform 0.1s linear, background 0.3s ease-in-out;
-
-}
-
-.cursor-blob.dark-mode {
-
-background: radial-gradient(circle,
-
-rgba(255,153,0,1) 30%,
-
-rgba(255,153,0,0.5) 60%,
-
-rgba(51,204,181,0) 100%);
-
-}
-
-.cursor-blob.light-mode {
-
-background: radial-gradient(circle,
-
-rgba(0,150,255,1) 30%,
-
-rgba(0,150,255,0.5) 60%,
-
-rgba(51,204,181,0) 100%);
-
-}
-
-@media screen and (max-width: 736px) {
-
-#cursor-glow { display: none !important; }
-
-}
-
-</style>
-
+    <title>BiAilitcs | Soluciones Tecnológicas Inteligentes para tu Negocio</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* 0. Definición del degradado de resaltado */
+        @keyframes gradient-animation {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .gradient-bg {
+            background: linear-gradient(90deg, #ff9900, #33ccb5);
+            background-size: 200% 100%;
+            animation: gradient-animation 10s ease infinite;
+        }
+
+
+        /* ======================================================= */
+        /* SECCIÓN 2: AJUSTES DE PROCESO (Cajas) — ACTUALIZADA */
+        /* ======================================================= */
+        .process-steps-container {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            padding: 0 1em;
+            margin-top: 0.5em;
+            margin-bottom: 0.5em;
+            height: auto;
+            box-sizing: border-box;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            overflow: visible;
+            /* 🔥 evita que se corte la última caja */
+        }
+
+        .process-step {
+            padding: 6px 10px;
+            margin-bottom: 1em !important;
+            border-radius: 6px;
+            box-sizing: border-box;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            display: block;
+        }
+
+
+        .process-step.highlight {
+            background-image: linear-gradient(90deg, #ff9900, #33ccb5);
+            background-size: 200% 100%;
+            animation: gradient-animation 10s ease infinite;
+            padding: 6px 10px;
+            /* 🔥 igual que las otras */
+            margin-top: 0;
+            /* 🔥 mismo tamaño visual */
+            margin-bottom: 1em !important;
+            color: #ffffff;
+        }
+
+
+
+        .process-step .header-content {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            margin-bottom: 3px;
+        }
+
+
+
+        .process-step .icon-box {
+            flex-shrink: 0;
+            width: 20px;
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+
+
+        .process-step h3 {
+            margin: 0;
+            font-size: 1em;
+            font-weight: bold;
+            color: #ffffff;
+            line-height: 1.1;
+            flex-grow: 1;
+        }
+
+
+
+        .process-step p {
+            opacity: 0.9;
+            font-size: 0.75em;
+            line-height: 1.3;
+            margin-bottom: 0;
+            padding-left: 40px;
+            color: #dddddd;
+            margin-top: 0;
+        }
+
+        .process-step.highlight p {
+            color: #eeeeee;
+        }
+
+
+
+        /* ======================================================= */
+        /* SECCIÓN 3 — Iconos neón (igual que estaba) */
+        /* ======================================================= */
+        .panel.color1 .grid-icons .icon {
+            color: #00ffff !important;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.7), 0 0 5px rgba(0, 255, 255, 0.5);
+        }
+
+        .panel.color1 .grid-icons li {
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .panel.color1 .grid-icons li:hover {
+            transform: scale(1.08);
+        }
+
+
+
+        /* ======================================================= */
+        /* CURSOR INTERACTIVO / MODO OSCURO–CLARO (igual que estaba) */
+        /* ======================================================= */
+        #cursor-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: overlay;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .cursor-blob {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s linear, background 0.3s ease-in-out;
+        }
+
+        .cursor-blob.dark-mode {
+            background: radial-gradient(circle,
+                    rgba(255, 153, 0, 1) 30%,
+                    rgba(255, 153, 0, 0.5) 60%,
+                    rgba(51, 204, 181, 0) 100%);
+        }
+
+        .cursor-blob.light-mode {
+            background: radial-gradient(circle,
+                    rgba(0, 150, 255, 1) 30%,
+                    rgba(0, 150, 255, 0.5) 60%,
+                    rgba(51, 204, 181, 0) 100%);
+        }
+
+        @media screen and (max-width: 736px) {
+            #cursor-glow {
+                display: none !important;
+            }
+        }
+
+
+        /* ======================================================= */
+        /* CONTACTO — AJUSTES ADICIONALES PARA JUNTAR INTRO Y FORM */
+        /* ======================================================= */
+        .panel.color4-alt .intro {
+            padding: 0 2em !important;
+        }
+
+        .panel.color4-alt .inner.columns.divided {
+            padding-top: 0 !important;
+            /* Elimina el padding superior para acercar al intro */
+        }
+    </style>
 </head>
-
-
-
-
 
 <body class="is-preload">
 
-
-
-<div id="page-wrapper">
-
-<div id="wrapper">
-
-
-
-<!-- PANEL 1 -->
-
-<section class="panel banner right">
-
-<div class="content color0 span-3-75">
-
-<h1 class="major" style="white-space: normal !important; overflow-wrap: break-word;">Hello, my name<br />is BiAilitcs</h1>
-
-<p>Somos una empresa especializada en <strong>Soluciones Tecnológicas</strong>, para cualquier tipo de negocio y departamento. <a>Ayudamos</a> a las organizaciones a tomar decisiones inteligentes mediante automatizaciones, análisis de datos y herramientas de productividad adaptadas a cada necesidad. :)</p>
-
-<ul class="actions">
-
-<li><a href="#first" class="button primary color1 circle icon solid fa-angle-right">Next</a></li>
-
-</ul>
-
-</div>
-
-<div class="image filtered span-1-75" data-position="25% 25%">
-
-<img src="images/NegritaPrincipal.png" alt="Bialitics" />
-
-</div>
-
-</section>
-
-
-
-<!-- PANEL 2 — CÓMO LO HACEMOS -->
-
-<section class="panel spotlight medium right" id="first">
-
-<div class="content span-7">
-
-<h2 class="major">CÓMO LO HACEMOS</h2>
-
-
-
-<div class="process-steps-container">
-
-
-
-<div class="process-step highlight">
-
-<div class="header-content">
-
-<div class="icon-box"><i class="fas fa-microscope"></i></div>
-
-<h3>Diagnóstico gratuito:</h3>
-
-</div>
-
-<p>analizamos tus procesos y necesidades.</p>
-
-</div>
-
-
-
-<div class="process-step">
-
-<div class="header-content">
-
-<div class="icon-box"><i class="fas fa-handshake"></i></div>
-
-<h3>Solución a medida:</h3>
-
-</div>
-
-<p>diseñamos e implementamos la automatización o el dashboard.</p>
-
-</div>
-
-
-
-<div class="process-step">
-
-<div class="header-content">
-
-<div class="icon-box"><i class="fas fa-graduation-cap"></i></div>
-
-<h3>Formación y soporte:</h3>
-
-</div>
-
-<p>capacitamos a tu equipo y ofrecemos acompañamiento continuo.</p>
-
-</div>
-
-
-
-<div class="process-step">
-
-<div class="header-content">
-
-<div class="icon-box"><i class="fas fa-trophy"></i></div>
-
-<h3>Resultados medibles:</h3>
-
-</div>
-
-<p>realizamos seguimiento del ROI y aplicamos mejoras continuas.</p>
-
-</div>
-
-
-
-</div>
-
-</div>
-
-
-
-<div class="image filtered tinted" data-position="top left">
-
-<img src="images/Badajoz.jpg" alt="Proceso de consultoría tecnológica: diagnóstico, solución a medida, formación y resultados" />
-
-</div>
-
-</section>
-
-
-
-<!-- TODO LO DEMÁS SE MANTIENE IGUAL (SERVICIOS, GALERÍA, CONTACTO, ETC) -->
-
-
-
-
-
-
-
-<section class="panel color1">
-
-<div class="intro joined">
-
-<h2 class="major">SERVICIOS</h2>
-
-<p>Transforma tu negocio</p>
-
-<ul class="key-points-list">
-
-<li>Gestión con IA.</li>
-
-<li>Automatización de tareas con IA.</li>
-
-<li>Agentes con IA.</li>
-
-<li>Cuadros de Mando.</li>
-
-<li>Data Analyst.</li>
-
-<li>Automatización de tareas.</li>	
-
-<li>Consultoría Digital.</li>		
-
-<li>Soporte y formación.</li>	
-
-<li>Acompañamiento Digital.</li>	
-
-</ul>
-
-</div>
-
-<div class="inner">
-
-<ul class="grid-icons three">
-
-<li><span class="icon solid fa-cog"><span class="label">Automatización</span></span></li>
-
-<li><span class="icon solid fa-lightbulb"><span class="label">Innovación</span></span></li>
-
-<li><span class="icon solid fa-handshake"><span class="label">Soporte</span></span></li>
-
-<li><span class="icon solid fa-chalkboard-teacher"><span class="label">Formación</span></span></li>
-
-<li><span class="icon solid fa-cloud-upload-alt"><span class="label">Migración Digital</span></span></li>
-
-<li><span class="icon solid fa-shield-alt"><span class="label">Ciberseguridad</span></span></li>
-
-</ul>
-
-</div>
-
-</section>
-
-
-						<section class="panel">
-								<div class="intro color2">
-									<h2 class="major">SOLUCIONES CLAVE Y PROYECTOS</h2>
-									<p>Nuestros servicios se materializan en soluciones a medida diseñadas para optimizar la productividad y la toma de decisiones.</p>
-								</div>
-								<div class="gallery">
-									<div class="group span-3">
-										<a href="images/gallery/fulls/01.jpg" class="image filtered span-3" data-position="bottom"><img src="images/gallery/thumbs/01.jpg" alt="" /></a>
-										<a href="images/gallery/fulls/02.jpg" class="image filtered span-1-5" data-position="center"><img src="images/gallery/thumbs/02.jpg" alt="" /></a>
-										<a href="images/gallery/fulls/03.jpg" class="image filtered span-1-5" data-position="bottom"><img src="images/gallery/thumbs/03.jpg" alt="" /></a>
-									</div>
-									<a href="images/gallery/fulls/04.jpg" class="image filtered span-2-5" data-position="top"><img src="images/gallery/thumbs/04.jpg" alt="" /></a>
-									<div class="group span-4-5">
-										<a href="images/gallery/fulls/05.jpg" class="image filtered span-3" data-position="top"><img src="images/gallery/thumbs/05.jpg" alt="" /></a>
-										<a href="images/gallery/fulls/06.jpg" class="image filtered span-1-5" data-position="center"><img src="images/gallery/thumbs/06.jpg" alt="" /></a>
-										<a href="images/gallery/fulls/07.jpg" class="image filtered span-1-5" data-position="bottom"><img src="images/gallery/thumbs/07.jpg" alt="" /></a>
-										<a href="images/gallery/fulls/08.jpg" class="image filtered span-3" data-position="top"><img src="images/gallery/thumbs/08.jpg" alt="" /></a>
-									</div>
-									<a href="images/gallery/fulls/09.jpg" class="image filtered span-2-5" data-position="right"><img src="images/gallery/thumbs/09.jpg" alt="" /></a>
-								</div>
-							</section>
-
-<section class="panel color4-alt">
-    <div class="intro color4">
-        <h2 class="major">CONTACTO</h2>
-        <p>¿Tienes un proyecto en mente?
-
-Contáctanos hoy mismo para hablar de tus necesidades; analizando tu caso, te ofreceremos una gran variedad de soluciones tecnológicas. Estamos listos para ayudarte.</p>
-    </div>
-</section>
-
-
-
-	
-								<div class="inner columns divided">
-									<div class="span-3-25">
-										<form method="post" action="#">
-											<div class="fields">
-												<div class="field half">
-													<label for="name">Name</label>
-													<input type="text" name="name" id="name" />
-												</div>
-												<div class="field half">
-													<label for="email">Email</label>
-													<input type="email" name="email" id="email" />
-												</div>
-												<div class="field">
-													<label for="message">Message</label>
-													<textarea name="message" id="message" rows="4"></textarea>
-												</div>
-											</div>
-											<ul class="actions">
-												<li><input type="submit" value="Enviar mensaje" class="button primary" /></li>
-											</ul>
-										</form>
-									</div>
-									<div class="span-1-5">
-										<ul class="contact-icons color1">
-											<li class="icon brands fa-twitter"><a href="#">@untitled-tld</a></li>
-											<li class="icon brands fa-facebook-f"><a href="#">facebook.com/untitled</a></li>
-											<li class="icon brands fa-snapchat-ghost"><a href="#">@untitled-tld</a></li>
-											<li class="icon brands fa-instagram"><a href="#">@untitled-tld</a></li>
-											<li class="icon brands fa-medium-m"><a href="#">medium.com/untitled</a></li>
-										</ul>
-									</div>
-								</div>
-							</section>
-
-						<section class="panel color2-alt">
-								<div class="intro color2">
-									<h2 class="major">Elements</h2>
-									<p>Sed vel nibh libero. Mauris et lorem pharetra massa lorem turpis congue pulvinar. Vivamus sed feugiat finibus. Duis amet bibendum amet sed. Duis mauris ex, dapibus sed ligula tempus volutpat magna etiam. </p>
-								</div>
-								<div class="inner columns aligned">
-									<div class="span-2-75">
-										<h3 class="major">Text</h3>
-										<p>This is <b>bold</b> and this is <strong>strong</strong>. This is <i>italic</i> and this is <em>emphasized</em>.
-										This is <sup>superscript</sup> text and this is <sub>subscript</sub> text.
-										This is <u>underlined</u> and this is code: <code>for (;;) { ... }</code>. Finally, <a href="#">this is a link</a>.</p>
-										<h1>Heading Level 1</h1>
-										<h2>Heading Level 2</h2>
-										<h3>Heading Level 3</h3>
-										<h4>Heading Level 4</h4>
-										<h5>Heading Level 5</h5>
-										<h6>Heading Level 6</h6>
-									</div>
-									<div class="span-3">
-										<h4>Blockquote</h4>
-										<blockquote>Lorem ipsum dolor sit amet. Felis sagittis eget tempus euismod. Vestibulum ante ipsum primis in vestibulum. Blandit adipiscing eu iaculis volutpat ac adipiscing volutpat ac adipiscing faucibus.</blockquote>
-										<h4>Preformatted</h4>
-										<pre><code>i = 0;
+    <div id="page-wrapper">
+        <div id="wrapper">
+
+            <section class="panel banner right">
+                <div class="content color0 span-3-75">
+                    <h1 class="major" style="white-space: normal !important; overflow-wrap: break-word;">BiAilitcs<br />Soluciones Tecnológicas</h1>
+                    <p>Somos una empresa especializada en **Soluciones Tecnológicas**, para cualquier tipo de negocio y departamento. <a>Ayudamos</a> a las organizaciones a tomar decisiones inteligentes mediante automatizaciones, análisis de datos y herramientas de productividad adaptadas a cada necesidad. :)</p>
+                    <ul class="actions">
+                        <li><a href="#first" class="button primary color1 circle icon solid fa-angle-right">Next</a></li>
+                    </ul>
+                </div>
+                <div class="image filtered span-1-75" data-position="25% 25%">
+                    <img src="images/NegritaPrincipal.png" alt="Bialitics" />
+                </div>
+            </section>
+
+            <section class="panel spotlight medium right" id="first">
+                <div class="content span-7">
+                    <h2 class="major">CÓMO LO HACEMOS</h2>
+
+                    <div class="process-steps-container">
+
+                        <div class="process-step highlight">
+                            <div class="header-content">
+                                <div class="icon-box"><i class="fas fa-microscope"></i></div>
+                                <h3>Diagnóstico gratuito:</h3>
+                            </div>
+                            <p>analizamos tus procesos y necesidades.</p>
+                        </div>
+
+                        <div class="process-step">
+                            <div class="header-content">
+                                <div class="icon-box"><i class="fas fa-handshake"></i></div>
+                                <h3>Solución a medida:</h3>
+                            </div>
+                            <p>diseñamos e implementamos la automatización o el dashboard.</p>
+                        </div>
+
+                        <div class="process-step">
+                            <div class="header-content">
+                                <div class="icon-box"><i class="fas fa-graduation-cap"></i></div>
+                                <h3>Formación y soporte:</h3>
+                            </div>
+                            <p>capacitamos a tu equipo y ofrecemos acompañamiento continuo.</p>
+                        </div>
+
+                        <div class="process-step">
+                            <div class="header-content">
+                                <div class="icon-box"><i class="fas fa-trophy"></i></div>
+                                <h3>Resultados medibles:</h3>
+                            </div>
+                            <p>realizamos seguimiento del ROI y aplicamos mejoras continuas.</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="image filtered tinted" data-position="top left">
+                    <img src="images/Badajoz.jpg" alt="Proceso de consultoría tecnológica: diagnóstico, solución a medida, formación y resultados" />
+                </div>
+            </section>
+
+            <section class="panel color1">
+                <div class="intro joined">
+                    <h2 class="major">SERVICIOS</h2>
+                    <p>Transforma tu negocio</p>
+                    <ul class="key-points-list">
+                        <li>Gestión con IA.</li>
+                        <li>Automatización de tareas con IA.</li>
+                        <li>Agentes con IA.</li>
+                        <li>Cuadros de Mando.</li>
+                        <li>Data Analyst.</li>
+                        <li>Automatización de tareas.</li>
+                        <li>Consultoría Digital.</li>
+                        <li>Soporte y formación.</li>
+                        <li>Acompañamiento Digital.</li>
+                    </ul>
+                </div>
+                <div class="inner">
+                    <ul class="grid-icons three">
+                        <li><span class="icon solid fa-cog"><span class="label">Automatización</span></span></li>
+                        <li><span class="icon solid fa-lightbulb"><span class="label">Innovación</span></span></li>
+                        <li><span class="icon solid fa-handshake"><span class="label">Soporte</span></span></li>
+                        <li><span class="icon solid fa-chalkboard-teacher"><span class="label">Formación</span></span></li>
+                        <li><span class="icon solid fa-cloud-upload-alt"><span class="label">Migración Digital</span></span></li>
+                        <li><span class="icon solid fa-shield-alt"><span class="label">Ciberseguridad</span></span></li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="panel">
+                <div class="intro color2">
+                    <h2 class="major">SOLUCIONES CLAVE Y PROYECTOS</h2>
+                    <p>Nuestros servicios se materializan en soluciones a medida diseñadas para optimizar la productividad y la toma de decisiones.</p>
+                </div>
+                <div class="gallery">
+                    <div class="group span-3">
+                        <a href="images/gallery/fulls/01.jpg" class="image filtered span-3" data-position="bottom"><img src="images/gallery/thumbs/01.jpg" alt="" /></a>
+                        <a href="images/gallery/fulls/02.jpg" class="image filtered span-1-5" data-position="center"><img src="images/gallery/thumbs/02.jpg" alt="" /></a>
+                        <a href="images/gallery/fulls/03.jpg" class="image filtered span-1-5" data-position="bottom"><img src="images/gallery/thumbs/03.jpg" alt="" /></a>
+                    </div>
+                    <a href="images/gallery/fulls/04.jpg" class="image filtered span-2-5" data-position="top"><img src="images/gallery/thumbs/04.jpg" alt="" /></a>
+                    <div class="group span-4-5">
+                        <a href="images/gallery/fulls/05.jpg" class="image filtered span-3" data-position="top"><img src="images/gallery/thumbs/05.jpg" alt="" /></a>
+                        <a href="images/gallery/fulls/06.jpg" class="image filtered span-1-5" data-position="center"><img src="images/gallery/thumbs/06.jpg" alt="" /></a>
+                        <a href="images/gallery/fulls/07.jpg" class="image filtered span-1-5" data-position="bottom"><img src="images/gallery/thumbs/07.jpg" alt="" /></a>
+                        <a href="images/gallery/fulls/08.jpg" class="image filtered span-3" data-position="top"><img src="images/gallery/thumbs/08.jpg" alt="" /></a>
+                    </div>
+                    <a href="images/gallery/fulls/09.jpg" class="image filtered span-2-5" data-position="right"><img src="images/gallery/thumbs/09.jpg" alt="" /></a>
+                </div>
+            </section>
+
+            <section class="panel color4-alt">
+                <div class="intro color4 span-3-25">
+                    <h2 class="major">CONTACTO</h2>
+                    <p>¿Tienes un proyecto en mente? Contáctanos hoy mismo para hablar de tus necesidades; analizando tu caso, te ofreceremos una gran variedad de soluciones tecnológicas. Estamos listos para ayudarte.</p>
+                </div>
+                <div class="inner columns divided">
+                    <div class="span-3-25">
+                        <form method="post" action="#">
+                            <div class="fields">
+                                <div class="field half">
+                                    <label for="name">Name</label>
+                                    <input type="text" name="name" id="name" placeholder="" />
+                                </div>
+                                <div class="field half">
+                                    <label for="email">Email</label>
+                                    <input type="email" name="email" id="email" placeholder="" />
+                                </div>
+                                <div class="field">
+                                    <label for="message">Message</label>
+                                    <textarea name="message" id="message" rows="4" placeholder=""></textarea>
+                                </div>
+                            </div>
+                            <ul class="actions">
+                                <li><input type="submit" value="Enviar mensaje" class="button primary" /></li>
+                            </ul>
+                        </form>
+                    </div>
+                    <div class="span-1-5">
+                        <ul class="contact-icons color1">
+                            <li class="icon brands fa-twitter"><a href="#">@untitled-tld</a></li>
+                            <li class="icon brands fa-facebook-f"><a href="#">facebook.com/untitled</a></li>
+                            <li class="icon brands fa-snapchat-ghost"><a href="#">@untitled-tld</a></li>
+                            <li class="icon brands fa-instagram"><a href="#">@untitled-tld</a></li>
+                            <li class="icon brands fa-medium-m"><a href="#">medium.com/untitled</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+
+            <section class="panel color2-alt">
+                <div class="intro color2">
+                    <h2 class="major">Elements</h2>
+                    <p>Sed vel nibh libero. Mauris et lorem pharetra massa lorem turpis congue pulvinar. Vivamus sed feugiat finibus. Duis amet bibendum amet sed. Duis mauris ex, dapibus sed ligula tempus volutpat magna etiam. </p>
+                </div>
+                <div class="inner columns aligned">
+                    <div class="span-2-75">
+                        <h3 class="major">Text</h3>
+                        <p>This is <b>bold</b> and this is <strong>strong</strong>. This is <i>italic</i> and this is <em>emphasized</em>.
+                            This is <sup>superscript</sup> text and this is <sub>subscript</sub> text.
+                            This is <u>underlined</u> and this is code: <code>for (;;) { ... }</code>. Finally, <a href="#">this is a link</a>.</p>
+                        <h1>Heading Level 1</h1>
+                        <h2>Heading Level 2</h2>
+                        <h3>Heading Level 3</h3>
+                        <h4>Heading Level 4</h4>
+                        <h5>Heading Level 5</h5>
+                        <h6>Heading Level 6</h6>
+                    </div>
+                    <div class="span-3">
+                        <h4>Blockquote</h4>
+                        <blockquote>Lorem ipsum dolor sit amet. Felis sagittis eget tempus euismod. Vestibulum ante ipsum primis in vestibulum. Blandit adipiscing eu iaculis volutpat ac adipiscing volutpat ac adipiscing faucibus.</blockquote>
+                        <h4>Preformatted</h4>
+                        <pre><code>i = 0;
 
 while (!deck.isInOrder()) {
     print 'Iteration ' + (i++);
@@ -599,334 +385,324 @@ while (!deck.isInOrder()) {
 }
 
 print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
-									</div>
-									<div class="span-1-25">
-										<h3 class="major">Lists</h3>
-										<h4>Unordered</h4>
-										<ul>
-											<li>Lorem ipsum dolor sit.</li>
-											<li>Dolor pulvinar etiam.</li>
-											<li>Etiam vel felis viverra.</li>
-										</ul>
-										<h4>Alternate</h4>
-										<ul class="alt">
-											<li>Lorem ipsum dolor sit.</li>
-											<li>Dolor pulvinar etiam.</li>
-											<li>Etiam vel felis viverra.</li>
-											<li>Felis enim feugiat.</li>
-										</ul>
-									</div>
-									<div class="span-1-5">
-										<h4>Ordered</h4>
-										<ol>
-											<li>Lorem ipsum dolor sit.</li>
-											<li>Dolor pulvinar etiam.</li>
-											<li>Etiam vel felis viverra.</li>
-											<li>Felis enim feugiat.</li>
-											<li>Etiam vel felis lorem.</li>
-										</ol>
-										<h4>Actions</h4>
-										<ul class="actions">
-											<li><a href="#" class="button primary color2">Default</a></li>
-											<li><a href="#" class="button">Default</a></li>
-										</ul>
-										<ul class="actions stacked">
-											<li><a href="#" class="button primary color2">Default</a></li>
-											<li><a href="#" class="button">Default</a></li>
-										</ul>
-									</div>
-									<div class="span-1-25">
-										<h4>Icons</h4>
-										<ul class="icons">
-											<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-											<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-											<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-											<li><a href="#" class="icon brands fa-github"><a href="#">GitHub</a></li>
-											<li><a href="#" class="icon brands fa-medium-m"><a href="#">Medium</a></li>
-										</ul>
-										<h4>Contact Icons</h4>
-										<ul class="contact-icons color2">
-											<li class="icon brands fa-twitter"><a href="#">Twitter</a></li>
-											<li class="icon brands fa-facebook-f"><a href="#">Facebook</a></li>
-											<li class="icon brands fa-instagram"><a href="#">Instagram</a></li>
-											<li class="icon brands fa-github"><a href="#">GitHub</a></li>
-											<li class="icon brands fa-medium-m"><a href="#">Medium</a></li>
-										</ul>
-									</div>
-									<div class="span-3">
-										<h3 class="major">Table</h3>
-										<h4>Default</h4>
-										<div class="table-wrapper">
-											<table>
-												<thead>
-													<tr>
-														<th>Name</th>
-														<th>Description</th>
-														<th>Price</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr>
-														<td>Item One</td>
-														<td>Ante turpis integer aliquet porttitor.</td>
-														<td>29.99</td>
-													</tr>
-													<tr>
-														<td>Item Two</td>
-														<td>Vis ac commodo adipiscing arcu aliquet.</td>
-														<td>19.99</td>
-													</tr>
-													<tr>
-														<td>Item Three</td>
-														<td> Morbi faucibus arcu accumsan lorem.</td>
-														<td>29.99</td>
-													</tr>
-													<tr>
-														<td>Item Four</td>
-														<td>Vitae integer tempus condimentum.</td>
-														<td>19.99</td>
-													</tr>
-												</tbody>
-												<tfoot>
-													<tr>
-														<td colspan="2"></td>
-														<td>100.00</td>
-													</tr>
-												</tfoot>
-											</table>
-										</div>
-									</div>
-									<div class="span-3">
-										<h4>Alternate</h4>
-										<div class="table-wrapper">
-											<table class="alt">
-												<thead>
-													<tr>
-														<th>Name</th>
-														<th>Description</th>
-														<th>Price</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr>
-														<td>Item One</td>
-														<td>Ante turpis integer aliquet porttitor.</td>
-														<td>29.99</td>
-													</tr>
-													<tr>
-														<td>Item Two</td>
-														<td>Vis ac commodo adipiscing arcu aliquet.</td>
-														<td>19.99</td>
-													</tr>
-													<tr>
-														<td>Item Three</td>
-														<td> Morbi faucibus arcu accumsan lorem.</td>
-														<td>29.99</td>
-													</tr>
-													<tr>
-														<td>Item Four</td>
-														<td>Vitae integer tempus condimentum.</td>
-														<td>19.99</td>
-													</tr>
-													<tr>
-														<td>Item Five</td>
-														<td>Ante turpis integer aliquet porttitor.</td>
-														<td>29.99</td>
-													</tr>
-												</tbody>
-												<tfoot>
-													<tr>
-														<td colspan="2"></td>
-														<td>100.00</td>
-													</tr>
-												</tfoot>
-											</table>
-										</div>
-									</div>
-									<div class="span-2-25">
-										<h3 class="major">Buttons</h3>
-										<ul class="actions">
-											<li><a href="#" class="button primary color2">Primary</a></li>
-											<li><a href="#" class="button">Default</a></li>
-										</ul>
-										<ul class="actions">
-											<li><a href="#" class="button">Default</a></li>
-											<li><a href="#" class="button large">Large</a></li>
-											<li><a href="#" class="button small">Small</a></li>
-										</ul>
-										<ul class="actions">
-											<li><a href="#" class="button primary color2 icon solid fa-cog">Icon</a></li>
-											<li><a href="#" class="button icon fa-gem">Icon</a></li>
-										</ul>
-										<ul class="actions">
-											<li><span class="button primary color2 disabled">Disabled</span></li>
-											<li><span class="button disabled">Disabled</span></li>
-										</ul>
-										<ul class="actions">
-											<li><a href="#" class="button primary color2 circle icon solid fa-cog">Icon</a></li>
-											<li><a href="#" class="button circle icon fa-gem">Icon</a></li>
-										</ul>
-									</div>
-									<div class="span-4-5">
-										<h3 class="major">Form</h3>
-										<form method="post" action="#">
-											<div class="fields">
-												<div class="field third">
-													<label for="demo-name">Name</label>
-													<input type="text" name="demo-name" id="demo-name" value="" placeholder="Jane Doe" />
-												</div>
-												<div class="field third">
-													<label for="demo-email">Email</label>
-													<input type="email" name="demo-email" id="demo-email" value="" placeholder="jane@untitled.tld" />
-												</div>
-												<div class="field third">
-													<label for="demo-category">Category</label>
-													<div class="select-wrapper">
-														<select name="demo-category" id="demo-category">
-															<option value="">-</option>
-															<option value="1">Manufacturing</option>
-															<option value="1">Shipping</option>
-															<option value="1">Administration</option>
-															<option value="1">Human Resources</option>
-														</select>
-													</div>
-												</div>
-												<div class="field quarter">
-													<input type="radio" id="demo-priority-low" name="demo-priority" class="color2" checked />
-													<label for="demo-priority-low">Low Priority</label>
-												</div>
-												<div class="field quarter">
-													<input type="radio" id="demo-priority-high" name="demo-priority" class="color2" />
-													<label for="demo-priority-high">High Priority</label>
-												</div>
-												<div class="field quarter">
-													<input type="checkbox" id="demo-copy" name="demo-copy" class="color2" />
-													<label for="demo-copy">Email a copy</label>
-												</div>
-												<div class="field quarter">
-													<input type="checkbox" id="demo-human" name="demo-human" class="color2" checked />
-													<label for="demo-human">Not a robot</label>
-												</div>
-												<div class="field">
-													<label for="demo-message">Message</label>
-													<textarea name="demo-message" id="demo-message" placeholder="Enter your message" rows="2"></textarea>
-												</div>
-											</div>
-											<ul class="actions">
-												<li><input type="submit" value="Send Message" class="primary color2" /></li>
-												<li><input type="reset" value="Reset" /></li>
-											</ul>
-										</form>
-									</div>
-								</div>
-							</section>
+                    </div>
+                    <div class="span-1-25">
+                        <h3 class="major">Lists</h3>
+                        <h4>Unordered</h4>
+                        <ul>
+                            <li>Lorem ipsum dolor sit.</li>
+                            <li>Dolor pulvinar etiam.</li>
+                            <li>Etiam vel felis viverra.</li>
+                        </ul>
+                        <h4>Alternate</h4>
+                        <ul class="alt">
+                            <li>Lorem ipsum dolor sit.</li>
+                            <li>Dolor pulvinar etiam.</li>
+                            <li>Etiam vel felis viverra.</li>
+                            <li>Felis enim feugiat.</li>
+                        </ul>
+                    </div>
+                    <div class="span-1-5">
+                        <h4>Ordered</h4>
+                        <ol>
+                            <li>Lorem ipsum dolor sit.</li>
+                            <li>Dolor pulvinar etiam.</li>
+                            <li>Etiam vel felis viverra.</li>
+                            <li>Felis enim feugiat.</li>
+                            <li>Etiam vel felis lorem.</li>
+                        </ol>
+                        <h4>Actions</h4>
+                        <ul class="actions">
+                            <li><a href="#" class="button primary color2">Default</a></li>
+                            <li><a href="#" class="button">Default</a></li>
+                        </ul>
+                        <ul class="actions stacked">
+                            <li><a href="#" class="button primary color2">Default</a></li>
+                            <li><a href="#" class="button">Default</a></li>
+                        </ul>
+                    </div>
+                    <div class="span-1-25">
+                        <h4>Icons</h4>
+                        <ul class="icons">
+                            <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+                            <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+                            <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+                            <li><a href="#" class="icon brands fa-github"><a href="#">GitHub</a></li>
+                            <li><a href="#" class="icon brands fa-medium-m"><a href="#">Medium</a></li>
+                        </ul>
+                        <h4>Contact Icons</h4>
+                        <ul class="contact-icons color2">
+                            <li class="icon brands fa-twitter"><a href="#">Twitter</a></li>
+                            <li class="icon brands fa-facebook-f"><a href="#">Facebook</a></li>
+                            <li class="icon brands fa-instagram"><a href="#">Instagram</a></li>
+                            <li class="icon brands fa-github"><a href="#">GitHub</a></li>
+                            <li class="icon brands fa-medium-m"><a href="#">Medium</a></li>
+                        </ul>
+                    </div>
+                    <div class="span-3">
+                        <h3 class="major">Table</h3>
+                        <h4>Default</h4>
+                        <div class="table-wrapper">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Description</th>
+                                        <th>Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Item One</td>
+                                        <td>Ante turpis integer aliquet porttitor.</td>
+                                        <td>29.99</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Item Two</td>
+                                        <td>Vis ac commodo adipiscing arcu aliquet.</td>
+                                        <td>19.99</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Item Three</td>
+                                        <td> Morbi faucibus arcu accumsan lorem.</td>
+                                        <td>29.99</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Item Four</td>
+                                        <td>Vitae integer tempus condimentum.</td>
+                                        <td>19.99</td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="2"></td>
+                                        <td>100.00</td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="span-3">
+                        <h4>Alternate</h4>
+                        <div class="table-wrapper">
+                            <table class="alt">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Description</th>
+                                        <th>Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Item One</td>
+                                        <td>Ante turpis integer aliquet porttitor.</td>
+                                        <td>29.99</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Item Two</td>
+                                        <td>Vis ac commodo adipiscing arcu aliquet.</td>
+                                        <td>19.99</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Item Three</td>
+                                        <td> Morbi faucibus arcu accumsan lorem.</td>
+                                        <td>29.99</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Item Four</td>
+                                        <td>Vitae integer tempus condimentum.</td>
+                                        <td>19.99</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Item Five</td>
+                                        <td>Ante turpis integer aliquet porttitor.</td>
+                                        <td>29.99</td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="2"></td>
+                                        <td>100.00</td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="span-2-25">
+                        <h3 class="major">Buttons</h3>
+                        <ul class="actions">
+                            <li><a href="#" class="button primary color2">Primary</a></li>
+                            <li><a href="#" class="button">Default</a></li>
+                        </ul>
+                        <ul class="actions">
+                            <li><a href="#" class="button">Default</a></li>
+                            <li><a href="#" class="button large">Large</a></li>
+                            <li><a href="#" class="button small">Small</a></li>
+                        </ul>
+                        <ul class="actions">
+                            <li><a href="#" class="button primary color2 icon solid fa-cog">Icon</a></li>
+                            <li><a href="#" class="button icon fa-gem">Icon</a></li>
+                        </ul>
+                        <ul class="actions">
+                            <li><span class="button primary color2 disabled">Disabled</span></li>
+                            <li><span class="button disabled">Disabled</span></li>
+                        </ul>
+                        <ul class="actions">
+                            <li><a href="#" class="button primary color2 circle icon solid fa-cog">Icon</a></li>
+                            <li><a href="#" class="button circle icon fa-gem">Icon</a></li>
+                        </ul>
+                    </div>
+                    <div class="span-4-5">
+                        <h3 class="major">Form</h3>
+                        <form method="post" action="#">
+                            <div class="fields">
+                                <div class="field third">
+                                    <label for="demo-name">Name</label>
+                                    <input type="text" name="demo-name" id="demo-name" value="" placeholder="Jane Doe" />
+                                </div>
+                                <div class="field third">
+                                    <label for="demo-email">Email</label>
+                                    <input type="email" name="demo-email" id="demo-email" value="" placeholder="jane@untitled.tld" />
+                                </div>
+                                <div class="field third">
+                                    <label for="demo-category">Category</label>
+                                    <div class="select-wrapper">
+                                        <select name="demo-category" id="demo-category">
+                                            <option value="">-</option>
+                                            <option value="1">Manufacturing</option>
+                                            <option value="1">Shipping</option>
+                                            <option value="1">Administration</option>
+                                            <option value="1">Human Resources</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="field quarter">
+                                    <input type="radio" id="demo-priority-low" name="demo-priority" class="color2" checked />
+                                    <label for="demo-priority-low">Low Priority</label>
+                                </div>
+                                <div class="field quarter">
+                                    <input type="radio" id="demo-priority-high" name="demo-priority" class="color2" />
+                                    <label for="demo-priority-high">High Priority</label>
+                                </div>
+                                <div class="field quarter">
+                                    <input type="checkbox" id="demo-copy" name="demo-copy" class="color2" />
+                                    <label for="demo-copy">Email a copy</label>
+                                </div>
+                                <div class="field quarter">
+                                    <input type="checkbox" id="demo-human" name="demo-human" class="color2" checked />
+                                    <label for="demo-human">Not a robot</label>
+                                </div>
+                                <div class="field">
+                                    <label for="demo-message">Message</label>
+                                    <textarea name="demo-message" id="demo-message" placeholder="Enter your message" rows="2"></textarea>
+                                </div>
+                            </div>
+                            <ul class="actions">
+                                <li><input type="submit" value="Send Message" class="primary color2" /></li>
+                                <li><input type="reset" value="Reset" /></li>
+                            </ul>
+                        </form>
+                    </div>
+                </div>
+            </section>
 
-						<div class="copyright">&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.</div>
+            <div class="copyright">&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.</div>
 
-					</div>
+        </div>
 
-			</div>
-			
-			<div id="cursor-glow"></div>
+    </div>
 
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/main.js"></script>
-			
-			<script>
-				document.addEventListener('DOMContentLoaded', () => {
-					const glowContainer = document.getElementById('cursor-glow');
-					const blob = document.createElement('div');
-					// Usamos una clase al inicio que garantice visibilidad en el fondo inicial (oscuro)
-					blob.className = 'cursor-blob dark-mode'; 
-					glowContainer.appendChild(blob);
+    <div id="cursor-glow"></div>
 
-					// Umbral de Luminancia: 100.
-					const LUMINANCE_THRESHOLD = 100; 
-					let currentMode = 'dark'; 
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/main.js"></script>
 
-					// Función para verificar si un color (RGB) es oscuro o claro
-					function isDark(r, g, b) {
-						// Fórmula simple de luminancia percibida
-						const luminance = (0.299 * r + 0.587 * g + 0.114 * b);
-						
-						return luminance < LUMINANCE_THRESHOLD;
-					}
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const glowContainer = document.getElementById('cursor-glow');
+            const blob = document.createElement('div');
+            // Usamos una clase al inicio que garantice visibilidad en el fondo inicial (oscuro)
+            blob.className = 'cursor-blob dark-mode';
+            glowContainer.appendChild(blob);
 
-					// Función para obtener el color de fondo RGB de un elemento
-					function getBgColorRgb(element) {
-						const style = window.getComputedStyle(element);
-						const bgColor = style.backgroundColor;
-						// Busca 'rgb(x, y, z)' o 'rgba(x, y, z, a)'
-						const match = bgColor.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d*\.?\d+))?\)/);
-						if (match) {
-							return {
-								r: parseInt(match[1]),
-								g: parseInt(match[2]),
-								b: parseInt(match[3]),
-								// Si el alfa es 0, lo tratamos como transparente
-								a: match[4] ? parseFloat(match[4]) : 1.0 
-							};
-						}
-						return null;
-					}
+            // Umbral de Luminancia: 100.
+            const LUMINANCE_THRESHOLD = 100;
+            let currentMode = 'dark';
 
-					// Función principal para actualizar el color y posición del blob
-					function updateBlobPosition(e) {
-						// Mueve el blob con el cursor
-						blob.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
+            // Función para verificar si un color (RGB) es oscuro o claro
+            function isDark(r, g, b) {
+                // Fórmula simple de luminancia percibida
+                const luminance = (0.299 * r + 0.587 * g + 0.114 * b);
 
-						// 1. Obtener el elemento bajo el cursor
-						let targetElement = document.elementFromPoint(e.clientX, e.clientY);
-						let colorData = null;
+                return luminance < LUMINANCE_THRESHOLD;
+            }
 
-						// Bucle para buscar un elemento con un color de fondo definido (no transparente)
-						while (targetElement && targetElement !== document.body) {
-							colorData = getBgColorRgb(targetElement);
-							
-							// Si encontramos un color opaco (Alpha > 0.1), usamos ese y rompemos el bucle.
-							if (colorData && colorData.a > 0.1) {
-								break;
-							}
-							// Si no hay color de fondo, subimos al padre
-							targetElement = targetElement.parentElement;
-						}
-						
-						// Si se encontró un color definido
-						if (colorData) {
-							const targetIsDark = isDark(colorData.r, colorData.g, colorData.b);
+            // Función para obtener el color de fondo RGB de un elemento
+            function getBgColorRgb(element) {
+                const style = window.getComputedStyle(element);
+                const bgColor = style.backgroundColor;
+                // Busca 'rgb(x, y, z)' o 'rgba(x, y, z, a)'
+                const match = bgColor.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d*\.?\d+))?\)/);
+                if (match) {
+                    return {
+                        r: parseInt(match[1]),
+                        g: parseInt(match[2]),
+                        b: parseInt(match[3]),
+                        // Si el alfa es 0, lo tratamos como transparente
+                        a: match[4] ? parseFloat(match[4]) : 1.0
+                    };
+                }
+                return null;
+            }
 
-							// 2. Aplicar la clase de modo (sólo si el modo ha cambiado)
-							if (targetIsDark && currentMode !== 'dark') {
-								blob.classList.add('dark-mode');
-								blob.classList.remove('light-mode');
-								currentMode = 'dark';
-							} 
-							else if (!targetIsDark && currentMode !== 'light') {
-								blob.classList.add('light-mode');
-								blob.classList.remove('dark-mode');
-								currentMode = 'light';
-							}
-						}
-					}
+            // Función principal para actualizar el color y posición del blob
+            function updateBlobPosition(e) {
+                // Mueve el blob con el cursor
+                blob.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
 
-					// Escucha el movimiento del ratón
-					document.addEventListener('mousemove', updateBlobPosition);
+                // 1. Obtener el elemento bajo el cursor
+                let targetElement = document.elementFromPoint(e.clientX, e.clientY);
+                let colorData = null;
 
-					// Opcional: Ocultar el cursor normal
-					document.body.style.cursor = 'none';
-				});
-			</script>
-	</body>
+                // Bucle para buscar un elemento con un color de fondo definido (no transparente)
+                while (targetElement && targetElement !== document.body) {
+                    colorData = getBgColorRgb(targetElement);
+
+                    // Si encontramos un color opaco (Alpha > 0.1), usamos ese y rompemos el bucle.
+                    if (colorData && colorData.a > 0.1) {
+                        break;
+                    }
+                    // Si no hay color de fondo, subimos al padre
+                    targetElement = targetElement.parentElement;
+                }
+
+                // Si se encontró un color definido
+                if (colorData) {
+                    const targetIsDark = isDark(colorData.r, colorData.g, colorData.b);
+
+                    // 2. Aplicar la clase de modo (sólo si el modo ha cambiado)
+                    if (targetIsDark && currentMode !== 'dark') {
+                        blob.classList.add('dark-mode');
+                        blob.classList.remove('light-mode');
+                        currentMode = 'dark';
+                    } else if (!targetIsDark && currentMode !== 'light') {
+                        blob.classList.add('light-mode');
+                        blob.classList.remove('dark-mode');
+                        currentMode = 'light';
+                    }
+                }
+            }
+
+            // Escucha el movimiento del ratón
+            document.addEventListener('mousemove', updateBlobPosition);
+
+            // Opcional: Ocultar el cursor normal
+            document.body.style.cursor = 'none';
+        });
+    </script>
+</body>
+
 </html>
-
-
-
-
-
-
-
-
-
-
