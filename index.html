@@ -1,375 +1,496 @@
 <!DOCTYPE HTML>
+
 <html>
-	<head>
-		<title>BiAilitcs | Soluciones Tecnológicas Inteligentes para tu Negocio</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<head>
 
-		<style>
-			/* 0. Definición del degradado de resaltado */
-			@keyframes gradient-animation {
-				0% { background-position: 0% 50%; }
-				50% { background-position: 100% 50%; }
-				100% { background-position: 0% 50%; }
-			}
-			.gradient-bg {
-				background: linear-gradient(90deg, #ff9900, #33ccb5);
-				background-size: 200% 100%;
-				animation: gradient-animation 10s ease infinite;
-			}
-			
-			/* ======================================================= */
-			/* SECCIÓN 2: AJUSTES DE PROCESO (Cajas) — ACTUALIZADA */
-			/* ======================================================= */
-			.process-steps-container {
-				display: flex;
-				flex-direction: column;
-				position: relative;
-				padding: 0 1em;
-				margin-top: 0.5em;
-				margin-bottom: 0.5em;
-				height: auto;
-				box-sizing: border-box;
-				max-width: 400px;
-				margin-left: auto;
-				margin-right: auto;
-				overflow: visible; /* 🔥 evita que se corte la última caja */
-			}
+<title>BiAilitcs | Soluciones Tecnológicas Inteligentes para tu Negocio</title>
 
-			.process-step {
-				padding: 6px 10px;
-				margin-bottom: 1em !important;
-				border-radius: 6px;
-				box-sizing: border-box;
-				width: 100%;
-				background-color: rgba(0, 0, 0, 0.15);
-				transition: all 0.3s ease;
-				display: block;
-			}
-			
-			.process-step.highlight {
-				background-image: linear-gradient(90deg, #ff9900, #33ccb5);
-				background-size: 200% 100%;
-				animation: gradient-animation 10s ease infinite;
-				padding: 6px 10px; /* 🔥 igual que las otras */
-				margin-top: 0; /* 🔥 mismo tamaño visual */
-				margin-bottom: 1em !important;
-				color: #ffffff;
-			}
+<meta charset="utf-8" />
 
-			.process-step .header-content {
-				display: flex;
-				align-items: center;
-				gap: 28px;
-				margin-bottom: 3px;
-			}
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 
-			.process-step .icon-box {
-				flex-shrink: 0;
-				width: 20px;
-				font-size: 1.4em;
-				color: #ffffff;
-			}
+<link rel="stylesheet" href="assets/css/main.css" />
 
-			.process-step h3 {
-				margin: 0;
-				font-size: 1em;
-				font-weight: bold;
-				color: #ffffff;
-				line-height: 1.1;
-				flex-grow: 1;
-			}
-
-			.process-step p {
-				opacity: 0.9;
-				font-size: 0.75em;
-				line-height: 1.3;
-				margin-bottom: 0;
-				padding-left: 40px;
-				color: #dddddd;
-				margin-top: 0;
-			}
-			.process-step.highlight p {
-				color: #eeeeee;
-			}
-
-			/* ======================================================= */
-			/* SECCIÓN 3: Iconos de Servicios (ACTUALIZADA a 3x3) */
-			/* ======================================================= */
-
-			/* Contenedor general de iconos */
-			.panel.color1 .grid-icons.nine {
-				list-style: none;
-				padding: 0;
-				margin: 0;
-				display: grid;
-				/* 3 columnas fijas para todos los tamaños */
-				grid-template-columns: repeat(3, 1fr); 
-				gap: 15px 10px; /* Menor espacio en móvil para que quepan bien */
-				text-align: center;
-			}
-
-			/* Ajuste de espacio solo para escritorio (opcional, para que no queden muy juntos) */
-			@media screen and (min-width: 737px) {
-				.panel.color1 .grid-icons.nine {
-					gap: 30px 20px; 
-				}
-			}
-
-			.panel.color1 .grid-icons.nine li {
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-				justify-content: flex-start; 
-				transition: transform 0.3s ease;
-				cursor: default;
-			}
-
-			.panel.color1 .grid-icons.nine li:hover {
-				transform: translateY(-5px); /* Efecto sutil de elevación */
-			}
-
-			/* Estilo del texto del servicio (título) */
-			.panel.color1 .grid-icons .service-title {
-				order: 1; 
-				margin-bottom: 0.5em; 
-				font-size: 0.8em; /* Un poco más pequeño para caber mejor */
-				font-weight: bold;
-				line-height: 1.1;
-				color: #ffffff; 
-				text-shadow: 0 0 5px rgba(0, 255, 255, 0.2); 
-				/* Word break para que los títulos largos como "Automatización de tareas con IA" quepan */
-				word-break: break-word; 
-				padding: 0 5px; /* Pequeño padding lateral */
-			}
-
-			/* Contenedor del icono con el círculo */
-			.panel.color1 .grid-icons .icon-container {
-				order: 2; 
-				position: relative;
-				width: 50px; /* Tamaño del círculo ajustado */
-				height: 50px;
-				border-radius: 50%;
-				/* Borde neón que simula un círculo minimalista */
-				border: 2px solid #00ffff;
-				box-shadow: 0 0 10px rgba(0, 255, 255, 0.5); 
-				display: flex;
-				align-items: center;
-				justify-content: center;
-			}
-
-			/* Estilo del icono (fa-...) */
-			.panel.color1 .grid-icons .icon {
-				font-size: 1.8em; /* Tamaño del icono ajustado */
-				color: #00ffff !important;
-				text-shadow: 0 0 10px rgba(0, 255, 255, 0.7), 0 0 5px rgba(0, 255, 255, 0.5);
-			}
-
-			/* OCULTAR LA ETIQUETA INNECESARIA (LABEL) */
-			.panel.color1 .grid-icons .icon .label {
-				display: none;
-			}
-
-			/* ======================================================= */
-			/* CURSOR INTERACTIVO / MODO OSCURO–CLARO (igual que estaba) */
-			/* ======================================================= */
-			#cursor-glow {
-				position: fixed;
-				top: 0;
-				left: 0;
-				width: 100vw;
-				height: 100vh;
-				pointer-events: none;
-				z-index: 9999;
-				mix-blend-mode: overlay;
-				opacity: 0.8;
-				transition: opacity 0.3s ease;
-			}
-			.cursor-blob {
-				position: absolute;
-				width: 100px;
-				height: 100px;
-				border-radius: 50%;
-				transform: translate(-50%, -50%);
-				transition: transform 0.1s linear, background 0.3s ease-in-out;
-			}
-			.cursor-blob.dark-mode {
-				background: radial-gradient(circle,
-					rgba(255,153,0,1) 30%,
-					rgba(255,153,0,0.5) 60%,
-					rgba(51,204,181,0) 100%);
-			}
-			.cursor-blob.light-mode {
-				background: radial-gradient(circle,
-					rgba(0,150,255,1) 30%,
-					rgba(0,150,255,0.5) 60%,
-					rgba(51,204,181,0) 100%);
-			}
-			@media screen and (max-width: 736px) {
-				#cursor-glow { display: none !important; }
-			}
-		</style>
-	</head>
+<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 
 
-	<body class="is-preload">
 
-		<div id="page-wrapper">
-			<div id="wrapper">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-				<section class="panel banner right">
-					<div class="content color0 span-3-75">
-						<h1 class="major">Hello, my&nbsp;<span class="spacer-fix"></span>name<br />is BiAilitcs</h1>
-						<p>Somos una empresa especializada en <strong>Soluciones Tecnológicas</strong>, para cualquier tipo de negocio y departamento. <a>Ayudamos</a> a las organizaciones a tomar decisiones inteligentes mediante automatizaciones, análisis de datos y herramientas de productividad adaptadas a cada necesidad. :)</p>
-						<ul class="actions">
-							<li><a href="#first" class="button primary color1 circle icon solid fa-angle-right">Next</a></li>
-						</ul>
-					</div>
-					<div class="image filtered span-1-75" data-position="25% 25%">
-						<img src="images/NegritaPrincipal.png" alt="Bialitics" />
-					</div>
-				</section>
 
-				<section class="panel spotlight medium right" id="first">
-					<div class="content span-7">
-						<h2 class="major">CÓMO LO HACEMOS</h2>
 
-						<div class="process-steps-container">
+<style>
 
-							<div class="process-step highlight">
-								<div class="header-content">
-									<div class="icon-box"><i class="fas fa-microscope"></i></div>
-									<h3>Diagnóstico gratuito:</h3>
-								</div>
-								<p>analizamos tus procesos y necesidades.</p>
-							</div>
+/* 0. Definición del degradado de resaltado */
 
-							<div class="process-step">
-								<div class="header-content">
-									<div class="icon-box"><i class="fas fa-handshake"></i></div>
-									<h3>Solución a medida:</h3>
-								</div>
-								<p>diseñamos e implementamos la automatización o el dashboard.</p>
-							</div>
+@keyframes gradient-animation {
 
-							<div class="process-step">
-								<div class="header-content">
-									<div class="icon-box"><i class="fas fa-graduation-cap"></i></div>
-									<h3>Formación y soporte:</h3>
-								</div>
-								<p>capacitamos a tu equipo y ofrecemos acompañamiento continuo.</p>
-							</div>
+0% { background-position: 0% 50%; }
 
-							<div class="process-step">
-								<div class="header-content">
-									<div class="icon-box"><i class="fas fa-trophy"></i></div>
-									<h3>Resultados medibles:</h3>
-								</div>
-								<p>realizamos seguimiento del ROI y aplicamos mejoras continuas.</p>
-							</div>
+50% { background-position: 100% 50%; }
 
-						</div>
-					</div>
+100% { background-position: 0% 50%; }
 
-					<div class="image filtered tinted" data-position="top left">
-						<img src="images/Badajoz.jpg" alt="Proceso de consultoría tecnológica: diagnóstico, solución a medida, formación y resultados" />
-					</div>
-				</section>
+}
 
-				<section class="panel color1">
-					<div class="intro joined">
-						<h2 class="major">SERVICIOS.</h2>
-						<p>Transforma tu negocio</p>
-						<ul class="key-points-list">
-							<li>Automatización de tareas con IA</li>
-							<li>Agentes con IA</li>
-							<li>Cuadros de Mando</li>
-							<li>Data Analyst</li>
-							<li>Automatización de tareas</li>
-							<li>Consultoría Digitalización</li>
-							<li>Soporte</li>
-							<li>Formación</li>
-							<li>Ciberseguridad</li>
-						</ul>
-					</div>
-					<div class="inner">
-						<ul class="grid-icons nine"> 
-							
-							<li>
-								<div class="service-title">Automatización de tareas con IA</div>
-								<div class="icon-container">
-									<span class="icon solid fa-robot"><span class="label">Auto Tareas con IA</span></span>
-								</div>
-							</li>
-							
-							<li>
-								<div class="service-title">Agentes con IA</div>
-								<div class="icon-container">
-									<span class="icon solid fa-brain"><span class="label">Agentes con IA</span></span>
-								</div>
-							</li>
-							
-							<li>
-								<div class="service-title">Cuadros de Mando</div>
-								<div class="icon-container">
-									<span class="icon solid fa-chart-pie"><span class="label">Cuadros de Mando</span></span>
-								</div>
-							</li>
-							
-							<li>
-								<div class="service-title">Data Analyst</div>
-								<div class="icon-container">
-									<span class="icon solid fa-search-dollar"><span class="label">Data Analyst</span></span>
-								</div>
-							</li>
-							
-							<li>
-								<div class="service-title">Automatización de tareas</div>
-								<div class="icon-container">
-									<span class="icon solid fa-sync-alt"><span class="label">Auto Tareas</span></span>
-								</div>
-							</li>
-							
-							<li>
-								<div class="service-title">Consultoría Digitalización</div>
-								<div class="icon-container">
-									<span class="icon solid fa-chess-knight"><span class="label">Consultoría</span></span>
-								</div>
-							</li>
-							
-							<li>
-								<div class="service-title">Soporte y Formación</div>
-								<div class="icon-container">
-									<span class="icon solid fa-headset"><span class="label">Soporte</span></span>
-								</div>
-							</li>
-							
-							<li>
-								<div class="service-title">Gestión con IA</div>
-								<div class="icon-container">
-									<span class="icon solid fa-graduation-cap"><span class="label">Formación</span></span>
-								</div>
-							</li>
-							
-							<li>
-								<div class="service-title">Acompañamiento Digital</div>
-								<div class="icon-container">
-									<span class="icon solid fa-user-lock"><span class="label">Ciberseguridad</span></span>
-								</div>
-							</li>
+.gradient-bg {
 
-						</ul>
-					</div>
-				</section>
-				</div>
-		</div>
+background: linear-gradient(90deg, #ff9900, #33ccb5);
 
-		</body>
-</html>
+background-size: 200% 100%;
+
+animation: gradient-animation 10s ease infinite;
+
+}
+
+
+/* ======================================================= */
+
+/* SECCIÓN 2: AJUSTES DE PROCESO (Cajas) — ACTUALIZADA */
+
+/* ======================================================= */
+
+.process-steps-container {
+
+display: flex;
+
+flex-direction: column;
+
+position: relative;
+
+padding: 0 1em;
+
+margin-top: 0.5em;
+
+margin-bottom: 0.5em;
+
+height: auto;
+
+box-sizing: border-box;
+
+max-width: 400px;
+
+margin-left: auto;
+
+margin-right: auto;
+
+overflow: visible; /* 🔥 evita que se corte la última caja */
+
+}
+
+
+
+.process-step {
+
+padding: 6px 10px;
+
+margin-bottom: 1em !important;
+
+border-radius: 6px;
+
+box-sizing: border-box;
+
+width: 100%;
+
+background-color: rgba(0, 0, 0, 0.15);
+
+transition: all 0.3s ease;
+
+display: block;
+
+}
+
+
+.process-step.highlight {
+
+background-image: linear-gradient(90deg, #ff9900, #33ccb5);
+
+background-size: 200% 100%;
+
+animation: gradient-animation 10s ease infinite;
+
+padding: 6px 10px; /* 🔥 igual que las otras */
+
+margin-top: 0; /* 🔥 mismo tamaño visual */
+
+margin-bottom: 1em !important;
+
+color: #ffffff;
+
+}
+
+
+
+.process-step .header-content {
+
+display: flex;
+
+align-items: center;
+
+gap: 28px;
+
+margin-bottom: 3px;
+
+}
+
+
+
+.process-step .icon-box {
+
+flex-shrink: 0;
+
+width: 20px;
+
+font-size: 1.4em;
+
+color: #ffffff;
+
+}
+
+
+
+.process-step h3 {
+
+margin: 0;
+
+font-size: 1em;
+
+font-weight: bold;
+
+color: #ffffff;
+
+line-height: 1.1;
+
+flex-grow: 1;
+
+}
+
+
+
+.process-step p {
+
+opacity: 0.9;
+
+font-size: 0.75em;
+
+line-height: 1.3;
+
+margin-bottom: 0;
+
+padding-left: 40px;
+
+color: #dddddd;
+
+margin-top: 0;
+
+}
+
+.process-step.highlight p {
+
+color: #eeeeee;
+
+}
+
+
+
+/* ======================================================= */
+
+/* SECCIÓN 3 — Iconos neón (igual que estaba) */
+
+/* ======================================================= */
+
+.panel.color1 .grid-icons .icon {
+
+color: #00ffff !important;
+
+text-shadow: 0 0 10px rgba(0, 255, 255, 0.7), 0 0 5px rgba(0, 255, 255, 0.5);
+
+}
+
+.panel.color1 .grid-icons li {
+
+transition: transform 0.2s ease-in-out;
+
+}
+
+.panel.color1 .grid-icons li:hover {
+
+transform: scale(1.08);
+
+}
+
+
+
+/* ======================================================= */
+
+/* CURSOR INTERACTIVO / MODO OSCURO–CLARO (igual que estaba) */
+
+/* ======================================================= */
+
+#cursor-glow {
+
+position: fixed;
+
+top: 0;
+
+left: 0;
+
+width: 100vw;
+
+height: 100vh;
+
+pointer-events: none;
+
+z-index: 9999;
+
+mix-blend-mode: overlay;
+
+opacity: 0.8;
+
+transition: opacity 0.3s ease;
+
+}
+
+.cursor-blob {
+
+position: absolute;
+
+width: 100px;
+
+height: 100px;
+
+border-radius: 50%;
+
+transform: translate(-50%, -50%);
+
+transition: transform 0.1s linear, background 0.3s ease-in-out;
+
+}
+
+.cursor-blob.dark-mode {
+
+background: radial-gradient(circle,
+
+rgba(255,153,0,1) 30%,
+
+rgba(255,153,0,0.5) 60%,
+
+rgba(51,204,181,0) 100%);
+
+}
+
+.cursor-blob.light-mode {
+
+background: radial-gradient(circle,
+
+rgba(0,150,255,1) 30%,
+
+rgba(0,150,255,0.5) 60%,
+
+rgba(51,204,181,0) 100%);
+
+}
+
+@media screen and (max-width: 736px) {
+
+#cursor-glow { display: none !important; }
+
+}
+
+</style>
+
+</head>
+
+
+
+
+
+<body class="is-preload">
+
+
+
+<div id="page-wrapper">
+
+<div id="wrapper">
+
+
+
+<!-- PANEL 1 -->
+
+<section class="panel banner right">
+
+<div class="content color0 span-3-75">
+
+<h1 class="major">Hello, my name<br />is BiAilitcs</h1>
+
+<p>Somos una empresa especializada en <strong>Soluciones Tecnológicas</strong>, para cualquier tipo de negocio y departamento. <a>Ayudamos</a> a las organizaciones a tomar decisiones inteligentes mediante automatizaciones, análisis de datos y herramientas de productividad adaptadas a cada necesidad. :)</p>
+
+<ul class="actions">
+
+<li><a href="#first" class="button primary color1 circle icon solid fa-angle-right">Next</a></li>
+
+</ul>
+
+</div>
+
+<div class="image filtered span-1-75" data-position="25% 25%">
+
+<img src="images/NegritaPrincipal.png" alt="Bialitics" />
+
+</div>
+
+</section>
+
+
+
+<!-- PANEL 2 — CÓMO LO HACEMOS -->
+
+<section class="panel spotlight medium right" id="first">
+
+<div class="content span-7">
+
+<h2 class="major">CÓMO LO HACEMOS</h2>
+
+
+
+<div class="process-steps-container">
+
+
+
+<div class="process-step highlight">
+
+<div class="header-content">
+
+<div class="icon-box"><i class="fas fa-microscope"></i></div>
+
+<h3>Diagnóstico gratuito:</h3>
+
+</div>
+
+<p>analizamos tus procesos y necesidades.</p>
+
+</div>
+
+
+
+<div class="process-step">
+
+<div class="header-content">
+
+<div class="icon-box"><i class="fas fa-handshake"></i></div>
+
+<h3>Solución a medida:</h3>
+
+</div>
+
+<p>diseñamos e implementamos la automatización o el dashboard.</p>
+
+</div>
+
+
+
+<div class="process-step">
+
+<div class="header-content">
+
+<div class="icon-box"><i class="fas fa-graduation-cap"></i></div>
+
+<h3>Formación y soporte:</h3>
+
+</div>
+
+<p>capacitamos a tu equipo y ofrecemos acompañamiento continuo.</p>
+
+</div>
+
+
+
+<div class="process-step">
+
+<div class="header-content">
+
+<div class="icon-box"><i class="fas fa-trophy"></i></div>
+
+<h3>Resultados medibles:</h3>
+
+</div>
+
+<p>realizamos seguimiento del ROI y aplicamos mejoras continuas.</p>
+
+</div>
+
+
+
+</div>
+
+</div>
+
+
+
+<div class="image filtered tinted" data-position="top left">
+
+<img src="images/Badajoz.jpg" alt="Proceso de consultoría tecnológica: diagnóstico, solución a medida, formación y resultados" />
+
+</div>
+
+</section>
+
+
+
+<!-- TODO LO DEMÁS SE MANTIENE IGUAL (SERVICIOS, GALERÍA, CONTACTO, ETC) -->
+
+
+
+
+
+
+
+<section class="panel color1">
+
+<div class="intro joined">
+
+<h2 class="major">SERVICIOS.</h2>
+
+<p>Transforma tu negocio</p>
+
+<ul class="key-points-list">
+
+<li>Automatización empresarial.</li>
+
+<li>Dashboard inteligente de análisis.</li>
+
+<li>Formaciones personalizadas.</li>
+
+<li>Consultoria estrategica con IA y data.</li>
+
+<li>Soporte.</li>
+
+</ul>
+
+</div>
+
+<div class="inner">
+
+<ul class="grid-icons three">
+
+<li><span class="icon solid fa-cog"><span class="label">Automatización</span></span></li>
+
+<li><span class="icon solid fa-lightbulb"><span class="label">Innovación</span></span></li>
+
+<li><span class="icon solid fa-handshake"><span class="label">Soporte</span></span></li>
+
+<li><span class="icon solid fa-chalkboard-teacher"><span class="label">Formación</span></span></li>
+
+<li><span class="icon solid fa-cloud-upload-alt"><span class="label">Migración Digital</span></span></li>
+
+<li><span class="icon solid fa-shield-alt"><span class="label">Ciberseguridad</span></span></li>
+
+</ul>
+
+</div>
+
+</section>
 
 						<section class="panel spotlight large left">
 								<div class="content span-5">
@@ -793,6 +914,7 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 			</script>
 	</body>
 </html>
+
 
 
 
