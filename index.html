@@ -13,9 +13,17 @@
     <style>
         /* 0. Definición del degradado de resaltado */
         @keyframes gradient-animation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
         }
 
         .gradient-bg {
@@ -24,35 +32,51 @@
             animation: gradient-animation 10s ease infinite;
         }
 
-        /* Cajas de proceso */
+
+        /* ======================================================= */
+        /* SECCIÓN 2: AJUSTES DE PROCESO (Cajas) — ACTUALIZADA */
+        /* ======================================================= */
         .process-steps-container {
             display: flex;
             flex-direction: column;
             position: relative;
             padding: 0 1em;
-            margin: 0.5em auto;
+            margin-top: 0.5em;
+            margin-bottom: 0.5em;
+            height: auto;
+            box-sizing: border-box;
             max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
             overflow: visible;
+            /* 🔥 evita que se corte la última caja */
         }
 
         .process-step {
             padding: 6px 10px;
             margin-bottom: 1em !important;
             border-radius: 6px;
+            box-sizing: border-box;
             width: 100%;
             background-color: rgba(0, 0, 0, 0.15);
             transition: all 0.3s ease;
             display: block;
         }
 
+
         .process-step.highlight {
             background-image: linear-gradient(90deg, #ff9900, #33ccb5);
             background-size: 200% 100%;
             animation: gradient-animation 10s ease infinite;
             padding: 6px 10px;
+            /* 🔥 igual que las otras */
+            margin-top: 0;
+            /* 🔥 mismo tamaño visual */
             margin-bottom: 1em !important;
             color: #ffffff;
         }
+
+
 
         .process-step .header-content {
             display: flex;
@@ -61,12 +85,16 @@
             margin-bottom: 3px;
         }
 
+
+
         .process-step .icon-box {
             flex-shrink: 0;
             width: 20px;
             font-size: 1.4em;
             color: #ffffff;
         }
+
+
 
         .process-step h3 {
             margin: 0;
@@ -76,6 +104,8 @@
             line-height: 1.1;
             flex-grow: 1;
         }
+
+
 
         .process-step p {
             opacity: 0.9;
@@ -91,7 +121,11 @@
             color: #eeeeee;
         }
 
-        /* Iconos neón */
+
+
+        /* ======================================================= */
+        /* SECCIÓN 3 — Iconos neón (igual que estaba) */
+        /* ======================================================= */
         .panel.color1 .grid-icons .icon {
             color: #00ffff !important;
             text-shadow: 0 0 10px rgba(0, 255, 255, 0.7), 0 0 5px rgba(0, 255, 255, 0.5);
@@ -105,7 +139,11 @@
             transform: scale(1.08);
         }
 
-        /* Cursor interactivo */
+
+
+        /* ======================================================= */
+        /* CURSOR INTERACTIVO / MODO OSCURO–CLARO (igual que estaba) */
+        /* ======================================================= */
         #cursor-glow {
             position: fixed;
             top: 0;
@@ -148,13 +186,17 @@
             }
         }
 
-        /* Contacto */
+
+        /* ======================================================= */
+        /* CONTACTO — AJUSTES ADICIONALES PARA JUNTAR INTRO Y FORM */
+        /* ======================================================= */
         .panel.color4-alt .intro {
             padding: 0 2em !important;
         }
 
         .panel.color4-alt .inner.columns.divided {
             padding-top: 0 !important;
+            /* Elimina el padding superior para acercar al intro */
         }
     </style>
 </head>
@@ -164,14 +206,13 @@
     <div id="page-wrapper">
         <div id="wrapper">
 
-            <!-- HERO -->
             <section class="panel banner right">
                 <div class="content color0 span-3-75">
                     <h1 class="major">
-                        Hello, my name is<br />
-                        BiAilitcs
-                    </h1>
-                    <p>Somos una empresa especializada en <strong>Soluciones Tecnológicas</strong>, para cualquier tipo de negocio y departamento. Ayudamos a las organizaciones a tomar decisiones inteligentes mediante automatizaciones, análisis de datos y herramientas de productividad adaptadas a cada necesidad.</p>
+    Hello, my name is<br />
+    BiAilitcs
+</h1>
+                    <p>Somos una empresa especializada en <strong>Soluciones Tecnológicas</strong>, para cualquier tipo de negocio y departamento. <a>Ayudamos</a> a las organizaciones a tomar decisiones inteligentes mediante automatizaciones, análisis de datos y herramientas de productividad adaptadas a cada necesidad. :)</p>
                     <ul class="actions">
                         <li><a href="#first" class="button primary color1 circle icon solid fa-angle-right">Next</a></li>
                     </ul>
@@ -181,7 +222,6 @@
                 </div>
             </section>
 
-            <!-- CÓMO LO HACEMOS -->
             <section class="panel spotlight medium right" id="first">
                 <div class="content span-7">
                     <h2 class="major">CÓMO LO HACEMOS</h2>
@@ -228,7 +268,6 @@
                 </div>
             </section>
 
-            <!-- SERVICIOS -->
             <section class="panel color1">
                 <div class="intro joined">
                     <h2 class="major">SERVICIOS</h2>
@@ -247,17 +286,16 @@
                 </div>
                 <div class="inner">
                     <ul class="grid-icons three">
-                        <li><span class="icon solid fa-cog"></span></li>
-                        <li><span class="icon solid fa-lightbulb"></span></li>
-                        <li><span class="icon solid fa-handshake"></span></li>
-                        <li><span class="icon solid fa-chalkboard-teacher"></span></li>
-                        <li><span class="icon solid fa-cloud-upload-alt"></span></li>
-                        <li><span class="icon solid fa-shield-alt"></span></li>
+                        <li><span class="icon solid fa-cog"><span class="label">Automatización</span></span></li>
+                        <li><span class="icon solid fa-lightbulb"><span class="label">Innovación</span></span></li>
+                        <li><span class="icon solid fa-handshake"><span class="label">Soporte</span></span></li>
+                        <li><span class="icon solid fa-chalkboard-teacher"><span class="label">Formación</span></span></li>
+                        <li><span class="icon solid fa-cloud-upload-alt"><span class="label">Migración Digital</span></span></li>
+                        <li><span class="icon solid fa-shield-alt"><span class="label">Ciberseguridad</span></span></li>
                     </ul>
                 </div>
             </section>
 
-            <!-- PROYECTOS / GALERÍA COMPLETA -->
             <section class="panel">
                 <div class="intro color2">
                     <h2 class="major">SOLUCIONES CLAVE Y PROYECTOS</h2>
@@ -280,7 +318,6 @@
                 </div>
             </section>
 
-            <!-- CONTACTO -->
             <section class="panel color4-alt">
                 <div class="intro color4 span-3-25">
                     <h2 class="major">CONTACTO</h2>
@@ -320,9 +357,9 @@
                 </div>
             </section>
 
-            <div class="copyright">
-                &copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.
-            </div>
+            <!-- AQUÍ HEMOS ELIMINADO LA SECCIÓN "Elements" -->
+
+            <div class="copyright">&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.</div>
 
         </div>
 
@@ -339,47 +376,66 @@
         document.addEventListener('DOMContentLoaded', () => {
             const glowContainer = document.getElementById('cursor-glow');
             const blob = document.createElement('div');
+            // Usamos una clase al inicio que garantice visibilidad en el fondo inicial (oscuro)
             blob.className = 'cursor-blob dark-mode';
             glowContainer.appendChild(blob);
 
+            // Umbral de Luminancia: 100.
             const LUMINANCE_THRESHOLD = 100;
             let currentMode = 'dark';
 
+            // Función para verificar si un color (RGB) es oscuro o claro
             function isDark(r, g, b) {
+                // Fórmula simple de luminancia percibida
                 const luminance = (0.299 * r + 0.587 * g + 0.114 * b);
+
                 return luminance < LUMINANCE_THRESHOLD;
             }
 
+            // Función para obtener el color de fondo RGB de un elemento
             function getBgColorRgb(element) {
                 const style = window.getComputedStyle(element);
                 const bgColor = style.backgroundColor;
+                // Busca 'rgb(x, y, z)' o 'rgba(x, y, z, a)'
                 const match = bgColor.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d*\.?\d+))?\)/);
                 if (match) {
                     return {
                         r: parseInt(match[1]),
                         g: parseInt(match[2]),
                         b: parseInt(match[3]),
+                        // Si el alfa es 0, lo tratamos como transparente
                         a: match[4] ? parseFloat(match[4]) : 1.0
                     };
                 }
                 return null;
             }
 
+            // Función principal para actualizar el color y posición del blob
             function updateBlobPosition(e) {
+                // Mueve el blob con el cursor
                 blob.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
+
+                // 1. Obtener el elemento bajo el cursor
                 let targetElement = document.elementFromPoint(e.clientX, e.clientY);
                 let colorData = null;
 
+                // Bucle para buscar un elemento con un color de fondo definido (no transparente)
                 while (targetElement && targetElement !== document.body) {
                     colorData = getBgColorRgb(targetElement);
+
+                    // Si encontramos un color opaco (Alpha > 0.1), usamos ese y rompemos el bucle.
                     if (colorData && colorData.a > 0.1) {
                         break;
                     }
+                    // Si no hay color de fondo, subimos al padre
                     targetElement = targetElement.parentElement;
                 }
 
+                // Si se encontró un color definido
                 if (colorData) {
                     const targetIsDark = isDark(colorData.r, colorData.g, colorData.b);
+
+                    // 2. Aplicar la clase de modo (sólo si el modo ha cambiado)
                     if (targetIsDark && currentMode !== 'dark') {
                         blob.classList.add('dark-mode');
                         blob.classList.remove('light-mode');
@@ -392,7 +448,10 @@
                 }
             }
 
+            // Escucha el movimiento del ratón
             document.addEventListener('mousemove', updateBlobPosition);
+
+            // Opcional: Ocultar el cursor normal
             document.body.style.cursor = 'none';
         });
     </script>
