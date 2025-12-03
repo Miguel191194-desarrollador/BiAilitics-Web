@@ -135,7 +135,7 @@
 
         .bento-large {
             grid-column: span 2;
-            min-height: 120px;
+            min-height: 80px;
         }
 
         .bento-label {
@@ -171,18 +171,44 @@
         rgba(0, 200, 255, 1), 
         rgba(0, 120, 255, 1),
         rgba(0, 200, 255, 0.9)
+
+
+
+                                
+   /* Borde azul neón SUAVE */
+.bento-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    padding: 2px;
+
+    /* 🔵 degradado suave */
+    background: linear-gradient(
+        135deg,
+        rgba(0, 180, 255, 0.4),
+        rgba(0, 120, 255, 0.2),
+        rgba(0, 180, 255, 0.35)
     );
+
+    /* recorta el interior */
     -webkit-mask: 
         linear-gradient(#fff 0 0) content-box, 
         linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
-    pointer-events: none;
-    filter: drop-shadow(0 0 12px rgba(0, 200, 255, 0.8))
-            drop-shadow(0 0 25px rgba(0, 200, 255, 0.4));
-    opacity: 1;
-}
 
+    pointer-events: none;
+
+    /* 🔵 resplandor suave */
+    filter: drop-shadow(0 0 8px rgba(0, 180, 255, 0.4))
+            drop-shadow(0 0 16px rgba(0, 180, 255, 0.25));
+
+    opacity: 1;
+}                             
+
+
+                                
 
         
 
@@ -336,20 +362,17 @@
                 <div class="services-bento-grid">
 
                     <div class="bento-card bento-large">
-                        <div class="bento-label">Gestión con IA</div>
-                        <h3 class="bento-title">Optimización Inteligente</h3>
+                        <h3 class="bento-title">Gestión con IA</h3>
                         <p class="bento-desc">Implementamos sistemas que toman decisiones automáticas por ti.</p>
                     </div>
 
                     <div class="bento-card">
-                        <div class="bento-label">Automatización con IA</div>
-                        <h3 class="bento-title">Procesos Automáticos</h3>
+                        <h3 class="bento-title">Automatización de tareas con IA</h3>
                         <p class="bento-desc">Automatiza tareas repetitivas y gana eficiencia real.</p>
                     </div>
 
                     <div class="bento-card">
-                        <div class="bento-label">Agentes con IA</div>
-                        <h3 class="bento-title">Asistentes Inteligentes</h3>
+                        <h3 class="bento-title">Agentes con IA</h3>
                         <p class="bento-desc">Bots conversacionales que trabajan 24/7.</p>
                     </div>
 
@@ -360,32 +383,28 @@
                     </div>
 
                     <div class="bento-card">
-                        <div class="bento-label">Data Analyst</div>
-                        <h3 class="bento-title">Análisis Avanzado</h3>
+                        <h3 class="bento-title">Cuadros de Mando</h3>
                         <p class="bento-desc">Convertimos datos en decisiones estratégicas.</p>
                     </div>
 
                     <div class="bento-card">
-                        <div class="bento-label">Automatización de Tareas</div>
-                        <h3 class="bento-title">Productividad Total</h3>
+                        <h3 class="bento-title">Automatización de Tareas</h3>
                         <p class="bento-desc">Digitaliza procesos y reduce errores.</p>
                     </div>
 
                     <div class="bento-card">
-                        <div class="bento-label">Consultoría Digital</div>
-                        <h3 class="bento-title">Transformación</h3>
+                        <h3 class="bento-title">Consultoría Digital</h3>
                         <p class="bento-desc">Diseñamos tu hoja de ruta digital.</p>
                     </div>
 
                     <div class="bento-card">
-                        <div class="bento-label">Soporte y Formación</div>
-                        <h3 class="bento-title">Acompañamiento</h3>
+                    
+                        <h3 class="bento-title">Soporte y Formación</h3>
                         <p class="bento-desc">Te enseñamos cómo sacarle partido a tus sistemas.</p>
                     </div>
 
                     <div class="bento-card">
-                        <div class="bento-label">Acompañamiento Digital</div>
-                        <h3 class="bento-title">Seguimiento</h3>
+                        <h3 class="bento-title">Acompañamiento Digital</h3>
                         <p class="bento-desc">Crecemos junto a tu negocio.</p>
                     </div>
 
@@ -443,6 +462,7 @@
 </body>
 
 </html>
+
 
 
 
