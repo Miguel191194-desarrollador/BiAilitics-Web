@@ -167,33 +167,35 @@
         /* ---------------------------------------- */
         /* RESPONSIVE — MÓVIL */
         /* ---------------------------------------- */
-        @media (max-width: 768px) {
+@media (max-width: 768px) {
 
-            /* CORRECCIÓN 1: HERO a pantalla completa en móvil (100vh) */
+            /* CORRECCIÓN 1: HERO a la mitad (Imagen arriba 50%, Texto abajo 50%) */
             section.panel.banner.right {
                 /* Fuerza a que el HERO ocupe toda la altura visible */
                 height: 100vh !important;
                 min-height: 100vh !important;
                 
-                /* Asegura que el contenido se reparta verticalmente */
+                /* Mantiene la distribución vertical */
                 flex-direction: column;
                 justify-content: flex-start;
             }
             
-            /* Asegura que la imagen de fondo también se ajuste si el panel completo ocupa 100vh */
+            /* Define la IMAGEN para que ocupe la mitad superior (50%) */
             section.panel.banner.right .image.filtered {
-                height: 100% !important;
-                min-height: 100% !important;
+                height: 50vh !important;
+                min-height: 50vh !important;
                 width: 100% !important;
             }
 
-            /* Ajuste del contenido para el modo 100vh */
+            /* Define el CONTENIDO para que ocupe la mitad inferior (50%) */
             section.panel.banner.right .content {
-                flex-grow: 1; /* Permite que el contenido crezca y use el espacio restante */
+                height: 50vh !important;
+                min-height: 50vh !important;
+                width: 100% !important; /* Asegura que ocupe todo el ancho */
                 padding: 1.2em !important;
                 display: flex;
                 flex-direction: column;
-                justify-content: center; /* Centra el contenido verticalmente en su espacio */
+                justify-content: center; /* Centra el contenido verticalmente */
             }
             /* FIN DE CORRECCIÓN 1 */
 
@@ -521,6 +523,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </body>
 </html>
+
 
 
 
