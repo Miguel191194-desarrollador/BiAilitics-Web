@@ -169,35 +169,44 @@
         /* ---------------------------------------- */
 @media (max-width: 768px) {
 
-            /* CORRECCIÓN 1: HERO a la mitad (Imagen arriba 50%, Texto abajo 50%) */
-            section.panel.banner.right {
-                /* Fuerza a que el HERO ocupe toda la altura visible */
-                height: 100vh !important;
-                min-height: 100vh !important;
-                
-                /* Mantiene la distribución vertical */
-                flex-direction: column;
-                justify-content: flex-start;
-            }
-            
-            /* Define la IMAGEN para que ocupe la mitad superior (50%) */
-            section.panel.banner.right .image.filtered {
-                height: 50vh !important;
-                min-height: 50vh !important;
-                width: 100% !important;
-            }
+    /* Fuerza al HERO a ocupar alto completo */
+    section.panel.banner.right {
+        display: flex !important;
+        flex-direction: column-reverse !important; /* ← ESTO pone la IMAGEN ARRIBA */
+        height: 100vh !important;
+        min-height: 100vh !important;
+    }
 
-            /* Define el CONTENIDO para que ocupe la mitad inferior (50%) */
-            section.panel.banner.right .content {
-                height: 50vh !important;
-                min-height: 50vh !important;
-                width: 100% !important; /* Asegura que ocupe todo el ancho */
-                padding: 1.2em !important;
-                display: flex;
-                flex-direction: column;
-                justify-content: center; /* Centra el contenido verticalmente */
-            }
-            /* FIN DE CORRECCIÓN 1 */
+    /* Imagen: mitad superior */
+    section.panel.banner.right .image.filtered {
+        height: 50vh !important;
+        min-height: 50vh !important;
+        width: 100% !important;
+        order: 1 !important;
+    }
+
+    /* Texto: mitad inferior */
+    section.panel.banner.right .content {
+        height: 50vh !important;
+        min-height: 50vh !important;
+        width: 100% !important;
+        padding: 1.5em !important;
+
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: flex-start !important;
+
+        order: 2 !important;
+        text-align: left !important;
+    }
+
+    /* Título adaptado a móvil */
+    section.panel.banner.right h1.major {
+        font-size: 1.7em !important;
+        line-height: 1.2 !important;
+    }
+}
 
 
             .services-bento-grid {
@@ -304,7 +313,10 @@
 
             <section class="panel banner right">
                 <div class="content color0 span-3-75">
-                    <h1 class="major">Hello, my name is<br />BiAilitcs</h1>
+                    <h1 class="major">
+    Hello, my name is<br />
+    <span class="biailitcs-title">BiAilitcs</span>
+</h1>
                     <p>Somos una empresa especializada en <strong>Soluciones Tecnológicas</strong>, para cualquier tipo de negocio y departamento. <u>Ayudamos</u> a las organizaciones a tomar decisiones inteligentes mediante automatizaciones, análisis de datos y herramientas de productividad adaptadas a cada necesidad. :)</p>
                     <ul class="actions">
                         <li><a href="#first" class="button primary color1 circle icon solid fa-angle-right">Next</a></li>
@@ -523,6 +535,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </body>
 </html>
+
 
 
 
