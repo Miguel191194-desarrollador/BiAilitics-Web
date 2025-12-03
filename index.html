@@ -146,7 +146,70 @@
             margin: 0;
         }
 
+        .bento-desc {
+            font-size: 0.85em;
+            line-height: 1.3;
+            margin-top: 0.3em;
+        }
 
+        /* ---------------------------------------- */
+        /* RESPONSIVE — MÓVIL */
+        /* ---------------------------------------- */
+        @media (max-width: 768px) {
+
+            .services-bento-grid {
+                grid-template-columns: 1fr;
+                gap: 1em;
+                padding: 1em 1.2em;
+                max-width: 100%;
+            }
+
+            .bento-card {
+                min-height: auto;
+                padding: 0.9em;
+            }
+
+            .bento-title {
+                font-size: 1.05em;
+            }
+
+            .bento-desc {
+                font-size: 0.78em;
+                line-height: 1.3;
+            }
+
+            .intro {
+                text-align: left;
+                padding: 0 1.2em !important;
+            }
+
+            h2.major {
+                font-size: 1.6em !important;
+            }
+
+            /* HERO */
+            section.panel.banner.right .content {
+                padding: 1.2em !important;
+            }
+
+            section.panel.banner.right h1.major {
+                font-size: 1.8em;
+            }
+
+            section.panel.banner.right p {
+                font-size: 0.9em;
+            }
+
+            .panel.color1 .intro {
+                padding: 1em !important;
+            }
+
+            .panel .image.filtered {
+                height: 200px !important;
+                min-height: 200px !important;
+                background-size: cover;
+            }
+        }
 
         /* ---------------------------------------- */
         /* CONTACTO */
@@ -160,7 +223,7 @@
         }
 
         /* ---------------------------------------- */
-        /* CURSOR LUMINOSO */
+        /* CURSOR */
         /* ---------------------------------------- */
         #cursor-glow {
             position: fixed;
@@ -203,9 +266,7 @@
             <!-- HERO -->
             <section class="panel banner right">
                 <div class="content color0 span-3-75">
-                    <h1 class="major">
-                        Hello, my name is<br />BiAilitcs
-                    </h1>
+                    <h1 class="major">Hello, my name is<br />BiAilitcs</h1>
                     <p>Somos una empresa especializada en <strong>Soluciones Tecnológicas</strong>, para cualquier tipo de negocio y departamento. <u>Ayudamos</u> a las organizaciones a tomar decisiones inteligentes mediante automatizaciones, análisis de datos y herramientas de productividad adaptadas a cada necesidad. :)</p>
                     <ul class="actions">
                         <li><a href="#first" class="button primary color1 circle icon solid fa-angle-right">Next</a></li>
@@ -369,6 +430,8 @@
 
 </body>
 </html>
+
+
 
 
 
