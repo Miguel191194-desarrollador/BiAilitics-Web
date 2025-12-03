@@ -12,6 +12,18 @@
 
     <style>
         /* ---------------------------------------- */
+        /* ARREGLO IMAGEN CÓMO LO HACEMOS (General) */
+        /* Añadido para que la imagen dentro del panel spotlight no se corte */
+        /* ---------------------------------------- */
+        .panel .image img {
+            width: 100%;
+            height: 100%;
+            /* Clave: asegura que la imagen cubra todo su contenedor sin cortarse */
+            object-fit: cover;
+            display: block;
+        }
+
+        /* ---------------------------------------- */
         /* ANIMACIÓN DEGRADADO */
         /* ---------------------------------------- */
         @keyframes gradient-animation {
@@ -138,7 +150,7 @@
             pointer-events: none;
 
             filter: drop-shadow(0 0 8px rgba(0, 180, 255, 0.6))
-                    drop-shadow(0 0 14px rgba(0, 160, 255, 0.4));
+                drop-shadow(0 0 14px rgba(0, 160, 255, 0.4));
         }
 
         .bento-title {
@@ -156,6 +168,35 @@
         /* RESPONSIVE — MÓVIL */
         /* ---------------------------------------- */
         @media (max-width: 768px) {
+
+            /* CORRECCIÓN 1: HERO a pantalla completa en móvil (100vh) */
+            section.panel.banner.right {
+                /* Fuerza a que el HERO ocupe toda la altura visible */
+                height: 100vh !important;
+                min-height: 100vh !important;
+                
+                /* Asegura que el contenido se reparta verticalmente */
+                flex-direction: column;
+                justify-content: flex-start;
+            }
+            
+            /* Asegura que la imagen de fondo también se ajuste si el panel completo ocupa 100vh */
+            section.panel.banner.right .image.filtered {
+                height: 100% !important;
+                min-height: 100% !important;
+                width: 100% !important;
+            }
+
+            /* Ajuste del contenido para el modo 100vh */
+            section.panel.banner.right .content {
+                flex-grow: 1; /* Permite que el contenido crezca y use el espacio restante */
+                padding: 1.2em !important;
+                display: flex;
+                flex-direction: column;
+                justify-content: center; /* Centra el contenido verticalmente en su espacio */
+            }
+            /* FIN DE CORRECCIÓN 1 */
+
 
             .services-bento-grid {
                 grid-template-columns: 1fr;
@@ -187,11 +228,6 @@
                 font-size: 1.6em !important;
             }
 
-            /* HERO */
-            section.panel.banner.right .content {
-                padding: 1.2em !important;
-            }
-
             section.panel.banner.right h1.major {
                 font-size: 1.8em;
             }
@@ -205,6 +241,7 @@
             }
 
             .panel .image.filtered {
+                /* Se mantiene esta regla para el resto de secciones (CÓMO LO HACEMOS en móvil) */
                 height: 200px !important;
                 min-height: 200px !important;
                 background-size: cover;
@@ -263,7 +300,6 @@
     <div id="page-wrapper">
         <div id="wrapper">
 
-            <!-- HERO -->
             <section class="panel banner right">
                 <div class="content color0 span-3-75">
                     <h1 class="major">Hello, my name is<br />BiAilitcs</h1>
@@ -277,7 +313,6 @@
                 </div>
             </section>
 
-            <!-- CÓMO LO HACEMOS -->
             <section class="panel spotlight medium right" id="first">
                 <div class="content span-7">
                     <h2 class="major">CÓMO LO HACEMOS</h2>
@@ -322,7 +357,6 @@
                 </div>
             </section>
 
-            <!-- SERVICIOS -->
             <section class="panel color1" id="services">
                 <div class="intro joined">
                     <h2 class="major">SERVICIOS</h2>
@@ -379,7 +413,6 @@
                 </div>
             </section>
 
-            <!-- CONTACTO -->
             <section class="panel color4-alt">
                 <div class="intro color4 span-3-25">
                     <h2 class="major">CONTACTO</h2>
@@ -428,8 +461,67 @@
     <script src="assets/js/breakpoints.min.js"></script>
     <script src="assets/js/main.js"></script>
 
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const glowContainer = document.getElementById('cursor-glow');
+
+    const blob = document.createElement('div');
+    blob.className = 'cursor-blob dark-mode';    // modo inicial
+    glowContainer.appendChild(blob);
+
+    const LUMINANCE_THRESHOLD = 100;
+    let currentMode = 'dark';
+
+    function isDark(r, g, b) {
+        const luminance = (0.299*r + 0.587*g + 0.114*b);
+        return luminance < LUMINANCE_THRESHOLD;
+    }
+
+    function getBgColorRgb(element) {
+        const style = window.getComputedStyle(element);
+        const bg = style.backgroundColor;
+        const match = bg.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
+        return match ? {
+            r: parseInt(match[1]),
+            g: parseInt(match[2]),
+            b: parseInt(match[3])
+        } : null;
+    }
+
+    function updateBlobPosition(e) {
+        blob.style.transform =
+            `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
+
+        let el = document.elementFromPoint(e.clientX, e.clientY);
+
+        while(el && el !== document.body) {
+            const color = getBgColorRgb(el);
+            if(color) {
+                const dark = isDark(color.r, color.g, color.b);
+                if (dark && currentMode !== 'dark') {
+                    blob.classList.add('dark-mode');
+                    blob.classList.remove('light-mode');
+                    currentMode = 'dark';
+                } else if (!dark && currentMode !== 'light') {
+                    blob.classList.add('light-mode');
+                    blob.classList.remove('dark-mode');
+                    currentMode = 'light';
+                }
+                break;
+            }
+            el = el.parentElement;
+        }
+    }
+
+    document.addEventListener('mousemove', updateBlobPosition);
+    document.body.style.cursor = 'none';
+});
+</script>
+
+
 </body>
 </html>
+
 
 
 
