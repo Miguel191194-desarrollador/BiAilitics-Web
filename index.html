@@ -32,7 +32,6 @@
             animation: gradient-animation 10s ease infinite;
         }
 
-
         /* ======================================================= */
         /* SECCIÓN 2: AJUSTES DE PROCESO (Cajas) — ACTUALIZADA */
         /* ======================================================= */
@@ -49,7 +48,6 @@
             margin-left: auto;
             margin-right: auto;
             overflow: visible;
-            /* 🔥 evita que se corte la última caja */
         }
 
         .process-step {
@@ -63,20 +61,15 @@
             display: block;
         }
 
-
         .process-step.highlight {
             background-image: linear-gradient(90deg, #ff9900, #33ccb5);
             background-size: 200% 100%;
             animation: gradient-animation 10s ease infinite;
             padding: 6px 10px;
-            /* 🔥 igual que las otras */
             margin-top: 0;
-            /* 🔥 mismo tamaño visual */
             margin-bottom: 1em !important;
             color: #ffffff;
         }
-
-
 
         .process-step .header-content {
             display: flex;
@@ -85,16 +78,12 @@
             margin-bottom: 3px;
         }
 
-
-
         .process-step .icon-box {
             flex-shrink: 0;
             width: 20px;
             font-size: 1.4em;
             color: #ffffff;
         }
-
-
 
         .process-step h3 {
             margin: 0;
@@ -104,8 +93,6 @@
             line-height: 1.1;
             flex-grow: 1;
         }
-
-
 
         .process-step p {
             opacity: 0.9;
@@ -122,28 +109,72 @@
         }
 
 
-
-        /* ======================================================= */
-        /* SECCIÓN 3 — Iconos neón (igual que estaba) */
-        /* ======================================================= */
-        .panel.color1 .grid-icons .icon {
-            color: #00ffff !important;
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.7), 0 0 5px rgba(0, 255, 255, 0.5);
+        /* ============================== */
+        /* NUEVA SECCIÓN SERVICIOS BENTO  */
+        /* ============================== */
+        .services-bento-grid {
+            display: grid;
+            gap: 1.2em;
+            padding: 1.5em;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            max-width: 1100px;
+            margin: 0 auto;
         }
 
-        .panel.color1 .grid-icons li {
-            transition: transform 0.2s ease-in-out;
+        .bento-card {
+            background: rgba(0, 0, 0, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 18px;
+            padding: 1.5em;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 180px;
         }
 
-        .panel.color1 .grid-icons li:hover {
-            transform: scale(1.08);
+        .bento-large {
+            grid-column: span 2;
+            min-height: 260px;
         }
 
+        .bento-label {
+            font-size: 0.85em;
+            opacity: 0.8;
+            margin-bottom: 0.5em;
+        }
+
+        .bento-title {
+            font-size: 1.3em;
+            margin: 0;
+        }
+
+        .bento-desc {
+            font-size: 0.9em;
+            opacity: 0.8;
+            margin-top: 0.4em;
+        }
+
+        @media (max-width: 800px) {
+            .bento-large {
+                grid-column: span 1;
+            }
+        }
 
 
         /* ======================================================= */
-        /* CURSOR INTERACTIVO / MODO OSCURO–CLARO (igual que estaba) */
+        /* CONTACTO — AJUSTES ADICIONALES */
         /* ======================================================= */
+
+        .panel.color4-alt .intro {
+            padding: 0 2em !important;
+        }
+
+        .panel.color4-alt .inner.columns.divided {
+            padding-top: 0 !important;
+        }
+
+        /* CURSOR */
         #cursor-glow {
             position: fixed;
             top: 0;
@@ -185,19 +216,6 @@
                 display: none !important;
             }
         }
-
-
-        /* ======================================================= */
-        /* CONTACTO — AJUSTES ADICIONALES PARA JUNTAR INTRO Y FORM */
-        /* ======================================================= */
-        .panel.color4-alt .intro {
-            padding: 0 2em !important;
-        }
-
-        .panel.color4-alt .inner.columns.divided {
-            padding-top: 0 !important;
-            /* Elimina el padding superior para acercar al intro */
-        }
     </style>
 </head>
 
@@ -209,10 +227,10 @@
             <section class="panel banner right">
                 <div class="content color0 span-3-75">
                     <h1 class="major">
-    Hello, my name is<br />
-    BiAilitcs
-</h1>
-                    <p>Somos una empresa especializada en <strong>Soluciones Tecnológicas</strong>, para cualquier tipo de negocio y departamento. <a>Ayudamos</a> a las organizaciones a tomar decisiones inteligentes mediante automatizaciones, análisis de datos y herramientas de productividad adaptadas a cada necesidad. :)</p>
+                        Hello, my name is<br />
+                        BiAilitcs
+                    </h1>
+                    <p>Somos una empresa especializada en <strong>Soluciones Tecnológicas</strong>, para cualquier tipo de negocio y departamento. Ayudamos a las organizaciones a tomar decisiones inteligentes mediante automatizaciones, análisis de datos y herramientas de productividad adaptadas a cada necesidad. :)</p>
                     <ul class="actions">
                         <li><a href="#first" class="button primary color1 circle icon solid fa-angle-right">Next</a></li>
                     </ul>
@@ -227,7 +245,6 @@
                     <h2 class="major">CÓMO LO HACEMOS</h2>
 
                     <div class="process-steps-container">
-
                         <div class="process-step highlight">
                             <div class="header-content">
                                 <div class="icon-box"><i class="fas fa-microscope"></i></div>
@@ -264,45 +281,85 @@
                 </div>
 
                 <div class="image filtered tinted" data-position="top left">
-                    <img src="images/Badajoz.jpg" alt="Proceso de consultoría tecnológica: diagnóstico, solución a medida, formación y resultados" />
+                    <img src="images/Badajoz.jpg" alt="" />
                 </div>
             </section>
 
-            <section class="panel color1">
+
+            <!-- ============================ -->
+            <!-- NUEVA SECCIÓN DE SERVICIOS   -->
+            <!-- ============================ -->
+
+            <section class="panel color1" id="services">
                 <div class="intro joined">
                     <h2 class="major">SERVICIOS</h2>
-                    <p>Transforma tu negocio</p>
-                    <ul class="key-points-list">
-                        <li>Gestión con IA.</li>
-                        <li>Automatización de tareas con IA.</li>
-                        <li>Agentes con IA.</li>
-                        <li>Cuadros de Mando.</li>
-                        <li>Data Analyst.</li>
-                        <li>Automatización de tareas.</li>
-                        <li>Consultoría Digital.</li>
-                        <li>Soporte y Formación.</li>
-                        <li>Acompañamiento Digital.</li>
-                    </ul>
+                    <p>Transforma tu negocio con soluciones inteligentes.</p>
                 </div>
-                <div class="inner">
-                    <ul class="grid-icons three">
-                        <li><span class="icon solid fa-cog"><span class="label">Automatización</span></span></li>
-                        <li><span class="icon solid fa-lightbulb"><span class="label">Innovación</span></span></li>
-                        <li><span class="icon solid fa-handshake"><span class="label">Soporte</span></span></li>
-                        <li><span class="icon solid fa-chalkboard-teacher"><span class="label">Formación</span></span></li>
-                        <li><span class="icon solid fa-cloud-upload-alt"><span class="label">Migración Digital</span></span></li>
-                        <li><span class="icon solid fa-shield-alt"><span class="label">Ciberseguridad</span></span></li>
-                    </ul>
+
+                <div class="services-bento-grid">
+
+                    <div class="bento-card bento-large">
+                        <div class="bento-label">Gestión con IA</div>
+                        <h3 class="bento-title">Optimización Inteligente</h3>
+                        <p class="bento-desc">Implementamos sistemas que toman decisiones automáticas por ti.</p>
+                    </div>
+
+                    <div class="bento-card">
+                        <div class="bento-label">Automatización con IA</div>
+                        <h3 class="bento-title">Procesos Automáticos</h3>
+                        <p class="bento-desc">Automatiza tareas repetitivas y gana eficiencia real.</p>
+                    </div>
+
+                    <div class="bento-card">
+                        <div class="bento-label">Agentes con IA</div>
+                        <h3 class="bento-title">Asistentes Inteligentes</h3>
+                        <p class="bento-desc">Bots conversacionales que trabajan 24/7.</p>
+                    </div>
+
+                    <div class="bento-card bento-large">
+                        <div class="bento-label">Cuadros de Mando</div>
+                        <h3 class="bento-title">Dashboards Visuales</h3>
+                        <p class="bento-desc">Información centralizada con KPIs y métricas clave.</p>
+                    </div>
+
+                    <div class="bento-card">
+                        <div class="bento-label">Data Analyst</div>
+                        <h3 class="bento-title">Análisis Avanzado</h3>
+                        <p class="bento-desc">Convertimos datos en decisiones estratégicas.</p>
+                    </div>
+
+                    <div class="bento-card">
+                        <div class="bento-label">Automatización de Tareas</div>
+                        <h3 class="bento-title">Productividad Total</h3>
+                        <p class="bento-desc">Digitaliza procesos y reduce errores.</p>
+                    </div>
+
+                    <div class="bento-card">
+                        <div class="bento-label">Consultoría Digital</div>
+                        <h3 class="bento-title">Transformación</h3>
+                        <p class="bento-desc">Diseñamos tu hoja de ruta digital.</p>
+                    </div>
+
+                    <div class="bento-card">
+                        <div class="bento-label">Soporte y Formación</div>
+                        <h3 class="bento-title">Acompañamiento</h3>
+                        <p class="bento-desc">Te enseñamos cómo sacarle partido a tus sistemas.</p>
+                    </div>
+
+                    <div class="bento-card">
+                        <div class="bento-label">Acompañamiento Digital</div>
+                        <h3 class="bento-title">Seguimiento</h3>
+                        <p class="bento-desc">Crecemos junto a tu negocio.</p>
+                    </div>
+
                 </div>
             </section>
 
 
-
-
-                <section class="panel color4-alt">
+            <section class="panel color4-alt">
                 <div class="intro color4 span-3-25">
                     <h2 class="major">CONTACTO</h2>
-                    <p>¿Tienes un proyecto en mente? Contáctanos hoy mismo para hablar de tus necesidades; analizando tu caso, te ofreceremos una gran variedad de soluciones tecnológicas. Estamos listos para ayudarte.</p>
+                    <p>¿Tienes un proyecto en mente? Contáctanos hoy mismo…</p>
                 </div>
                 <div class="inner columns divided">
                     <div class="span-3-25">
@@ -310,15 +367,15 @@
                             <div class="fields">
                                 <div class="field half">
                                     <label for="name">Nombre y Apellidos</label>
-                                    <input type="text" name="name" id="name" placeholder="" />
+                                    <input type="text" name="name" id="name" />
                                 </div>
                                 <div class="field half">
                                     <label for="email">Email</label>
-                                    <input type="email" name="email" id="email" placeholder="" />
+                                    <input type="email" name="email" id="email" />
                                 </div>
                                 <div class="field">
                                     <label for="message">Mensaje</label>
-                                    <textarea name="message" id="message" rows="4" placeholder=""></textarea>
+                                    <textarea name="message" id="message" rows="4"></textarea>
                                 </div>
                             </div>
                             <ul class="actions">
@@ -330,18 +387,14 @@
                         <ul class="contact-icons color1">
                             <li class="icon brands fa-facebook-f"><a href="#">facebook.com/Miguel Angel Dominguez Rangel</a></li>
                             <li class="icon brands fa-instagram"><a href="#">@biailitics_data</a></li>
-                            <li class="icon brands fa-medium-m"><a href="#">linkedin.com/Miguel Ángel Domínguez Rangel</a></li>
+                            <li class="icon brands fa-medium-m"><a href="#">linkedin.com/Miguel Ángel Domínguez</a></li>
                         </ul>
                     </div>
                 </div>
             </section>
 
-            <!-- AQUÍ HEMOS ELIMINADO LA SECCIÓN "Elements" -->
-
-            <div class="copyright">&copy; 2025 Bialitics Data.: <a href="https://html5up.net">Todos los derechos reservados.</a>.</div>
-
+            <div class="copyright">&copy; 2025 Bialitics Data</div>
         </div>
-
     </div>
 
     <div id="cursor-glow"></div>
@@ -351,94 +404,9 @@
     <script src="assets/js/breakpoints.min.js"></script>
     <script src="assets/js/main.js"></script>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const glowContainer = document.getElementById('cursor-glow');
-            const blob = document.createElement('div');
-            // Usamos una clase al inicio que garantice visibilidad en el fondo inicial (oscuro)
-            blob.className = 'cursor-blob dark-mode';
-            glowContainer.appendChild(blob);
-
-            // Umbral de Luminancia: 100.
-            const LUMINANCE_THRESHOLD = 100;
-            let currentMode = 'dark';
-
-            // Función para verificar si un color (RGB) es oscuro o claro
-            function isDark(r, g, b) {
-                // Fórmula simple de luminancia percibida
-                const luminance = (0.299 * r + 0.587 * g + 0.114 * b);
-
-                return luminance < LUMINANCE_THRESHOLD;
-            }
-
-            // Función para obtener el color de fondo RGB de un elemento
-            function getBgColorRgb(element) {
-                const style = window.getComputedStyle(element);
-                const bgColor = style.backgroundColor;
-                // Busca 'rgb(x, y, z)' o 'rgba(x, y, z, a)'
-                const match = bgColor.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d*\.?\d+))?\)/);
-                if (match) {
-                    return {
-                        r: parseInt(match[1]),
-                        g: parseInt(match[2]),
-                        b: parseInt(match[3]),
-                        // Si el alfa es 0, lo tratamos como transparente
-                        a: match[4] ? parseFloat(match[4]) : 1.0
-                    };
-                }
-                return null;
-            }
-
-            // Función principal para actualizar el color y posición del blob
-            function updateBlobPosition(e) {
-                // Mueve el blob con el cursor
-                blob.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
-
-                // 1. Obtener el elemento bajo el cursor
-                let targetElement = document.elementFromPoint(e.clientX, e.clientY);
-                let colorData = null;
-
-                // Bucle para buscar un elemento con un color de fondo definido (no transparente)
-                while (targetElement && targetElement !== document.body) {
-                    colorData = getBgColorRgb(targetElement);
-
-                    // Si encontramos un color opaco (Alpha > 0.1), usamos ese y rompemos el bucle.
-                    if (colorData && colorData.a > 0.1) {
-                        break;
-                    }
-                    // Si no hay color de fondo, subimos al padre
-                    targetElement = targetElement.parentElement;
-                }
-
-                // Si se encontró un color definido
-                if (colorData) {
-                    const targetIsDark = isDark(colorData.r, colorData.g, colorData.b);
-
-                    // 2. Aplicar la clase de modo (sólo si el modo ha cambiado)
-                    if (targetIsDark && currentMode !== 'dark') {
-                        blob.classList.add('dark-mode');
-                        blob.classList.remove('light-mode');
-                        currentMode = 'dark';
-                    } else if (!targetIsDark && currentMode !== 'light') {
-                        blob.classList.add('light-mode');
-                        blob.classList.remove('dark-mode');
-                        currentMode = 'light';
-                    }
-                }
-            }
-
-            // Escucha el movimiento del ratón
-            document.addEventListener('mousemove', updateBlobPosition);
-
-            // Opcional: Ocultar el cursor normal
-            document.body.style.cursor = 'none';
-        });
-    </script>
 </body>
 
 </html>
-
-
 
 
 
