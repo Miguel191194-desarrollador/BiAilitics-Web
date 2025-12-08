@@ -221,6 +221,7 @@
         }
 
         /* ======================================================= */
+
 /* 🖥️ FIX PROFESIONAL PARA ORDENADOR (SERVICIOS) */
 /* ======================================================= */
 @media (min-width: 1024px) {
@@ -257,28 +258,41 @@
         color: #fff;
     }
 
-    /* GRID nuevo en PC */
+    /* GRID con 2 columnas */
     .services-bento-grid {
-        max-width: 1400px !important;                          /* 🔶 CAMBIO */
+        max-width: 1100px !important;
         margin: 0 auto !important;
         padding: 0 2rem !important;
         display: grid !important;
-        grid-template-columns: repeat(3, 1fr) !important;
-        gap: 1.2rem !important;                                /* 🔶 CAMBIO */
+        grid-template-columns: 1fr 1fr !important;  /* 🔥 2 columnas */
+        gap: 1rem !important;                      /* 🔥 separación más pequeña */
     }
 
     /* Tarjetas más compactas */
     .bento-card {
-        padding: 0.7rem !important;           /* 🔶 CAMBIO 08/12/2025 */
-        height: auto !important;              /* 🔶 CAMBIO */
-        min-height: 60px !important;         /* 🔶 CAMBIO 08/12/2025 */
+        padding: 0.6rem !important;     /* 🔥 más pequeña */
+        height: auto !important;
+        min-height: 55px !important;    /* 🔥 bajamos aún más */
     }
 
-    /* Caja grande (si la usas) */
+    /* Títulos más pequeños */
+    .bento-card h3 {
+        font-size: 0.95rem !important;
+        line-height: 1.05rem !important;
+    }
+
+    /* Texto más compacto */
+    .bento-card p {
+        font-size: 0.75rem !important;
+        line-height: 1rem !important;
+    }
+
+    /* Quitar modo grande */
     .bento-large {
         grid-column: unset !important;
     }
 }
+
 
 
     </style>
@@ -468,6 +482,7 @@
 </body>
 
 </html>
+
 
 
 
