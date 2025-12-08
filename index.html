@@ -171,21 +171,26 @@
 
         /* MÓVIL */
         @media (max-width: 680px) {
-            .services-bento-grid {
-                grid-template-columns: 1fr;
-                padding: 1em;
-            }
 
-            .bento-card {
-                min-height: auto;
-                padding: 1em;
-            }
+    .services-bento-grid {
+        grid-template-columns: 1fr;
+        justify-items: center;       /* 🔥 centra las tarjetas */
+        padding: 1em;
+    }
 
-            .bento-title { font-size: 1.15em; }
-            .bento-desc  { font-size: 0.85em; }
+    .bento-card {
+        width: 88% !important;        /* 🔥 NO ocupan todo el ancho */
+        max-width: 340px !important;  /* 🔥 ancho controlado */
+        min-height: auto;
+        padding: 1em;
+        border-radius: 16px !important;
+    }
 
-            .bento-large { grid-column: span 1; }
-        }
+    .bento-title { font-size: 1.15em; }
+    .bento-desc  { font-size: 0.85em; }
+
+    .bento-large { grid-column: span 1; }
+}
 
         /* ======================================================= */
         /* CONTACTO */
@@ -548,6 +553,7 @@
 </body>
 
 </html>
+
 
 
 
