@@ -245,6 +245,21 @@
 }
 
 
+/* Efecto hover: agrandar caja */
+.bento-card {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.bento-card:hover {
+    transform: scale(1.25);                     /* 🔥 crece un 25% */
+    box-shadow: 0 0 15px rgba(0, 200, 255, 0.6); /* 🔥 más brillo al pasar */
+    z-index: 10;                                /* 🔥 se superpone a las otras */
+}
+
+
+    
+
+
 /* Línea debajo del título SERVICIOS en ordenador */
 #services::before::after {
     content: "";
@@ -506,6 +521,7 @@
 </body>
 
 </html>
+
 
 
 
